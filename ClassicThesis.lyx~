@@ -314,16 +314,6 @@ filename "Chapter03.lyx"
 
 \end_layout
 
-\begin_layout Part Introduction (ClassicThesis)
-Web development that doesn’t hurt
-\begin_inset Newline newline
-\end_inset
-
-Ruby on Rails is an open-source web framework that’s optimized for programmer
- happiness and sustainable productivity.
- It lets you write beautiful code by favoring convention over configuration.
-\end_layout
-
 \begin_layout Part
 Spring
 \end_layout

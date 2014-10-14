@@ -141,16 +141,12 @@ Il controller rappresenta l'entità che si occupa di ricevere ed interpretare
  i comandi eseguiti dall'utente modificando lo stato delle altre due componenti.
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Subsection
 L'interpretazione di RoR
 \end_layout
 
 \begin_layout Subsection
-La versione 4.1
+Le principali caratteristiche
 \end_layout
 
 \begin_layout Section

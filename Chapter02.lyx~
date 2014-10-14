@@ -122,12 +122,15 @@ Il principale concetto che definisce l'architettura MVC è la separazioni
 \end_layout
 
 \begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 Il modello è la prima componente, descrive il dominio del problema in maniera
  indipendente dalla logica e dalle interfacce grafiche utilizzate; in maniera
- più specifica nel contesto delle applicazioni web, il modelloè definito
- da uno o più strumenti per garantire la persistenza, potenzialmente differenti
- fra loro, che garantiscono il mantenimento delle informazioni del dominio
- e dall'interfaccia per accedere a tali dati.
+ più specifica nel contesto delle applicazioni web, il modello rappresenta
+ uno o più strumenti per garantire la persistenza, potenzialmente differenti
+ fra loro, che garantiscono il mantenimento delle informazioni del dominio.
 \begin_inset Newline newline
 \end_inset
 
@@ -139,10 +142,6 @@ Tramite le viste il sistema fornisce all'utente una rappresentazione delle
 
 Il controller rappresenta l'entità che si occupa di ricevere ed interpretare
  i comandi eseguiti dall'utente modificando lo stato delle altre due componenti.
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Subsection
