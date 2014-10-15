@@ -5,9 +5,9 @@
 \textclass classicthesis
 \use_default_options true
 \maintain_unincluded_children false
-\language american
-\language_package default
-\inputencoding default
+\language italian
+\language_package babel
+\inputencoding auto
 \fontencoding global
 \font_roman default
 \font_sans default
@@ -107,30 +107,7 @@ pagestyle{plain}
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "DirtyTitlepage.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Titlepage.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Titleback.lyx"
-
+\begin_inset Newpage cleardoublepage
 \end_inset
 
 
@@ -144,16 +121,6 @@ filename "Titleback.lyx"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Dedication.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Newpage cleardoublepage
 \end_inset
 
@@ -161,44 +128,7 @@ filename "Dedication.lyx"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Abstract.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Publication.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Acknowledgments.lyx"
-
 \end_inset
 
 
@@ -221,16 +151,6 @@ status open
 \backslash
 pagestyle{scrheadings}
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Contents.lyx"
 
 \end_inset
 
@@ -261,9 +181,13 @@ pagenumbering{arabic}
 \end_layout
 
 \begin_layout Standard
+Introduzione
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Chapter01.lyx"
+filename "Capitoli/Chapter01.lyx"
 
 \end_inset
 
@@ -297,35 +221,25 @@ Ruby On Rails
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Chapter02.lyx"
+filename "Capitoli/Chapter02.lyx"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter03.lyx"
-
+\begin_layout Part Introduction (ClassicThesis)
+Web development that doesn’t hurt
+\begin_inset Newline newline
 \end_inset
 
-
+Ruby on Rails is an open-source web framework that’s optimized for programmer
+ happiness and sustainable productivity.
+ It lets you write beautiful code by favoring convention over configuration.
 \end_layout
 
 \begin_layout Part
 Spring
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter04.lyx"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Part
@@ -345,10 +259,7 @@ Appendix
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter0A.lyx"
-
+\begin_inset Newpage cleardoublepage
 \end_inset
 
 
@@ -362,44 +273,7 @@ filename "Chapter0A.lyx"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Bibliography.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Colophon.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Declaration.lyx"
-
 \end_inset
 
 

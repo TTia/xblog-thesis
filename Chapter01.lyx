@@ -5,8 +5,8 @@
 \textclass classicthesis
 \use_default_options true
 \maintain_unincluded_children false
-\language american
-\language_package default
+\language italian
+\language_package babel
 \inputencoding default
 \fontencoding global
 \font_roman default
@@ -56,7 +56,7 @@
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language swedish
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -83,8 +83,40 @@ name "ch:Introduzione"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+L'architettura MVC
+\end_layout
 
+\begin_layout Standard
+MVC è l'acronimo per Model-View-Controller, un pattern architetturale per
+ l'implementazione di interfacce utente, e nel caso specifico di questa
+ tesi, di applicazioni Web.
+\end_layout
+
+\begin_layout Standard
+Il principale concetto che definisce l'architettura MVC è la separazioni
+ sia concettuale che pratica delle componenti che definiscono un'applicazione
+ web.
+\end_layout
+
+\begin_layout Standard
+Il modello è la prima componente, descrive il dominio del problema in maniera
+ indipendente dalla logica e dalle interfacce offerte all'utente; in maniera
+ più specifica nel contesto delle applicazioni web, il modello è definito
+ da uno o più strumenti per garantire la persistenza, potenzialmente differenti
+ fra loro, che garantiscono il mantenimento delle informazioni del dominio
+ e dall'interfaccia per accedere a tali dati.
+\begin_inset Newline newline
+\end_inset
+
+Tramite le viste il sistema fornisce all'utente una rappresentazione delle
+ informazioni presenti, come la pagina web relativa ad un articolo su un
+ blog.
+\begin_inset Newline newline
+\end_inset
+
+Il controller rappresenta l'entità che si occupa di ricevere ed interpretare
+ i comandi eseguiti dall'utente modificando lo stato delle altre due componenti.
 \end_layout
 
 \end_body
