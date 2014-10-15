@@ -80,11 +80,78 @@ name "ch:Introduzione"
 
 \end_inset
 
+Nell'articolo 
+\begin_inset Quotes sld
+\end_inset
+
+A comparative Study of Maintainability of Web Application on J2EE, .NET and
+ Ruby on Rails
+\begin_inset Quotes srd
+\end_inset
+
+ scritto da Look Fang Fang Stella, Stan Jarzabek and Bimlesh Wadhwa scritto
+ nel 2008 viene evidenziato il processo di introduzione di una nuova funzionalit
+à in un'applicazione Web e delle ripercussioni sul codice esistente di questa
+ operazione.
+ Ruby on Rails, Spring e in .NET condividono il pattern architetturale Model
+ View Controller, descritto in seguito, e si prestano dunque ad un confronto
+ alla pari: dall'articolo emerge come il neonato RoR, l'articolo è stato
+ pubblicato a pochi anni dal rilascio della prima versione, si presentasse
+ come una piattaforme più moderna ed incline alla metodologia Agile e al
+ supporto dei relativi processi di sviluppo.
+ Grazie ad un struttura più lineare, alla semplicità di definizione dei
+ test e combinando il potere espressivo di Ruby, gli autori hanno individuato
+ in RoR il framework che ha il minor impatto sul progetto per numero di
+ linee di codice modificate ed al contempo mantiene il codice maggiormente
+ comprensibile e di conseguenza più semplicemente modificabile.
+\begin_inset Newline newline
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+Stella, Jarzabek e Wadhwa concludono il proprio lavoro segnalando come il
+ campo delle applicazioni web sia in continuo fermento ed in rapida evoluzione
+ ed assumono che nuovi framework potrebbero emergere in futuro ed essere
+ meritevoli di attenzione.
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata dai
+ tre ricercatori dell'università di Singapore, analizzando tre framework,
+ scelti in funzione di diffusione, novità e particolarità, per lo sviluppo
+ di applicazioni web ma indirizzando l'indagine verso la possibilità di
+ definire test di accettazione automatici piuttosto che alla modificabilità.
+ I framework scelti sono Ruby on Rails, Spring MVC e AngularJS.
+ Nel corso del tesi verranno introdotti le caratteristiche architetturali
+ delle piattaforme e documentato lo sviluppo parallelo dei test di accettazione
+ e delle applicazione web oggetto delle verifiche.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al fine di focalizzare l'attenzione sullo sviluppo e sulle problematiche
+ dei test di accettazione è stato scelto di sviluppare una semplice applicazione
+ web, riprendendo l'esempio del blog proposto nell'articolo ma riducendone
+ ulteriormente la dimensione.
+ Sono state sviluppate tre applicazioni, che condividono interamente le
+ stesse funzionalità ed il codice relativo alle interfacce grafiche ma presentan
+o delle ovvie differenze per quanto riguarda l'implementazione; inoltre
+ è stato scelto di sfruttare il più possibile nuove tecnologie per osservare
+ gli strumenti per la definizione dei test di accettazione siano al passo
+ con un settore, quale è lo sviluppo di applicazioni web, molto dinamico
+ e variegato.
+ Nel corso della tesi verranno documentati gli strumenti scelti, verificandone
+ le potenzialità nei diversi scenari di test, effettuando confronti dove
+ possibile ed evidenziando pregi o carenze rispetto alle controparti.
+\end_layout
+
 \begin_layout Section
-L'architettura MVC
+L'architettura Model View Controller
 \end_layout
 
 \begin_layout Standard
@@ -186,16 +253,22 @@ A differenze della verifica dei test effettuata manualmente dagli un gruppo
  di utenti, i test automatici hanno il vantaggio di restituire un risultato
  in maniera deterministica per un certo requisito e permettere al team di
  concentrare meglio i propri sforzi.
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Subsection
-Sviluppo di test dichiarativi
+
 \end_layout
 
 \begin_layout Standard
-Il principale problema nella definizione di testi di accettazione è data
- dalla fragilità delle specifiche.
- 
+http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
+\end_layout
+
+\begin_layout Subsection
+Struttura di un test di accettazione
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
