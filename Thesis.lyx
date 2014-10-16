@@ -60,6 +60,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\listings_params "breaklines=true,frame=single,captionpos=t,frameround=f,showlines=true,numbers=left,language=Ruby,alsolanguage=HTML,columns=fullflexible"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -194,10 +195,6 @@ filename "Capitoli/Chapter01.lyx"
 
 \end_layout
 
-\begin_layout Part Introduction (ClassicThesis)
-
-\end_layout
-
 \begin_layout Part
 Ruby On Rails
 \end_layout
@@ -213,13 +210,9 @@ filename "Capitoli/Chapter02.lyx"
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-Web development that doesn’t hurt
-\begin_inset Newline newline
-\end_inset
-
-Ruby on Rails is an open-source web framework that’s optimized for programmer
- happiness and sustainable productivity.
- It lets you write beautiful code by favoring convention over configuration.
+Ruby On Rails è un framework open-source per lo sviluppo di applicazioni
+ web scritto principalmente in Ruby; attualmente alla versione 4.1, la prima
+ versione è stata sviluppata nel 2005 David Heinemeier Hansson.
 \end_layout
 
 \begin_layout Part

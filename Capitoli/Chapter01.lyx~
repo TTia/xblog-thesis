@@ -97,8 +97,8 @@ A comparative Study of Maintainability of Web Application on J2EE, .NET and
  View Controller, descritto in seguito, e si prestano dunque ad un confronto
  alla pari: dall'articolo emerge come il neonato RoR, l'articolo è stato
  pubblicato a pochi anni dal rilascio della prima versione, si presentasse
- come una piattaforme più moderna ed incline alla metodologia Agile e al
- supporto dei relativi processi di sviluppo.
+ fin da subito come una piattaforme più moderna ed incline alla metodologia
+ Agile e al supporto dei relativi processi di sviluppo.
  Grazie ad un struttura più lineare, alla semplicità di definizione dei
  test e combinando il potere espressivo di Ruby, gli autori hanno individuato
  in RoR il framework che ha il minor impatto sul progetto per numero di
@@ -113,19 +113,19 @@ A comparative Study of Maintainability of Web Application on J2EE, .NET and
 \begin_layout Standard
 Stella, Jarzabek e Wadhwa concludono il proprio lavoro segnalando come il
  campo delle applicazioni web sia in continuo fermento ed in rapida evoluzione
- ed assumono che nuovi framework potrebbero emergere in futuro ed essere
- meritevoli di attenzione.
+ ed assumono anche che nuovi framework potrebbero emergere in futuro ed
+ essere meritevoli di attenzione.
 \end_layout
 
 \begin_layout Standard
 L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata dai
  tre ricercatori dell'università di Singapore, analizzando tre framework,
  scelti in funzione di diffusione, novità e particolarità, per lo sviluppo
- di applicazioni web ma indirizzando l'indagine verso la possibilità di
- definire test di accettazione automatici piuttosto che alla modificabilità.
+ di applicazioni web ma concentrando l'attenzione sull'implementazione di
+ test di accettazione automatici piuttosto che alla modificabilità.
  I framework scelti sono Ruby on Rails, Spring MVC e AngularJS.
- Nel corso del tesi verranno introdotti le caratteristiche architetturali
- delle piattaforme e documentato lo sviluppo parallelo dei test di accettazione
+ Nel corso del tesi verranno descritte le peculiarità architetturali delle
+ piattaforme e documentato lo sviluppo parallelo dei test di accettazione
  e delle applicazione web oggetto delle verifiche.
 \begin_inset Newline newline
 \end_inset
@@ -136,12 +136,12 @@ L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata dai
 \begin_layout Standard
 Al fine di focalizzare l'attenzione sullo sviluppo e sulle problematiche
  dei test di accettazione è stato scelto di sviluppare una semplice applicazione
- web, riprendendo l'esempio del blog proposto nell'articolo ma riducendone
- ulteriormente la dimensione.
- Sono state sviluppate tre applicazioni, che condividono interamente le
- stesse funzionalità ed il codice relativo alle interfacce grafiche ma presentan
-o delle ovvie differenze per quanto riguarda l'implementazione; inoltre
- è stato scelto di sfruttare il più possibile nuove tecnologie per osservare
+ web, riprendendo l'esempio del blog proposto nell'articolo ma riducendo
+ le pretese.
+ Sono state sviluppati tre progetti, che offrono le stesse funzionalità
+ e condividono il codice relativo alle interfacce grafiche, presentando
+ però delle ovvie differenze relative all'implementazione; inoltre è stato
+ scelto di sfruttare il più possibile nuove tecnologie per verificare che
  gli strumenti per la definizione dei test di accettazione siano al passo
  con un settore, quale è lo sviluppo di applicazioni web, molto dinamico
  e variegato.
@@ -171,12 +171,12 @@ Il principale concetto che definisce l'architettura MVC è la separazioni
 \end_layout
 
 \begin_layout Standard
-Il modello è la prima componente, descrive il dominio del problema in maniera
- indipendente dalla logica e dalle interfacce offerte all'utente; in maniera
- più specifica nel contesto delle applicazioni web, il modello è definito
- da uno o più strumenti per garantire la persistenza, potenzialmente differenti
- fra loro, che garantiscono il mantenimento delle informazioni del dominio
- e dall'interfaccia per accedere a tali dati.
+Il modello è la prima componente individuabile, descrive il dominio del
+ problema in maniera indipendente dalla logica e dalle interfacce offerte
+ all'utente; in maniera più specifica, nel contesto delle applicazioni web,
+ il modello è definito da uno o più strumenti per garantire la persistenza,
+ potenzialmente etereogenei, che garantiscono il mantenimento delle informazioni
+ del dominio e dall'interfaccia per accedere a tali dati.
 \end_layout
 
 \begin_layout Standard
@@ -213,19 +213,19 @@ I test di accettazione
 
 \begin_layout Standard
 La definizione dei test di accettazione avviene durante la fase di programmazion
-e delle iterazioni e produce una insieme di scenari che rappresentino le
- funzionalità da implementare.
- Rispetto ad altri processi di testing, i test di accettazione sono definiti
+e delle iterazioni di un processo di sviluppo e produce una insieme di scenari
+ che rappresentano le funzionalità da implementare.
+ Rispetto ad altre tipologie di testing, i test di accettazione sono definiti
  in linguaggio naturale, descrivendo le funzioni da verificare dal punto
  di vista degli utenti a cui il prodotto è destinato, prendendo in considerazion
 e la loro conoscenza del problema e del dominio in questione e descrivono
  il comportamento del prodotto, senza evidenziare il design, né l'implementazion
 e.
  I test di accettazione sono utilizzati sia per verificare che non siano
- presenti errori tecnici e nell'interpretazione delle specifiche da parte
- del team di sviluppo sia per mantenere traccia dello stato dello sviluppo,
- ad esempio se tutti gli scenari individuati soddisfano le nuove funzionalità
- sono pronte per essere rilasciate.
+ presenti errori tecnici o nell'interpretazione delle specifiche da parte
+ del team di sviluppo, sia per mantenere traccia dello stato dello sviluppo,
+ ad esempio nel caso in cui tutti gli scenari individuati siano soddisfatti,
+ le nuove funzionalità sono pronte per essere rilasciate.
 \end_layout
 
 \begin_layout Subsection
@@ -233,7 +233,7 @@ Test di accettazione automatici
 \end_layout
 
 \begin_layout Standard
-Secondo il manifesto Agile, applicando la metodologia Extreme Programming,
+Secondo il manifesto Agile e applicando la metodologia Extreme Programming,
  i test di accettazione sono redatti a partire user stories.
  Il cliente ha il compito di indicare per ciascuna storia le condizioni
  di successo, per verificare che sia stata implementata con successo.
@@ -261,14 +261,6 @@ A differenze della verifica dei test effettuata manualmente dagli un gruppo
 
 \begin_layout Standard
 http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
-\end_layout
-
-\begin_layout Subsection
-Struttura di un test di accettazione
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \end_body

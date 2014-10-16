@@ -11,7 +11,7 @@
 \fontencoding global
 \font_roman default
 \font_sans default
-\font_typewriter default
+\font_typewriter courier
 \font_math auto
 \font_default_family default
 \use_non_tex_fonts false
@@ -60,12 +60,14 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\scriptsize}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
 \end_header
+
 \begin_body
 
 \begin_layout Chapter
@@ -79,9 +81,7 @@ name "ch:rubyonrails"
 
 \end_inset
 
-Ruby On Rails è un framework open-source per lo sviluppo di applicazioni
- web scritto principalmente in Ruby; attualmente alla versione 4.1, la prima
- versione è stata sviluppata nel 2005 David Heinemeier Hansson.
+
 \end_layout
 
 \begin_layout Section
@@ -89,27 +89,558 @@ Introduzione a RoR
 \end_layout
 
 \begin_layout Subsection
-Breve storia di RoR
-\end_layout
-
-\begin_layout Subsection
 Ruby
 \end_layout
 
-\begin_layout Subsection
-L'interpretazione di RoR del pattern MVC
+\begin_layout Standard
+Ruby è un linguaggio di programmazione open-source, general-purpose e orientato
+ agli oggetti ideato da Yukihiro Matsumoto.
+ La prima pubblicazione del linguaggio risale al 1995 ed attualmente è alla
+ versione 2.1.
+ Ruby è fortemente orientato alla produttività, permette di scrivere codice
+ essenziale, con un netto risparmio di linee di codice rispetto a programmi
+ tipati staticamente come Java o C# e offre una sintassi ricca e versatile.
+ 
+\end_layout
+
+\begin_layout Standard
+La comunità di Ruby è estremamente attiva e dinamica, e contribuisce in
+ maniera attiva all'individuazione di bug e al miglioramento continuo del
+ linguaggio.
+ Non è l'obbietto di questa tesi addentrarsi nelle particolarità sintattiche
+ e semantiche di Ruby, ma ritengo sia utile fornire qualche riferimento
+ per l'apprendimento del linguaggio.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+«Se intraprendete lo studio di un kōan e vi ci dedicate senza interrompervi,
+ scompariranno i vostri pensieri e svaniranno i bisogni dell'io.
+ » 
+\emph default
+(Hakuin, Orategama)
+\emph on
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I Ruby Koans
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I Koans sono disponibili su 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://rubykoans.com/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+koan
+\begin_inset Quotes erd
+\end_inset
+
+ è la pronuncia giapponese dei caratteri cinesi, sono una collezione di
+ esercizi su Ruby e permettono lo studio del linguaggio comprendendo la
+ maggior parte strutture sintattiche, degli elementi semantici e delle strutture
+ dato.
+ L'utente è guidato tramite nell'apprendimento in puro stile TDD, in maniera
+ semplice, leggera ed irriverente; terminato il corso si acquisisce una
+ buona consapevolezza del linguaggio e confidenza con lo stile di Ruby.
+\end_layout
+
+\begin_layout Standard
+Sempre nello stile tracciato da i koan, che sono un'autorità all'interno
+ della comunità di Ruby, ho approfondito la conoscenza del linguaggio e
+ di RoR tramite il portale Ruby Monk
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://rubymonk.com/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ che fornisce numerosi tutorial interattivi ed esercizi riassuntivi per
+ ogni argomento; ogni lezione è completabile attraverso il proprio browser
+ internet e fornisce numerosi consigli e indicazioni allo studente.
 \end_layout
 
 \begin_layout Subsection
 Don't Repeat Yourself
 \end_layout
 
+\begin_layout Standard
+Il principio di mantenere il proprio codice senza ripetizioni è molto diffuso
+ nell'ambito dello sviluppo Agile ed in generale è un'ottima pratica di
+ programmazione.
+ Un progetto DRY permette agli sviluppatori di modificare il codice più
+ semplicemente; una funzionalità descritta in un numero ridotto di unità
+ di compilazioni e ben fattorizzata è facilmente individuabile, correggibile
+ e modificabile senza incorrere in modifiche involontarie ad altre parti
+ del sistema.
+\end_layout
+
+\begin_layout Standard
+RoR fornisce differenti funzionalità, quali librerie, helpers e viste parziali,
+ per aiutare lo sviluppatore a definire applicazioni DRY.
+\begin_inset Newline newline
+\end_inset
+
+Nell'implementazione delle viste è comune che alcuni elementi siano presenti
+ più volte all'interno della stessa applicazione o anche all'interno della
+ stessa pagina.
+ In RoR, è possibile definire delle viste parziali per poter fattorizzare
+ al meglio queste porzioni di codice.
+ Per rendere ancora più efficace questo meccanismo di fattorizzazione e
+ definire dei comportamenti dinamici, è possibile passare al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+render
+\begin_inset Quotes erd
+\end_inset
+
+, che si occupa di visualizzare file con estensione 'erb', dei parametri
+ in maniera opzionale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<%= render 
+\end_layout
+
+\begin_layout Plain Layout
+
+	:partial => 'posts/logged_user_post_actions',
+\end_layout
+
+\begin_layout Plain Layout
+
+	:locals => {
+\end_layout
+
+\begin_layout Plain Layout
+
+		:current_user => current_user,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:post => post
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+%>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Visualizzazione di un vista parziale.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<% if current_user %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<div class='post_actions'>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<%= edit_post_image_link post %>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<%= remove_post_image_link post %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+<% end %>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vista parziale.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre, data una vista parziale che visualizza un singolo elemento, è anche
+ possibile passare al metodo render una collezione di oggetti sulla quale
+ iterare, fornendo opzionalmente anche un separatore.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I metodi e le librerie in RoR tipicamente si prestano ad una grande varietà
+ di usi e comportamenti, per una descrizione più precisa è possibile consultare
+ la documentazione online.
+ 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La piattaforma RoR fornisce anche numerosi Helper.
+ Un Helper è descritto da un insieme di funzionalità, definite all'interno
+ di un modulo, utili per gestire alcune problematiche classiche dello sviluppo
+ di applicazioni web.
+ La gestione di file, formattazione di date, gestione di form e generazione
+ del relativo codice sono solo alcuni degli helper definiti nell'API di
+ RoR.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<%= truncate(post.body, :length => 500, :separator => ' ', :omission => '...')
+ %>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Il metodo 'truncate', appartenente al modulo TextHelper.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come già osservato durante l'uso delle viste parziali, le librerie offerte
+ sono ricche di parametri opzionali, permettono l'uso di blocchi definiti
+ dall'utente e sono ben documentate: ogni metodo presente è ampiamente descritto
+ e offre diversi esempi per semplificarne l'uso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<%= form_for(@post) do |f| %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+	<div id="title_field">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<%= f.label :title, 'Titolo' %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+	<%= f.text_field :title, :size => 50 %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+<% end %>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Un esempio dell'uso delle funzionalità di FormHelper.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' altrettanto semplice definire i propri Helper: per ogni controllo definito
+ è incluso di default il relativo Helper, ad esempio in RBlog la classe
+ PostsController include il modulo personalizzato PostsHelper in maniera
+ automatica, senza necessità di configurarne l'uso e la visibilità.
+\end_layout
+
 \begin_layout Subsection
 Convention Over Configuration
 \end_layout
 
+\begin_layout Standard
+RoR definisce un insieme di convenzioni per semplificare l'uso e la configurazio
+ne della piattaforma da parte dello sviluppatore.
+ Per minimizzare il tempo richiesto per la configurazione di un nuovo progetto,
+ è utile seguire le convenzioni proposte, ordinando il codice in cartelle
+ secondo le diverse funzionalità, aderendo alle convenzioni di denominazione
+ dei file e degli attributi presenti nel modello.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ovviamente non è possibile prescindere completamente dall'uso di alcuni
+ file di configurazione, ma RoR facilita ulteriormente la definizione di
+ questi file codificandoli con YAML
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+Per informazioni si rimanda al sito ufficiale.
+\lang italian
+
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.yaml.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, un formato di serializzazione facilmente leggibile e scrivibile, e Ruby
+ stesso.
+ Lo sviluppatore inoltre può anche sfruttare i numerosi tool a linea di
+ comando per la prima generazione delle risorse, utili anche per avere una
+ traccia contenente le impostazioni più plausibili per una nuova applicazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+default: &default
+\end_layout
+
+\begin_layout Plain Layout
+
+adapter: postgresql
+\end_layout
+
+\begin_layout Plain Layout
+
+encoding: unicode
+\end_layout
+
+\begin_layout Plain Layout
+
+host: localhost
+\end_layout
+
+\begin_layout Plain Layout
+
+pool: 5
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+development:
+\end_layout
+
+\begin_layout Plain Layout
+
+<<: *default
+\end_layout
+
+\begin_layout Plain Layout
+
+database: rblog_development
+\end_layout
+
+\begin_layout Plain Layout
+
+username: xblog
+\end_layout
+
+\begin_layout Plain Layout
+
+password: ...
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento in YAML relativo alla configurazione del modello.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Le principali caratteristiche
+L'interpretazione di RoR del pattern MVC
+\end_layout
+
+\begin_layout Standard
+tripartizione del modello
+\end_layout
+
+\begin_layout Standard
+astrazione del modello, validazione, chiavi esterne, query language
+\end_layout
+
+\begin_layout Standard
+helper per ridurre la logica nelle view
+\end_layout
+
+\begin_layout Subsection
+Peculiarità
+\end_layout
+
+\begin_layout Standard
+azioni pre, post controller
+\end_layout
+
+\begin_layout Standard
+spring gem
+\end_layout
+
+\begin_layout Standard
+Migration
 \end_layout
 
 \begin_layout Section
@@ -122,6 +653,10 @@ Integrazione con le funzionalità di RoR
 
 \begin_layout Standard
 Supporto a tool esterni
+\end_layout
+
+\begin_layout Standard
+http://guides.rubyonrails.org/command_line.html
 \end_layout
 
 \begin_layout Section
