@@ -233,7 +233,7 @@ Test di accettazione automatici
 \end_layout
 
 \begin_layout Standard
-Secondo il manifesto Agile e applicando la metodologia Extreme Programming,
+Secondo il manifesto Agile ed applicando la metodologia Extreme Programming,
  i test di accettazione sono redatti a partire user stories.
  Il cliente ha il compito di indicare per ciascuna storia le condizioni
  di successo, per verificare che sia stata implementata con successo.
@@ -253,10 +253,14 @@ A differenze della verifica dei test effettuata manualmente dagli un gruppo
  di utenti, i test automatici hanno il vantaggio di restituire un risultato
  in maniera deterministica per un certo requisito e permettere al team di
  concentrare meglio i propri sforzi.
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Section
+Il progetto
+\end_layout
 
+\begin_layout Section
+Le User Stories
 \end_layout
 
 \begin_layout Standard

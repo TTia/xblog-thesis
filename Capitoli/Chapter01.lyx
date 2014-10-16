@@ -253,10 +253,14 @@ A differenze della verifica dei test effettuata manualmente dagli un gruppo
  di utenti, i test automatici hanno il vantaggio di restituire un risultato
  in maniera deterministica per un certo requisito e permettere al team di
  concentrare meglio i propri sforzi.
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Section
+Il progetto
+\end_layout
 
+\begin_layout Subsection
+Le User Stories
 \end_layout
 
 \begin_layout Standard

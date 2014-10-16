@@ -88,6 +88,10 @@ name "ch:rubyonrails"
 Introduzione a RoR
 \end_layout
 
+\begin_layout Enumerate
+Perchè Rails, rimando ad articolo
+\end_layout
+
 \begin_layout Subsection
 Ruby
 \end_layout
@@ -172,9 +176,9 @@ koan
 \end_layout
 
 \begin_layout Standard
-Sempre nello stile tracciato da i koan, che sono un'autorità all'interno
- della comunità di Ruby, ho approfondito la conoscenza del linguaggio e
- di RoR tramite il portale Ruby Monk
+Sempre nello stile tracciato da i koan, tenuti in massima considerazione
+ all'interno della comunità di utenti di Ruby, ho approfondito la conoscenza
+ del linguaggio e di RoR tramite il portale Ruby Monk
 \begin_inset Foot
 status open
 
@@ -615,48 +619,247 @@ Frammento in YAML relativo alla configurazione del modello.
 L'interpretazione di RoR del pattern MVC
 \end_layout
 
-\begin_layout Standard
-tripartizione del modello
+\begin_layout Enumerate
+Astrazione del modello
 \end_layout
 
-\begin_layout Standard
-astrazione del modello, validazione, chiavi esterne, query language
+\begin_deeper
+\begin_layout Itemize
+Active Record http://guides.rubyonrails.org/active_record_basics.html
 \end_layout
 
-\begin_layout Standard
-helper per ridurre la logica nelle view
+\begin_layout Itemize
+Validazione, chiavi esterne - http://guides.rubyonrails.org/active_record_validati
+ons.html - http://guides.rubyonrails.org/association_basics.html
 \end_layout
 
+\begin_layout Itemize
+Query language - http://guides.rubyonrails.org/active_record_querying.html
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Controller - http://guides.rubyonrails.org/action_controller_overview.html#filters
+\end_layout
+
+\begin_layout Enumerate
+Viste - helper per ridurre la logica
+\end_layout
+
+\begin_layout Enumerate
+Integrazione con il testing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tripartizione del modello {Rilascio, sviluppo, testing}
+\end_layout
+
+\begin_layout Itemize
+http://robots.thoughtbot.com/how-we-test-rails-applications
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Peculiarità
 \end_layout
 
 \begin_layout Standard
-azioni pre, post controller
+L'obbiettivo di questa tesi non è l'uso approfondito di RoR e delle sue
+ funzionalità, ma durante l'implementazione del blog sono state notate alcune
+ peculiarità del framework e del suo 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+ecosistema
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ che hanno contribuito che lo sviluppo si svolgesse in maniera lineare permetten
+do di scrivere codice in maniera produttiva e concentrando la propria attenzioni
+ all'indagine sui test di accettazione piuttosto che a problematiche di
+ contorno.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-spring gem
+A differenza di altre piattaforme, in cui sono presenti strumenti esterni
+ per supportare la compilazione e la risoluzione delle dipendenze come Maven
+ e Gradle, Ruby sfrutta un proprio meccanismo, definendo delle gemme.
+ Ogni gemma rappresenta una libreria, ha un nome, versione ed architettura
+ di riferimento.
+ 
 \end_layout
 
 \begin_layout Standard
-Migration
+Ogni applicazione è caratterizzata da una risorsa chiamata Gemfile, un semplice
+ script in Ruby, che rappresenta l'insieme delle dipendenze e delle gemme
+ da includere nel proprio progetto
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://rubygems.org/
+\end_layout
+
+\end_inset
+
+ è il servizio di hosting di riferimento.
+\end_layout
+
+\end_inset
+
+.
+ E' possibile indicare quali librerie includere in funzione del tipo di
+ compilazione adottata, rilascio, sviluppo o test, delegando quindi la verifica
+ di nuovi rilasci per librerie di terze parti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+source 'https://rubygems.org'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+group :development, :test do
+\end_layout
+
+\begin_layout Plain Layout
+
+	gem 'cucumber-rails', :require => false 	gem 'rspec-rails'
+\end_layout
+
+\begin_layout Plain Layout
+
+	gem 'capybara'
+\end_layout
+
+\begin_layout Plain Layout
+
+	gem 'poltergeist'
+\end_layout
+
+\begin_layout Plain Layout
+
+	gem 'database_cleaner'
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento del Gemfile di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fra le gemme utilizzate, la più preziosa
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+:)
+\end_layout
+
+\end_inset
+
+ è Spring.
+ La libreria permette di caricare in anticipo le modifiche fatte al codice
+ sorgente dell'applicazione in maniera che sia sempre in esecuzione la versione
+ più recente, evitando all'utente di dover riavviare l'esecuzione manualmente
+ ad ogni cambiamento.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel contesto di sviluppo di applicazioni MVC è facile introdurre delle discrepan
+ze fra il modello e la rappresentazione delle entità all'interno dell'applicazio
+ne, soprattutto sfruttando strumenti di versionamento che offrono operazioni
+ come equivalenti alla 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+revert
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ in Git.
+ 
+\end_layout
+
+\begin_layout Standard
+In RoR è previsto il meccanismo delle migrazioni che fornisce uno strumento
+ per mantenere lo schema del modello consistente nel tempo in maniera semplice
+ e lineare.
+ Ogni variazione alla struttura del modello è tradotto in una migrazione,
+ che definisce l'insieme delle operazioni compiute a basso livello, l'aggiunta
+ di colonne, la rimozione di un vincolo etc., ed attribuisce una versione
+ all'operazione; le stesse informazioni sulle migrazioni sono mantenute
+ nel modello e tengono traccia dei cambiamenti apportati e dello stato attuale
+ dello schema, permettendo di mantenere tutte le componenti dell'architettura
+ MVC consistenti fra loro.
 \end_layout
 
 \begin_layout Section
 RubyMine
 \end_layout
 
-\begin_layout Standard
-Integrazione con le funzionalità di RoR
+\begin_layout Enumerate
+Integrazione con le funzionalità di RoR - http://guides.rubyonrails.org/command_li
+ne.html
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
 Supporto a tool esterni
 \end_layout
 
-\begin_layout Standard
-http://guides.rubyonrails.org/command_line.html
+\begin_layout Enumerate
+Versione utilizzata
 \end_layout
 
 \begin_layout Section
@@ -667,28 +870,78 @@ Lo stack
 Cucumber
 \end_layout
 
+\begin_layout Enumerate
+https://blog.codecentric.de/en/2013/08/cucumber-setup-basics/
+\end_layout
+
+\begin_layout Enumerate
+https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist
+\end_layout
+
+\begin_layout Enumerate
+https://github.com/cucumber/cucumber/wiki
+\end_layout
+
+\begin_layout Enumerate
+https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
+\end_layout
+
 \begin_layout Subsection
 RSpec
+\end_layout
+
+\begin_layout Itemize
+https://github.com/rspec/rspec-rails
+\end_layout
+
+\begin_layout Itemize
+http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
 \end_layout
 
 \begin_layout Subsection
 Capybara
 \end_layout
 
-\begin_layout Subsection
-Phantom Js
+\begin_layout Enumerate
+Interfaccia per i driver
+\end_layout
+
+\begin_layout Enumerate
+https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist
 \end_layout
 
 \begin_layout Subsection
 Poltergeist
 \end_layout
 
-\begin_layout Section
-Il progetto
+\begin_layout Itemize
+https://github.com/teampoltergeist/poltergeist
 \end_layout
 
-\begin_layout Section
-Le User Stories
+\begin_layout Itemize
+http://www.railsonmaui.com/blog/2013/08/06/migrating-from-capybara-webkit-to-polte
+rgeist-phantomjs/
+\end_layout
+
+\begin_layout Itemize
+http://stackoverflow.com/questions/23951381/how-do-poltergeist-phantomjs-and-capy
+bara-webkit-differ
+\end_layout
+
+\begin_layout Subsubsection
+Phantom Js
+\end_layout
+
+\begin_layout Enumerate
+Vantaggi rispetto ad un browser 
+\begin_inset Quotes eld
+\end_inset
+
+visibile
+\begin_inset Quotes erd
+\end_inset
+
+ - http://blog.codeship.io/2013/02/11/using-phantomjs-for-backend-tests.html
 \end_layout
 
 \begin_layout Section
@@ -697,6 +950,31 @@ Hello BDD
 
 \begin_layout Subsection
 Struttura dello scenario
+\end_layout
+
+\begin_layout Subsubsection
+Gherkin
+\end_layout
+
+\begin_layout Itemize
+https://github.com/cucumber/cucumber/wiki/Gherkin
+\end_layout
+
+\begin_layout Itemize
+http://www.elabs.se/blog/15-you-re-cuking-it-wrong
+\end_layout
+
+\begin_layout Itemize
+http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
+\end_layout
+
+\begin_layout Itemize
+https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
+\end_layout
+
+\begin_layout Itemize
+http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
+html
 \end_layout
 
 \begin_layout Subsection
@@ -729,6 +1007,12 @@ Matcher in Capybara
 
 \begin_layout Section
 Definizione del modello
+\end_layout
+
+\begin_layout Itemize
+Tag per la pulizia piuttosto che sfruttare un una gemma come FactoryGirl
+ o DatabaseCleaner - http://www.railsonmaui.com/tips/rails/capybara-phantomjs-polt
+ergeist-rspec-rails-tips.html
 \end_layout
 
 \begin_layout Section
