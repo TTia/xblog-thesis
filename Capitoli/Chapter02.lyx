@@ -102,15 +102,14 @@ Ruby è un linguaggio di programmazione open-source, general-purpose e orientato
  La prima pubblicazione del linguaggio risale al 1995 ed attualmente è alla
  versione 2.1.
  Ruby è fortemente orientato alla produttività, permette di scrivere codice
- essenziale, con un netto risparmio di linee di codice rispetto a programmi
+ essenziale, con un netto risparmio di linee di codice rispetto a linguaggi
  tipati staticamente come Java o C# e offre una sintassi ricca e versatile.
  
 \end_layout
 
 \begin_layout Standard
-La comunità di Ruby è estremamente attiva e dinamica, e contribuisce in
- maniera attiva all'individuazione di bug e al miglioramento continuo del
- linguaggio.
+La comunità di Ruby è estremamente attiva e dinamica e contribuisce in maniera
+ attiva all'individuazione di bug e al miglioramento continuo del linguaggio.
  Non è l'obbietto di questa tesi addentrarsi nelle particolarità sintattiche
  e semantiche di Ruby, ma ritengo sia utile fornire qualche riferimento
  per l'apprendimento del linguaggio.
@@ -378,11 +377,11 @@ http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
 \begin_layout Standard
 La piattaforma RoR fornisce anche numerosi Helper.
  Un Helper è descritto da un insieme di funzionalità, definite all'interno
- di un modulo, utili per gestire alcune problematiche classiche dello sviluppo
+ di un modulo, utili per gestire problematiche classiche dello sviluppo
  di applicazioni web.
  La gestione di file, formattazione di date, gestione di form e generazione
- del relativo codice sono solo alcuni degli helper definiti nell'API di
- RoR.
+ del relativo codice sono solo alcuni dei problemi risolvibili tramite gli
+ helper definiti nell'API di RoR.
 \end_layout
 
 \begin_layout Standard
@@ -397,7 +396,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Il metodo 'truncate', appartenente al modulo TextHelper.
 \end_layout
 
@@ -469,7 +467,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Un esempio dell'uso delle funzionalità di FormHelper.
 \end_layout
 
@@ -484,10 +481,11 @@ Un esempio dell'uso delle funzionalità di FormHelper.
 \end_layout
 
 \begin_layout Standard
-E' altrettanto semplice definire i propri Helper: per ogni controllo definito
- è incluso di default il relativo Helper, ad esempio in RBlog la classe
- PostsController include il modulo personalizzato PostsHelper in maniera
- automatica, senza necessità di configurarne l'uso e la visibilità.
+E' altrettanto semplice definire i propri Helper: per ogni Controller definito
+ dall'utente è incluso di default il relativo Helper, ad esempio in RBlog
+ la classe PostsController include il modulo personalizzato PostsHelper
+ in maniera automatica, senza necessità di configurarne l'uso e la visibilità
+ all'interno del progetto.
 \end_layout
 
 \begin_layout Subsection
@@ -497,7 +495,7 @@ Convention Over Configuration
 \begin_layout Standard
 RoR definisce un insieme di convenzioni per semplificare l'uso e la configurazio
 ne della piattaforma da parte dello sviluppatore.
- Per minimizzare il tempo richiesto per la configurazione di un nuovo progetto,
+ Per minimizzare il tempo richiesto per la messa a punto di un nuovo progetto,
  è utile seguire le convenzioni proposte, ordinando il codice in cartelle
  secondo le diverse funzionalità, aderendo alle convenzioni di denominazione
  dei file e degli attributi presenti nel modello.
@@ -515,10 +513,7 @@ Ovviamente non è possibile prescindere completamente dall'uso di alcuni
 status open
 
 \begin_layout Plain Layout
-
 Per informazioni si rimanda al sito ufficiale.
-\lang italian
-
 \begin_inset Flex URL
 status open
 
@@ -601,7 +596,6 @@ password: ...
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento in YAML relativo alla configurazione del modello.
 \end_layout
 
@@ -619,47 +613,571 @@ Frammento in YAML relativo alla configurazione del modello.
 L'interpretazione di RoR del pattern MVC
 \end_layout
 
-\begin_layout Enumerate
-Astrazione del modello
+\begin_layout Subsubsection
+Il modello
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Active Record http://guides.rubyonrails.org/active_record_basics.html
+\begin_layout Standard
+L'interpretazione di RoR del modello dell'architettura MCV prende spunto
+ dal patter Active Record introdotto da Martin Fowler.
+ I record attivi introducono un livello di astrazione fra gli strumenti
+ di persistenza ed i controlli che gestiscono e manipolano il dominio; i
+ dati sono astratti a oggetti aventi sia le informazioni che li caratterizzano,
+ ad esempio i diversi attributi e le relazioni con altri tipi di dato presenti
+ nel dominio, sia che le funzionalità che ne descrivono il comportamento
+ attraverso i metodi d'istanza.
 \end_layout
 
-\begin_layout Itemize
-Validazione, chiavi esterne - http://guides.rubyonrails.org/active_record_validati
-ons.html - http://guides.rubyonrails.org/association_basics.html
+\begin_layout Standard
+Il database, ed in generale qualunque sistema garantisca la persistenza
+ della nostra applicazione, non è acceduto direttamente ma tramite il processo
+ ORM.
+ Questa tecnica minimizza, se non addirittura elimina, la necessita di eseguire
+ codice nativo, come query SQL, per manipolare il dominio.
+ L'uso del pattern Active Record permette a RoR delineare in maniera netta
+ la separazione fra modello e controlli.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Query language - http://guides.rubyonrails.org/active_record_querying.html
+\begin_layout Standard
+Oltre a rappresentare i dati, è possibile sfruttare Ruby per individuare
+ relazioni di ereditarietà fra i tipi esistenti, validare i dati attraverso
+ l'invocazione di metodi e definire le proprie interrogazioni attraverso
+ un apposita libreria.
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
-Controller - http://guides.rubyonrails.org/action_controller_overview.html#filters
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@posts = Post
 \end_layout
 
-\begin_layout Enumerate
-Viste - helper per ridurre la logica
+\begin_layout Plain Layout
+
+			.where('title like ?', "#{params[:search]}%")
 \end_layout
 
-\begin_layout Enumerate
-Integrazione con il testing
+\begin_layout Plain Layout
+
+			.order('created_at DESC')
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Tripartizione del modello {Rilascio, sviluppo, testing}
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Esecuzione di una semplice query in Ruby.
 \end_layout
 
-\begin_layout Itemize
-http://robots.thoughtbot.com/how-we-test-rails-applications
+\end_inset
+
+
 \end_layout
 
-\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+I controlli
+\end_layout
+
+\begin_layout Standard
+Essendo i controlli gli elementi di interconnessione fra il modello e le
+ viste è difficile per lo sviluppatore mantenerne l'implementazione semplice.
+ Proprio per semplificare la definizione ed il mantenimento sono presenti
+ alcuni accorgimenti in RoR.
+\end_layout
+
+\begin_layout Standard
+La configurazione delle richieste instradabili è specificata in file separato
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+routes.rb
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, all'interno del quale è possibile configurare le richieste HTTP soddisfabili
+ e definire una gerarchia delle entità manipolate dall'applicazione secondo
+ i principi di un'architettura REST.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+resources :posts do
+\end_layout
+
+\begin_layout Plain Layout
+
+	get :autocomplete_title, :on => :collection
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+resources :sessions, :only => [:new, :create, :destroy]
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento del file 
+\begin_inset Quotes eld
+\end_inset
+
+routes.rb
+\begin_inset Quotes erd
+\end_inset
+
+ relativo ai controlli di post e sessioni.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un altro accorgimento apprezzato durante lo sviluppo è la possibilità di
+ definire dei filtri per i controlli.
+ Per ogni controllo sono previsti alcuni stati a cui è possibili attribuire
+ eventi, i filtri per l'appunto.
+ Sfruttando questa semplice tecnica è possibile fattorizzare alcuni comportament
+i comuni all'interno dei controlli di una stessa entità, come ad esempio
+ la verifica delle autorizzazione per alcune operazioni sensibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+before_action
+\end_layout
+
+\begin_layout Plain Layout
+
+	:require_login,
+\end_layout
+
+\begin_layout Plain Layout
+
+	only: [:new, :create, :edit, :update, :destroy]
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+L'uso dei filtri in RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Le viste
+\end_layout
+
+\begin_layout Standard
+Le viste in RoR sono definibili introducendo nei file HTML elementi dinamici
+ contenenti espressioni scritte in Ruby.
+ ERB, acronimo per Embedded Ruby, permette l'inserimento di codice da processare
+ all'interno del server web prima di fornire la risposta al client.
+\end_layout
+
+\begin_layout Standard
+La definizione di viste dinamiche risulta immediata, conoscendo sia Ruby
+ che HTML tramite solo tre tipi di delimitatori, che variano esclusivamente
+ nel tipo di output generato.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+Per maggiori informazioni relative alle viste e alla definizione di pagine
+ dinamiche tramite ERB si rimanda alla seguente guida: 
+\lang italian
+
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://guides.rubyonrails.org/layouts_and_rendering.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Le viste scritte tramite ERB sono facilmente leggibili grazie alla caratteristi
+che di Ruby
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Ogni espressione ha un valore.
+ Il valore di ritorno delle funzioni e dei metodi è dato dall'ultima espressione
+ eseguita.
+ Le parentesi sono opzionali ed anche i parametri possono esserlo.
+\end_layout
+
+\end_inset
+
+, alla sintassi minima e alle numerose funzionalità presente negli Helper
+ e librerie del linguaggio.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<div class='post'>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<p class='post_title'>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<%= link_to @post.title, @post %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<p class='post_detail'>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<%= author_detail(@post) %>
+\end_layout
+
+\begin_layout Plain Layout
+
+		</br>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<% post_details(@post).each do |detail| %>
+\end_layout
+
+\begin_layout Plain Layout
+
+			<%= detail %>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<% end %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+    <p class='post_content'>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<%= @post.body %>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<%= render 
+\end_layout
+
+\begin_layout Plain Layout
+
+		:partial => 'logged_user_post_actions',  
+\end_layout
+
+\begin_layout Plain Layout
+
+		:locals => {:current_user => current_user, :post => @post}
+\end_layout
+
+\begin_layout Plain Layout
+
+	%>
+\end_layout
+
+\begin_layout Plain Layout
+
+</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento di vista relativo alla visualizzazione di un singolo post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Il testing
+\end_layout
+
+\begin_layout Standard
+La propensione alla verifica dell'applicazione non è un elemento proprio
+ dell'architettura MVC, ma influisce comunque notevolmente sul processo
+ di sviluppo.
+\end_layout
+
+\begin_layout Standard
+Tramite RoR è possibile gestire l'intero stack di un'applicazione web, test
+ inclusi.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://guides.rubyonrails.org/testing.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Sfruttando RSpec, strumento eletto a standard de-facto, è possibile testare
+ il modello attraverso i record attivi ed anche verificare i propri controller,
+ definendo i parametri HTTP e dati.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da Ruby 1.9 è incluso la libreria MiniTest, che fornisce le funzionalità
+ per arricchire i propri test con delle callback da applicare a differenti
+ stati dell'esecuzione della libreria di test, introduce oggetti 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+mock
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, consente di effettuare misurazioni delle prestazioni e molto altro.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/seattlerb/minitest
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Paragonabili alla annotazioni 
+\emph on
+@After
+\emph default
+, 
+\emph on
+@Before
+\emph default
+, 
+\emph on
+@AfterClass
+\emph default
+ e 
+\emph on
+@BeforeClass
+\emph default
+ in JUnit 4.x.
+\end_layout
+
+\end_inset
+
+ Esistono numerose gemme sviluppate da terze parti per aggiungere funzionalità
+ e semplificare il processo di testing, ad esempio per la pulizia dei database
+ utilizzati DatabaseCleaner è molto diffusa, al pari di Factory Girl
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/DatabaseCleaner/database_cleaner
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ per la popolazione del modello.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/thoughtbot/factory_girl
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' anche previsto che il modello sia presente in tre versioni, -test, sviluppo
+ e produzione- al fine di concedere allo sviluppatore la libertà di eseguire
+ test sulle nuove funzionalità senza dover effettuare continui backup dei
+ dati ed assumere altre precauzioni.
+\begin_inset Newline newline
+\end_inset
+
+Rail fornisce inoltre il comando Rake per poter gestire al meglio l'esecuzione
+ selettiva delle proprie librerie di test.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://guides.rubyonrails.org/testing.html##rake-tasks-for-running-your-tests
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Peculiarità
 \end_layout
@@ -701,7 +1219,7 @@ A differenza di altre piattaforme, in cui sono presenti strumenti esterni
 \begin_layout Standard
 Ogni applicazione è caratterizzata da una risorsa chiamata Gemfile, un semplice
  script in Ruby, che rappresenta l'insieme delle dipendenze e delle gemme
- da includere nel proprio progetto
+ da includere nel proprio progetto.
 \begin_inset Foot
 status open
 
@@ -721,10 +1239,9 @@ https://rubygems.org/
 
 \end_inset
 
-.
  E' possibile indicare quali librerie includere in funzione del tipo di
- compilazione adottata, rilascio, sviluppo o test, delegando quindi la verifica
- di nuovi rilasci per librerie di terze parti.
+ compilazione adottata, rilascio, sviluppo o test, e delegando la verifica
+ di aggiornamenti per librerie di terze parti al sistema.
 \end_layout
 
 \begin_layout Standard
@@ -776,7 +1293,6 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento del Gemfile di RBlog.
 \end_layout
 
@@ -816,7 +1332,7 @@ status open
 Nel contesto di sviluppo di applicazioni MVC è facile introdurre delle discrepan
 ze fra il modello e la rappresentazione delle entità all'interno dell'applicazio
 ne, soprattutto sfruttando strumenti di versionamento che offrono operazioni
- come equivalenti alla 
+ equivalenti alla 
 \begin_inset Quotes eld
 \end_inset
 
@@ -834,8 +1350,8 @@ revert
 
 \begin_layout Standard
 In RoR è previsto il meccanismo delle migrazioni che fornisce uno strumento
- per mantenere lo schema del modello consistente nel tempo in maniera semplice
- e lineare.
+ per mantenere lo schema del modello consistente durante il processo di
+ sviluppo in maniera semplice e lineare.
  Ogni variazione alla struttura del modello è tradotto in una migrazione,
  che definisce l'insieme delle operazioni compiute a basso livello, l'aggiunta
  di colonne, la rimozione di un vincolo etc., ed attribuisce una versione
