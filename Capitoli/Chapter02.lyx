@@ -674,7 +674,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Esecuzione di una semplice query in Ruby.
 \end_layout
 
@@ -748,7 +747,6 @@ resources :sessions, :only => [:new, :create, :destroy]
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento del file 
 \begin_inset Quotes eld
 \end_inset
@@ -805,7 +803,6 @@ before_action
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 L'uso dei filtri in RBlog.
 \end_layout
 
@@ -838,11 +835,8 @@ La definizione di viste dinamiche risulta immediata, conoscendo sia Ruby
 status open
 
 \begin_layout Plain Layout
-
 Per maggiori informazioni relative alle viste e alla definizione di pagine
  dinamiche tramite ERB si rimanda alla seguente guida: 
-\lang italian
-
 \begin_inset Flex URL
 status open
 
@@ -981,7 +975,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento di vista relativo alla visualizzazione di un singolo post.
 \end_layout
 
@@ -1365,41 +1358,686 @@ In RoR è previsto il meccanismo delle migrazioni che fornisce uno strumento
 RubyMine
 \end_layout
 
-\begin_layout Enumerate
-Integrazione con le funzionalità di RoR - http://guides.rubyonrails.org/command_li
-ne.html
+\begin_layout Standard
+Per lo sviluppo di RBlog e la definizione dei test di accettazione è stato
+ utilizzato RubyMine, alla versione 6.3.
+ L'IDE prodotto da JetBrains, sviluppatori anche di IntelliJ IDEA, Android
+ Studio, ReSharper per citare i più conosciuti, supporta le feature di Rails
+ 4.1 e Ruby 2.1, ovvero le versioni più recenti.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
-\begin_layout Enumerate
-Supporto a tool esterni
+\begin_layout Standard
+L'esperienza con RubyMine è stata ottima: durante lo sviluppo sono stati
+ rilevati raramente problemi ed integra perfettamente tutte le funzionalità
+ a riga di comando offerte da Rails; Ruby, HTML, JavaScript, JQuery, CoffeeScrip
+t, SCSS sono solo alcuni dei linguaggi supportati nell'IDE e per tutti sono
+ definite varie strategie di refactoring ed è possibile analizzarne le relative
+ risorse tramite un potente tool di analisi del codice.
+ 
 \end_layout
 
-\begin_layout Enumerate
-Versione utilizzata
+\begin_layout Standard
+Nell'IDE sono presenti diversi plugin per l'integrazione con strumenti di
+ terzi, come ad esempio Cucumber, Git
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Sono inclusi diversi plugin per il supporto sistemi di versionamento: attualment
+e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
+\end_layout
+
+\end_inset
+
+ e SSH.
+ RubyMine è un prodotto curato nei dettagli, professionale ed allo stesso
+ tempo adatto anche agli utenti alle prime armi; ma soprattutto permette
+ l'implementazione di un'applicazione in Rails praticamente senza abbandonare
+ l'ambiente di sviluppo.
 \end_layout
 
 \begin_layout Section
-Lo stack
+Hello RBlog!
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo di questa prima funzionalità è minimo, è necessario che l'applicazi
+one sia in esecuzione ed il sito web raggiungibile.
+ Inoltre il blog deve consentire la navigazione verso alcune pagine statiche.
 \end_layout
 
 \begin_layout Subsection
 Cucumber
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+Il primo tassello necessario per l'implementazione dei test di accettazione
+ su un'applicazione web sviluppata in RoR è Cucumber.
+\end_layout
+
+\begin_layout Standard
+Cucumber è framework per il supporto al BDD, Behaviour Driven Development,
+ che permette di scrivere i propri test in maniera leggibile, elegante e
+ mantenibile.
+ Il framework è disponibile anche in Java, .Net, Python, PHP e molti altri
+ linguaggi e piattaforme.
+\end_layout
+
+\begin_layout Subsubsection
+Le funzionalità
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap1
+\end_layout
+
+\begin_layout Plain Layout
+
+Funzionalità: Hello RBlog!
+\end_layout
+
+\begin_layout Plain Layout
+
+Per leggere i post e visitare il blog
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che RBlog permettesse la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+La prima feature di RBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I principali elementi in Cucumber, ed in generale nella definizione dei
+ test di accettazione, sono le caratteristiche e potenzialità che l'applicazione
+ offre e i diversi scenari che le definiscono.
+\end_layout
+
+\begin_layout Standard
+Le funzionalità sono elementi esclusivamente descrittivi, non sono utilizzate
+ esplicitamente nell'implementazione dei test ma hanno lo scopo di far cogliere
+ la giusta prospettiva al team di sviluppo.
+ Hanno titolo libero mentre la descrizione è definita tramite una user story
+ secondo il formato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Per
+\emph default
+ <beneficio>, 
+\emph on
+come
+\emph default
+ <ruolo>, 
+\emph on
+vorrei
+\emph default
+ <obbiettivo, desiderio>
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Nella listato, oltre alla descrizione della funzionalità è presente un etichetta
+ che permette di organizzare e categorizzare quanto sviluppato con Cucumber;
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+@cap1
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ in particolare caratterizza sia la user-story e per ereditarietà anche
+ gli scenari che la definiscono; è stata introdotta per poter eseguire in
+ maniera selettiva gli scenari della prima funzionalità.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cucumber --tags @cap1
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comando per l'esecuzione degli scenari relativi alla feature 
+\begin_inset Quotes eld
+\end_inset
+
+Hello RBlog!
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' possibile introdurre un numero arbitrario di etichette per ciascun elemento,
+ sia funzionalità o scenario, e sfruttando l'opzione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+--tags
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ definire il corretto insieme di test da eseguire, tramite gli operatori
+ logici AND, OR e NOT.
+\end_layout
+
+\begin_layout Standard
+Per facilitare lo sviluppo di test all'interno del proprio progetto è consigliat
+o seguire la convenzione di inserire all'interno della cartella 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+features
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ i test di accettazione ed attribuire ai relativi file l'estenzione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+.feature
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Gli scenari
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Visita alla pagina iniziale
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora posso visitare la pagina dell'autore
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso visitare la pagina dell'abstract
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x01 Homepage"
+
+\end_inset
+
+Navigazione verso la pagina iniziale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il primo scenario descrive la navigazione verso la homepage
+, relativo alla funzionalità 
+\lang italian
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+ ed introduce la sintassi di Cucumber.
+ Gli scenario sono caratterizzati da un titolo, che riassume il comportamento
+ e da un insieme di passi.
+ Seguendo la logica del BDD, ogni passo può essere una precondizione, un
+ evento oppure un'asserzione rispettivamente 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Given
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+When
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Then
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Espandere, vedi preferito
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come sarà analizzato nelle sezioni relative all'implementazione degli scenari,
+ la scelta del prefisso del passo non inficia le potenzialità del passo
+ stesso, ma un uso corretto favorisce la leggibilità del test.
+ E' anche possibile sfruttare i prefissi 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+And
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+But
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ per rendere i propri scenari più scorrevoli; alla congiunzione si attribuisce
+ il tipo del passo precedente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Schema dello scenario: Visita alla pagina dell'autore e alla pagina dell'abstrac
+t
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Quando navigo verso "<nome della pagina>"
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora la pagina è intitolata "<nome della pagina>"     
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso tornare alla pagina iniziale   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Esempi:
+\end_layout
+
+\begin_layout Plain Layout
+
+| nome della pagina |
+\end_layout
+
+\begin_layout Plain Layout
+
+| Autore            |
+\end_layout
+
+\begin_layout Plain Layout
+
+| Abstract          |
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x02 Pagine statiche"
+
+\end_inset
+
+Navigazione verso le pagine statiche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cucumber offre la possibilità di definire scenari parametrici.
+ Sfruttando la sintassi 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+Schema dello 
+\emph default
+scenario
+\begin_inset Quotes erd
+\end_inset
+
+, la tabella 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Esempi
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e i delimitatori 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+< >
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile verificare tanti scenari quanti sono i parametri all'interno
+ della tabella: lo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ è effettuato sia sulla pagina dell'autore che sulla pagina dell'abstract.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Visita alle pagine statiche: la pagina dell'autore e all'abstract
+ della tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Quando navigo verso "Autore"
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora la pagina è intitolata "Autore"
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso tornare alla pagina iniziale
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Testo generato dallo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Gherkin
+\end_layout
+
+\begin_layout Standard
+"it": { "name": "Italian", "native": "italiano", "feature": "Funzionalità",
+ "background": "Contesto", "scenario": "Scenario", "scenario_outline": "Schema
+ dello scenario", "examples": "Esempi", "given": "*|Dato|Data|Dati|Date",
+ "when": "*|Quando", "then": "*|Allora", "and": "*|E", "but": "*|Ma" }
+\end_layout
+
+\begin_layout Standard
+Possibilità di internazionalizzare i test
+\end_layout
+
+\begin_layout Standard
+https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
+\end_layout
+
+\begin_layout 
+https://github.com/cucumber/cucumber/wiki/Gherkin
+\end_layout
+
+\begin_layout 
+http://www.elabs.se/blog/15-you-re-cuking-it-wrong
+\end_layout
+
+\begin_layout 
+http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
+\end_layout
+
+\begin_layout 
+https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
+\end_layout
+
+\begin_layout 
+http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
+html
+\end_layout
+
+\begin_layout 
+https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
+\end_layout
+
+\begin_layout Subsubsection
+Supporto a Cucumber in RubyMine
+\end_layout
+
+\begin_layout Subsection
+Capybara
+\end_layout
+
+\begin_layout 
+Interfaccia per i driver
+\end_layout
+
+\begin_layout 
 https://blog.codecentric.de/en/2013/08/cucumber-setup-basics/
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout 
 https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist
-\end_layout
-
-\begin_layout Enumerate
-https://github.com/cucumber/cucumber/wiki
-\end_layout
-
-\begin_layout Enumerate
-https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
 \end_layout
 
 \begin_layout Subsection
@@ -1412,18 +2050,6 @@ https://github.com/rspec/rspec-rails
 
 \begin_layout Itemize
 http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
-\end_layout
-
-\begin_layout Subsection
-Capybara
-\end_layout
-
-\begin_layout Enumerate
-Interfaccia per i driver
-\end_layout
-
-\begin_layout Enumerate
-https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist
 \end_layout
 
 \begin_layout Subsection
@@ -1460,49 +2086,16 @@ visibile
  - http://blog.codeship.io/2013/02/11/using-phantomjs-for-backend-tests.html
 \end_layout
 
-\begin_layout Section
-Hello BDD
-\end_layout
-
-\begin_layout Subsection
-Struttura dello scenario
-\end_layout
-
-\begin_layout Subsubsection
-Gherkin
-\end_layout
-
-\begin_layout Itemize
-https://github.com/cucumber/cucumber/wiki/Gherkin
-\end_layout
-
-\begin_layout Itemize
-http://www.elabs.se/blog/15-you-re-cuking-it-wrong
-\end_layout
-
-\begin_layout Itemize
-http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
-\end_layout
-
-\begin_layout Itemize
-https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
-\end_layout
-
-\begin_layout Itemize
-http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
-html
-\end_layout
-
 \begin_layout Subsection
 Implementazione dei passi in Capybara
 \end_layout
 
 \begin_layout Subsection
-Implementazione dei passi in RSpec
+RSpec
 \end_layout
 
 \begin_layout Subsection
-Mixing
+Mixing Capybara & RSpec
 \end_layout
 
 \begin_layout Subsection
@@ -1529,6 +2122,35 @@ Definizione del modello
 Tag per la pulizia piuttosto che sfruttare un una gemma come FactoryGirl
  o DatabaseCleaner - http://www.railsonmaui.com/tips/rails/capybara-phantomjs-polt
 ergeist-rspec-rails-tips.html
+\end_layout
+
+\begin_layout Standard
+Nella definizione degli scenari è conveniente utilizzare uno stile che favorisca
+ sia lo sviluppatore, che ha il compito di scrivere e mantenere i test di
+ accettazione, sia per il product owner, che tramite gli scenari può seguire
+ lo sviluppo del prodotto.
+\end_layout
+
+\begin_layout Standard
+Gli scenari devono essere indipendenti fra loro, l'ordine di esecuzione
+ non deve inficiare il risultato.
+ Mantenere delle dipendenze funzionali all'interno nella libreria di testing
+ può introdurre diverse problematiche all'aumentare della cardinalità e
+ della complessità o alla variazione dello condizioni d'esecuzione, introducendo
+ ad esempio l'esecuzione in parallelo di più scenari.
+\end_layout
+
+\begin_layout Standard
+Per semplificare la lettura degli scenari ed il riuso dei passi è conveniente
+ sfruttare il prefisso 
+\begin_inset Quotes eld
+\end_inset
+
+And
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
