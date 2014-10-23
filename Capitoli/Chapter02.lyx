@@ -207,9 +207,8 @@ Don't Repeat Yourself
 \end_layout
 
 \begin_layout Standard
-Il principio di mantenere il proprio codice senza ripetizioni è molto diffuso
- nell'ambito dello sviluppo Agile ed in generale è un'ottima pratica di
- programmazione.
+Il principio di mantenere il proprio senza ripetizioni e ben fattorizzato
+ è un'ottima pratica di programmazione.
  Un progetto DRY permette agli sviluppatori di modificare il codice più
  semplicemente; una funzionalità descritta in un numero ridotto di unità
  di compilazioni e ben fattorizzata è facilmente individuabile, correggibile
@@ -1065,7 +1064,7 @@ https://github.com/seattlerb/minitest
 \end_inset
 
 
-\begin_inset Marginal
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
@@ -1383,7 +1382,7 @@ t, SCSS sono solo alcuni dei linguaggi supportati nell'IDE e per tutti sono
 \begin_layout Standard
 Nell'IDE sono presenti diversi plugin per l'integrazione con strumenti di
  terzi, come ad esempio Cucumber, Git
-\begin_inset Marginal
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
@@ -1420,7 +1419,7 @@ Il primo tassello necessario per l'implementazione dei test di accettazione
 \end_layout
 
 \begin_layout Standard
-Cucumber è framework per il supporto al BDD, Behaviour Driven Development,
+Cucumber è un framework per il supporto al BDD, Behaviour Driven Development,
  che permette di scrivere i propri test in maniera leggibile, elegante e
  mantenibile.
  Il framework è disponibile anche in Java, .Net, Python, PHP e molti altri
@@ -1466,7 +1465,6 @@ Vorrei che RBlog permettesse la navigazione
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:01x00 Hello RBlog!"
@@ -1487,17 +1485,19 @@ La prima feature di RBlog
 \end_layout
 
 \begin_layout Standard
-I principali elementi in Cucumber, ed in generale nella definizione dei
- test di accettazione, sono le caratteristiche e potenzialità che l'applicazione
- offre e i diversi scenari che le definiscono.
+Il primo obbiettivo dei test di accettazione è di individuare le funzionalità
+ da sviluppare, le caratteristiche e potenzialità che l'applicazione offre
+ e i diversi scenari che le definiscono.
 \end_layout
 
 \begin_layout Standard
-Le funzionalità sono elementi esclusivamente descrittivi, non sono utilizzate
- esplicitamente nell'implementazione dei test ma hanno lo scopo di far cogliere
- la giusta prospettiva al team di sviluppo.
- Hanno titolo libero mentre la descrizione è definita tramite una user story
- secondo il formato 
+Le funzionalità in Cucumber sono elementi esclusivamente descrittivi, non
+ sono utilizzate esplicitamente nell'implementazione dei test ma hanno lo
+ scopo di far cogliere la giusta prospettiva al team di sviluppo e descrivere
+ genericamente gli l'obbiettivo degli scenari.
+ Sia il titolo che la descrizione possono essere in linguaggio naturale
+ e non hanno alcun impatto nell'implementazione degli scenari, per lo sviluppo
+ di RBlog sono state usate le user story secondo il formato 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1518,11 +1518,48 @@ vorrei
 \end_inset
 
 .
+ Per facilitare lo sviluppo di test all'interno del proprio progetto è consiglia
+to seguire la convenzione di inserire all'interno della cartella 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+features
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ i test di accettazione ed attribuire ai relativi file l'estenzione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+.feature
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
-Nella listato, oltre alla descrizione della funzionalità è presente un etichetta
- che permette di organizzare e categorizzare quanto sviluppato con Cucumber;
+
+\end_layout
+
+\begin_layout Standard
+Nella listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+, oltre alla descrizione della funzionalità è presente un etichetta che
+ permette di organizzare e categorizzare quanto sviluppato con Cucumber;
  
 \begin_inset Quotes eld
 \end_inset
@@ -1535,9 +1572,10 @@ Nella listato, oltre alla descrizione della funzionalità è presente un etichet
 \begin_inset Quotes erd
 \end_inset
 
- in particolare caratterizza sia la user-story e per ereditarietà anche
- gli scenari che la definiscono; è stata introdotta per poter eseguire in
- maniera selettiva gli scenari della prima funzionalità.
+ caratterizza sia la user-story sia gli scenari che la definiscono per ereditari
+et.
+ L'etichetta è stata introdotta per poter eseguire in maniera selettiva
+ gli scenari della prima funzionalità.
 \begin_inset Newline newline
 \end_inset
 
@@ -1598,35 +1636,6 @@ E' possibile introdurre un numero arbitrario di etichette per ciascun elemento,
  logici AND, OR e NOT.
 \end_layout
 
-\begin_layout Standard
-Per facilitare lo sviluppo di test all'interno del proprio progetto è consigliat
-o seguire la convenzione di inserire all'interno della cartella 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-features
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- i test di accettazione ed attribuire ai relativi file l'estenzione 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-.feature
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Subsubsection
 Gli scenari
 \end_layout
@@ -1681,10 +1690,8 @@ Navigazione verso la pagina iniziale
 \end_layout
 
 \begin_layout Standard
-Il primo scenario descrive la navigazione verso la homepage
-, relativo alla funzionalità 
-\lang italian
-
+Il primo scenario descrive la navigazione verso la homepage, relativo alla
+ funzionalità 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lis:01x00 Hello RBlog!"
@@ -1694,8 +1701,7 @@ reference "lis:01x00 Hello RBlog!"
  ed introduce la sintassi di Cucumber.
  Gli scenario sono caratterizzati da un titolo, che riassume il comportamento
  e da un insieme di passi.
- Seguendo la logica del BDD, ogni passo può essere una precondizione, un
- evento oppure un'asserzione rispettivamente 
+ Seguendo la logica del BDD, ogni passo può alternativamente di tipo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1739,7 +1745,57 @@ Then
 \end_layout
 
 \begin_layout Standard
-Espandere, vedi preferito
+Tramite i passi di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Given
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile verificare che il sistema sia in uno stato prefissato e conosciuto
+ all'utente, stato dal quale sarà possibile compiere le azioni descritte
+ successivamente nel test.
+ Rispetto ad uno use-case un passo 
+\begin_inset Quotes eld
+\end_inset
+
+Given
+\begin_inset Quotes erd
+\end_inset
+
+ è l'equivalente di una precondizione.
+\end_layout
+
+\begin_layout Standard
+I passi 
+\begin_inset Quotes eld
+\end_inset
+
+When
+\begin_inset Quotes erd
+\end_inset
+
+ descrivono le azioni compiute dall'utente e permettono la transizione del
+ sistema verso un nuovo stato, analogamente agli eventi di una macchina
+ a stati.
+\end_layout
+
+\begin_layout Standard
+Lo scopo dei passi 
+\begin_inset Quotes eld
+\end_inset
+
+Then
+\begin_inset Quotes erd
+\end_inset
+
+ è di osservare il risultato delle azioni compiute precedentemente.
+ Le osservazioni dovrebbero essere consistenti con i benefici dichiarati
+ per la funzionalità ed analizzare solo quanto è osservabile tramite l'interfacc
+ia del sistema ed ottenuto come conseguenza alle azioni compiute.
+ Ad esempio, non è compito dei test di accettazione su RBlog verificare
+ lo stato della tabella Post nel modello.
 \begin_inset Newline newline
 \end_inset
 
@@ -1747,9 +1803,8 @@ Espandere, vedi preferito
 \end_layout
 
 \begin_layout Standard
-Come sarà analizzato nelle sezioni relative all'implementazione degli scenari,
- la scelta del prefisso del passo non inficia le potenzialità del passo
- stesso, ma un uso corretto favorisce la leggibilità del test.
+La scelta del prefisso del passo non limita le potenzialità del passo stesso,
+ ma ovviamente un uso corretto favorisce la leggibilità del test.
  E' anche possibile sfruttare i prefissi 
 \begin_inset Quotes eld
 \end_inset
@@ -1774,7 +1829,7 @@ But
 \begin_inset Quotes erd
 \end_inset
 
- per rendere i propri scenari più scorrevoli; alla congiunzione si attribuisce
+ per rendere i propri scenari più scorrevoli; alle congiunzioni è attribuito
  il tipo del passo precedente.
 \begin_inset Newline newline
 \end_inset
@@ -1846,7 +1901,6 @@ Esempi:
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:01x02 Pagine statiche"
@@ -1955,7 +2009,6 @@ E posso tornare alla pagina iniziale
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Testo generato dallo scenario 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1977,133 +2030,1062 @@ reference "lis:01x02 Pagine statiche"
 \end_layout
 
 \begin_layout Subsubsection
-Gherkin
+Business Readable DSL
 \end_layout
 
 \begin_layout Standard
-"it": { "name": "Italian", "native": "italiano", "feature": "Funzionalità",
- "background": "Contesto", "scenario": "Scenario", "scenario_outline": "Schema
- dello scenario", "examples": "Esempi", "given": "*|Dato|Data|Dati|Date",
- "when": "*|Quando", "then": "*|Allora", "and": "*|E", "but": "*|Ma" }
-\end_layout
+Il linguaggio utilizzato per descrivere le funzionalità e gli scenari in
+ Cucumber è Gherkin.
+\begin_inset Foot
+status open
 
-\begin_layout Standard
-Possibilità di internazionalizzare i test
-\end_layout
+\begin_layout Plain Layout
+Maggiori informazioni relative alla sintassi sono reperibili alla pagina
+ 
+\begin_inset Flex URL
+status open
 
-\begin_layout Standard
-https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
-\end_layout
+\begin_layout Plain Layout
 
-\begin_layout 
 https://github.com/cucumber/cucumber/wiki/Gherkin
 \end_layout
 
-\begin_layout 
-http://www.elabs.se/blog/15-you-re-cuking-it-wrong
+\end_inset
+
+
 \end_layout
 
-\begin_layout 
-http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
+\end_inset
+
+ Gli autori, gli stessi di Cucumber, descrivono il linguaggio come Business
+ Readable DSL, definizione introdotta da Martin Fowler nel 2008.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+L'articolo completo di Fowler è consultabile sul suo blog 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://martinfowler.com/bliki/BusinessReadableDSL.html
 \end_layout
 
-\begin_layout 
-https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
+\end_inset
+
+
 \end_layout
 
-\begin_layout 
-http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
-html
+\end_inset
+
+
 \end_layout
 
-\begin_layout 
-https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
+\begin_layout Standard
+L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
+ne all'analisi e alla revisione del codice a figure non tecniche.
+ Fowler sottolinea come sia più importante definire un linguaggio leggibile
+ rispetto ad uno anche scrivibile, infatti il principale obbiettivo di Business
+ Readable DSL è stabilire un canale di comunicazione arricchente fra le
+ diverse parti che partecipano allo sviluppo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+I18n
+\end_layout
+
+\begin_layout Standard
+Cucumber supporta attualmente 40 lingue, numero in rapida crescita secondo
+ gli sviluppatori.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per ottenere la lista aggiornata delle lingue supportate è possibile eseguire
+ il comando cucumber --i18n help o consultare la risorsa contenente il dizionari
+o 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Cucumber l'implementazione dei passi non è vincolata dal tipo definito,
+ ad esempio è possibile sfruttare un'asserzione come invariante.
+ Questa particolarità di Cucumber offre la possibilità di definire più librerie
+ di test di accettazione in differenti lingue ed utilizzare lo stesso codice
+ per l'implementazione dei passi.
+ Una potenzialità simile può essere utile per documentare lo sviluppo di
+ progetti che coinvolgono stake-holders di diverse nazionalità.
 \end_layout
 
 \begin_layout Subsubsection
 Supporto a Cucumber in RubyMine
 \end_layout
 
+\begin_layout Standard
+RubyMine, l'ambiente di sviluppo scelto per sviluppare tramite RoR, integra
+ le funzionalità di Cucumber e assiste il programmatore nel corso dello
+ sviluppo dei test: la sintassi di Gherkin è evidenziata, è presente l'auto-comp
+letamento delle parole chiave del DSL, è possibile navigare dalla definizione
+ all'implementazione del passo ed è fornita un'interfaccia grafica per l'esecuzi
+one dei test, configurabile in funzione di tag, file delle funzionalità
+ da includere ed altri parametri.
+\end_layout
+
 \begin_layout Subsection
 Capybara
 \end_layout
 
-\begin_layout 
-Interfaccia per i driver
+\begin_layout Standard
+Capybara è una libreria in Ruby che permette la definizione di test di accettazi
+one automatici per applicazioni web, non necessariamente scritte tramite
+ RoR, simulando le azioni eseguibili via interfaccia grafica.
+ 
 \end_layout
 
-\begin_layout 
-https://blog.codecentric.de/en/2013/08/cucumber-setup-basics/
+\begin_layout Standard
+Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
+ primitive di funzioni semplici, intuitive e versatili.
+ A differenza di Selenium, le cui primitive si interfacciano con aspetti
+ a basso livello, le funzionalità di Capybara sono astratte e mantengono
+ la stessa prospettiva di un test effettuato manualmente da un utente.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
-\begin_layout 
-https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist
-\end_layout
-
-\begin_layout Subsection
-RSpec
-\end_layout
-
-\begin_layout Itemize
-https://github.com/rspec/rspec-rails
-\end_layout
-
-\begin_layout Itemize
-http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
-\end_layout
-
-\begin_layout Subsection
-Poltergeist
-\end_layout
-
-\begin_layout Itemize
-https://github.com/teampoltergeist/poltergeist
-\end_layout
-
-\begin_layout Itemize
-http://www.railsonmaui.com/blog/2013/08/06/migrating-from-capybara-webkit-to-polte
-rgeist-phantomjs/
-\end_layout
-
-\begin_layout Itemize
-http://stackoverflow.com/questions/23951381/how-do-poltergeist-phantomjs-and-capy
-bara-webkit-differ
-\end_layout
-
-\begin_layout Subsubsection
-Phantom Js
-\end_layout
-
-\begin_layout Enumerate
-Vantaggi rispetto ad un browser 
+\begin_layout Standard
+La configurazione di Capybara è effettuata tramite un breve script in Ruby
+ dove è necessario impostare le proprie preferenze.
+ Innanzitutto è necessario scegliere quale browser web sarà utilizzato ed
+ il relativo driver per Capybara importando la libreria nel file 
 \begin_inset Quotes eld
 \end_inset
 
-visibile
+
+\emph on
+features/support/env.rb
+\emph default
+
 \begin_inset Quotes erd
 \end_inset
 
- - http://blog.codeship.io/2013/02/11/using-phantomjs-for-backend-tests.html
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+require 'cucumber/rails'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/cucumber'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/rspec'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/poltergeist'
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dipendenze all'interno dello script di configurazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infine, se necessario, è possibile configurare il driver scelto: la struttura
+ di Capybara permette l'uso di diversi driver e browser, senza modificare
+ le primitive offerte.
+ Tutti i driver devono implementare le funzionalità obbligatorie indicate
+ nella libreria, ma è consentito non fornire il resto delle operazioni ma
+ essere comunque annoverati fra i driver esistenti per Capybara.
+ Per RBlog è stato utilizzato Poltergeist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Capybara.default_driver = :poltergeist
+\end_layout
+
+\begin_layout Plain Layout
+
+Capybara.register_driver :poltergeist do |app|
+\end_layout
+
+\begin_layout Plain Layout
+
+	options = { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		:js_errors => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:timeout => 120,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:debug => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:phantomjs_options => ['--load-images=yes', '--disk-cache=false'],
+\end_layout
+
+\begin_layout Plain Layout
+
+		:inspector => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	Capybara::Poltergeist::Driver.new(app, options)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configurazione di Poltergeist
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le opzioni più rilevanti per Poltergeist sono:
+\end_layout
+
+\begin_layout Itemize
+:js_errors rileva ogni errore relativo alle esecuzione di codice JavaScript
+ e genera un errore in Ruby;
+\end_layout
+
+\begin_layout Itemize
+:inspector è un'opzione sperimentale che permette il debug dell'esecuzione
+ tramite una terza applicazione, come ad esempio Chrome web inspector;
+\end_layout
+
+\begin_layout Itemize
+:debug reindirizza l'output dell'esecuzione in modalità debug verso STDERR.
 \end_layout
 
 \begin_layout Subsection
-Implementazione dei passi in Capybara
+PhantomJS
+\end_layout
+
+\begin_layout Standard
+PhantomJS è un browser headless, ovvero supporta tutte le funzionalità di
+ un browser web moderno ma senza possedere un'interfaccia grafica e si basa
+ sul motore di rendering WebKit, lo stesso utilizzato da Chrome e Safari.
+\end_layout
+
+\begin_layout Standard
+E' particolarmente adatto all'esecuzione automatica di applicazioni web
+ in quanto non è necessario che il sistema sia dotato di un framework per
+ la gestione di GUI, funzionalità spesso mancante sui server che effettuano
+ l'integrazione continua.
+\end_layout
+
+\begin_layout Standard
+Con PhantomJS è possibile far fallire i propri test in funzione di errori
+ su codice JavaScript, funzionalità non presente su altri browser, grazie
+ all'opzione :js_errors precedentemente descritta.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+PhantomJS è installabile tramite i pacchetti d'installazione presenti sul
+ sito ufficiale 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://phantomjs.org/download.html
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Poltergeist
+\end_layout
+
+\begin_layout Standard
+Poltergeist è un driver per il browser PhantomJS ed implementa la totalità
+ delle funzionalità obbligatorie e molte delle opzionali disponibili.
+ Dopo aver configurato il driver nel file 
+\begin_inset Quotes eld
+\end_inset
+
+env.rb
+\begin_inset Quotes erd
+\end_inset
+
+ tutte le operazioni saranno gestite tramite la libreria di Capybara.
+\end_layout
+
+\begin_layout Standard
+La combinazione Capybara - Poltergeist - PhantomJS è attualmente una delle
+ più diffuse per lo sviluppo di test di accettazione automatici perché da
+ ottimi risultati nella gestione di strumenti asincroni come AJAX, è estremament
+e veloce e molto accurata nella gestione di falsi positivi, come ad esempio
+ il click su eventi esistenti nel DOM di una pagina HTML ma non visibili.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+L'installazione di Poltergeist è effettuata attraverso il gemfile e la gemma
+ 
+\begin_inset Quotes eld
+\end_inset
+
+poltergeist
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quando viene richiesto il click su un elemento, Poltergeist non genera un
+ evento attraverso il DOM ma simula un evento reale, ad esempio scendendo
+ lungo la pagina nel caso in cui l'elemento non dovesse essere visibile.
+ Inoltre sono previste diverse casistiche di errori, come l'impossibilità
+ di compiere azioni su un elemento coperto.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-RSpec
+Implementazione dei passi
 \end_layout
 
-\begin_layout Subsection
-Mixing Capybara & RSpec
+\begin_layout Standard
+La struttura dei passi in Capybara è definita a priori e non varia in funzione
+ del tipo implementato.
+ Per implementare un passo è necessario creare uno script Ruby, ad esempio
+ 
+\begin_inset Quotes eld
+\end_inset
+
+features/steps_definition/constraints.rb
+\begin_inset Quotes erd
+\end_inset
+
+, e definirne l'implementazione.
 \end_layout
 
-\begin_layout Subsection
-Scenario Outline
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^apro RBlog$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	visit steps_helper.rblog_url
+\end_layout
+
+\begin_layout Plain Layout
+
+	#...
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+Implementazione del passo 
+\begin_inset Quotes eld
+\end_inset
+
+apro RBlog
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
+ per gli altri tipi disponibili, è possibile specificare un'espressione
+ regolare ed il comportamento associato.
+ All'esecuzione dei test, Capybara verifica che sia presente un'implementazione
+ per ogni passo definito tramite Cucumber ed applica le istruzioni associate.
+ E' necessario che per ogni passo in linguaggio naturale esista un'unica
+ espressione regolare corrispondente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^apro (.*)$/) do |site_name|
+\end_layout
+
+\begin_layout Plain Layout
+
+	#...
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ipotetica implementazione ulteriore.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'introduzione di un'ulteriore implementazione, anche se con tipo differente,
+ genere un'ambiguità che secondo il comportamento standard di Cucumber non
+ è risolta.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sfruttando l'opzione --guess di Cucumber è possibile far variare il comportament
+o per la scelta dell'implementazione da applicare.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+La struttura di Capybara
+\end_layout
+
+\begin_layout Standard
+L'implementazione di passo è definibile all'interno di un blocco
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In Ruby è possibile attribuire ad ogni metodo un blocco contenente del codice
+ da eseguire durante l'esecuzione.
+ I blocchi sono paragonabili ad espressioni lambda, ma non sono elementi
+ di prim'ordine del linguaggio.
+\end_layout
+
+\end_inset
+
+ e non esiste alcuna limitazione né controllo riguardo alla tipologia di
+ espressioni che vengono eseguite durante il passo.
+\end_layout
+
+\begin_layout Standard
+In Capybara esistono numerose funzionalità per la gestione degli elementi,
+ indicati come nodi.
+ La gerarchia dei nodi è la seguente:
+\end_layout
+
+\begin_layout Itemize
+la classe più semplice è Capybara::Node::Simple e rappresenta gli elementi
+ di una pagina web, tali oggetti possono essere individuati all'interno
+ del documento e analizzati in funzione degli attributi, ma non sono utilizzabil
+i per compiere azioni;
+\end_layout
+
+\begin_layout Itemize
+la classe Capybara::Node::Base è la classe padre di Element e Document:
+ gli oggetti delle classi figlie condividono gli stessi metodi sfruttando
+ i metodi presenti nei moduli Finders, Matchers e Actions.
+ A differenza dei nodi semplici è quindi possibile compiere azioni su di
+ essi;
+\end_layout
+
+\begin_layout Itemize
+la classe Element rappresenta un singolo elemento all'interno del DOM della
+ pagina;
+\end_layout
+
+\begin_layout Itemize
+la classe Document rappresenta i documenti HTML nella loro interezza.
+\end_layout
+
+\begin_layout Standard
+Il modulo Finders contiene un insieme di funzionalità dedicate all'individuazion
+e di nodi all'interno della pagina.
+ I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
+ ad esempio find_button e find_link, e della cardinalità attesa, il metodo
+ all restituisce tutti gli elementi che soddisfano la ricerca a differenza
+ dei metodi find_* dai quali è atteso l'individuazione di esattamente un
+ nodo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modulo Actions permette l'interazione con l'interfaccia della pagina:
+ sono quindi previsti, ad esempio, metodi per la compilazione di form HTML
+ ed la selezione di elementi.
+ Le operazioni permettono anche di specificare delle opzioni per effettuare
+ delle variazioni o verificare alcune proprietà prima di compiere l'evento.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il metodo click_link permette di specificare un l'opzione :href per verificare
+ l'uguaglianza del attributo href prima di effettuare il click sul collegamento.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infine il modulo Matchers verifica le proprietà di un nodo, sia esso un
+ sotto elemento della pagina o il documento stesso.
+ Ad esempio è possibile verificare che sia presente un selettore, indicando
+ l'identificatore css o una query XPath, o la presenza di attributo per
+ l'elemento che invoca il metodo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La libreria di Capybara è ricca di funzionalità e si presta in maniera versatile
+ a diversi usi e preferenze.
+ Per la maggior parte dei metodi è prevista la possibilità di specificare
+ delle opzioni ed influire, in funzione della natura dell'operazione, sul
+ comportamento di default.
+ Inoltre, soprattutto all'interno del modulo Matchers, esistono diversi
+ modi per definire le istruzioni, facilitando la scrittura dei test.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+page.title
+\end_layout
+
+\begin_layout Plain Layout
+
+page[:title]
+\end_layout
+
+\begin_layout Plain Layout
+
+page.has_title? "xyz"
+\end_layout
+
+\begin_layout Plain Layout
+
+page.has_no_title? "zyx"
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Istruzioni equivalenti per l'accesso all'attributo title di una pagina HTML.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Navigare all'interno del sito
+\end_layout
+
+\begin_layout Standard
+Nel passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+ è utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+visit
+\begin_inset Quotes erd
+\end_inset
+
+ che permette la navigazione verso una certa pagina web.
+ All'esecuzione del metodo coincide una richiesta HTTP in GET all'indirizzo
+ indicato come parametro, che può essere sia relativo che assoluto.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il metodo rblog_url dell'oggetto denominato steps_helper, appartiene alla
+ classe StepsHelper, utilizzata per contenere alcuni metodi d'utilità sfruttati
+ durante lo sviluppo dei test.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^navigo verso "([^"]*)"$/) do |page_name|
+\end_layout
+
+\begin_layout Plain Layout
+
+	find_link(page_name).click
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:evento naviga verso"
+
+\end_inset
+
+Navigazione nel sito, sfruttando il testo visualizzato di un link.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo visit, utilizzato per aprire la pagina iniziale del blog, non
+ verifica la presenza all'interno della pagina di un collegamento verso
+ la destinazione, ma semplicemente effettua la richiesta all'indirizzo indicato.
+\end_layout
+
+\begin_layout Standard
+Per verificare la presenza di link alle pagine statiche nell'homepage è
+ stato utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una pagina web statica è una pagina web i cui contenuti sono formattati
+ direttamente in HTML, e non subiscono modifiche in funzione dello stato
+ attuale dell'applicazione.
+ Al contrario le pagine dinamiche rappresentano lo stato di una o più entità
+ presente all'interno del sito e possono variare nel tempo.
+ In RBlog un esempio di pagina statica è la pagina che descrive l'abstract
+ del progetto, mentre una pagina dinamica è la pagina che mostra un singolo
+ post, ed ovviamente cambia nel contenuto in funzione dell'articolo scelto.
+\end_layout
+
+\end_inset
+
+ Il metodo find_link ricerca un collegamento all'interno della pagina in
+ funzione dell'identificatore degli elementi HMTL 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+ o del testo visualizzato.
+ Come per le altre varianti dei metodi find* in Finders, il metodo find_link
+ lancia un eccezione nel caso in cui la ricerca non dovesse individuare
+ esattamente un'elemento.
+ Per completare l'evento, semplicemente si invoca il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+click
+\begin_inset Quotes erd
+\end_inset
+
+ sul nodo restituito.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A differenza del passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+, dove il comportamento non varia in funzione di parametri, nel passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:evento naviga verso"
+
+\end_inset
+
+ viene selezionato il collegamento che coincide con il valore di 
+\begin_inset Quotes eld
+\end_inset
+
+page_name
+\begin_inset Quotes erd
+\end_inset
+
+, tramite un blocco con un singolo parametro.
+ Il plugin di Cucumber per RubyMine per ogni passo che contiene del testo
+ fra virgolette, genera dei blocchi parametrici automaticamente.
+ E' possibile applicare lo stesso procedimento manualmente, sostituendo
+ all'interno dell'espressione del passo un proprio pattern e aggiungendo
+ un parametro a cui attribuire il valore.
+ I parametri all'interno dei passi hanno tipo stringa, ma è possibile definire
+ delle trasformazioni per convertire il valore ad un nuovo tipo tramite
+ il metodo Transform.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per maggiori dettagli consultare la documentazione di Cucumber 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.relishapp.com/cucumber/cucumber/docs/transforms
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Definizione delle asserzioni con RSpec
+\end_layout
+
+\begin_layout Standard
+Per lo sviluppo di RBlog è stato utilizzato RSpec, un tool per il testing
+ scritto in Ruby.
+ La libreria di RSpec è molto ampia e suddivisa principalmente in quattro
+ parti:
+\end_layout
+
+\begin_layout Itemize
+RSpec-Core fornisce la struttura per la definizione di funzionalità e scenari
+ per il BDD;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Expectations è una libreria di metodi per implementare asserzioni;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Mocks è un framework per l'implementazioni di stub, oggetti mock e
+ verifica dei messaggi degli oggetti all'interno di test;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Rails è un framework per la definizione di test sulle componenti che
+ definiscono un'applicazione RoR, come il modello, i controlli e le viste
+ ma anche gli aiutanti e l'instradamento delle richieste.
+\end_layout
+
+\begin_layout Standard
+Della meta-gemma
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una meta-gemma è uno strumento in Ruby definito da altri framework e librerie.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+rspec
+\begin_inset Quotes erd
+\end_inset
+
+ è stato utilizzata solo la libreria per la definizione di asserzioni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^posso visitare la pagina dell'autore$/) do 
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(find_link('Autore').visible?).to be_truthy 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Asserzione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^la pagina è intitolata "([^"]*)"$/) do |title_value|
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(page.title).to eq(title_value)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Asserzione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo delle prime funzionalità
+\end_layout
+
+\begin_layout Standard
+find, find_link, find_content, xpath, contesto di ricerca
+\end_layout
+
+\begin_layout Standard
+metodi sulla pagina
 \end_layout
 
 \begin_layout Section
 Introduzione del CSS
+\end_layout
+
+\begin_layout Standard
+Obbiettivo
 \end_layout
 
 \begin_layout Subsection
@@ -2114,6 +3096,15 @@ SCSS
 Matcher in Capybara
 \end_layout
 
+\begin_layout Standard
+Breve conclusione
+\end_layout
+
+\begin_layout Standard
+Passaggio dei parametri https://blog.codecentric.de/en/2013/08/cucumber-setup-basi
+cs/
+\end_layout
+
 \begin_layout Section
 Definizione del modello
 \end_layout
@@ -2121,7 +3112,8 @@ Definizione del modello
 \begin_layout Itemize
 Tag per la pulizia piuttosto che sfruttare un una gemma come FactoryGirl
  o DatabaseCleaner - http://www.railsonmaui.com/tips/rails/capybara-phantomjs-polt
-ergeist-rspec-rails-tips.html
+ergeist-rspec-rails-tips.html - http://robots.thoughtbot.com/how-we-test-rails-appl
+ications
 \end_layout
 
 \begin_layout Standard
@@ -2161,12 +3153,47 @@ Definizione delle viste
 Introduzione della funzionalità di ricerca
 \end_layout
 
+\begin_layout Standard
+http://www.rubydoc.info/github/jnicklas/capybara/Capybara/Node/Finders#find-instan
+ce_method
+\end_layout
+
+\begin_layout Standard
+Asincronia in Capybara https://blog.codecentric.de/en/2013/08/cucumber-capybara-po
+ltergeist/
+\end_layout
+
 \begin_layout Section
 Introduzione dell'autenticazione
 \end_layout
 
 \begin_layout Section
 Le sessioni in Capybara
+\end_layout
+
+\begin_layout Section
+Mantenibilità degli Acceptance Tests
+\end_layout
+
+\begin_layout Standard
+http://www.elabs.se/blog/15-you-re-cuking-it-wrong
+\end_layout
+
+\begin_layout Standard
+http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
+\end_layout
+
+\begin_layout Standard
+https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
+\end_layout
+
+\begin_layout Standard
+http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
+html
+\end_layout
+
+\begin_layout Standard
+https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
 \end_layout
 
 \begin_layout Section
