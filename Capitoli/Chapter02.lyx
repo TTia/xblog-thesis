@@ -2940,10 +2940,8 @@ Definizione delle asserzioni con RSpec
 \end_layout
 
 \begin_layout Standard
-Per lo sviluppo di RBlog è stato utilizzato RSpec, un tool per il testing
- scritto in Ruby.
- La libreria di RSpec è molto ampia e suddivisa principalmente in quattro
- parti:
+RSpec è un framework per il testing scritto in Ruby, le cui funzionalità
+ sono suddivise in quattro moduli:
 \end_layout
 
 \begin_layout Itemize
@@ -2952,12 +2950,12 @@ RSpec-Core fornisce la struttura per la definizione di funzionalità e scenari
 \end_layout
 
 \begin_layout Itemize
-RSpec-Expectations è una libreria di metodi per implementare asserzioni;
+RSpec-Expectations è una libreria di metodi per definire asserzioni;
 \end_layout
 
 \begin_layout Itemize
-RSpec-Mocks è un framework per l'implementazioni di stub, oggetti mock e
- verifica dei messaggi degli oggetti all'interno di test;
+RSpec-Mocks è un framework per l'implementazione di stub, oggetti mock,
+ verifiche sull'invocazione dei metodi e dell'interazione fra oggetti;
 \end_layout
 
 \begin_layout Itemize
@@ -2967,25 +2965,188 @@ RSpec-Rails è un framework per la definizione di test sulle componenti che
 \end_layout
 
 \begin_layout Standard
-Della meta-gemma
+All'interno della libreria di Capybara non sono presenti le funzionalità
+ per la verifica di asserzioni, è quindi necessario sfruttare librerie terze.
+ Oltre a RSpec è possibile l'integrazione all'interno di unit-test, Test::Unit
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Una meta-gemma è uno strumento in Ruby definito da altri framework e librerie.
+Maggiori informazioni per la definizione di test in Rails sono disponibili
+ alla pagina 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://guides.rubyonrails.org/testing.html
 \end_layout
 
 \end_inset
 
- 
+.
+\end_layout
+
+\end_inset
+
+ in Rails, oppure con le asserzioni definite in MiniTest::Spec
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Maggiori informazioni sono contenute alla pagina del progetto 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/metaskills/minitest-spec-rails
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La struttura di un'asserzione in RSpec è definita da due elementi: l'oggetto
+ da verificare ed uno o più matcher, concatenati da operatori logici.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La maggior parte dei matcher di RSpec prevedono la verifica di una singola
+ proprietà, ma esistono anche matcher compositi con arietà variabile.
+ La lista completa è consultabile sulla documentazione ufficiale 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.relishapp.com/rspec/rspec-expectations/v/3-1/docs/composing-matchers
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dalla versione 2.11 di RSpec, la versione corrente è la 3.1.0, è stata modificata
+ la sintassi del metodo 
 \begin_inset Quotes eld
 \end_inset
 
-rspec
+expect
 \begin_inset Quotes erd
 \end_inset
 
- è stato utilizzata solo la libreria per la definizione di asserzioni.
+ per renderla più leggibile e versatile.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+expect(obj).not_to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+expect{ ...
+ }.to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+expect do
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+end.to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Sintassi del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+expect
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco,
+ invocato durante l'esecuzione del metodo, che viene verificato dai matcher
+ indicati.
+\end_layout
+
+\begin_layout Standard
+Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
+ dell'operazione implementata.
+ L'uso corretto dei matcher è come argomenti dei metodi 
+\begin_inset Quotes eld
+\end_inset
+
+to
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+not_to
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3013,7 +3174,7 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Asserzione
+Verifica la presenza del link
 \end_layout
 
 \end_inset
@@ -3021,6 +3182,32 @@ Asserzione
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ richiede la possibilità di navigare verso la pagina statica dell'autore.
+ L'asserzione è stata implementata sfruttando le funzionalità di Capybara,
+ per individuare il collegamento in funzione del testo mostrato e ottenere
+ la visibilità del nodo, e RSpec con il matcher 
+\begin_inset Quotes eld
+\end_inset
+
+be_truthy
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
 \end_inset
 
 
@@ -3051,7 +3238,7 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Asserzione
+Implementazione di un'asserzione parametrica.
 \end_layout
 
 \end_inset
@@ -3065,19 +3252,119 @@ Asserzione
 \end_layout
 
 \begin_layout Standard
-http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
+Nello scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ è richiesto il confronto di un parametro, definito attraverso l'espressione
+ regolare, ed il titolo della pagina.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Capybara::DSL::page è un getter e restituisce la sessione correntemente
+ sotto test.
+ Una sessione in Capybara rappresenta l'interazione dell'utente con il sistema,
+ maggiori dettagli sono presenti nella relativa sezione.
+\end_layout
+
+\end_inset
+
+ In RSpec esistono tre matcher per la verifica dell'uguaglianza.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+equal?
+\begin_inset Quotes erd
+\end_inset
+
+ verifica se le variabili si riferiscono allo stesso oggetto, 
+\begin_inset Quotes eld
+\end_inset
+
+eql?
+\begin_inset Quotes erd
+\end_inset
+
+ effettua un confronto sullo stato dell'istanza mentre l'operatore 
+\begin_inset Quotes eld
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+ confronta sia il tipo degli oggetti che i relativi stati, sfruttando eventuali
+ conversioni.
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^apro RBlog$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	visit steps_helper.rblog_url
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(page.status_code).to be == 200
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Implementazione \"apro RBlog\"-1"
+
+\end_inset
+
+Implementazione del passo 
+\begin_inset Quotes eld
+\end_inset
+
+apro RBlog
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-L'obbiettivo delle prime funzionalità
-\end_layout
+Tramite il matcher 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Standard
-find, find_link, find_content, xpath, contesto di ricerca
-\end_layout
+be
+\begin_inset Quotes erd
+\end_inset
 
-\begin_layout Standard
-metodi sulla pagina
+ è possibile utilizzare gli operatori definiti in Ruby.
+ Nel frammento di codice è verificato che lo stato HTTP sia equivalente
+ a 200, che corrisponde alla corretta terminazione della richiesta.
 \end_layout
 
 \begin_layout Section
@@ -3088,21 +3375,16 @@ Introduzione del CSS
 Obbiettivo
 \end_layout
 
+\begin_layout Standard
+Sfruttare ATDD per verificare l'Accessibilità
+\end_layout
+
+\begin_layout Standard
+Principi di accessibilità
+\end_layout
+
 \begin_layout Subsection
 SCSS
-\end_layout
-
-\begin_layout Standard
-Matcher in Capybara
-\end_layout
-
-\begin_layout Standard
-Breve conclusione
-\end_layout
-
-\begin_layout Standard
-Passaggio dei parametri https://blog.codecentric.de/en/2013/08/cucumber-setup-basi
-cs/
 \end_layout
 
 \begin_layout Section
@@ -3147,6 +3429,14 @@ And
 
 \begin_layout Section
 Definizione delle viste
+\end_layout
+
+\begin_layout Standard
+find, find_link, find_content, xpath, contesto di ricerca
+\end_layout
+
+\begin_layout Standard
+metodi sulla pagina
 \end_layout
 
 \begin_layout Section
