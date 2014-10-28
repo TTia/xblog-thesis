@@ -3403,19 +3403,806 @@ Introduzione del CSS
 \end_layout
 
 \begin_layout Standard
-Obbiettivo
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Feature: Introducendo il (S)CSS
+\end_layout
+
+\begin_layout Plain Layout
+
+Per rendere l'esperienza di navigazione gradevole
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che il sito esponesse una grafica omogenea
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+Seconda funzionalità per RBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Sfruttare ATDD per verificare l'Accessibilità
+Lo sviluppo attuale di RBlog prevede una semplice struttura e la navigazione
+ fra le pagine esistenti, l'homepage e due pagine statiche contenenti una
+ breve descrizione del progetto e della tesi.
+ Il passo successivo prevede l'introduzione di fogli di stile e la verifica
+ tramite Capybara degli effettivi cambiamenti nell'aspetto delle pagine.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Principi di accessibilità
+Un aspetto importante nello sviluppo di applicazioni web che siano fruibili
+ per il pubblico è rispettare i principi di accessibilità consigliati dal
+ W3C, il consorzio che si occupa della standardizzazione di internet e dei
+ suoi servizi.
+ Le caratteristiche dell'interfaccia e l'usabilità sono requisiti importanti
+ per lo sviluppo di un'applicazione web, è quindi necessario che gli strumenti
+ per la definizione di test di accettazione permettano l'analisi di proprietà
+ non strettamente legate alla struttura del DOM ed all'organizzazione dei
+ nodi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+«The power of the Web is in its universality.
+ Access by everyone regardless of disability is an essential aspect.»
+\emph default
+ Tim Berners-Lee, W3C Director and inventor of the World Wide Web
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella funzionalità non è richiesto che il sito sia accessibile da persone
+ con disabilità, ma è comunque necessario verificare non solo la struttura
+ delle pagine ma anche alcuni requisiti estetici siano rispettati: potrebbe
+ essere necessario che le pagine verifichino un certo schema di colori o
+ che sia presente un unico font e tali richieste potrebbero essere introdotte
+ all'interno di scenari e funzionalità.
 \end_layout
 
 \begin_layout Subsection
-SCSS
+\begin_inset Quotes eld
+\end_inset
+
+CSS with superpowers
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+RubyMine offre la possibilità di scegliere come implementare i propri fogli
+ di stile: ovviamente è previsto l'uso del CSS3 ed è integrato il supporto,
+ ma è anche disponibile sfruttare Sass, Scss e Less, estensioni dello standard
+ che introducono nuove caratteristiche ai classici fogli di stile.
+\end_layout
+
+\begin_layout Standard
+Durante la generazione del progetto e delle viste che lo definiscono, RubyMine
+ genera per ogni controller un foglio di stile in Sass.
+ Il linguaggio fornisce alcuni strumenti sintattici per una facilitare il
+ riuso e l'organizzazione del regole.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+.posts {
+\end_layout
+
+\begin_layout Plain Layout
+
+	#notice {
+\end_layout
+
+\begin_layout Plain Layout
+
+		margin: 1em 15%;
+\end_layout
+
+\begin_layout Plain Layout
+
+		text-align: center;
+\end_layout
+
+\begin_layout Plain Layout
+
+		p {
+\end_layout
+
+\begin_layout Plain Layout
+
+			color: forestgreen;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento del foglio di stile in Sass relativo ai post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La caratteristica che maggiormente semplifica lo sviluppo dei fogli di stile
+ è la possibilità di definire sotto-regole per gli elementi presenti nelle
+ pagine.
+ L'organizzazione del foglio di stile è più lineare e rispecchia la struttura
+ del documento, c'è un minor rischio di errori, il testo dei paragrafi è
+ verde solo se contenuto in un nodo 
+\begin_inset Quotes eld
+\end_inset
+
+notice
+\begin_inset Quotes erd
+\end_inset
+
+ e non è necessario etichettare ogni elemento del DOM con identificatori
+ e classi, inoltre è molto più semplice applicare delle correzioni a piccole
+ porzioni dell'applicazione.
+\end_layout
+
+\begin_layout Standard
+La sintassi di Sass prevede l'uso di variabili, ad esempio per salvare i
+ riferimenti ad un colore o ad un font, consente l'importazione di altri
+ documenti Sass e la definizione di fogli di stile parziali per fattorizzare
+ alcuni elementi comuni dell'interfaccia.
+ I file in Sass sono processati e compilati in un classico file CSS prima
+ dell'utilizzo, il procedimento è gestito in automatico da RubyMine.
+\end_layout
+
+\begin_layout Subsection
+Testare il css
+\end_layout
+
+\begin_layout Standard
+Per verificare le potenzialità di Capybara relativamente all'analisi 
+\begin_inset Quotes eld
+\end_inset
+
+estetica
+\begin_inset Quotes erd
+\end_inset
+
+ delle pagine è stato scelto di analizzare i colore di sfondo di alcuni
+ elementi.
+ All'interno dell'intestazione delle pagine sono presenti i collegamenti
+ verificati durante la precedente funzionalità, in quest'iterazione del
+ progetto è stato introdotto tramite CSS è il cambio del colore di sfondo
+ per evidenziare cromaticamente il passaggio del cursore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+.banner_link:hover {
+\end_layout
+
+\begin_layout Plain Layout
+
+	background-color: #8c2828;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento del foglio di stile relativo ai collegamenti nell'intestazione
+ di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Lo scenario relativo a questa funzionalità descrive il comportamento atteso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: l'intestazione espone dei semplici effetti cromatici
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato che è presente l'intestazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E l'intestazione permette la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E i collegamenti non hanno sfondo
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando il cursore si sposta sui collegamenti
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora lo sfondo del collegamento cambia
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Scenario relativo alla funzionalità.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Analisi delle proprietà dei nodi
+\end_layout
+
+\begin_layout Standard
+Il modulo Matchers di Capybara espone molti metodi e soluzioni equivalenti
+ per la lettura dei valori presenti negli attributi dei nodi del documento.
+ In HTML è possibile definire lo stile di un singolo nodo inserendo le regole
+ desiderate all'interno dell'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Supponendo che le pagine HTML presentino le regole di stile all'interno
+ dei nodi stessi e non attraverso fogli di stile definiti nell'intestazione
+ del documento HTML, Capybara non effettua alcuna operazione straordinaria
+ durante l'ottenimento del valore.
+ Viene quindi estratta una stringa da analizzare tramite espressioni regolari
+ create ad hoc per l'attributo a cui si è interessati.
+\end_layout
+
+\begin_layout Subsubsection
+Analisi dei fogli di stile e corrispondenza all'interno del DOM
+\end_layout
+
+\begin_layout Standard
+La pratica di definire lo stile direttamente all'interno delle pagine HTML
+ è deprecata in quanto minimizza il riuso del codice e rende estremamente
+ fragile l'insieme delle viste in termini di manutenibilità.
+\end_layout
+
+\begin_layout Standard
+Capybara, più precisamente Poltergeist, non effettua alcuna valutazione
+ dei fogli di stile allegati alla pagina e non associa le regole presenti
+ ai rispettivi nodi del DOM.
+ Le regole sono ignorate e l'accesso agli attributi 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+background-color
+\begin_inset Quotes erd
+\end_inset
+
+ restituiscono valore nullo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+expect(banner_link_div[:style]).not_to be_nil
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Asserzione fallita sull'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ per i collegamenti dell'intestazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Soluzione individuata
+\end_layout
+
+\begin_layout Standard
+Preso atto delle mancanze di Capybara e Poltergeist, per completare l'implementa
+zione dello scenario è stato individuata una soluzione alternativa, il framework
+ permette di eseguire script JQuery all'interno della pagina.
+\end_layout
+
+\begin_layout Standard
+JQuery è una libreria scritta in JavaScript, permette l'analisi e manipolazione
+ del DOM, gestisce gli eventi all'interno della pagina, animazioni e fornisce
+ delle interfacce per semplificare l'uso di Ajax.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def background_color(id, page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	jscript = "$('#{id}').css('backgroundColor')"
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.evaluate_script(jscript)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Analisi del colore di sfondo dell'elemento via JQuery.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo sfrutta il selettore generato dall'identificatore e accede alla
+ proprietà desiderata, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+css
+\begin_inset Quotes erd
+\end_inset
+
+ di JQuery supporta tutte le funzionalità del CSS3, permettendo sia la lettura
+ che la modifica degli elementi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Purtroppo però, anche questa soluzione è parziale.
+ La proprietà principale delle regole del CSS è l'ereditarietà: la definizione
+ di una regola per un certo elemento si ha conseguenze anche ai sotto elementi
+ presenti nel DOM.
+ Gli attributi stilistici si propagano a cascata, se applicabili, e hanno
+ conseguenze in funzione dell'importanza, la regola può essere definita
+ dal browser web, dall'utente o dall'autore del sito, e dalla specificità
+ della definizione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^i collegamenti non hanno sfondo$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	#header_rgb_background = steps_helper.background_color(steps_helper.header_id,
+ page) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	@textual_header_link_divs.each do |banner_link_div|
+\end_layout
+
+\begin_layout Plain Layout
+
+		id = banner_link_div[:id]
+\end_layout
+
+\begin_layout Plain Layout
+
+		background_color = steps_helper.background_color("##{id}", page)
+\end_layout
+
+\begin_layout Plain Layout
+
+		expect(background_color).to eq('rgba(0, 0, 0, 0)')
+\end_layout
+
+\begin_layout Plain Layout
+
+		#expect(steps_helper.background_color("##{id}", page)).to be  eq(header_rgb_back
+ground)
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Precondizione sul colore dei collegamenti nell'intestazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'implementazione del passo è presente un'asserzione commentata che impedisce
+ il successo del test.
+ JQuery infatti non effettua alcuna verifica sull'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+div
+\begin_inset Quotes erd
+\end_inset
+
+ corrispondente all'intestazione e per il quale è presente un colore di
+ sfondo ma restituisce il valore di default.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sia lo scenario che è stato descritto che quelli non trattati della funzionalità
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+ non verificano proprietà elaborate dei fogli di stile, nonostante ciò le
+ difficoltà incontrate non permettono di sfruttare i test di accettazione
+ per la verifica dei principi di accessibilità né per aspetti più elementari
+ della grafica delle pagine web.
+\end_layout
+
+\begin_layout Subsection
+Il contesto dei test di accettazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Contesto: Dato apro RBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Background is useful when you provide common customer-readable (non technical)
+ background for your scenarious.
+ It is worth using it if you want to be explicit about this initialization
+ in the text of your Feature.
+\end_layout
+
+\begin_layout Standard
+Background allows you to add some context to the scenarios in a single feature.
+ A Background is much like a scenario containing a number of steps.
+ The difference is when it is run.
+ The background is run before each of your scenarios but after any of your
+ Before Hooks.
+\end_layout
+
+\begin_layout Standard
+Don’t use “Background” to set up complicated state unless that state is
+ actually something the client needs to know.
+\end_layout
+
+\begin_layout Standard
+For example, if the user and site names don’t matter to the client, you
+ should use a high-level step such as “Given that I am logged in as a site
+ owner”.
+\end_layout
+
+\begin_layout Standard
+Keep your “Background” section short.
+\end_layout
+
+\begin_layout Standard
+You’re expecting the user to actually remember this stuff when reading your
+ scenarios.
+ If the background is more than 4 lines long, can you move some of the irrelevan
+t details into high-level steps? See Calling Steps from Step Definitions.
+\end_layout
+
+\begin_layout Standard
+Make your “Background” section vivid.
+\end_layout
+
+\begin_layout Standard
+You should use colorful names and try to tell a story, because the human
+ brain can keep track of stories much better than it can keep track of names
+ like “User A”, “User B”, “Site 1”, and so on.
+\end_layout
+
+\begin_layout Standard
+Keep your scenarios short, and don’t have too many.
+\end_layout
+
+\begin_layout Standard
+If the background section has scrolled off the screen, you should think
+ about using higher-level steps, or splitting the *.features file in two.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+Background Often times when writing multiple scenarios within a singular
+ feature file you see repeated test steps.
+ Initial test steps that are common across all scenarios and scenario outlines
+ can be pulled out into a Background test step.
+ These steps can’t use Example table data, however.
+ These steps get executed before every scenario.
+ This can greatly reduce the number of test steps in the feature file, and
+ increase readability.
+ Below are a few tips outlined for a successful Background setup:
+\end_layout
+
+\begin_layout Standard
+Only use Background to setup an environment that the user needs to know
+ If this is extraneous information to the user, set it up in the implementation,
+ not in the test steps.
+ Remember that the feature files should focus on the What, and not the How.
+ These should be high level steps.
+ We want to keep this simple Keep the Background steps short These steps
+ won’t be written out each time the user reads the scenario, so it’s best
+ to have something simple that the user can remember while reading through
+ your feature file Keep the Background steps vivid Similar to the above,
+ since these steps won’t be listed with each scenario, the more vivid, the
+ test step is, the easier time the user will have remembering it Don’t make
+ the feature file too long It’s best to keep these feature files smaller,
+ so that the Background information is more readily available.
+ The general rule of thumb is to keep the file small enough to still see
+ the Background test steps at the top of page when reading any scenario
+ 
+\end_layout
+
+\begin_layout Subsection
+Debug con Capybara
+\end_layout
+
+\begin_layout Standard
+Debugging
+\end_layout
+
+\begin_layout Standard
+It can be useful to take a snapshot of the page as it currently is and take
+ a look at it:
+\end_layout
+
+\begin_layout Standard
+save_and_open_page You can also retrieve the current state of the DOM as
+ a string using page.html.
+\end_layout
+
+\begin_layout Standard
+print page.html This is mostly useful for debugging.
+ You should avoid testing against the contents of page.html and use the more
+ expressive finder methods instead.
+\end_layout
+
+\begin_layout Standard
+Finally, in drivers that support it, you can save a screenshot:
+\end_layout
+
+\begin_layout Standard
+page.save_screenshot('screenshot.png') Or have it save and automatically open:
+\end_layout
+
+\begin_layout Standard
+save_and_open_screenshot
+\end_layout
+
+\begin_layout Subsection
+Finders + xpath
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^l'intestazione è posizionata all'inizio$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	header = page.find(:xpath, 'descendant::body/*[1]')
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(@header).to eq(header)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both XPath and CSS expressions are supported, but Capybara does not try
+ to automatically distinguish between them.
+ The following statements are equivalent:
 \end_layout
 
 \begin_layout Section
