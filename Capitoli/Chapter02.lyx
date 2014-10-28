@@ -108,11 +108,11 @@ Ruby è un linguaggio di programmazione open-source, general-purpose e orientato
 \end_layout
 
 \begin_layout Standard
-La comunità di Ruby è estremamente attiva e dinamica e contribuisce in maniera
- attiva all'individuazione di bug e al miglioramento continuo del linguaggio.
- Non è l'obbietto di questa tesi addentrarsi nelle particolarità sintattiche
- e semantiche di Ruby, ma ritengo sia utile fornire qualche riferimento
- per l'apprendimento del linguaggio.
+La comunità di Ruby è estremamente attiva e contribuisce in maniera attiva
+ all'individuazione di bug e al miglioramento continuo del linguaggio.
+ Non è l'obbietto di questa tesi approfondire le caratteristiche di Ruby,
+ ma ritengo sia utile fornire qualche riferimento per l'apprendimento del
+ linguaggio.
 \begin_inset Newline newline
 \end_inset
 
@@ -165,19 +165,19 @@ koan
 \begin_inset Quotes erd
 \end_inset
 
- è la pronuncia giapponese dei caratteri cinesi, sono una collezione di
- esercizi su Ruby e permettono lo studio del linguaggio comprendendo la
- maggior parte strutture sintattiche, degli elementi semantici e delle strutture
- dato.
- L'utente è guidato tramite nell'apprendimento in puro stile TDD, in maniera
- semplice, leggera ed irriverente; terminato il corso si acquisisce una
- buona consapevolezza del linguaggio e confidenza con lo stile di Ruby.
+ è la pronuncia giapponese dei caratteri cinesi, sono una raccolta di esercizi
+ su Ruby e permettono lo studio del linguaggio comprendendo esempi guidati
+ su costrutti sintattici, elementi semantici e strutture dato.
+ L'utente avanza nell'apprendimento in puro stile TDD, in maniera semplice
+ e graduale.
+ Terminato il corso si acquisisce una buona consapevolezza del linguaggio
+ e confidenza con lo stile di Ruby.
 \end_layout
 
 \begin_layout Standard
 Sempre nello stile tracciato da i koan, tenuti in massima considerazione
- all'interno della comunità di utenti di Ruby, ho approfondito la conoscenza
- del linguaggio e di RoR tramite il portale Ruby Monk
+ all'interno della comunità di Ruby, ho approfondito la conoscenza del linguaggi
+o e di RoR tramite il portale Ruby Monk
 \begin_inset Foot
 status open
 
@@ -225,8 +225,8 @@ RoR fornisce differenti funzionalità, quali librerie, helpers e viste parziali,
 Nell'implementazione delle viste è comune che alcuni elementi siano presenti
  più volte all'interno della stessa applicazione o anche all'interno della
  stessa pagina.
- In RoR, è possibile definire delle viste parziali per poter fattorizzare
- al meglio queste porzioni di codice.
+ In RoR è possibile definire delle viste parziali per fattorizzare al meglio
+ queste porzioni di codice.
  Per rendere ancora più efficace questo meccanismo di fattorizzazione e
  definire dei comportamenti dinamici, è possibile passare al metodo 
 \begin_inset Quotes eld
@@ -236,8 +236,7 @@ render
 \begin_inset Quotes erd
 \end_inset
 
-, che si occupa di visualizzare file con estensione 'erb', dei parametri
- in maniera opzionale.
+ dei parametri.
 \end_layout
 
 \begin_layout Standard
@@ -281,7 +280,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Visualizzazione di un vista parziale.
+Utilizzo di una visita parziale con il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+render
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -371,16 +378,20 @@ http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-La piattaforma RoR fornisce anche numerosi Helper.
- Un Helper è descritto da un insieme di funzionalità, definite all'interno
- di un modulo, utili per gestire problematiche classiche dello sviluppo
- di applicazioni web.
- La gestione di file, formattazione di date, gestione di form e generazione
- del relativo codice sono solo alcuni dei problemi risolvibili tramite gli
- helper definiti nell'API di RoR.
+La piattaforma RoR fornisce anche numerosi Helper: elementi utilizzati per
+ fattorizzare metodi di utilità all'interno di moduli.
+ Gli aiutanti in RoR sono sfruttati da tutte le componenti dell'architettura
+ MVC e sono utili per gestire problematiche classiche dello sviluppo di
+ applicazioni web: la gestione di file, formattazione di date, gestione
+ di form e generazione del relativo codice HTML sono solo alcuni dei problemi
+ risolvibili tramite gli helper presenti.
 \end_layout
 
 \begin_layout Standard
@@ -409,10 +420,10 @@ Il metodo 'truncate', appartenente al modulo TextHelper.
 \end_layout
 
 \begin_layout Standard
-Come già osservato durante l'uso delle viste parziali, le librerie offerte
- sono ricche di parametri opzionali, permettono l'uso di blocchi definiti
- dall'utente e sono ben documentate: ogni metodo presente è ampiamente descritto
- e offre diversi esempi per semplificarne l'uso.
+Come già osservato durante l'uso delle viste parziali, le librerie di sistema
+ sono ricche di parametri opzionali, spesso permettono l'uso di blocchi
+ definiti dall'utente e sono ben documentate: ogni metodo presente è ampiamente
+ descritto anche tramite esempi.
 \end_layout
 
 \begin_layout Standard
@@ -512,7 +523,7 @@ Ovviamente non è possibile prescindere completamente dall'uso di alcuni
 status open
 
 \begin_layout Plain Layout
-Per informazioni si rimanda al sito ufficiale.
+Per informazioni su YAML si rimanda al sito ufficiale.
 \begin_inset Flex URL
 status open
 
@@ -619,18 +630,18 @@ Il modello
 \begin_layout Standard
 L'interpretazione di RoR del modello dell'architettura MCV prende spunto
  dal patter Active Record introdotto da Martin Fowler.
- I record attivi introducono un livello di astrazione fra gli strumenti
- di persistenza ed i controlli che gestiscono e manipolano il dominio; i
- dati sono astratti a oggetti aventi sia le informazioni che li caratterizzano,
- ad esempio i diversi attributi e le relazioni con altri tipi di dato presenti
- nel dominio, sia che le funzionalità che ne descrivono il comportamento
- attraverso i metodi d'istanza.
+ I record attivi introducono un livello di astrazione fra i dati mantenuti
+ nel modello ed i controlli che gestiscono e manipolano il dominio; le tuple
+ nei database sono astratte ad oggetti aventi sia le informazioni che li
+ caratterizzano, ad esempio i diversi attributi e le relazioni con altri
+ tipi di dato presenti nel dominio, sia i metodi d'istanza che ne descrivono
+ il comportamento.
 \end_layout
 
 \begin_layout Standard
 Il database, ed in generale qualunque sistema garantisca la persistenza
  della nostra applicazione, non è acceduto direttamente ma tramite il processo
- ORM.
+ ORM, acronimo per Object-Relational Mapping.
  Questa tecnica minimizza, se non addirittura elimina, la necessita di eseguire
  codice nativo, come query SQL, per manipolare il dominio.
  L'uso del pattern Active Record permette a RoR delineare in maniera netta
@@ -642,10 +653,10 @@ Il database, ed in generale qualunque sistema garantisca la persistenza
 \end_layout
 
 \begin_layout Standard
-Oltre a rappresentare i dati, è possibile sfruttare Ruby per individuare
- relazioni di ereditarietà fra i tipi esistenti, validare i dati attraverso
- l'invocazione di metodi e definire le proprie interrogazioni attraverso
- un apposita libreria.
+Oltre alla rappresentazione dei dati, gli Active Record estendono le funzionalit
+à del modello con relazioni di ereditarietà fra i tipi esistenti, permettono
+ la validazione attraverso l'invocazione di metodi e la definizione interrogazio
+ni attraverso una libreria di sistema.
 \end_layout
 
 \begin_layout Standard
@@ -713,7 +724,8 @@ routes.rb
 
 , all'interno del quale è possibile configurare le richieste HTTP soddisfabili
  e definire una gerarchia delle entità manipolate dall'applicazione secondo
- i principi di un'architettura REST.
+ i principi delle architetture REST, acronimo per REpresentational State
+ Transfer.
 \end_layout
 
 \begin_layout Standard
@@ -774,7 +786,7 @@ Un altro accorgimento apprezzato durante lo sviluppo è la possibilità di
  eventi, i filtri per l'appunto.
  Sfruttando questa semplice tecnica è possibile fattorizzare alcuni comportament
 i comuni all'interno dei controlli di una stessa entità, come ad esempio
- la verifica delle autorizzazione per alcune operazioni sensibili.
+ la verifica delle autorizzazioni per alcune operazioni sensibili.
 \end_layout
 
 \begin_layout Standard
@@ -827,9 +839,9 @@ Le viste in RoR sono definibili introducendo nei file HTML elementi dinamici
 \end_layout
 
 \begin_layout Standard
-La definizione di viste dinamiche risulta immediata, conoscendo sia Ruby
- che HTML tramite solo tre tipi di delimitatori, che variano esclusivamente
- nel tipo di output generato.
+La definizione di viste dinamiche risulta immediata, è necessario apprendere
+ le funzionalità di pochi tag utilizzati, che variano esclusivamente nel
+ tipo di output generato.
 \begin_inset Foot
 status open
 
@@ -851,9 +863,9 @@ http://guides.rubyonrails.org/layouts_and_rendering.html
 
 \end_inset
 
- Le viste scritte tramite ERB sono facilmente leggibili grazie alla caratteristi
+ Le viste scritte tramite ERB sono facilmente leggibili grazie alle caratteristi
 che di Ruby
-\begin_inset Marginal
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
@@ -865,8 +877,8 @@ Ogni espressione ha un valore.
 
 \end_inset
 
-, alla sintassi minima e alle numerose funzionalità presente negli Helper
- e librerie del linguaggio.
+ e alle numerose funzionalità presenti negli Helper e nelle librerie del
+ linguaggio.
 \end_layout
 
 \begin_layout Standard
@@ -992,12 +1004,6 @@ Il testing
 \end_layout
 
 \begin_layout Standard
-La propensione alla verifica dell'applicazione non è un elemento proprio
- dell'architettura MVC, ma influisce comunque notevolmente sul processo
- di sviluppo.
-\end_layout
-
-\begin_layout Standard
 Tramite RoR è possibile gestire l'intero stack di un'applicazione web, test
  inclusi.
 \begin_inset Foot
@@ -1019,17 +1025,15 @@ http://guides.rubyonrails.org/testing.html
 
 \end_inset
 
- Sfruttando RSpec, strumento eletto a standard de-facto, è possibile testare
+ Sfruttando il framework RSpec, standard de-facto in Ruby, è possibile testare
  il modello attraverso i record attivi ed anche verificare i propri controller,
  definendo i parametri HTTP e dati.
-\begin_inset Newline newline
-\end_inset
-
-
+ RSpec fornisce molte funzionalità, un'analisi più approfondita è effettuata
+ nelle sezioni relative all'implementazione dei test di accettazione.
 \end_layout
 
 \begin_layout Standard
-Da Ruby 1.9 è incluso la libreria MiniTest, che fornisce le funzionalità
+Da Ruby 1.9 è anche incluso la libreria MiniTest, che fornisce le funzionalità
  per arricchire i propri test con delle callback da applicare a differenti
  stati dell'esecuzione della libreria di test, introduce oggetti 
 \begin_inset Quotes eld
@@ -1091,7 +1095,7 @@ Paragonabili alla annotazioni
 
  Esistono numerose gemme sviluppate da terze parti per aggiungere funzionalità
  e semplificare il processo di testing, ad esempio per la pulizia dei database
- utilizzati DatabaseCleaner è molto diffusa, al pari di Factory Girl
+ utilizzati DatabaseCleaner
 \begin_inset Foot
 status open
 
@@ -1111,7 +1115,7 @@ https://github.com/DatabaseCleaner/database_cleaner
 
 \end_inset
 
- per la popolazione del modello.
+ è molto diffusa, al pari di Factory Girl
 \begin_inset Foot
 status open
 
@@ -1131,7 +1135,7 @@ https://github.com/thoughtbot/factory_girl
 
 \end_inset
 
-
+ per la popolazione del modello.
 \begin_inset Newline newline
 \end_inset
 
@@ -1189,10 +1193,9 @@ ecosistema
 \begin_inset Quotes erd
 \end_inset
 
- che hanno contribuito che lo sviluppo si svolgesse in maniera lineare permetten
-do di scrivere codice in maniera produttiva e concentrando la propria attenzioni
- all'indagine sui test di accettazione piuttosto che a problematiche di
- contorno.
+ che hanno contribuito affinché lo sviluppo si svolgesse in maniera lineare,
+ concentrando l'attenzione sui test di accettazione piuttosto che a problematich
+e di contorno.
 \begin_inset Newline newline
 \end_inset
 
@@ -1202,16 +1205,15 @@ do di scrivere codice in maniera produttiva e concentrando la propria attenzioni
 \begin_layout Standard
 A differenza di altre piattaforme, in cui sono presenti strumenti esterni
  per supportare la compilazione e la risoluzione delle dipendenze come Maven
- e Gradle, Ruby sfrutta un proprio meccanismo, definendo delle gemme.
- Ogni gemma rappresenta una libreria, ha un nome, versione ed architettura
- di riferimento.
+ e Gradle, Ruby introduce le gemme.
+ Ogni gemma rappresenta una libreria ed è definita attraverso nome, versione
+ ed architettura di riferimento.
  
 \end_layout
 
 \begin_layout Standard
-Ogni applicazione è caratterizzata da una risorsa chiamata Gemfile, un semplice
- script in Ruby, che rappresenta l'insieme delle dipendenze e delle gemme
- da includere nel proprio progetto.
+Ogni applicazione in RoR è caratterizzata da un Gemfile, un semplice script
+ in Ruby che rappresenta l'insieme delle dipendenze del progetto.
 \begin_inset Foot
 status open
 
@@ -1257,7 +1259,12 @@ group :development, :test do
 
 \begin_layout Plain Layout
 
-	gem 'cucumber-rails', :require => false 	gem 'rspec-rails'
+	gem 'cucumber-rails', :require => false
+\end_layout
+
+\begin_layout Plain Layout
+
+	gem 'rspec-rails'
 \end_layout
 
 \begin_layout Plain Layout
@@ -1341,16 +1348,16 @@ revert
 \end_layout
 
 \begin_layout Standard
-In RoR è previsto il meccanismo delle migrazioni che fornisce uno strumento
+In RoR è previsto il meccanismo delle migrazioni che fornisce un meccanismo
  per mantenere lo schema del modello consistente durante il processo di
- sviluppo in maniera semplice e lineare.
+ sviluppo.
  Ogni variazione alla struttura del modello è tradotto in una migrazione,
- che definisce l'insieme delle operazioni compiute a basso livello, l'aggiunta
- di colonne, la rimozione di un vincolo etc., ed attribuisce una versione
- all'operazione; le stesse informazioni sulle migrazioni sono mantenute
- nel modello e tengono traccia dei cambiamenti apportati e dello stato attuale
- dello schema, permettendo di mantenere tutte le componenti dell'architettura
- MVC consistenti fra loro.
+ un breve script in Ruby, in cui sono definite le operazioni compiute a
+ basso livello, come l'aggiunta di colonne, la rimozione di un vincolo etc.;
+ le informazioni sulle migrazioni sono mantenute nel modello e tengono traccia
+ dei cambiamenti apportati e dello stato attuale dello schema, permettendo
+ di mantenere tutte le componenti dell'architettura MVC consistenti fra
+ loro.
 \end_layout
 
 \begin_layout Section
@@ -1361,8 +1368,8 @@ RubyMine
 Per lo sviluppo di RBlog e la definizione dei test di accettazione è stato
  utilizzato RubyMine, alla versione 6.3.
  L'IDE prodotto da JetBrains, sviluppatori anche di IntelliJ IDEA, Android
- Studio, ReSharper per citare i più conosciuti, supporta le feature di Rails
- 4.1 e Ruby 2.1, ovvero le versioni più recenti.
+ Studio, ReSharper per citare i più conosciuti, supporta le feature più
+ recenti di Rails e Ruby, rispettivamente alla versione 4.1 e 2.1.
 \begin_inset Newline newline
 \end_inset
 
@@ -1371,12 +1378,9 @@ Per lo sviluppo di RBlog e la definizione dei test di accettazione è stato
 
 \begin_layout Standard
 L'esperienza con RubyMine è stata ottima: durante lo sviluppo sono stati
- rilevati raramente problemi ed integra perfettamente tutte le funzionalità
- a riga di comando offerte da Rails; Ruby, HTML, JavaScript, JQuery, CoffeeScrip
-t, SCSS sono solo alcuni dei linguaggi supportati nell'IDE e per tutti sono
- definite varie strategie di refactoring ed è possibile analizzarne le relative
- risorse tramite un potente tool di analisi del codice.
- 
+ rilevati raramente problemi, funzionalità a riga di comando offerte da
+ Rails sono integrate integra perfettamente e sono supportati molti linguaggi,
+ come HTML, JavaScript, JQuery, CoffeeScript, SCSS.
 \end_layout
 
 \begin_layout Standard
@@ -1394,9 +1398,9 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
 
  e SSH.
  RubyMine è un prodotto curato nei dettagli, professionale ed allo stesso
- tempo adatto anche agli utenti alle prime armi; ma soprattutto permette
- l'implementazione di un'applicazione in Rails praticamente senza abbandonare
- l'ambiente di sviluppo.
+ tempo adatto anche agli utenti alle prime armi; permettendo l'implementazione
+ di un'applicazione in Rails praticamente senza abbandonare l'ambiente di
+ sviluppo.
 \end_layout
 
 \begin_layout Section
@@ -1407,6 +1411,23 @@ Hello RBlog!
 L'obbiettivo di questa prima funzionalità è minimo, è necessario che l'applicazi
 one sia in esecuzione ed il sito web raggiungibile.
  Inoltre il blog deve consentire la navigazione verso alcune pagine statiche.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una pagina web statica è una pagina web i cui contenuti sono formattati
+ direttamente in HTML, e non subiscono modifiche in funzione dello stato
+ attuale dell'applicazione.
+ Al contrario le pagine dinamiche rappresentano lo stato di una o più entità
+ presente all'interno del sito e possono variare nel tempo.
+ In RBlog un esempio di pagina statica è la pagina che descrive l'abstract
+ del progetto, mentre una pagina dinamica è la pagina che mostra un singolo
+ post, ed ovviamente cambia nel contenuto in funzione dell'articolo scelto.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1420,8 +1441,7 @@ Il primo tassello necessario per l'implementazione dei test di accettazione
 
 \begin_layout Standard
 Cucumber è un framework per il supporto al BDD, Behaviour Driven Development,
- che permette di scrivere i propri test in maniera leggibile, elegante e
- mantenibile.
+ e la definizione di test di accettazione.
  Il framework è disponibile anche in Java, .Net, Python, PHP e molti altri
  linguaggi e piattaforme.
 \end_layout
@@ -1551,7 +1571,7 @@ features
 \end_layout
 
 \begin_layout Standard
-Nella listato 
+Nella funzionalità 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lis:01x00 Hello RBlog!"
@@ -1619,8 +1639,8 @@ Hello RBlog!
 \end_layout
 
 \begin_layout Standard
-E' possibile introdurre un numero arbitrario di etichette per ciascun elemento,
- sia funzionalità o scenario, e sfruttando l'opzione 
+E' possibile introdurre un numero arbitrario di etichette per ciascuna funzional
+ità o scenario e sfruttando l'opzione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1701,7 +1721,8 @@ reference "lis:01x00 Hello RBlog!"
  ed introduce la sintassi di Cucumber.
  Gli scenario sono caratterizzati da un titolo, che riassume il comportamento
  e da un insieme di passi.
- Seguendo la logica del BDD, ogni passo può alternativamente di tipo 
+ Seguendo la logica del BDD, ogni passo può alternativamente essere di tipo
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1795,7 +1816,7 @@ Then
  per la funzionalità ed analizzare solo quanto è osservabile tramite l'interfacc
 ia del sistema ed ottenuto come conseguenza alle azioni compiute.
  Ad esempio, non è compito dei test di accettazione su RBlog verificare
- lo stato della tabella Post nel modello.
+ le tuple della tabella Post nel modello.
 \begin_inset Newline newline
 \end_inset
 
@@ -2086,9 +2107,9 @@ http://martinfowler.com/bliki/BusinessReadableDSL.html
 L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
 ne all'analisi e alla revisione del codice a figure non tecniche.
  Fowler sottolinea come sia più importante definire un linguaggio leggibile
- rispetto ad uno anche scrivibile, infatti il principale obbiettivo di Business
- Readable DSL è stabilire un canale di comunicazione arricchente fra le
- diverse parti che partecipano allo sviluppo.
+ rispetto ad uno anche scrivibile, in quanto un Business Readable DSL sopperisce
+ alla difficoltà di stabilire un canale di comunicazione arricchente fra
+ le diverse parti che partecipano allo sviluppo.
 \begin_inset Newline newline
 \end_inset
 
@@ -2166,7 +2187,7 @@ one automatici per applicazioni web, non necessariamente scritte tramite
 Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
  primitive di funzioni semplici, intuitive e versatili.
  A differenza di Selenium, le cui primitive si interfacciano con aspetti
- a basso livello, le funzionalità di Capybara sono astratte e mantengono
+ a più basso livello, le funzionalità di Capybara sono astratte e mantengono
  la stessa prospettiva di un test effettuato manualmente da un utente.
 \begin_inset Newline newline
 \end_inset
@@ -2361,9 +2382,9 @@ E' particolarmente adatto all'esecuzione automatica di applicazioni web
 \end_layout
 
 \begin_layout Standard
-Con PhantomJS è possibile far fallire i propri test in funzione di errori
- su codice JavaScript, funzionalità non presente su altri browser, grazie
- all'opzione :js_errors precedentemente descritta.
+Con PhantomJS è anche possibile far coincidere il fallimento dei propri
+ test in funzione di errori su codice JavaScript, funzionalità non presente
+ su altri browser, grazie all'opzione :js_errors precedentemente descritta.
 \begin_inset Foot
 status open
 
@@ -2430,7 +2451,7 @@ poltergeist
 
 \end_inset
 
-
+ 
 \begin_inset Foot
 status open
 
@@ -2523,8 +2544,8 @@ apro RBlog
 Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
  per gli altri tipi disponibili, è possibile specificare un'espressione
  regolare ed il comportamento associato.
- All'esecuzione dei test, Capybara verifica che sia presente un'implementazione
- per ogni passo definito tramite Cucumber ed applica le istruzioni associate.
+ All'esecuzione dei test, Cucumber verifica che sia presente un'implementazione
+ per ogni passo definito ed esegue le istruzioni associate.
  E' necessario che per ogni passo in linguaggio naturale esista un'unica
  espressione regolare corrispondente.
 \end_layout
@@ -2608,7 +2629,7 @@ In Ruby è possibile attribuire ad ogni metodo un blocco contenente del codice
 
 \begin_layout Standard
 In Capybara esistono numerose funzionalità per la gestione degli elementi,
- indicati come nodi.
+ indicati come nodi del DOM.
  La gerarchia dei nodi è la seguente:
 \end_layout
 
@@ -2637,13 +2658,33 @@ la classe Document rappresenta i documenti HTML nella loro interezza.
 \end_layout
 
 \begin_layout Standard
+Le funzionalità di Capybara sono suddivise in tre moduli: Finders, Actions
+ e Matchers.
+\end_layout
+
+\begin_layout Standard
 Il modulo Finders contiene un insieme di funzionalità dedicate all'individuazion
 e di nodi all'interno della pagina.
  I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
- ad esempio find_button e find_link, e della cardinalità attesa, il metodo
- all restituisce tutti gli elementi che soddisfano la ricerca a differenza
- dei metodi find_* dai quali è atteso l'individuazione di esattamente un
- nodo.
+ ad esempio find_button e find_link, e della cardinalità attesa.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+all
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce tutti gli elementi che soddisfano la ricerca a differenza dei
+ metodi 
+\begin_inset Quotes eld
+\end_inset
+
+find_*
+\begin_inset Quotes erd
+\end_inset
+
+ dai quali è atteso l'individuazione di esattamente un nodo.
 \begin_inset Newline newline
 \end_inset
 
@@ -2725,7 +2766,15 @@ page.has_no_title? "zyx"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Istruzioni equivalenti per l'accesso all'attributo title di una pagina HTML.
+Istruzioni equivalenti per l'accesso e verifica dell'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+title
+\begin_inset Quotes erd
+\end_inset
+
+ di una pagina HTML.
 \end_layout
 
 \end_inset
@@ -2836,22 +2885,6 @@ find_link
 \end_inset
 
 .
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Una pagina web statica è una pagina web i cui contenuti sono formattati
- direttamente in HTML, e non subiscono modifiche in funzione dello stato
- attuale dell'applicazione.
- Al contrario le pagine dinamiche rappresentano lo stato di una o più entità
- presente all'interno del sito e possono variare nel tempo.
- In RBlog un esempio di pagina statica è la pagina che descrive l'abstract
- del progetto, mentre una pagina dinamica è la pagina che mostra un singolo
- post, ed ovviamente cambia nel contenuto in funzione dell'articolo scelto.
-\end_layout
-
-\end_inset
-
  Il metodo find_link ricerca un collegamento all'interno della pagina in
  funzione dell'identificatore degli elementi HMTL 
 \begin_inset Quotes eld
@@ -2888,7 +2921,7 @@ reference "lis:Implementazione \"apro RBlog\""
 
 \end_inset
 
-, dove il comportamento non varia in funzione di parametri, nel passo 
+, dove non sono presenti parametri, nel passo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lis:evento naviga verso"
@@ -2904,8 +2937,8 @@ page_name
 \end_inset
 
 , tramite un blocco con un singolo parametro.
- Il plugin di Cucumber per RubyMine per ogni passo che contiene del testo
- fra virgolette, genera dei blocchi parametrici automaticamente.
+ Cucumber per ogni passo che contiene del testo fra virgolette, genera dei
+ blocchi parametrici automaticamente.
  E' possibile applicare lo stesso procedimento manualmente, sostituendo
  all'interno dell'espressione del passo un proprio pattern e aggiungendo
  un parametro a cui attribuire il valore.
@@ -3011,6 +3044,10 @@ https://github.com/metaskills/minitest-spec-rails
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3099,7 +3136,6 @@ end.to <matcher>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Sintassi del metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -3122,15 +3158,11 @@ expect
 \end_layout
 
 \begin_layout Standard
-Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco,
- invocato durante l'esecuzione del metodo, che viene verificato dai matcher
- indicati.
-\end_layout
-
-\begin_layout Standard
-Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
- dell'operazione implementata.
- L'uso corretto dei matcher è come argomenti dei metodi 
+Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco
+ che viene verificato dai matcher indicati.
+ Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
+ dell'operazione implementata e degli argomenti.
+ L'uso corretto dei matcher è come parametri dei metodi 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3273,8 +3305,7 @@ Capybara::DSL::page è un getter e restituisce la sessione correntemente
 
 \end_inset
 
- In RSpec esistono tre matcher per la verifica dell'uguaglianza.
- 
+ In RSpec esistono tre matcher per la verifica dell'uguaglianza: 
 \begin_inset Quotes eld
 \end_inset
 
