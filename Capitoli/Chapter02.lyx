@@ -5167,7 +5167,6 @@ Funzionalità: Easter Egging
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:05bx00 EasterEgg"
@@ -5226,6 +5225,20 @@ status open
 \begin_layout Plain Layout
 
 </div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Footer di RBlog.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5296,6 +5309,20 @@ function switch_easter_egg() {
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento della funzione per aggiunta e rimozione del logo.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5375,10 +5402,10 @@ JQueryUI
 \begin_layout Standard
 JQuery UI è una libreria grafica per l'introduzione di plugin grafici all'intern
 o di applicazioni web.
- Attualmente alla versione 1.11 è sviluppata sfruttando JQuery e permette
+ Attualmente alla versione 1.11, è sviluppata sfruttando JQuery e permette
  una rapida integrazione di widget, come menu con auto-completamento o selettori
  di date, ed effetti grafici.
- Le uniche dipendenze richieste sono JQuery e di conseguenza Javascript.
+ Le uniche dipendenze richieste sono JQuery e Javascript.
 \begin_inset Newline newline
 \end_inset
 
@@ -5423,7 +5450,7 @@ il
 \begin_inset Quotes erd
 \end_inset
 
-, come ultimo elemento del 
+, come ultimi elementi del 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5441,7 +5468,7 @@ input
 \begin_inset Quotes erd
 \end_inset
 
- a cui si riferiscono.
+ a cui si riferiscono grazie ai fogli di stile.
 \begin_inset Foot
 status open
 
@@ -5609,7 +5636,6 @@ function autocomplete() {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Funzione di autocompletamento in JavaScript.
 \end_layout
 
@@ -5671,7 +5697,6 @@ $(document).ready(autocomplete);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Callback per la funzione 
 \begin_inset Quotes eld
 \end_inset
@@ -5695,6 +5720,19 @@ autocomplete
 
 \begin_layout Subsection
 Scenari sull'auto-completamento
+\end_layout
+
+\begin_layout Standard
+Rispetto alla funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:05bx00 EasterEgg"
+
+\end_inset
+
+, dove il DOM è modificato tramite una chiamata Javascript in maniera praticamen
+te istantanea, introdurre l'auto-completamento della ricerca introduce l'utilizz
+o di AJAX ed un maggior ritardo nella modifica della pagina.
 \end_layout
 
 \begin_layout Standard
@@ -5722,54 +5760,18 @@ Funzionalità: Ricerca fra i post
 	Per poter navigare fra i contenuti più velocemente
 \end_layout
 
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Introduzione della ricerca.
+\end_layout
+
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Scenario: Autocompletamento della ricerca
-\end_layout
-
-\begin_layout Plain Layout
-
-	Dato nell'intestazione è presente la barra di ricerca
-\end_layout
-
-\begin_layout Plain Layout
-
-	Dato il post "Lorem Ipsum" esiste
-\end_layout
-
-\begin_layout Plain Layout
-
-	Quando inserisco il testo "lor" da ricercare
-\end_layout
-
-\begin_layout Plain Layout
-
-	Allora viene proposto il post "Lorem Ipsum"
-\end_layout
-
-\begin_layout Plain Layout
-
-	Quando inserisco il testo "xyz" da ricercare
-\end_layout
-
-\begin_layout Plain Layout
-
-	Allora non è proposto alcun post
-\end_layout
-
-\begin_layout Plain Layout
-
-	...
 \end_layout
 
 \end_inset
@@ -5778,166 +5780,75 @@ Scenario: Autocompletamento della ricerca
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-When(/^inserisco il testo "([^"]*)" da ricercare$/) do |searched_text|
-\end_layout
-
-\begin_layout Plain Layout
-
-	page.fill_in 'search', :with => searched_text
-\end_layout
-
-\begin_layout Plain Layout
-
-	search_input = page.find('#search_input_text')
-\end_layout
-
-\begin_layout Plain Layout
-
-	search_input.trigger(:focus)
-\end_layout
-
-\begin_layout Plain Layout
-
-	#search_input.trigger(:keydown)
-\end_layout
-
-\begin_layout Plain Layout
-
-	page.execute_script %Q{ $('#search_input_text').trigger('keydown') }
-\end_layout
-
-\begin_layout Plain Layout
-
-	steps_helper.wait_for_ajax page
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
+L'obbiettivo della funzionalità è verificare le potenzialità di Capybara
+ nella gestione di chiamate AJAX e nell'utilizzo di widget di JQuery UI.
+\begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-http://ruby-journal.com/how-to-do-jqueryui-autocomplete-with-capybara-2/
+Fino alla versione 2.0 di Capybara era presente un metodo 
+\begin_inset Quotes eld
+\end_inset
+
+wait_until
+\begin_inset Quotes erd
+\end_inset
+
+ per l'accesso ad elementi potenzialmenti asincroni.
+ Il metodo nell'ultimo rilascio della libreria è stato integrato in tutte
+ le funzionalità, permettendo di definire test senza la necessità di definire
+ timeout e attese.
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-When(/^ricerco "([^"]*)"$/) do |searched_text|
-\end_layout
-
-\begin_layout Plain Layout
-
-	step "inserisco il testo 
-\backslash
-"#{searched_text}
-\backslash
-" da ricercare"
-\end_layout
-
-\begin_layout Plain Layout
-
-	steps_helper.wait_for_ajax page do
-\end_layout
-
-\begin_layout Plain Layout
-
-		regexp = Regexp.new(Regexp.escape(searched_text), 'i')
-\end_layout
-
-\begin_layout Plain Layout
-
-		if page.has_css?('.ui-menu-item', :text => regexp)
-\end_layout
-
-\begin_layout Plain Layout
-
-			post_hint = page.find(:xpath, "//li[@class = 'ui-menu-item']")
-\end_layout
-
-\begin_layout Plain Layout
-
-			expect(post_hint.text).to match(%r{#{searched_text}}i)
-\end_layout
-
-\begin_layout Plain Layout
-
-			post_hint.trigger(:mouseenter)
-\end_layout
-
-\begin_layout Plain Layout
-
-			post_hint.click
-\end_layout
-
-\begin_layout Plain Layout
-
-		end
-\end_layout
-
-\begin_layout Plain Layout
-
-		find('#search_icon').click
-\end_layout
-
-\begin_layout Plain Layout
-
-	end
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
+E' ora presente una nuova utilità per verificare il pagine web che espongono
+ comportamenti asincroni.
+ Il metodo 
+\begin_inset Quotes eld
 \end_inset
 
+synchronize
+\begin_inset Quotes erd
+\end_inset
 
+ esegue il blocco associato fino a che non ha successo, permettendo il corretto
+ completamento delle funzioni AJAX.
+ L'esecuzione del blocco dipende dal tempo di attesa definito in Capybara,
+ configurabile in funzione delle necessità.
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Then(/^viene proposto il post "([^"]*)"$/) do |hint|
-\end_layout
-
-\begin_layout Plain Layout
-
-	ui_menu_items = page.all(:xpath, "//li[@class = 'ui-menu-item'][text() =
- 
-\backslash
-"#{hint}
-\backslash
-"]")
-\end_layout
-
-\begin_layout Plain Layout
-
-	expect(ui_menu_items.length).to be == 1 end
-\end_layout
-
+Il vantaggio di utilizzare il method 
+\begin_inset Quotes eld
 \end_inset
 
+synchronize
+\begin_inset Quotes erd
+\end_inset
 
+ rispetto all'utilizzo classico della libreria, che non prevede l'introduzione
+ di attese o polling, consiste nella verifica delle situazioni dove un elemento
+ è presente sulla pagina, come la lista del plugin di JQuery UI, ma è necessario
+ dare il tempo al browser di completarne il rendering, in quanto le funzionalità
+ di Capybara sono più veloci.
+\begin_inset Newline newline
+\end_inset
+
+Lo svantaggio dell'utilizzo del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
+ elementi asincroni non appaiono.
+ Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
+ all'interno del sito e un cattivo Look and Feel.
 \end_layout
 
 \begin_layout Standard
@@ -6030,16 +5941,250 @@ def finished_all_ajax_requests?(page)
 \end_layout
 
 \begin_layout Standard
-http://stackoverflow.com/questions/14588241/how-to-use-synchronize-in-capybara-ex
-actly/19578322
+Le difficoltà nella verifica di widget asincroni sono causate sia dalla
+ necessità di prevedere ritardi nella visualizzazione sia nella simulazione
+ dell'interazione con le componenti.
 \end_layout
 
 \begin_layout Standard
-http://www.rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Autocompletamento della ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato nell'intestazione è presente la barra di ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato il post "Lorem Ipsum" esiste
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "lor" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora viene proposto il post "Lorem Ipsum"
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "xyz" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora non è proposto alcun post
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-http://www.elabs.se/blog/53-why-wait_until-was-removed-from-capybara
+L'auto-completamento in RBlog prevede che la compilazione del campo di ricerca
+ fornisca alcuni suggerimenti all'utente.
+ Inoltre al passaggio del cursore su una delle voci suggerite, o all'uso
+ della tastiera tramite, il testo digitato dall'utente è sostituito dall'opzione
+ selezionata.
+\end_layout
+
+\begin_layout Standard
+Queste dinamiche prevedono la definizione di passi che comprendano più eventi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^inserisco il testo "([^"]*)" da ricercare$/) do |searched_text|
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.fill_in 'search', :with => searched_text
+\end_layout
+
+\begin_layout Plain Layout
+
+	search_input = page.find('#search_input_text')
+\end_layout
+
+\begin_layout Plain Layout
+
+	search_input.trigger(:focus)
+\end_layout
+
+\begin_layout Plain Layout
+
+	#search_input.trigger(:keydown)
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.execute_script %Q{ $('#search_input_text').trigger('keydown') }
+\end_layout
+
+\begin_layout Plain Layout
+
+	steps_helper.wait_for_ajax page
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+http://ruby-journal.com/how-to-do-jqueryui-autocomplete-with-capybara-2/
+\end_layout
+
+\begin_layout Standard
+Mancanza di :keydown in Poltergeist
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^ricerco "([^"]*)"$/) do |searched_text|
+\end_layout
+
+\begin_layout Plain Layout
+
+	step "inserisco il testo 
+\backslash
+"#{searched_text}
+\backslash
+" da ricercare"
+\end_layout
+
+\begin_layout Plain Layout
+
+	steps_helper.wait_for_ajax page do
+\end_layout
+
+\begin_layout Plain Layout
+
+		regexp = Regexp.new(Regexp.escape(searched_text), 'i')
+\end_layout
+
+\begin_layout Plain Layout
+
+		if page.has_css?('.ui-menu-item', :text => regexp)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint = page.find(:xpath, "//li[@class = 'ui-menu-item']")
+\end_layout
+
+\begin_layout Plain Layout
+
+			expect(post_hint.text).to match(%r{#{searched_text}}i)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint.trigger(:mouseenter)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint.click
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+		find('#search_icon').click
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Altro esempio sull'uso di widget JQuery UI
+\end_layout
+
+\begin_layout Standard
+Uso del blocco
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^viene proposto il post "([^"]*)"$/) do |hint|
+\end_layout
+
+\begin_layout Plain Layout
+
+	ui_menu_items = page.all(:xpath, "//li[@class = 'ui-menu-item'][text() =
+ 
+\backslash
+"#{hint}
+\backslash
+"]")
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(ui_menu_items.length).to be == 1 end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La verifica rispecchia il comportamento classico
 \end_layout
 
 \begin_layout Section
