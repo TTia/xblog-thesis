@@ -85,11 +85,21 @@ name "ch:rubyonrails"
 \end_layout
 
 \begin_layout Section
-Introduzione a RoR
+Ruby On Rails ~ RoR
 \end_layout
 
-\begin_layout Enumerate
-Perchè Rails, rimando ad articolo
+\begin_layout Standard
+In questo capitolo è trattato lo sviluppo di RBlog attraverso Ruby on Rails,
+ sfruttando il metodo ATDD, Acceptance Test-Driven Development.
+\end_layout
+
+\begin_layout Standard
+Nelle prime sezioni è introdotto RoR e la sua architettura, descrivendone
+ le particolarità.
+ Le sezioni successive trattano lo sviluppo dell'applicazione web attraverso
+ esempi e frammenti di codice.
+ Gli strumenti e le librerie utilizzate per lo sviluppo sono descritte insieme
+ alle funzionalità inerenti.
 \end_layout
 
 \begin_layout Subsection
@@ -337,7 +347,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vista parziale.
+Vista parziale contenente alcune operazioni su un singolo post.
 \end_layout
 
 \end_inset
@@ -1360,7 +1370,7 @@ In RoR è previsto il meccanismo delle migrazioni che fornisce un meccanismo
  loro.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 RubyMine
 \end_layout
 
@@ -1401,6 +1411,10 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
  tempo adatto anche agli utenti alle prime armi; permettendo l'implementazione
  di un'applicazione in Rails praticamente senza abbandonare l'ambiente di
  sviluppo.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1435,8 +1449,8 @@ Cucumber
 \end_layout
 
 \begin_layout Standard
-Il primo tassello necessario per l'implementazione dei test di accettazione
- su un'applicazione web sviluppata in RoR è Cucumber.
+Il primo tassello scelto per l'implementazione dei test di accettazione
+ su Rlog è Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -1538,8 +1552,11 @@ vorrei
 \end_inset
 
 .
- Per facilitare lo sviluppo di test all'interno del proprio progetto è consiglia
-to seguire la convenzione di inserire all'interno della cartella 
+\end_layout
+
+\begin_layout Standard
+Per facilitare lo sviluppo di test all'interno del proprio progetto è consigliat
+o seguire la convenzione di inserire all'interno della cartella 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1640,7 +1657,7 @@ Hello RBlog!
 
 \begin_layout Standard
 E' possibile introdurre un numero arbitrario di etichette per ciascuna funzional
-ità o scenario e sfruttando l'opzione 
+ità o scenario e, sfruttando l'opzione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1652,7 +1669,7 @@ ità o scenario e sfruttando l'opzione
 \begin_inset Quotes erd
 \end_inset
 
- definire il corretto insieme di test da eseguire, tramite gli operatori
+, definire il corretto insieme di test da eseguire, tramite gli operatori
  logici AND, OR e NOT.
 \end_layout
 
@@ -1797,9 +1814,8 @@ When
 \begin_inset Quotes erd
 \end_inset
 
- descrivono le azioni compiute dall'utente e permettono la transizione del
- sistema verso un nuovo stato, analogamente agli eventi di una macchina
- a stati.
+ descrivono le azioni compiute e permettono la transizione del sistema verso
+ un nuovo stato, analogamente agli eventi di una macchina a stati.
 \end_layout
 
 \begin_layout Standard
@@ -1987,7 +2003,7 @@ reference "lis:01x02 Pagine statiche"
 
 \end_inset
 
- è effettuato sia sulla pagina dell'autore che sulla pagina dell'abstract.
+ è eseguito sia sulla pagina dell'autore che sulla pagina dell'abstract.
 \end_layout
 
 \begin_layout Standard
@@ -2108,8 +2124,8 @@ L'obbiettivo principale di un Business Readable DSL è permettere la partecipazi
 ne all'analisi e alla revisione del codice a figure non tecniche.
  Fowler sottolinea come sia più importante definire un linguaggio leggibile
  rispetto ad uno anche scrivibile, in quanto un Business Readable DSL sopperisce
- alla difficoltà di stabilire un canale di comunicazione arricchente fra
- le diverse parti che partecipano allo sviluppo.
+ alla necessità primaria di stabilire un canale di comunicazione arricchente
+ fra le diverse parti che partecipano allo sviluppo.
 \begin_inset Newline newline
 \end_inset
 
@@ -2166,10 +2182,10 @@ Supporto a Cucumber in RubyMine
 RubyMine, l'ambiente di sviluppo scelto per sviluppare tramite RoR, integra
  le funzionalità di Cucumber e assiste il programmatore nel corso dello
  sviluppo dei test: la sintassi di Gherkin è evidenziata, è presente l'auto-comp
-letamento delle parole chiave del DSL, è possibile navigare dalla definizione
- all'implementazione del passo ed è fornita un'interfaccia grafica per l'esecuzi
-one dei test, configurabile in funzione di tag, file delle funzionalità
- da includere ed altri parametri.
+letamento delle parole chiave del DSL in tutte le lingue, è possibile navigare
+ dalla definizione all'implementazione del passo ed è fornita un'interfaccia
+ grafica per l'esecuzione dei test, configurabile in funzione delle etichette,
+ file delle funzionalità da includere ed altri parametri.
 \end_layout
 
 \begin_layout Subsection
@@ -2186,9 +2202,8 @@ one automatici per applicazioni web, non necessariamente scritte tramite
 \begin_layout Standard
 Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
  primitive di funzioni semplici, intuitive e versatili.
- A differenza di Selenium, le cui primitive si interfacciano con aspetti
- a più basso livello, le funzionalità di Capybara sono astratte e mantengono
- la stessa prospettiva di un test effettuato manualmente da un utente.
+ Le funzionalità di Capybara sono astratte e mantengono la stessa prospettiva
+ di un test effettuato manualmente da un utente.
 \begin_inset Newline newline
 \end_inset
 
@@ -2196,10 +2211,9 @@ Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
 \end_layout
 
 \begin_layout Standard
-La configurazione di Capybara è effettuata tramite un breve script in Ruby
- dove è necessario impostare le proprie preferenze.
- Innanzitutto è necessario scegliere quale browser web sarà utilizzato ed
- il relativo driver per Capybara importando la libreria nel file 
+La configurazione è effettuata tramite un breve script in Ruby: è necessario
+ scegliere un browser web ed il relativo driver per Capybara importando
+ la libreria nel file 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2264,12 +2278,12 @@ Dipendenze all'interno dello script di configurazione.
 
 \begin_layout Standard
 Infine, se necessario, è possibile configurare il driver scelto: la struttura
- di Capybara permette l'uso di diversi driver e browser, senza modificare
- le primitive offerte.
+ di Capybara permette l'uso di diversi driver e browser.
  Tutti i driver devono implementare le funzionalità obbligatorie indicate
  nella libreria, ma è consentito non fornire il resto delle operazioni ma
  essere comunque annoverati fra i driver esistenti per Capybara.
- Per RBlog è stato utilizzato Poltergeist.
+ Per RBlog è stato utilizzato PhantomJS ed il driver Poltergeist, che verranno
+ trattati in seguito.
 \end_layout
 
 \begin_layout Standard
@@ -2369,16 +2383,15 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-PhantomJS è un browser headless, ovvero supporta tutte le funzionalità di
- un browser web moderno ma senza possedere un'interfaccia grafica e si basa
- sul motore di rendering WebKit, lo stesso utilizzato da Chrome e Safari.
+PhantomJS è un browser headless, supporta tutte le funzionalità di un browser
+ web moderno ma senza possedere un'interfaccia grafica e si basa sul motore
+ di rendering WebKit, lo stesso utilizzato da Chrome e Safari.
 \end_layout
 
 \begin_layout Standard
 E' particolarmente adatto all'esecuzione automatica di applicazioni web
- in quanto non è necessario che il sistema sia dotato di un framework per
- la gestione di GUI, funzionalità spesso mancante sui server che effettuano
- l'integrazione continua.
+ non richiedendo di un framework per la gestione di GUI, funzionalità spesso
+ mancante sui server che effettuano l'integrazione continua.
 \end_layout
 
 \begin_layout Standard
@@ -2429,10 +2442,11 @@ env.rb
 
 \begin_layout Standard
 La combinazione Capybara - Poltergeist - PhantomJS è attualmente una delle
- più diffuse per lo sviluppo di test di accettazione automatici perché da
- ottimi risultati nella gestione di strumenti asincroni come AJAX, è estremament
-e veloce e molto accurata nella gestione di falsi positivi, come ad esempio
- il click su eventi esistenti nel DOM di una pagina HTML ma non visibili.
+ più diffuse per lo sviluppo di test di accettazione automatici in Ruby
+ perché da ottimi risultati nella gestione di strumenti asincroni come AJAX,
+ è estremamente veloce ed è molto accurata nella gestione di falsi positivi,
+ come ad esempio il click su eventi esistenti nel DOM di una pagina HTML
+ ma non visibili.
 \begin_inset Foot
 status open
 
@@ -2473,7 +2487,7 @@ Implementazione dei passi
 \end_layout
 
 \begin_layout Standard
-La struttura dei passi in Capybara è definita a priori e non varia in funzione
+La struttura dei passi in Cucumber è definita a priori e non varia in funzione
  del tipo implementato.
  Per implementare un passo è necessario creare uno script Ruby, ad esempio
  
@@ -2544,10 +2558,10 @@ apro RBlog
 Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
  per gli altri tipi disponibili, è possibile specificare un'espressione
  regolare ed il comportamento associato.
- All'esecuzione dei test, Cucumber verifica che sia presente un'implementazione
- per ogni passo definito ed esegue le istruzioni associate.
+ All'esecuzione dei test, è verificata la presenza un'implementazione per
+ ogni passo definito.
  E' necessario che per ogni passo in linguaggio naturale esista un'unica
- espressione regolare corrispondente.
+ espressione regolare corrispondente fra i metodi disponibili.
 \end_layout
 
 \begin_layout Standard
@@ -2623,14 +2637,13 @@ In Ruby è possibile attribuire ad ogni metodo un blocco contenente del codice
 
 \end_inset
 
- e non esiste alcuna limitazione né controllo riguardo alla tipologia di
- espressioni che vengono eseguite durante il passo.
+ e non esiste alcuna limitazione né controllo sulle espressioni che possono
+ essere utilizzate.
 \end_layout
 
 \begin_layout Standard
-In Capybara esistono numerose funzionalità per la gestione degli elementi,
- indicati come nodi del DOM.
- La gerarchia dei nodi è la seguente:
+Gli elementi di una pagina web sono indicati come nodi in Capybara, la gerarchia
+ è la seguente:
 \end_layout
 
 \begin_layout Itemize
@@ -2641,11 +2654,10 @@ i per compiere azioni;
 \end_layout
 
 \begin_layout Itemize
-la classe Capybara::Node::Base è la classe padre di Element e Document:
- gli oggetti delle classi figlie condividono gli stessi metodi sfruttando
- i metodi presenti nei moduli Finders, Matchers e Actions.
- A differenza dei nodi semplici è quindi possibile compiere azioni su di
- essi;
+la classe Capybara::Node::Base è la classe padre di Capybara::Node::Element
+ e Capybara::Node::Document, gli oggetti delle classi figlie condividono
+ gli stessi metodi tramite i moduli Finders, Matchers e Actions.
+ A differenza dei nodi semplici, sono utilizzabili per compiere azioni;
 \end_layout
 
 \begin_layout Itemize
@@ -2666,8 +2678,8 @@ Le funzionalità di Capybara sono suddivise in tre moduli: Finders, Actions
 Il modulo Finders contiene un insieme di funzionalità dedicate all'individuazion
 e di nodi all'interno della pagina.
  I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
- ad esempio find_button e find_link, e della cardinalità attesa.
- Il metodo 
+ ad esempio find_button e find_link, e della cardinalità attesa: il metodo
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2694,7 +2706,7 @@ find_*
 \begin_layout Standard
 Il modulo Actions permette l'interazione con l'interfaccia della pagina:
  sono quindi previsti, ad esempio, metodi per la compilazione di form HTML
- ed la selezione di elementi.
+ e la selezione di elementi.
  Le operazioni permettono anche di specificare delle opzioni per effettuare
  delle variazioni o verificare alcune proprietà prima di compiere l'evento.
 \begin_inset Foot
@@ -2885,8 +2897,8 @@ find_link
 \end_inset
 
 .
- Il metodo find_link ricerca un collegamento all'interno della pagina in
- funzione dell'identificatore degli elementi HMTL 
+ Il metodo ricerca un collegamento all'interno della pagina in funzione
+ dell'identificatore degli elementi HMTL 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2895,10 +2907,25 @@ a
 \end_inset
 
  o del testo visualizzato.
- Come per le altre varianti dei metodi find* in Finders, il metodo find_link
- lancia un eccezione nel caso in cui la ricerca non dovesse individuare
- esattamente un'elemento.
- Per completare l'evento, semplicemente si invoca il metodo 
+ Come per le altre varianti dei metodi 
+\begin_inset Quotes eld
+\end_inset
+
+find_*
+\begin_inset Quotes erd
+\end_inset
+
+ in Finders, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+ solleva un eccezione nel caso in cui la ricerca non dovesse individuare
+ esattamente un elemento.
+ Per compiere l'azione, semplicemente si invoca il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2943,8 +2970,7 @@ page_name
  all'interno dell'espressione del passo un proprio pattern e aggiungendo
  un parametro a cui attribuire il valore.
  I parametri all'interno dei passi hanno tipo stringa, ma è possibile definire
- delle trasformazioni per convertire il valore ad un nuovo tipo tramite
- il metodo Transform.
+ delle conversioni di tipo tramite il metodo Transform.
 \begin_inset Foot
 status open
 
@@ -2988,7 +3014,7 @@ RSpec-Expectations è una libreria di metodi per definire asserzioni;
 
 \begin_layout Itemize
 RSpec-Mocks è un framework per l'implementazione di stub, oggetti mock,
- verifiche sull'invocazione dei metodi e dell'interazione fra oggetti;
+ verifiche sull'invocazione di metodi e dell'interazione fra oggetti;
 \end_layout
 
 \begin_layout Itemize
@@ -3136,7 +3162,7 @@ end.to <matcher>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sintassi del metodo 
+Esempi dell'uso del metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3144,7 +3170,7 @@ expect
 \begin_inset Quotes erd
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -3158,7 +3184,7 @@ expect
 \end_layout
 
 \begin_layout Standard
-Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco
+Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco,
  che viene verificato dai matcher indicati.
  Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
  dell'operazione implementata e degli argomenti.
@@ -3394,8 +3420,12 @@ be
 \end_inset
 
  è possibile utilizzare gli operatori definiti in Ruby.
- Nel frammento di codice è verificato che lo stato HTTP sia equivalente
- a 200, che corrisponde alla corretta terminazione della richiesta.
+ Nella precondizione è verificato che lo stato HTTP sia equivalente a 200,
+ che corrisponde alla corretta terminazione della richiesta.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -3455,8 +3485,8 @@ Seconda funzionalità per RBlog
 Lo sviluppo attuale di RBlog prevede una semplice struttura e la navigazione
  fra le pagine esistenti, l'homepage e due pagine statiche contenenti una
  breve descrizione del progetto e della tesi.
- L'iterazione corrente prevede l'introduzione di fogli di stile e la verifica
- tramite Capybara degli effettivi cambiamenti nell'aspetto delle pagine.
+ L'iterazione corrente introduce i fogli di stile e la verifica tramite
+ Capybara degli effettivi cambiamenti nell'aspetto delle pagine.
 \begin_inset Newline newline
 \end_inset
 
@@ -3595,33 +3625,10 @@ Frammento del foglio di stile in Sass relativo ai post.
 Sass fornisce alcuni strumenti sintattici per facilitare il riuso e l'organizzaz
 ione di regole: la caratteristica che maggiormente semplifica lo sviluppo
  dei fogli di stile è la possibilità di definire una gerarchia nelle regole.
-\end_layout
-
-\begin_layout Standard
-Sfruttando questa potenzialità, l'organizzazione del foglio di stile è più
- lineare e rispecchia la struttura del documento, c'è un minor rischio di
- errori
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Ad esempio nel frammento del foglio di stile è dichiarato che il testo dei
- paragrafi sarà verde solo se contenuto in un nodo 
-\begin_inset Quotes eld
-\end_inset
-
-notice
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-, non è necessario etichettare ogni elemento del DOM con identificatori
- e classi ed è molto più semplice applicare delle correzioni a piccole porzioni
- dell'applicazione.
+ I fogli di stile appaiono più lineari e leggibili, rispecchiano la struttura
+ del documento, è c'è un minor rischio di errori, non è necessario etichettare
+ ogni elemento del DOM con identificatori e classi, ed è molto più semplice
+ applicare delle correzioni a piccole porzioni dell'applicazione.
 \begin_inset Newline newline
 \end_inset
 
@@ -3768,7 +3775,7 @@ style
 
 \begin_layout Standard
 Supponiamo che le pagine HTML dichiarino le regole di stile all'interno
- dei nodi stessi e non attraverso fogli di stile definiti nell'intestazione
+ dei nodi stessi e non attraverso fogli di stile linkati nell'intestazione
  del documento HTML: durante l'analisi del valore di un attributo strutturato
  come 
 \begin_inset Quotes eld
@@ -3858,15 +3865,15 @@ Soluzione individuata
 
 \begin_layout Standard
 Preso atto delle mancanze di Capybara e Poltergeist, per completare l'implementa
-zione dello scenario è stato individuata una soluzione alternativa, è stata
- utilizzata la funzionalità del framework di eseguire script JQuery all'interno
- della pagina.
+zione dello scenario è stato individuata una soluzione alternativa tramite
+ la funzionalità del framework di eseguire script JQuery all'interno della
+ pagina.
 \end_layout
 
 \begin_layout Standard
-JQuery è una libreria scritta in JavaScript, permette l'analisi e manipolazione
- del DOM, gestisce gli eventi all'interno della pagina, le animazioni e
- fornisce delle interfacce per semplificare l'uso di Ajax.
+JQuery è una libreria scritta in JavaScript che permette l'analisi e manipolazio
+ne del DOM, gestisce gli eventi all'interno della pagina, le animazioni
+ e fornisce delle interfacce per semplificare l'uso di Ajax.
 \begin_inset Newline newline
 \end_inset
 
@@ -3917,7 +3924,7 @@ Analisi del colore di sfondo dell'elemento via JQuery.
 \end_layout
 
 \begin_layout Standard
-Il metodo sfrutta il selettore generato dall'identificatore e accede alla
+Il metodo utilizza il selettore generato dall'identificatore e accede alla
  proprietà desiderata, il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -4027,7 +4034,15 @@ div
 \end_inset
 
  corrispondente all'intestazione e per il quale è presente un colore di
- sfondo, restituendo il valore di default.
+ sfondo, restituendo il valore di default 
+\begin_inset Quotes eld
+\end_inset
+
+rgba(0, 0, 0, 0)
+\begin_inset Quotes erd
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -4081,7 +4096,7 @@ reference "lis:02x00 Introducendo il CSS"
 
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -4116,8 +4131,8 @@ Una pratica empirica suggerisce di mantenere le funzionalità essenziali
 \end_layout
 
 \begin_layout Standard
-Nell'esempio è stato definito un contesto evitare la ripetizione del passo,
- relativo alla prima iterazione, in tutti gli scenari della funzionalità.
+Nell'esempio è stato definito un contesto evitare la ripetizione del passo
+ relativo alla prima iterazione in tutti gli scenari della funzionalità.
 \end_layout
 
 \begin_layout Subsection
@@ -4327,6 +4342,10 @@ mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
 \end_inset
 
 .
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -4419,9 +4438,9 @@ Nella definizione degli scenari è conveniente utilizzare uno stile che favorisc
 Gli scenari devono essere indipendenti fra loro e l'ordine di esecuzione
  non deve aver conseguenze sul risultato.
  Mantenere delle dipendenze funzionali all'interno nella libreria di testing
- può introdurre diverse problematiche all'aumentare della cardinalità e
- della complessità o alla variazione dello condizioni d'esecuzione, introducendo
- ad esempio l'esecuzione in parallelo di più scenari.
+ può introdurre diverse problematiche all'aumentare della cardinalità dei
+ test e della complessità o alla variazione dello condizioni d'esecuzione,
+ introducendo ad esempio l'esecuzione in parallelo di più scenari.
 \begin_inset Newline newline
 \end_inset
 
@@ -4436,8 +4455,7 @@ reference "lis:03x00 Modello"
 
 \end_inset
 
- sfruttando le interfacce di RBlog per creare, modificare e rimuovere post
- dall'applicazione web e di conseguenza sul modello.
+ sfruttando le interfacce di RBlog per creare, modificare e rimuovere post.
  E' quindi necessario introdurre delle procedure per annullare le modifiche
  compiute.
 \end_layout
@@ -4951,12 +4969,12 @@ When(/^cancello il post "([^"]*)"$/) do |post_title|
 
 \begin_layout Plain Layout
 
-		find('.remove_post_button').click
+		#...
 \end_layout
 
 \begin_layout Plain Layout
 
-		#...
+		find('.remove_post_button').click
 \end_layout
 
 \begin_layout Plain Layout
@@ -4972,10 +4990,19 @@ end
 \end_inset
 
 
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Login & Autorizzazione
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo della funzionalità è l'introduzione di un meccanismo di autenticazi
+one e gestione delle autorizzazioni in RBlog.
 \end_layout
 
 \begin_layout Standard
@@ -5003,9 +5030,313 @@ Funzionalità: Autenticazione su RBlog
 	Per poter garantire l'autenticità dei contenuti
 \end_layout
 
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Descrizione della funzionalità di autenticazione.
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per supportare le operazioni di login e logout all'interno del blog è stata
+ modificata l'applicazione in tutte le sue componenti.
+ All'interno del modello è stato introdotta l'entità autore, definita da
+ un indirizzo email, unico all'interno del dominio, una password ed una
+ relazione uno a molti con i post.
+\end_layout
+
+\begin_layout Standard
+Per rendere più realistico il meccanismo di autenticazione, non è mantenuta
+ la password in chiaro ma la coppia impronta hash e 
+\begin_inset Quotes eld
+\end_inset
+
+sale
+\begin_inset Quotes erd
+\end_inset
+
+, riducendo la sensibilità ad attacchi di tipo dizionario sull'impronta
+ hash della password.
+ Il 
+\begin_inset Quotes eld
+\end_inset
+
+sale
+\begin_inset Quotes erd
+\end_inset
+
+ è una stringa casuale da concatenare alla password in chiaro per generare
+ impronte hash più sicure.
+ La generazione del sale e il calcolo delle impronte è effettuato tramite
+ la gemma BCrypt.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class SessionsController < ApplicationController
+\end_layout
+
+\begin_layout Plain Layout
+
+	def create
+\end_layout
+
+\begin_layout Plain Layout
+
+		author = Author.authenticate(params[:email], params[:hpassword])
+\end_layout
+
+\begin_layout Plain Layout
+
+		if author
+\end_layout
+
+\begin_layout Plain Layout
+
+			session[:author_id] = author.id
+\end_layout
+
+\begin_layout Plain Layout
+
+			redirect_to
+\end_layout
+
+\begin_layout Plain Layout
+
+				:root, :notice => 'Login effettuato, benvenuto!'
+\end_layout
+
+\begin_layout Plain Layout
+
+		else
+\end_layout
+
+\begin_layout Plain Layout
+
+			redirect_to :log_in, :notice => 'Credenziali invalide.'
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento del controllo per l'autenticazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il controllo 
+\begin_inset Quotes eld
+\end_inset
+
+SessionController
+\begin_inset Quotes erd
+\end_inset
+
+ è stato aggiunto all'applicazione, dichiarando l'instradamento per le richieste
+ alla pagina di login, la creazione della sessione ed il logout.
+ Il login su RBlog coincide con la creazione di una sessione con attributo
+ l'identificatore univoco dell'autore.
+ Rails fornisce le interfacce per la gestione di sessioni, che vengono criptate
+ di default.
+\end_layout
+
+\begin_layout Subsubsection
+Black-box Testing
+\end_layout
+
+\begin_layout Standard
+Lo sviluppo di test di accettazione automatici prevede di considerare il
+ sistema da una prospettiva esterna, senza alcuna conoscenza dell'implementazion
+e sottostante.
+ I test sono definiti e verificati osservando il comportamento di una scatola
+ nera e non dovrebbero fare assunzioni sul comportamento del software.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante questo requisito, i test sull'autenticazione rilassano il principio
+ del black-box testing per verificare le potenzialità di Capybara nella
+ gestione di sessioni e cookie.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def encrypted_session(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	cookies = page.driver.cookies
+\end_layout
+
+\begin_layout Plain Layout
+
+	cookies.values[0].value
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Accesso alla sessione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' importante ricordare che l'architettura di Capybara prevede l'utilizzo
+ di driver e funzionalità a basso livello, come la gestione delle sessioni,
+ potrebbero variare in funzione delle componenti scelte.
+\end_layout
+
+\begin_layout Standard
+Poltergeist implementa le funzionalità per la lettura dei cookie, come mostrato
+ nel metodo 
+\begin_inset Quotes eld
+\end_inset
+
+encrypted_session
+\begin_inset Quotes erd
+\end_inset
+
+, definendo diversi metodi per accedere alle proprietà.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sono presenti i metodi: 
+\begin_inset Quotes eld
+\end_inset
+
+name
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+domain
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+path
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+secure?
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+httponly?
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+expires
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre è possibile creare e rimuovere i cookie, funzionalità utili nella
+ definizione degli hook di Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -5030,17 +5361,17 @@ When(/^mi autentico come "([^"]*)"$/) do |email|
 
 \begin_layout Plain Layout
 
-	page.fill_in 'email', :with => email
+	/*.....*/
 \end_layout
 
 \begin_layout Plain Layout
 
-	page.fill_in 'hpassword', :with => 'password'
+	/*Login*/
 \end_layout
 
 \begin_layout Plain Layout
 
-	page.find('#login_button').click
+	/*.....*/
 \end_layout
 
 \begin_layout Plain Layout
@@ -5063,13 +5394,129 @@ When(/^mi autentico come "([^"]*)"$/) do |email|
 end
 \end_layout
 
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Login su RBlog.
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'implementazione del passo di login comprende la compilazione dei campi
+ relativi all'email e alla password ed una semplice asserzione sul valore
+ criptato della sessione: dopo la verifica delle credenziali viene aggiunto
+ un attributo facendo variare la codifica.
+\end_layout
+
 \begin_layout Subsection
-Mantenibilità
+Manutenibilità
+\end_layout
+
+\begin_layout Standard
+L'introduzione dell'autenticazione è l'unica funzionalità che abbia inciso
+ su tutte sulle componenti dell'applicazione ed anche sui test di accettazione
+ già presenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap3
+\end_layout
+
+\begin_layout Plain Layout
+
+@clear_and_logout
+\end_layout
+
+\begin_layout Plain Layout
+
+Funzionalità: Gestione dei post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore   
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei poter inserire, modificare e rimuovere dei post su RBlog   
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter documentare la mia tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  Contesto:     
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato che apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	E mi autentico come "mattia@rblog.io"
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Variazioni nella funzionalità di creazione dei post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Introducendo la verifica delle autorizzazioni, l'accesso alle funzionalità
+ di creazione, modifica e cancellazione di un post non sono più eseguibile
+ senza aver compiuto l'autenticazione.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Dalle pagine sono rimossi i collegamenti alle azioni riservate e l'accesso
+ diretto alle pagine senza aver effettuato l'autenticazione causa la ridirezione
+ verso la pagina di login.
+\end_layout
+
+\end_inset
+
+ E' stato quindi necessario modificare il contesto di alcune funzionalità
+ specificando l'azione di login ed estendere le operazioni di regressione
+ dopo ogni scenario per includere il logout.
 \end_layout
 
 \begin_layout Standard
@@ -5097,30 +5544,64 @@ After('@clear_and_logout') do
 end
 \end_layout
 
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Il nuovo hook combina regressione del modello e logout.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-http://www.elabs.se/blog/15-you-re-cuking-it-wrong
+La precedente etichetta 
+\begin_inset Quotes eld
+\end_inset
+
+@clear
+\begin_inset Quotes erd
+\end_inset
+
+ è stata sostituita da 
+\begin_inset Quotes eld
+\end_inset
+
+@clear_and_logout
+\begin_inset Quotes erd
+\end_inset
+
+, non è stata trovato alcun riferimento sull'ordine di esecuzione degli
+ hook che avrebbe permesso l'introduzione di una nuova etichetta piuttosto
+ che la modifica di quella esistente.
 \end_layout
 
 \begin_layout Standard
-http://eggsonbread.com/2010/09/06/my-cucumber-best-practices-and-tips/
+Le variazioni riguardanti le operazioni di regressione hanno ulteriormente
+ complicato la funzionalità: ritengo che l'uso di etichette, sintatticamente
+ più vicine a Java che al linguaggio naturale, stoni all'interno di un documento
+ scritto attraverso un linguaggio Business Readable come Gherkin.
 \end_layout
 
 \begin_layout Standard
-https://blog.engineyard.com/2009/15-expert-tips-for-using-cucumber
-\end_layout
+L'uso di etichette su scenari e funzionalità dovrebbe essere utile solo
+ per organizzare i test in maniera non funzionale, come categorizzare in
+ base al tempo di esecuzione richiesto -ad esempio @rapido, @standard e
+ @lento- o stabilendo i giusti intervalli di l'esecuzione su un server per
+ la CI -ad esempio @sempre, @ogni_ora, @ogni_notte-.
+\begin_inset Newpage pagebreak
+\end_inset
 
-\begin_layout Standard
-http://blog.codeship.io/2013/05/21/testing-tuesday-6-top-5-cucumber-best-practices.
-html
-\end_layout
 
-\begin_layout Standard
-https://github.com/strongqa/howitzer/wiki/Cucumber-Best-Practices
 \end_layout
 
 \begin_layout Section
@@ -5340,6 +5821,10 @@ La funzione, tramite un selettore JQuery, aggiunge o rimuove un piccolo
 \end_inset
 
  esegue la funzione e modifica di conseguenza il DOM.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5424,14 +5909,11 @@ All'interno di RBlog, ed in particolare nell'intestazione del sito, è stato
 \begin_layout Standard
 Il comportamento tipico dei widget definiti in JQuery UI è intuitivo: le
  azioni eseguite in maniera asincrona modificano il DOM della pagina corrente,
- aggiungendo o modificando i nodi coinvolti.
+ aggiungendo o modificando un insieme di nodi.
  Per ogni plugin è presente un foglio di stile che descrive l'aspetto grafico
  dell'elemento introdotto.
-\end_layout
-
-\begin_layout Standard
-Ad esempio il menu con auto-completamento aggiunge una lista in HTML, attraverso
- i nodi 
+ Ad esempio il menu con auto-completamento aggiunge una lista in HTML, attravers
+o i nodi 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5785,7 +6267,7 @@ L'obbiettivo della funzionalità è verificare le potenzialità di Capybara
 \end_layout
 
 \begin_layout Standard
-Fino alla versione 2.0 di Capybara era presente un metodo 
+Fino alla versione 2.0 Capybara includeva il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5901,7 +6383,6 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Utilizzo del metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -5949,7 +6430,7 @@ synchronize
 \end_inset
 
  consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
- elementi asincroni non appaiono.
+ elementi asincroni non debbano appaiono, come una ricerca senza suggerimenti.
  Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
  all'interno del sito e un cattivo Look and Feel, richiedendo comunque una
  verifica manuale dell'applicazione web.
@@ -6018,9 +6499,9 @@ Scenario: Autocompletamento della ricerca
 \begin_layout Standard
 L'auto-completamento in RBlog prevede che la compilazione del campo di ricerca
  fornisca alcuni suggerimenti all'utente.
- Inoltre al passaggio del cursore su una delle voci suggerite, o l'uso della
- tastiera per selezionare un'opzione, il testo digitato dall'utente è sostituito
- dalla voce corrente.
+ Inoltre al passaggio del cursore su una delle voci suggerite o utilizzando
+ la tastiera per selezionare un'opzione, il testo digitato dall'utente è
+ sostituito dalla voce corrente.
 \end_layout
 
 \begin_layout Standard
@@ -6074,7 +6555,6 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Compilazione del menù con autocompletamento.
 \end_layout
 
@@ -6222,7 +6702,7 @@ Rispetto al passo precedente, dove il testo da ricercare veniva esclusivamente
 \end_layout
 
 \begin_layout Standard
-Sfruttando il passo precedente il form è compilato, mentre le azioni sono
+Invocando il passo precedente il form è compilato, mentre le azioni sono
  eseguite all'interno del blocco fornito al metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -6252,8 +6732,8 @@ has_css
 \end_inset
 
 La difficoltà nell'utilizzo di plugin definiti tramite librerie grafiche
- come JQuery UI o Bootstrap, è la razionalizzazione degli eventi che manualmente
- vengono compiuti per utilizzare le interfacce grafiche.
+ come JQuery UI o Bootstrap, consiste nella razionalizzazione degli eventi
+ che manualmente vengono compiuti per utilizzare le interfacce grafiche.
 \end_layout
 
 \begin_layout Standard
