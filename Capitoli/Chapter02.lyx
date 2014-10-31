@@ -5130,7 +5130,7 @@ Asincronia
 \begin_layout Standard
 L'obbiettivo delle prossime funzionalità è verificare le potenzialità di
  Capybara con Javascript, JQuery, JQuery UI e Ajax, strumenti che permettono
- la definizione di comportamenti asincroni e la modifica del DOM.
+ la definizione di comportamenti asincroni.
 \end_layout
 
 \begin_layout Subsection
@@ -5232,7 +5232,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Footer di RBlog.
 \end_layout
 
@@ -5316,7 +5315,6 @@ function switch_easter_egg() {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento della funzione per aggiunta e rimozione del logo.
 \end_layout
 
@@ -5346,9 +5344,9 @@ La funzione, tramite un selettore JQuery, aggiunge o rimuove un piccolo
 
 \begin_layout Standard
 Capybara è stato sviluppato sotto l'assunzione che nello sviluppo di applicazion
-i web moderne, potenzialmente ogni elemento potrebbe essere il risultato
- di un comportamento asincrono.
- Per ogni operazione sul DOM è concesso che l'elemento debba ancora apparire:
+i web moderne potenzialmente ogni elemento potrebbe essere il risultato
+ di un comportamento asincrono, per ogni operazione sul DOM è concesso che
+ l'elemento debba ancora apparire.
  Capybara permette la configurazione di un parametro di attesa che specifica
  il tempo massimo, dopo il quale verrà sollevata un'eccezione.
 \end_layout
@@ -5391,8 +5389,8 @@ end
 \begin_layout Standard
 L'implementazione dei passi non subisce alcuna modifica in funzione del
  tipo di comportamento dell'elemento sotto test.
- Non è quindi necessario specificare manualmente un'attesa minima, ma è
- Capybara stesso a gestire quest'aspetto.
+ Non è quindi necessario specificare manualmente dei timeout o delle pause
+ arbitrarie nei test, ma è Capybara stesso a gestire quest'aspetto.
 \end_layout
 
 \begin_layout Subsection
@@ -5414,8 +5412,7 @@ o di applicazioni web.
 
 \begin_layout Standard
 All'interno di RBlog, ed in particolare nell'intestazione del sito, è stato
- introdotto un semplice form HTML per ricercare dei post in funzione del
- titolo.
+ introdotto un semplice form HTML per ricercare i post in funzione del titolo.
  La ricerca definisce un parametro HTTP che è analizzato dallo stesso controllo
  che popola la home page.
 \begin_inset Newline newline
@@ -5732,7 +5729,7 @@ reference "lis:05bx00 EasterEgg"
 
 , dove il DOM è modificato tramite una chiamata Javascript in maniera praticamen
 te istantanea, introdurre l'auto-completamento della ricerca introduce l'utilizz
-o di AJAX ed un maggior ritardo nella modifica della pagina.
+o di AJAX ed un maggior ritardo nell'aggiornamento della pagina.
 \end_layout
 
 \begin_layout Standard
@@ -5765,7 +5762,6 @@ Funzionalità: Ricerca fra i post
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Introduzione della ricerca.
 \end_layout
 
@@ -5797,15 +5793,15 @@ wait_until
 \begin_inset Quotes erd
 \end_inset
 
- per l'accesso ad elementi potenzialmenti asincroni.
+ per la verifica di elementi potenzialmenti asincroni.
  Il metodo nell'ultimo rilascio della libreria è stato integrato in tutte
- le funzionalità, permettendo di definire test senza la necessità di definire
- timeout e attese.
+ le funzionalità e rimosso, permettendo di definire test senza la necessità
+ di definire timeout e attese.
 \end_layout
 
 \begin_layout Standard
-E' ora presente una nuova utilità per verificare il pagine web che espongono
- comportamenti asincroni.
+E' ora presente una nuova funzionalità per verificare il pagine web che
+ espongono comportamenti asincroni.
  Il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -5818,37 +5814,6 @@ synchronize
  completamento delle funzioni AJAX.
  L'esecuzione del blocco dipende dal tempo di attesa definito in Capybara,
  configurabile in funzione delle necessità.
-\end_layout
-
-\begin_layout Standard
-Il vantaggio di utilizzare il method 
-\begin_inset Quotes eld
-\end_inset
-
-synchronize
-\begin_inset Quotes erd
-\end_inset
-
- rispetto all'utilizzo classico della libreria, che non prevede l'introduzione
- di attese o polling, consiste nella verifica delle situazioni dove un elemento
- è presente sulla pagina, come la lista del plugin di JQuery UI, ma è necessario
- dare il tempo al browser di completarne il rendering, in quanto le funzionalità
- di Capybara sono più veloci.
-\begin_inset Newline newline
-\end_inset
-
-Lo svantaggio dell'utilizzo del metodo 
-\begin_inset Quotes eld
-\end_inset
-
-synchronize
-\begin_inset Quotes erd
-\end_inset
-
- consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
- elementi asincroni non appaiono.
- Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
- all'interno del sito e un cattivo Look and Feel.
 \end_layout
 
 \begin_layout Standard
@@ -5873,51 +5838,41 @@ def finished_all_ajax_requests?(page)
 
 \begin_layout Plain Layout
 
-		end
-\end_layout
-
-\begin_layout Plain Layout
-
 	end
 \end_layout
 
 \begin_layout Plain Layout
 
+end
 \end_layout
 
 \begin_layout Plain Layout
 
-	def wait_for_ajax(page)
 \end_layout
 
 \begin_layout Plain Layout
 
-		begin
+def wait_for_ajax(page)
 \end_layout
 
 \begin_layout Plain Layout
 
-			Timeout.timeout(Capybara.default_wait_time)
+	begin
 \end_layout
 
 \begin_layout Plain Layout
 
-			do
+		Timeout.timeout(Capybara.default_wait_time)
 \end_layout
 
 \begin_layout Plain Layout
 
-				loop until finished_all_ajax_requests?(page)
+		do
 \end_layout
 
 \begin_layout Plain Layout
 
-			end
-\end_layout
-
-\begin_layout Plain Layout
-
-		rescue Timeout::Error
+			loop until finished_all_ajax_requests?(page)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5927,7 +5882,7 @@ def finished_all_ajax_requests?(page)
 
 \begin_layout Plain Layout
 
-		yield if block_given?
+	rescue Timeout::Error
 \end_layout
 
 \begin_layout Plain Layout
@@ -5935,6 +5890,70 @@ def finished_all_ajax_requests?(page)
 	end
 \end_layout
 
+\begin_layout Plain Layout
+
+	yield if block_given?
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Utilizzo del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+syncronize
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il vantaggio di utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto all'utilizzo classico della libreria, che non prevede l'introduzione
+ di attese o polling, consiste nella verifica delle situazioni dove un elemento
+ è presente sulla pagina, come la lista numerata del plugin di JQuery UI,
+ ma è necessario dare il tempo al browser di completarne il rendering, in
+ quanto le funzionalità di Capybara sono più veloci.
+\begin_inset Newline newline
+\end_inset
+
+Lo svantaggio dell'utilizzo del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
+ elementi asincroni non appaiono.
+ Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
+ all'interno del sito e un cattivo Look and Feel, richiedendo comunque una
+ verifica manuale dell'applicazione web.
+\begin_inset Newline newline
 \end_inset
 
 
@@ -5999,13 +6018,14 @@ Scenario: Autocompletamento della ricerca
 \begin_layout Standard
 L'auto-completamento in RBlog prevede che la compilazione del campo di ricerca
  fornisca alcuni suggerimenti all'utente.
- Inoltre al passaggio del cursore su una delle voci suggerite, o all'uso
- della tastiera tramite, il testo digitato dall'utente è sostituito dall'opzione
- selezionata.
+ Inoltre al passaggio del cursore su una delle voci suggerite, o l'uso della
+ tastiera per selezionare un'opzione, il testo digitato dall'utente è sostituito
+ dalla voce corrente.
 \end_layout
 
 \begin_layout Standard
-Queste dinamiche prevedono la definizione di passi che comprendano più eventi.
+Queste interazioni con il widget prevedono la definizione di passi che esplicita
+no una successione di eventi sugli elementi del DOM.
 \end_layout
 
 \begin_layout Standard
@@ -6051,6 +6071,16 @@ When(/^inserisco il testo "([^"]*)" da ricercare$/) do |searched_text|
 \begin_layout Plain Layout
 
 end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Compilazione del menù con autocompletamento.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6059,11 +6089,42 @@ end
 \end_layout
 
 \begin_layout Standard
-http://ruby-journal.com/how-to-do-jqueryui-autocomplete-with-capybara-2/
+Nel passo è inserito il valore del parametro 
+\begin_inset Quotes eld
+\end_inset
+
+searched_text
+\begin_inset Quotes erd
+\end_inset
+
+, eseguito il focus dell'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ tramite il quale effettuare la ricerca ed è invocata la pressione del tasto
+ 
+\begin_inset Quotes eld
+\end_inset
+
+freccia giù
+\begin_inset Quotes erd
+\end_inset
+
+ per selezionare il primo elemento.
+ Il passo si conclude con l'attesa che il menù sia completamente renderizzato.
 \end_layout
 
 \begin_layout Standard
-Mancanza di :keydown in Poltergeist
+Poltergeist non implementa tutti i possibili eventi disponibili, è quindi
+ necessario sfruttare script JQuery per colmare le mancanze del driver.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6138,6 +6199,15 @@ When(/^ricerco "([^"]*)"$/) do |searched_text|
 \begin_layout Plain Layout
 
 end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ricerca di un post tramite click di una delle opzioni proposte.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6146,11 +6216,44 @@ end
 \end_layout
 
 \begin_layout Standard
-Altro esempio sull'uso di widget JQuery UI
+Rispetto al passo precedente, dove il testo da ricercare veniva esclusivamente
+ inserito, nell'implementazione del evento corrente viene completata la
+ ricerca.
 \end_layout
 
 \begin_layout Standard
-Uso del blocco
+Sfruttando il passo precedente il form è compilato, mentre le azioni sono
+ eseguite all'interno del blocco fornito al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+wait_for_ajax
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Con il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+has_css
+\begin_inset Quotes erd
+\end_inset
+
+, che individua nel DOM l'elemento che coincide con selettore ed il cui
+ testo soddisfa l'espressione regolare, si ottiene un riferimento al nodo
+ sul quale spostare il cursore ed effettuare il click.
+ Per completare la ricerca è eseguito un ulteriore click sull'immagine che
+ effettua l'invio del form.
+\begin_inset Newline newline
+\end_inset
+
+La difficoltà nell'utilizzo di plugin definiti tramite librerie grafiche
+ come JQuery UI o Bootstrap, è la razionalizzazione degli eventi che manualmente
+ vengono compiuti per utilizzare le interfacce grafiche.
 \end_layout
 
 \begin_layout Standard
@@ -6184,7 +6287,8 @@ Then(/^viene proposto il post "([^"]*)"$/) do |hint|
 \end_layout
 
 \begin_layout Standard
-La verifica rispecchia il comportamento classico
+Avendo gestito l'asincronia ed utilizzato i giusti eventi, le asserzioni
+ non presentano ulteriori accorgimenti.
 \end_layout
 
 \begin_layout Section
