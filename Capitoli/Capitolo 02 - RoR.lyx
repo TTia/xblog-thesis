@@ -83,31 +83,18 @@ name "ch:rubyonrails"
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Ruby On Rails ~ RoR
 \end_layout
 
 \begin_layout Standard
 In questo capitolo è trattato lo sviluppo di RBlog attraverso Ruby on Rails,
- sfruttando il metodo ATDD, Acceptance Test-Driven Development.
+ nel seguito RoR, sfruttando il metodo ATDD, Acceptance Test-Driven Development.
 \end_layout
 
 \begin_layout Standard
-Nelle prime sezioni è introdotto RoR e la sua architettura, descrivendone
- le particolarità.
- Le sezioni successive trattano lo sviluppo dell'applicazione web attraverso
- esempi e frammenti di codice.
- Gli strumenti e le librerie utilizzate per lo sviluppo sono descritte insieme
- alle funzionalità inerenti.
-\end_layout
-
-\begin_layout Subsubsection
-Ruby
-\end_layout
-
-\begin_layout Standard
-Ruby è un linguaggio di programmazione open-source, general-purpose e orientato
- agli oggetti ideato da Yukihiro Matsumoto.
+RoR è scritto in Ruby, un linguaggio di programmazione open-source, general-purp
+ose e orientato agli oggetti ideato da Yukihiro Matsumoto.
  La prima pubblicazione del linguaggio risale al 1995 ed attualmente è alla
  versione 2.1.
  Ruby è fortemente orientato alla produttività, permette di scrivere codice
@@ -117,101 +104,19 @@ Ruby è un linguaggio di programmazione open-source, general-purpose e orientato
 \end_layout
 
 \begin_layout Standard
-La comunità di Ruby è estremamente attiva e contribuisce in maniera attiva
- all'individuazione di bug e al miglioramento continuo del linguaggio.
- Non è l'obbietto di questa tesi approfondire le caratteristiche di Ruby,
- ma ritengo sia utile fornire qualche riferimento per l'apprendimento del
- linguaggio.
-\begin_inset Newline newline
-\end_inset
-
-
+Nelle prime sezioni è introdotto RoR e la sua architettura, descrivendone
+ le particolarità.
+ Le sezioni successive trattano lo sviluppo dell'applicazione web attraverso
+ esempi e frammenti di codice.
+ Gli strumenti e le librerie utilizzate per lo sviluppo sono descritte insieme
+ alle funzionalità che ne hanno bisogno.
 \end_layout
 
-\begin_layout Standard
-
-\emph on
-«Se intraprendete lo studio di un kōan e vi ci dedicate senza interrompervi,
- scompariranno i vostri pensieri e svaniranno i bisogni dell'io.
- » 
-\emph default
-(Hakuin, Orategama)
-\emph on
-
-\begin_inset Newline newline
-\end_inset
-
-
+\begin_layout Subsection
+Ruby
 \end_layout
 
-\begin_layout Standard
-I Ruby Koans
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-I Koans sono disponibili su 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://rubykoans.com/
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-koan
-\begin_inset Quotes erd
-\end_inset
-
- è la pronuncia giapponese dei caratteri cinesi, sono una raccolta di esercizi
- su Ruby e permettono lo studio del linguaggio comprendendo esempi guidati
- su costrutti sintattici, elementi semantici e strutture dato.
- L'utente avanza nell'apprendimento in puro stile TDD, in maniera semplice
- e graduale.
- Terminato il corso si acquisisce una buona consapevolezza del linguaggio
- e confidenza con lo stile di Ruby.
-\end_layout
-
-\begin_layout Standard
-Sempre nello stile tracciato da i koan, tenuti in massima considerazione
- all'interno della comunità di Ruby, ho approfondito la conoscenza del linguaggi
-o e di RoR tramite il portale Ruby Monk
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://rubymonk.com/
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
- che fornisce numerosi tutorial interattivi ed esercizi riassuntivi per
- ogni argomento; ogni lezione è completabile attraverso il proprio browser
- internet e fornisce numerosi consigli e indicazioni allo studente.
-\end_layout
-
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Don't Repeat Yourself
 \end_layout
 
@@ -507,7 +412,7 @@ E' altrettanto semplice definire i propri Helper: per ogni Controller definito
  all'interno del progetto.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Convention Over Configuration
 \end_layout
 
@@ -628,11 +533,90 @@ Frammento in YAML relativo alla configurazione del modello.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
+Strumenti per l'apprendimento di Ruby
+\end_layout
+
+\begin_layout Standard
+La comunità di Ruby contribuisce in maniera attiva all'individuazione di
+ bug e al miglioramento continuo del linguaggio.
+ Non è l'obbietto di questa tesi approfondire le caratteristiche di Ruby,
+ ma ritengo sia utile fornire qualche riferimento per l'apprendimento del
+ linguaggio.
+\end_layout
+
+\begin_layout Standard
+I Ruby Koans
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I Koans sono disponibili su 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://rubykoans.com/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+koan
+\begin_inset Quotes erd
+\end_inset
+
+ è la pronuncia giapponese dei caratteri cinesi, sono una raccolta di esercizi
+ su Ruby e permettono lo studio del linguaggio comprendendo esempi guidati
+ su costrutti sintattici, elementi semantici e strutture dato.
+ L'utente avanza nell'apprendimento in puro stile TDD, in maniera semplice
+ e graduale.
+ Terminato il corso si acquisisce una buona consapevolezza del linguaggio
+ e confidenza con lo stile di Ruby.
+\end_layout
+
+\begin_layout Standard
+Sempre nello stile tracciato da i koan, tenuti in massima considerazione
+ all'interno della comunità di Ruby, ho approfondito la conoscenza del linguaggi
+o e di RoR tramite il portale Ruby Monk
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://rubymonk.com/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ che fornisce numerosi tutorial interattivi ed esercizi riassuntivi per
+ ogni argomento; ogni lezione è completabile attraverso il proprio browser
+ internet e fornisce numerosi consigli e indicazioni allo studente.
+\end_layout
+
+\begin_layout Section
 L'interpretazione di RoR del pattern MVC
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 Il modello
 \end_layout
 
@@ -706,7 +690,7 @@ Esecuzione di una semplice query in Ruby.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 I controlli
 \end_layout
 
@@ -836,7 +820,7 @@ L'uso dei filtri in RBlog.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 Le viste
 \end_layout
 
@@ -1008,7 +992,7 @@ Frammento di vista relativo alla visualizzazione di un singolo post.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection*
 Il testing
 \end_layout
 
@@ -1183,7 +1167,7 @@ http://guides.rubyonrails.org/testing.html##rake-tasks-for-running-your-tests
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection*
 Peculiarità
 \end_layout
 
@@ -1315,17 +1299,7 @@ Frammento del Gemfile di RBlog.
 \end_layout
 
 \begin_layout Standard
-Fra le gemme utilizzate, la più preziosa
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-:)
-\end_layout
-
-\end_inset
-
- è Spring.
+Fra le gemme utilizzate, la più preziosa è Spring.
  La libreria permette di caricare in anticipo le modifiche fatte al codice
  sorgente dell'applicazione in maniera che sia sempre in esecuzione la versione
  più recente, evitando all'utente di dover riavviare l'esecuzione manualmente
@@ -1369,7 +1343,7 @@ In RoR è previsto il meccanismo delle migrazioni che fornisce un meccanismo
  loro.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Section
 RubyMine
 \end_layout
 
@@ -1416,7 +1390,7 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Hello RBlog!
 \end_layout
 
@@ -1451,7 +1425,7 @@ Una pagina web statica è una pagina web i cui contenuti sono formattati
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Cucumber
 \end_layout
 
@@ -2226,7 +2200,7 @@ letamento delle parole chiave del DSL in tutte le lingue, è possibile navigare
  file delle funzionalità da includere ed altri parametri.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Capybara
 \end_layout
 
@@ -2416,7 +2390,7 @@ Le opzioni più rilevanti per Poltergeist sono:
 :debug reindirizza l'output dell'esecuzione in modalità debug verso STDERR.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 PhantomJS
 \end_layout
 
@@ -2460,7 +2434,7 @@ http://phantomjs.org/download.html
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection*
 Poltergeist
 \end_layout
 
@@ -2520,7 +2494,7 @@ Quando viene richiesto il click su un elemento, Poltergeist non genera un
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Implementazione dei passi
 \end_layout
 
@@ -3483,7 +3457,7 @@ be
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Introduzione del CSS
 \end_layout
 
@@ -3588,7 +3562,7 @@ Le caratteristiche estetiche dell'interfaccia e l'usabilità sono requisiti
  possano essere introdotte all'interno di scenari e funzionalità.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 \begin_inset Quotes eld
 \end_inset
 
@@ -3699,7 +3673,7 @@ La sintassi di Sass prevede l'uso di variabili, ad esempio per salvare i
  il procedimento è gestito in automatico da RubyMine.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Testare il css
 \end_layout
 
@@ -4115,7 +4089,7 @@ reference "lis:02x00 Introducendo il CSS"
  delle pagine web.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Il contesto degli scenari
 \end_layout
 
@@ -4186,7 +4160,7 @@ Nell'esempio è stato definito un contesto evitare la ripetizione del passo
  relativo alla prima iterazione in tutti gli scenari della funzionalità.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Debug con Capybara
 \end_layout
 
@@ -4231,7 +4205,7 @@ t, ma l'interfaccia e la proprietà che i nodi espongono non permette una
  verificare manualmente lo stato dell'esecuzione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 XPath
 \end_layout
 
@@ -4399,7 +4373,7 @@ mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Definizione del modello
 \end_layout
 
@@ -4474,7 +4448,7 @@ Le componenti generate richiedono ovviamente di essere personalizzate ma
  espongono una struttura completa che minimizza la configurazione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Dipendenze
 \end_layout
 
@@ -4849,7 +4823,7 @@ Nel caso di librerie di test complesse potrebbe essere conveniente utilizzare
 nte sullo verifica degli scenari.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Gestione dei form
 \end_layout
 
@@ -5047,7 +5021,7 @@ end
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Login & Autorizzazione
 \end_layout
 
@@ -5216,7 +5190,7 @@ SessionController
  di default.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsection
 Black-box Testing
 \end_layout
 
@@ -5451,7 +5425,7 @@ L'implementazione del passo di login comprende la compilazione dei campi
  un attributo facendo variare la codifica.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Manutenibilità
 \end_layout
 
@@ -5633,7 +5607,7 @@ L'uso di etichette su scenari e funzionalità dovrebbe essere utile solo
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Asincronia
 \end_layout
 
@@ -5643,7 +5617,7 @@ L'obbiettivo delle prossime funzionalità è verificare le potenzialità di
  la definizione di comportamenti asincroni.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 JavaScript
 \end_layout
 
@@ -5907,7 +5881,7 @@ L'implementazione dei passi non subisce alcuna modifica in funzione del
  arbitrarie nei test, ma è Capybara stesso a gestire quest'aspetto.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 JQueryUI
 \end_layout
 
@@ -6226,7 +6200,7 @@ autocomplete
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Scenari sull'auto-completamento
 \end_layout
 
