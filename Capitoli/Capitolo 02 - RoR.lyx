@@ -70,7 +70,7 @@
 \begin_body
 
 \begin_layout Chapter
-Ruby On Rails
+Ruby On Rails 
 \end_layout
 
 \begin_layout Standard
@@ -83,7 +83,7 @@ name "ch:rubyonrails"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Ruby On Rails ~ RoR
 \end_layout
 
@@ -101,7 +101,7 @@ Nelle prime sezioni è introdotto RoR e la sua architettura, descrivendone
  alle funzionalità inerenti.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Ruby
 \end_layout
 
@@ -211,7 +211,7 @@ https://rubymonk.com/
  internet e fornisce numerosi consigli e indicazioni allo studente.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Don't Repeat Yourself
 \end_layout
 
@@ -507,7 +507,7 @@ E' altrettanto semplice definire i propri Helper: per ogni Controller definito
  all'interno del progetto.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Convention Over Configuration
 \end_layout
 
@@ -628,11 +628,11 @@ Frammento in YAML relativo alla configurazione del modello.
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 L'interpretazione di RoR del pattern MVC
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Il modello
 \end_layout
 
@@ -706,7 +706,7 @@ Esecuzione di una semplice query in Ruby.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 I controlli
 \end_layout
 
@@ -836,7 +836,7 @@ L'uso dei filtri in RBlog.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Le viste
 \end_layout
 
@@ -1008,7 +1008,7 @@ Frammento di vista relativo alla visualizzazione di un singolo post.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Il testing
 \end_layout
 
@@ -1183,7 +1183,7 @@ http://guides.rubyonrails.org/testing.html##rake-tasks-for-running-your-tests
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Peculiarità
 \end_layout
 
@@ -1369,7 +1369,7 @@ In RoR è previsto il meccanismo delle migrazioni che fornisce un meccanismo
  loro.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 RubyMine
 \end_layout
 
@@ -1416,13 +1416,21 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Hello RBlog!
 \end_layout
 
 \begin_layout Standard
-L'obbiettivo di questa prima funzionalità è minimo, è necessario che l'applicazi
-one sia in esecuzione ed il sito web raggiungibile.
+L'obbiettivo della prima funzionalità 
+\begin_inset Quotes eld
+\end_inset
+
+Hello RBlog!
+\begin_inset Quotes erd
+\end_inset
+
+ è minimo, è necessario che l'applicazione sia in esecuzione ed il sito
+ web raggiungibile.
  Inoltre il blog deve consentire la navigazione verso alcune pagine statiche.
 \begin_inset Foot
 status open
@@ -1443,7 +1451,7 @@ Una pagina web statica è una pagina web i cui contenuti sono formattati
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Cucumber
 \end_layout
 
@@ -1459,7 +1467,7 @@ Cucumber è un framework per il supporto al BDD, Behaviour Driven Development,
  linguaggi e piattaforme.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Le funzionalità
 \end_layout
 
@@ -1527,7 +1535,7 @@ Il primo obbiettivo dei test di accettazione è di individuare le funzionalità
 Le funzionalità in Cucumber sono elementi esclusivamente descrittivi, non
  sono utilizzate esplicitamente nell'implementazione dei test ma hanno lo
  scopo di far cogliere la giusta prospettiva al team di sviluppo e descrivere
- genericamente gli l'obbiettivo degli scenari.
+ genericamente l'obbiettivo degli scenari.
  Sia il titolo che la descrizione possono essere in linguaggio naturale
  e non hanno alcun impatto nell'implementazione degli scenari, per lo sviluppo
  di RBlog sono state usate le user story secondo il formato 
@@ -1594,7 +1602,7 @@ reference "lis:01x00 Hello RBlog!"
 
 \end_inset
 
-, oltre alla descrizione della funzionalità è presente un etichetta che
+, oltre alla descrizione della funzionalità è presente un'etichetta che
  permette di organizzare e categorizzare quanto sviluppato con Cucumber;
  
 \begin_inset Quotes eld
@@ -1609,7 +1617,7 @@ reference "lis:01x00 Hello RBlog!"
 \end_inset
 
  caratterizza sia la user-story sia gli scenari che la definiscono per ereditari
-et.
+età.
  L'etichetta è stata introdotta per poter eseguire in maniera selettiva
  gli scenari della prima funzionalità.
 \begin_inset Newline newline
@@ -1672,7 +1680,7 @@ ità o scenario e, sfruttando l'opzione
  logici AND, OR e NOT.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Gli scenari
 \end_layout
 
@@ -1735,7 +1743,7 @@ reference "lis:01x00 Hello RBlog!"
 \end_inset
 
  ed introduce la sintassi di Cucumber.
- Gli scenario sono caratterizzati da un titolo, che riassume il comportamento
+ Gli scenari sono caratterizzati da un titolo, che riassume il comportamento
  e da un insieme di passi.
  Seguendo la logica del BDD, ogni passo può alternativamente essere di tipo
  
@@ -2065,7 +2073,7 @@ reference "lis:01x02 Pagine statiche"
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Business Readable DSL
 \end_layout
 
@@ -2122,16 +2130,27 @@ http://martinfowler.com/bliki/BusinessReadableDSL.html
 L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
 ne all'analisi e alla revisione del codice a figure non tecniche.
  Fowler sottolinea come sia più importante definire un linguaggio leggibile
- rispetto ad uno anche scrivibile, in quanto un Business Readable DSL sopperisce
- alla necessità primaria di stabilire un canale di comunicazione arricchente
- fra le diverse parti che partecipano allo sviluppo.
+ per tutte le diverse figure professionali coinvolte nello sviluppo rispetto
+ ad uno anche scrivibile in maniera cooperativa
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Chiarificato.
+\end_layout
+
+\end_inset
+
+, in quanto un Business Readable DSL sopperisce alla necessità primaria
+ di stabilire un canale di comunicazione arricchente fra le diverse parti
+ che partecipano allo sviluppo.
 \begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 I18n
 \end_layout
 
@@ -2161,19 +2180,39 @@ https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
 \end_inset
 
 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Esteso.
 \end_layout
 
-\begin_layout Standard
-In Cucumber l'implementazione dei passi non è vincolata dal tipo definito,
- ad esempio è possibile sfruttare un'asserzione come invariante.
- Questa particolarità di Cucumber offre la possibilità di definire più librerie
- di test di accettazione in differenti lingue ed utilizzare lo stesso codice
- per l'implementazione dei passi.
- Una potenzialità simile può essere utile per documentare lo sviluppo di
- progetti che coinvolgono stake-holders di diverse nazionalità.
+\end_inset
+
+ E' così possibile definire i passi degli scenari con le parole chiave nella
+ lingua scelta: ad esempio per la definizione delle funzionalità di RBlog
+ è stata utilizzata la lingua italiana.
+ Per utilizzare uno dei pacchetti linguistici esistenti è necessario un
+ header 
+\begin_inset Quotes eld
+\end_inset
+
+# language: xx
+\begin_inset Quotes erd
+\end_inset
+
+ all'interno dei file 
+\begin_inset Quotes eld
+\end_inset
+
+.feature
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Supporto a Cucumber in RubyMine
 \end_layout
 
@@ -2187,7 +2226,7 @@ letamento delle parole chiave del DSL in tutte le lingue, è possibile navigare
  file delle funzionalità da includere ed altri parametri.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Capybara
 \end_layout
 
@@ -2377,7 +2416,7 @@ Le opzioni più rilevanti per Poltergeist sono:
 :debug reindirizza l'output dell'esecuzione in modalità debug verso STDERR.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 PhantomJS
 \end_layout
 
@@ -2421,7 +2460,7 @@ http://phantomjs.org/download.html
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Poltergeist
 \end_layout
 
@@ -2481,7 +2520,7 @@ Quando viene richiesto il click su un elemento, Poltergeist non genera un
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Implementazione dei passi
 \end_layout
 
@@ -2559,8 +2598,8 @@ Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
  regolare ed il comportamento associato.
  All'esecuzione dei test, è verificata la presenza un'implementazione per
  ogni passo definito.
- E' necessario che per ogni passo in linguaggio naturale esista un'unica
- espressione regolare corrispondente fra i metodi disponibili.
+ E' necessario che per ogni passo in Gherkin esista un'unica espressione
+ regolare corrispondente fra i metodi disponibili.
 \end_layout
 
 \begin_layout Standard
@@ -2616,13 +2655,15 @@ o per la scelta dell'implementazione da applicare.
 \end_inset
 
 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Paragrafo anticipato.
 \end_layout
 
-\begin_layout Subsubsection
-La struttura di Capybara
-\end_layout
+\end_inset
 
-\begin_layout Standard
 L'implementazione di passo è definibile all'interno di un blocco
 \begin_inset Foot
 status open
@@ -2638,6 +2679,38 @@ In Ruby è possibile attribuire ad ogni metodo un blocco contenente del codice
 
  e non esiste alcuna limitazione né controllo sulle espressioni che possono
  essere utilizzate.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Paragrafo spostato dalla sezione I18n
+\end_layout
+
+\end_inset
+
+L'implementazione dei passi non è vincolata dal tipo definito, ad esempio
+ è possibile sfruttare un'asserzione come invariante.
+ Questa particolarità di Cucumber offre la possibilità di definire più librerie
+ di test di accettazione in differenti lingue ed utilizzare lo stesso codice
+ per l'implementazione dei passi.
+ Una potenzialità simile può essere utile per documentare lo sviluppo di
+ progetti che coinvolgono stake-holders di diverse nazionalità.
+\end_layout
+
+\begin_layout Paragraph
+La struttura di Capybara
+\end_layout
+
+\begin_layout Standard
+Vediamo quali funzionalità Capybara offra per semplificare la scrittura
+ delle espressioni necessarie per l'implementazione dei passi in Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -2677,8 +2750,23 @@ Le funzionalità di Capybara sono suddivise in tre moduli: Finders, Actions
 Il modulo Finders contiene un insieme di funzionalità dedicate all'individuazion
 e di nodi all'interno della pagina.
  I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
- ad esempio find_button e find_link, e della cardinalità attesa: il metodo
- 
+ ad esempio 
+\begin_inset Quotes eld
+\end_inset
+
+find_button
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+, e della cardinalità attesa: il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2712,7 +2800,7 @@ Il modulo Actions permette l'interazione con l'interfaccia della pagina:
 status open
 
 \begin_layout Plain Layout
-Il metodo click_link permette di specificare un l'opzione :href per verificare
+Il metodo click_link permette di specificare l'opzione :href per verificare
  l'uguaglianza del attributo href prima di effettuare il click sul collegamento.
 \end_layout
 
@@ -2747,58 +2835,7 @@ La libreria di Capybara è ricca di funzionalità e si presta in maniera versati
  modi per definire le istruzioni, facilitando la scrittura dei test.
 \end_layout
 
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-page.title
-\end_layout
-
-\begin_layout Plain Layout
-
-page[:title]
-\end_layout
-
-\begin_layout Plain Layout
-
-page.has_title? "xyz"
-\end_layout
-
-\begin_layout Plain Layout
-
-page.has_no_title? "zyx"
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Istruzioni equivalenti per l'accesso e verifica dell'attributo 
-\begin_inset Quotes eld
-\end_inset
-
-title
-\begin_inset Quotes erd
-\end_inset
-
- di una pagina HTML.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Navigare all'interno del sito
 \end_layout
 
@@ -2922,9 +2959,9 @@ find_link
 \begin_inset Quotes erd
 \end_inset
 
- solleva un eccezione nel caso in cui la ricerca non dovesse individuare
- esattamente un elemento.
- Per compiere l'azione, semplicemente si invoca il metodo 
+ solleva un'eccezione nel caso in cui la ricerca non dovesse individuare
+ uno ed un solo elemento.
+ Per navigare all'interno del sito web si invoca il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2932,7 +2969,24 @@ click
 \begin_inset Quotes erd
 \end_inset
 
- sul nodo restituito.
+ sul nodo restituito, come mostrato nell'implementazione del passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:evento naviga verso"
+
+\end_inset
+
+.
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Aggiunto rif ad esempio
+\end_layout
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2993,8 +3047,14 @@ https://www.relishapp.com/cucumber/cucumber/docs/transforms
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Definizione delle asserzioni con RSpec
+\end_layout
+
+\begin_layout Standard
+All'interno della libreria di Capybara non sono presenti le funzionalità
+ per la verifica di asserzioni, è quindi necessario sfruttare librerie terze,
+ come ad esempio RSpec.
 \end_layout
 
 \begin_layout Standard
@@ -3019,13 +3079,11 @@ RSpec-Mocks è un framework per l'implementazione di stub, oggetti mock,
 \begin_layout Itemize
 RSpec-Rails è un framework per la definizione di test sulle componenti che
  definiscono un'applicazione RoR, come il modello, i controlli e le viste
- ma anche gli aiutanti e l'instradamento delle richieste.
+ ma anche gli Helper e l'instradamento delle richieste.
 \end_layout
 
 \begin_layout Standard
-All'interno della libreria di Capybara non sono presenti le funzionalità
- per la verifica di asserzioni, è quindi necessario sfruttare librerie terze.
- Oltre a RSpec è possibile l'integrazione all'interno di unit-test, Test::Unit
+Oltre a RSpec è possibile l'integrazione all'interno di unit-test, Test::Unit
 \begin_inset Foot
 status open
 
@@ -3322,10 +3380,8 @@ reference "lis:01x02 Pagine statiche"
 status open
 
 \begin_layout Plain Layout
-Capybara::DSL::page è un getter e restituisce la sessione correntemente
- sotto test.
- Una sessione in Capybara rappresenta l'interazione dell'utente con il sistema,
- maggiori dettagli sono presenti nella relativa sezione.
+Capybara::DSL::page è un getter e restituisce la rappresentazione della
+ pagina attualmente aperta nel browser.
 \end_layout
 
 \end_inset
@@ -3427,7 +3483,7 @@ be
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Introduzione del CSS
 \end_layout
 
@@ -3532,7 +3588,7 @@ Le caratteristiche estetiche dell'interfaccia e l'usabilità sono requisiti
  possano essere introdotte all'interno di scenari e funzionalità.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 \begin_inset Quotes eld
 \end_inset
 
@@ -3643,7 +3699,7 @@ La sintassi di Sass prevede l'uso di variabili, ad esempio per salvare i
  il procedimento è gestito in automatico da RubyMine.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Testare il css
 \end_layout
 
@@ -3656,7 +3712,7 @@ stilistica
 \begin_inset Quotes erd
 \end_inset
 
- delle pagine è stato scelto di analizzare i colore di sfondo di alcuni
+ delle pagine è stato scelto di analizzare il colore di sfondo di alcuni
  elementi.
  All'interno dell'intestazione delle pagine sono presenti i collegamenti
  introdotti dalla precedente funzionalità; nell'iterazione corrente sono
@@ -3753,7 +3809,7 @@ Scenario relativo alla funzionalità.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Analisi delle proprietà dei nodi
 \end_layout
 
@@ -3789,7 +3845,7 @@ style
  create ad hoc per la regola CSS a cui si è interessati.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Analisi dei fogli di stile e corrispondenza all'interno del DOM
 \end_layout
 
@@ -3856,10 +3912,6 @@ style
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection
-Soluzione individuata
 \end_layout
 
 \begin_layout Standard
@@ -4063,7 +4115,7 @@ reference "lis:02x00 Introducendo il CSS"
  delle pagine web.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Il contesto degli scenari
 \end_layout
 
@@ -4134,7 +4186,7 @@ Nell'esempio è stato definito un contesto evitare la ripetizione del passo
  relativo alla prima iterazione in tutti gli scenari della funzionalità.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Debug con Capybara
 \end_layout
 
@@ -4179,7 +4231,7 @@ t, ma l'interfaccia e la proprietà che i nodi espongono non permette una
  verificare manualmente lo stato dell'esecuzione.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 XPath
 \end_layout
 
@@ -4347,7 +4399,7 @@ mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definizione del modello
 \end_layout
 
@@ -4422,7 +4474,7 @@ Le componenti generate richiedono ovviamente di essere personalizzate ma
  espongono una struttura completa che minimizza la configurazione.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Dipendenze
 \end_layout
 
@@ -4459,7 +4511,7 @@ reference "lis:03x00 Modello"
  compiute.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Hooks
 \end_layout
 
@@ -4773,7 +4825,7 @@ https://github.com/cucumber/cucumber/wiki/Hooks
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Tool disponibili
 \end_layout
 
@@ -4797,7 +4849,7 @@ Nel caso di librerie di test complesse potrebbe essere conveniente utilizzare
 nte sullo verifica degli scenari.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Gestione dei form
 \end_layout
 
@@ -4924,7 +4976,7 @@ options
  di tipo Hash, l'implementazione della struttura dato dizionario in Ruby.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Il metodo within
 \end_layout
 
@@ -4995,7 +5047,7 @@ end
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Login & Autorizzazione
 \end_layout
 
@@ -5057,26 +5109,10 @@ Per supportare le operazioni di login e logout all'interno del blog è stata
 
 \begin_layout Standard
 Per rendere più realistico il meccanismo di autenticazione, non è mantenuta
- la password in chiaro ma la coppia impronta hash e 
-\begin_inset Quotes eld
-\end_inset
-
-sale
-\begin_inset Quotes erd
-\end_inset
-
-, riducendo la sensibilità ad attacchi di tipo dizionario sull'impronta
- hash della password.
- Il 
-\begin_inset Quotes eld
-\end_inset
-
-sale
-\begin_inset Quotes erd
-\end_inset
-
- è una stringa casuale da concatenare alla password in chiaro per generare
- impronte hash più sicure.
+ la password in chiaro ma la coppia impronta hash e salt, riducendo la sensibili
+tà ad attacchi di tipo dizionario sull'impronta hash della password.
+ Il salt è una stringa casuale da concatenare alla password in chiaro per
+ generare impronte hash più sicure.
  La generazione del sale e il calcolo delle impronte è effettuato tramite
  la gemma BCrypt.
 \begin_inset Newline newline
@@ -5180,7 +5216,7 @@ SessionController
  di default.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Black-box Testing
 \end_layout
 
@@ -5415,13 +5451,13 @@ L'implementazione del passo di login comprende la compilazione dei campi
  un attributo facendo variare la codifica.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Manutenibilità
 \end_layout
 
 \begin_layout Standard
 L'introduzione dell'autenticazione è l'unica funzionalità che abbia inciso
- su tutte sulle componenti dell'applicazione ed anche sui test di accettazione
+ su tutte le componenti dell'applicazione ed anche sui test di accettazione
  già presenti.
 \end_layout
 
@@ -5597,7 +5633,7 @@ L'uso di etichette su scenari e funzionalità dovrebbe essere utile solo
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Asincronia
 \end_layout
 
@@ -5607,7 +5643,7 @@ L'obbiettivo delle prossime funzionalità è verificare le potenzialità di
  la definizione di comportamenti asincroni.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 JavaScript
 \end_layout
 
@@ -5661,8 +5697,8 @@ Introduzione di un breve script Javascript.
 \end_layout
 
 \begin_layout Standard
-Tramite la questa prima funzionalità è introdotto un piccolo script Javascript,
- associato all'evento 
+Tramite questa funzionalità è introdotto un piccolo script Javascript, associato
+ all'evento 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5823,7 +5859,7 @@ La funzione, tramite un selettore JQuery, aggiunge o rimuove un piccolo
 \begin_layout Standard
 Capybara è stato sviluppato sotto l'assunzione che nello sviluppo di applicazion
 i web moderne potenzialmente ogni elemento potrebbe essere il risultato
- di un comportamento asincrono, per ogni operazione sul DOM è concesso che
+ di un comportamento asincrono; per ogni operazione sul DOM è concesso che
  l'elemento debba ancora apparire.
  Capybara permette la configurazione di un parametro di attesa che specifica
  il tempo massimo, dopo il quale verrà sollevata un'eccezione.
@@ -5871,7 +5907,7 @@ L'implementazione dei passi non subisce alcuna modifica in funzione del
  arbitrarie nei test, ma è Capybara stesso a gestire quest'aspetto.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 JQueryUI
 \end_layout
 
@@ -5954,7 +5990,7 @@ JQuery UI definisce anche diversi temi per i plugin, garantendo una migliore
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Ajax
 \end_layout
 
@@ -6190,7 +6226,7 @@ autocomplete
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Scenari sull'auto-completamento
 \end_layout
 
@@ -6275,8 +6311,8 @@ wait_until
 \end_layout
 
 \begin_layout Standard
-E' ora presente una nuova funzionalità per verificare il pagine web che
- espongono comportamenti asincroni.
+E' ora presente una nuova funzionalità per verificare pagine web che espongono
+ comportamenti asincroni.
  Il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -6423,7 +6459,7 @@ synchronize
 \end_inset
 
  consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
- elementi asincroni non debbano appaiono, come una ricerca senza suggerimenti.
+ elementi asincroni non debbano apparire, come una ricerca senza suggerimenti.
  Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
  all'interno del sito e un cattivo Look and Feel, richiedendo comunque una
  verifica manuale dell'applicazione web.
@@ -6762,14 +6798,6 @@ Then(/^viene proposto il post "([^"]*)"$/) do |hint|
 \begin_layout Standard
 Avendo gestito l'asincronia ed utilizzato i giusti eventi, le asserzioni
  non presentano ulteriori accorgimenti.
-\end_layout
-
-\begin_layout Section
-Le sessioni in Capybara
-\end_layout
-
-\begin_layout Standard
-Work in progress.
 \end_layout
 
 \end_body

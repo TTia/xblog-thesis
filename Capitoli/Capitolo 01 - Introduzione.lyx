@@ -89,16 +89,24 @@ A comparative Study of Maintainability of Web Application on J2EE, .NET and
 \begin_inset Quotes srd
 \end_inset
 
- scritto da Look Fang Fang Stella, Stan Jarzabek and Bimlesh Wadhwa scritto
- nel 2008 viene evidenziato il processo di introduzione di una nuova funzionalit
-à in un'applicazione Web e delle ripercussioni sul codice esistente di questa
+ scritto da Look Fang Fang Stella, Stan Jarzabek and Bimlesh Wadhwa nel
+ 2008 viene discusso il processo di introduzione di una nuova funzionalità
+ sul codice esistente di un'applicazione Web e delle ripercussioni di questa
  operazione.
- Ruby on Rails, Spring e in .NET condividono il pattern architetturale Model
+ Ruby on Rails, Spring e .NET condividono il pattern architetturale Model
  View Controller, descritto in seguito, e si prestano dunque ad un confronto
- alla pari: dall'articolo emerge come il neonato RoR, l'articolo è stato
- pubblicato a pochi anni dal rilascio della prima versione, si presentasse
- fin da subito come una piattaforme più moderna ed incline alla metodologia
- Agile e al supporto dei relativi processi di sviluppo.
+ alla pari: dall'articolo emerge come il neonato RoR, 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+L'articolo è stato pubblicato pochi anni dopo il rilascio della prima versione.
+\end_layout
+
+\end_inset
+
+, si presentasse fin da subito come una piattaforme più moderna ed adeguata
+ alla metodologia Agile, offrendo supporto ai relativi processi di sviluppo.
  Grazie ad un struttura più lineare, alla semplicità di definizione dei
  test e combinando il potere espressivo di Ruby, gli autori hanno individuato
  in RoR il framework che ha il minor impatto sul progetto per numero di
@@ -118,16 +126,36 @@ Stella, Jarzabek e Wadhwa concludono il proprio lavoro segnalando come il
 \end_layout
 
 \begin_layout Standard
-L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata dai
- tre ricercatori dell'università di Singapore, analizzando tre framework,
- scelti in funzione di diffusione, novità e particolarità, per lo sviluppo
- di applicazioni web ma concentrando l'attenzione sull'implementazione di
- test di accettazione automatici piuttosto che alla modificabilità.
+L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata per
+ lo sviluppo di applicazioni web dai tre ricercatori dell'università di
+ Singapore, analizzando tre framework, scelti in funzione di diffusione,
+ novità e particolarità ma concentrando l'attenzione sull'implementazione
+ di test di accettazione automatici piuttosto che alla modificabilità.
  I framework scelti sono Ruby on Rails, Spring MVC e AngularJS.
- Nel corso del tesi verranno descritte le peculiarità architetturali delle
+ Nel corso della tesi verrà trattata l'interpretazione data da ciascun framework
+ del pattern architetturale MVC e documentato lo sviluppo delle applicazioni
+ web in funzione dell'implementazione dei test di accettazione automatici.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Riscritto.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Nel corso del tesi verranno descritte le peculiarità architetturali delle
  piattaforme e documentato lo sviluppo parallelo dei test di accettazione
  e delle applicazione web oggetto delle verifiche.
-\begin_inset Newline newline
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -136,8 +164,8 @@ L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata dai
 \begin_layout Standard
 Al fine di focalizzare l'attenzione sullo sviluppo e sulle problematiche
  dei test di accettazione è stato scelto di sviluppare una semplice applicazione
- web, riprendendo l'esempio del blog proposto nell'articolo ma riducendo
- le pretese.
+ web, riprendendo l'esempio del blog proposto nell'articolo in forma semplificat
+a.
  Sono state sviluppati tre progetti, che offrono le stesse funzionalità
  e condividono il codice relativo alle interfacce grafiche, presentando
  però delle ovvie differenze relative all'implementazione; inoltre è stato
@@ -152,6 +180,14 @@ Al fine di focalizzare l'attenzione sullo sviluppo e sulle problematiche
 
 \begin_layout Section
 L'architettura Model View Controller
+\end_layout
+
+\begin_layout Standard
+Da rivedere
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -241,18 +277,18 @@ Secondo il manifesto Agile ed applicando la metodologia Extreme Programming,
 
 \begin_layout Standard
 In un progetto che segue la metodologia XP, gli acceptance testing non dovrebber
-o essere rilegati alla fase conclusiva dell'iterazione, dove alcuni utenti
+o essere relegati alla fase conclusiva dell'iterazione, dove alcuni utenti
  fisici hanno il compito di verificare manualmente gli scenari definiti
  per le user stories, bensì i test dovrebbero essere automatizzati per poter
- essere eseguiti in spesso, ed addirittura in continuo come suggerito dalla
- pratica dell'integrazione continua.
+ essere eseguiti spesso, come suggerito dalla pratica dell'integrazione
+ continua.
 \begin_inset Newline newline
 \end_inset
 
-A differenze della verifica dei test effettuata manualmente dagli un gruppo
- di utenti, i test automatici hanno il vantaggio di restituire un risultato
- in maniera deterministica per un certo requisito e permettere al team di
- concentrare meglio i propri sforzi.
+A differenze della verifica dei test effettuata manualmente dagli utenti,
+ i test automatici hanno il vantaggio di restituire un risultato in maniera
+ deterministica per un certo requisito e permettere al team di concentrare
+ meglio i propri sforzi.
 \end_layout
 
 \begin_layout Section
