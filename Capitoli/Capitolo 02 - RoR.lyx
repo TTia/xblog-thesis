@@ -93,51 +93,1054 @@ In questo capitolo è trattato lo sviluppo di RBlog attraverso Ruby on Rails,
 \end_layout
 
 \begin_layout Standard
-RoR è scritto in Ruby, un linguaggio di programmazione open-source, general-purp
-ose e orientato agli oggetti ideato da Yukihiro Matsumoto.
- La prima pubblicazione del linguaggio risale al 1995 ed attualmente è alla
- versione 2.1.
- Ruby è fortemente orientato alla produttività, permette di scrivere codice
- essenziale, con un netto risparmio di linee di codice rispetto a linguaggi
- tipati staticamente come Java o C# e offre una sintassi ricca e versatile.
- 
+In questa prima sezione è introdotto Ruby, linguaggio in cui è implementato
+ RoR, di cui sono indicate le principali caratteristiche, introducendo elementi
+ utili per favorire la comprensione del progetto.
 \end_layout
 
 \begin_layout Standard
-Nelle prime sezioni è introdotto RoR e la sua architettura, descrivendone
- le particolarità.
- Le sezioni successive trattano lo sviluppo dell'applicazione web attraverso
- esempi e frammenti di codice.
- Gli strumenti e le librerie utilizzate per lo sviluppo sono descritte insieme
- alle funzionalità che ne hanno bisogno.
+Nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:L'interpretazione di RoR del pattern MVC"
+
+\end_inset
+
+ è introdotto RoR e la sua architettura, descrivendone le particolarità.
+ Le sezioni dalla 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Hello-RBlog!"
+
+\end_inset
+
+ fino al termine del capitolo trattano lo sviluppo dell'applicazione web
+ RBlog attraverso esempi e frammenti di codice, descrivendo il processo
+ di sviluppo di un'insieme di funzionalità, raggruppate in funzione degli
+ strumenti utilizzati, e dell'implementazione dei relativi test di accettazione.
 \end_layout
 
 \begin_layout Subsection
 Ruby
 \end_layout
 
+\begin_layout Standard
+Ruby è un linguaggio open-source e general-purpose, ideato da Yukihiro Matsumoto
+ e rilasciato per la prima volta nel 1995 ed attualmente alla versione 2.1.
+ E' un linguaggio di programmazione orientato agli oggetti puro ed è tipato
+ dinamicamente.
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+2.1.1 :002 > (1+1).next
+\end_layout
+
+\begin_layout Plain Layout
+
+=> 3
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+A differenza di Java ed altri linguaggi ad oggetti, ogni tipo è definito
+ da una classe.
+ Nell'esempio il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+next
+\begin_inset Quotes erd
+\end_inset
+
+ è invocato su un'espressione di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+FixNum
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ruby è fortemente orientato alla produttività, permette di scrivere codice
+ essenziale rispetto a linguaggi tipati staticamente come Java o C# e offre
+ una sintassi ricca e versatile.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Rectangle
+\end_layout
+
+\begin_layout Plain Layout
+
+	def initialize w,h
+\end_layout
+
+\begin_layout Plain Layout
+
+		@w = w
+\end_layout
+
+\begin_layout Plain Layout
+
+		@h = h
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+	def area
+\end_layout
+
+\begin_layout Plain Layout
+
+		@w*@h
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+r = Rectangle.new 2, 4.5
+\end_layout
+
+\begin_layout Plain Layout
+
+puts r.area
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Dichiarazione della classe Rectangle.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La dichiarazione di una classe incomincia con la keyword 
+\begin_inset Quotes eld
+\end_inset
+
+class
+\begin_inset Quotes erd
+\end_inset
+
+ seguito dal nome della classe ed è conclusa con il terminatore 
+\begin_inset Quotes eld
+\end_inset
+
+end
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Per creare un nuovo oggetto è utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+new
+\begin_inset Quotes erd
+\end_inset
+
+ che inizializza lo stato degli attributi invocando 
+\begin_inset Quotes eld
+\end_inset
+
+initialize
+\begin_inset Quotes erd
+\end_inset
+
+, ad esempio nello script è creato un nuovo rettangolo 
+\begin_inset Quotes eld
+\end_inset
+
+r
+\begin_inset Quotes erd
+\end_inset
+
+ specificando larghezza ed altezza.
+\end_layout
+
+\begin_layout Standard
+Gli attributi d'istanza non sono dichiarati a priori ma dinamicamente, come
+ avviene in Python, e sono acceduti tramite il token 
+\begin_inset Quotes eld
+\end_inset
+
+@
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Gli attributi di classe si accedono tramite 
+\begin_inset Quotes eld
+\end_inset
+
+@@
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ruby offre una sintassi minima per favorire la leggibilità del codice, ad
+ esempio non è obbligatorio l'uso di parentesi e i metodi restituiscono
+ il valore dell'ultima espressione eseguita, come il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+area
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#...
+\end_layout
+
+\begin_layout Plain Layout
+
+class Rectangle
+\end_layout
+
+\begin_layout Plain Layout
+
+	attr_accessor :color
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+r.color = 'Red'
+\end_layout
+
+\begin_layout Plain Layout
+
+puts r.color
+\end_layout
+
+\begin_layout Plain Layout
+
+puts r.area
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+=>Red
+\end_layout
+
+\begin_layout Plain Layout
+
+=>9.0
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Estensione della classe Rectangle"
+
+\end_inset
+
+Estensione della classe Rectangle.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un'altra caratteristica interessante è la modificabilità delle classi.
+ Il frammento 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Estensione della classe Rectangle"
+
+\end_inset
+
+ mostra come la dichiarazione di una classe con identificatore già esistente
+ permetta di far variare il comportamento della precedente versione.
+ Gli oggetti già esistenti sono aggiornati e possono reagire correttamente
+ alle nuove richieste, ad esempio il rettangolo 
+\begin_inset Quotes eld
+\end_inset
+
+r
+\begin_inset Quotes erd
+\end_inset
+
+, già dichiarato ed istanziato, possiede adesso una coppia di metodi getter
+ e setter per l'accesso all'attributo pubblico 
+\begin_inset Quotes eld
+\end_inset
+
+color
+\begin_inset Quotes erd
+\end_inset
+
+ mantenendo anche le precedenti funzionalità, come il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+area
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+L'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+:color
+\begin_inset Quotes erd
+\end_inset
+
+, utilizzato per creare i metodi d'accesso alla colorazione del rettangolo,
+ è un simbolo.
+ A differenza delle stringhe, i simboli in Ruby sono oggetti immutabili
+ ed unici, possono essere generati dinamicamente e spesso sono utilizzati
+ come riferimenti, ad esempio ad attributi o metodi, oppure come chiavi
+ nelle strutture dato, in quanto la comparazione è completata in O(1).
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Dalla prossima versione di Ruby, la 2.2, sarà introdotto il symbol garbage
+ collector.
+ Al momento i simboli generati non rilasciano mai la memoria introducendo
+ potenziali problemi nella gestione della memoria.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+options = { :font_size => 10, :font_family => "Arial" }
+\end_layout
+
+\begin_layout Plain Layout
+
+options2 = { font_size: 10, font_family: "Arial" }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Dichiarazioni di due dizionari equivalenti, utilizzando una diversa sintassi.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'esempio sono dichiarati due dizionari contenenti le stesse coppie simbolo-v
+alore, ma definiti attraverso due sintassi diverse.
+ Frequentemente i metodi in Ruby utilizzano i dizionari e i simboli per
+ specificare in un solo parametro un insieme di opzioni.
+ Sfruttando una delle sintassi dell'esempio si istanza un oggetto di tipo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Hash
+\begin_inset Quotes erd
+\end_inset
+
+, ma è anche possibile utilizzare esplicitamente i costruttori disponibili
+ ed ottenere lo stesso risultato.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Ruby esiste un garbage collector e non è previsto alcun meccanismo esplicito
+ per la gestione della memoria.
+ Gli oggetti, incluse le variabili locali, sono mantenuti sullo heap e non
+ sullo stack.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per approfondire il comportamento del GC di Ruby consiglio la lettura della
+ presentazione di Aman Gupta 
+\begin_inset Quotes eld
+\end_inset
+
+Garbage Collection and the Ruby Heap
+\begin_inset Quotes erd
+\end_inset
+
+ all'indirizzo 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.scribd.com/doc/27174770/Garbage-Collection-and-the-Ruby-Heap
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Square < Rectangle
+\end_layout
+
+\begin_layout Plain Layout
+
+	def initialize s
+\end_layout
+
+\begin_layout Plain Layout
+
+		super s, s
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+square = Square.new 2
+\end_layout
+
+\begin_layout Plain Layout
+
+puts square.area
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Definizione di una classe Square figlia di Rectangle.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
-Le classi
-\end_layout
-
-\begin_layout Standard
-GC
-\end_layout
-
-\begin_layout Standard
 Ereditarietà
 \end_layout
 
-\begin_layout Subsubsection*
-I moduli
+\begin_layout Standard
+In Ruby è possibile definire ereditarietà singola e, come in Java, è presente
+ una gerarchia di tipi: ogni classe estende 
+\begin_inset Quotes eld
+\end_inset
+
+Object
+\begin_inset Quotes erd
+\end_inset
+
+ che a sua volta estende 
+\begin_inset Quotes eld
+\end_inset
+
+BasicObject
+\begin_inset Quotes erd
+\end_inset
+
+, la radice della gerarchia.
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+puts Rectangle.superclass
+\end_layout
+
+\begin_layout Plain Layout
+
+=> Object
+\end_layout
+
+\begin_layout Plain Layout
+
+puts Object.superclass
+\end_layout
+
+\begin_layout Plain Layout
+
+=> BasicObject
+\end_layout
+
+\begin_layout Plain Layout
+
+puts SimpleObject.superclass
+\end_layout
+
+\begin_layout Plain Layout
+
+=> nil
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Navigazione della gerarchia delle classi.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I moduli in Ruby permettono di raggruppare metodi, classi e costanti e definire
+ dei namespace.
+ A differenza delle classi sono non hanno uno stato e non possono essere
+ istanziati.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module Greeter
+\end_layout
+
+\begin_layout Plain Layout
+
+	def greet salute = 'Hi'
+\end_layout
+
+\begin_layout Plain Layout
+
+		puts salute
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Definizione di un nuovo modulo.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre i moduli sopperiscono alla mancanza dell'ereditarietà multipla grazie
+ ad una tecnica chiamata 
+\begin_inset Quotes eld
+\end_inset
+
+mixin
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Includendo i moduli all'interno di classi o altri moduli esistenti si estendono
+ le funzionalità disponibili, permettendo la creazione di codice modulare
+ e facilmente riutilizzabile.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module EnthusisticGreeter
+\end_layout
+
+\begin_layout Plain Layout
+
+	include Greeter
+\end_layout
+
+\begin_layout Plain Layout
+
+	HYPE = 2
+\end_layout
+
+\begin_layout Plain Layout
+
+	def greet_with_enthusiasm
+\end_layout
+
+\begin_layout Plain Layout
+
+		HYPE.times do
+\end_layout
+
+\begin_layout Plain Layout
+
+			greet 'Hello!!!'
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+class Person
+\end_layout
+
+\begin_layout Plain Layout
+
+	include Greeter
+\end_layout
+
+\begin_layout Plain Layout
+
+	include EnthusisticGreeter
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+bob = Person.new
+\end_layout
+
+\begin_layout Plain Layout
+
+bob.greet
+\end_layout
+
+\begin_layout Plain Layout
+
+=> Hi
+\end_layout
+
+\begin_layout Plain Layout
+
+bob.greet_with_enthusiasm
+\end_layout
+
+\begin_layout Plain Layout
+
+=> Hello!!!
+\end_layout
+
+\begin_layout Plain Layout
+
+=> Hello!!!
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Mixin dei moduli 
+\begin_inset Quotes eld
+\end_inset
+
+Greeter
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+
+\lang italian
+EnthusisticGreeter
+
+\begin_inset Quotes erd
+\end_inset
+
+, per convenzione le costanti sono dichiarate utilizzando lettere maiuscole.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
 I blocchi
 \end_layout
 
-\begin_layout Subsubsection*
-I dizionari
+\begin_layout Standard
+Una delle caratteristiche più interessanti di Ruby è la possibilità invocare
+ i metodi fornendo una closure tramite un blocco.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+array = [1,2,3,4,5]
+\end_layout
+
+\begin_layout Plain Layout
+
+array.each {|i| puts i}
+\end_layout
+
+\begin_layout Plain Layout
+
+array.each do |i|
+\end_layout
+
+\begin_layout Plain Layout
+
+	puts i 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Le sintassi disponibili per i blocchi.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I blocchi, posizionati dopo l'ultimo parametro del metodo, possono essere
+ definiti da una coppia di parentesi graffe oppure con la sintassi 
+\begin_inset Quotes eld
+\end_inset
+
+do ...
+ end
+\begin_inset Quotes erd
+\end_inset
+
+, per convenzione si utilizza quest'ultima versione per definire funzioni
+ con più di un'istruzione.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+each
+\begin_inset Quotes erd
+\end_inset
+
+ dell'esempio itera sull'array dichiarato nella prima istruzione ed esegue
+ il blocco per ogni valore presente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I metodi nelle librerie di sistema di Ruby, soprattutto nelle funzionalità
+ riguardanti le strutture dato, spesso offrono all'utente la possibilità
+ di utilizzare le funzionalità includendo un blocco per personalizzarne
+ il comportamento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def try
+\end_layout
+
+\begin_layout Plain Layout
+
+	if block_given?
+\end_layout
+
+\begin_layout Plain Layout
+
+		yield(1, 2, 3)
+\end_layout
+
+\begin_layout Plain Layout
+
+	else
+\end_layout
+
+\begin_layout Plain Layout
+
+		"no block"
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Implementazione di un metodo che esegue il blocco, se presente.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per ciascuna invocazione è possibile definire al più un blocco; tramite
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+block_given?
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile verificare la presenza di una closure ed eventualmente eseguirla
+ tramite l'istruzione 
+\begin_inset Quotes eld
+\end_inset
+
+yield
+\begin_inset Quotes erd
+\end_inset
+
+, nell'esempio seguita da tre parametri interi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I blocchi non sono elementi di prim'ordine del linguaggio, non è quindi
+ possibile attribuirne il valore ad una variabile, ma è permesso effettuare
+ una conversione ad un oggetto lambda per ottenere un riferimento.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -147,9 +1150,11 @@ Strumenti per l'apprendimento di Ruby
 \begin_layout Standard
 La comunità di Ruby contribuisce in maniera attiva all'individuazione di
  bug e al miglioramento continuo del linguaggio.
- Non è l'obbietto di questa tesi approfondire le caratteristiche di Ruby,
- ma ritengo sia utile fornire qualche riferimento per l'apprendimento del
- linguaggio.
+ Di seguito sono forniti alcuni riferimenti utili per l'apprendimento.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -184,15 +1189,20 @@ koan
 
  è la pronuncia giapponese dei caratteri cinesi, sono una raccolta di esercizi
  su Ruby e permettono lo studio del linguaggio comprendendo esempi guidati
- su costrutti sintattici, elementi semantici e strutture dato.
+ per apprendere la grammatica, le convenzioni e far pratica con le strutture
+ dato.
  L'utente avanza nell'apprendimento in puro stile TDD, in maniera semplice
  e graduale.
  Terminato il corso si acquisisce una buona consapevolezza del linguaggio
  e confidenza con lo stile di Ruby.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Sempre nello stile tracciato da i koan, tenuti in massima considerazione
+Sempre nello stile tracciato dai koan, tenuti in massima considerazione
  all'interno della comunità di Ruby, ho approfondito la conoscenza del linguaggi
 o e di RoR tramite il portale Ruby Monk
 \begin_inset Foot
@@ -214,9 +1224,10 @@ https://rubymonk.com/
 
 \end_inset
 
- che fornisce numerosi tutorial interattivi ed esercizi riassuntivi per
- ogni argomento; ogni lezione è completabile attraverso il proprio browser
- internet e fornisce numerosi consigli e indicazioni allo studente.
+ che fornisce corsi di diverse difficoltà, comprendendo numerosi tutorial
+ interattivi ed esercizi riassuntivi; ogni lezione è completabile attraverso
+ il proprio browser internet e fornisce numerosi consigli e indicazioni
+ allo studente.
 \end_layout
 
 \begin_layout Subsection
@@ -227,8 +1238,8 @@ RubyMine
 Per lo sviluppo di RBlog e la definizione dei test di accettazione è stato
  utilizzato RubyMine, alla versione 6.3.
  L'IDE prodotto da JetBrains, sviluppatori anche di IntelliJ IDEA, Android
- Studio, ReSharper per citare i più conosciuti, supporta le feature più
- recenti di Rails e Ruby, rispettivamente alla versione 4.1 e 2.1.
+ Studio, ReSharper per citare i prodotti più conosciuti, supporta le feature
+ più recenti di Rails e Ruby.
 \begin_inset Newline newline
 \end_inset
 
@@ -237,8 +1248,8 @@ Per lo sviluppo di RBlog e la definizione dei test di accettazione è stato
 
 \begin_layout Standard
 L'esperienza con RubyMine è stata ottima: durante lo sviluppo sono stati
- rilevati raramente problemi, funzionalità a riga di comando offerte da
- Rails sono integrate integra perfettamente e sono supportati molti linguaggi,
+ rilevati raramente problemi, le funzionalità a riga di comando offerte
+ da Rails sono integrate perfettamente e sono supportati molti linguaggi,
  come HTML, JavaScript, JQuery, CoffeeScript, SCSS.
 \end_layout
 
@@ -263,7 +1274,22 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:L'interpretazione di RoR del pattern MVC"
+
+\end_inset
+
 L'interpretazione di RoR del pattern MVC
+\end_layout
+
+\begin_layout Standard
+Di seguito sono descritte le componenti principali del pattern architetturale
+ MVC in funzione dell'interpretazione data da RoR e gli strumenti utilizzati
+ per l'implementazione.
+ E' anche presente una sezione riguardante il testing, in diverse forme,
+ e come sia integrato all'interno del framework e dell'ambiente di sviluppo
+ RubyMine.
 \end_layout
 
 \begin_layout Subsection
@@ -275,20 +1301,20 @@ L'interpretazione di RoR del modello dell'architettura MCV prende spunto
  dal patter Active Record introdotto da Martin Fowler.
  I record attivi introducono un livello di astrazione fra i dati mantenuti
  nel modello ed i controlli che gestiscono e manipolano il dominio; le tuple
- nei database sono astratte ad oggetti aventi sia le informazioni che li
+ nei database rappresentate da oggetti aventi sia le informazioni che li
  caratterizzano, ad esempio i diversi attributi e le relazioni con altri
  tipi di dato presenti nel dominio, sia i metodi d'istanza che ne descrivono
  il comportamento.
 \end_layout
 
 \begin_layout Standard
-Il database, ed in generale qualunque sistema garantisca la persistenza
- della nostra applicazione, non è acceduto direttamente ma tramite il processo
- ORM, acronimo per Object-Relational Mapping.
+Non si accede direttamente al database, e in generale a qualunque sistema
+ garantisca la persistenza della nostra applicazione, ma tramite l'interfaccia
+ dell'ORM, acronimo per Object-Relational Mapping.
  Questa tecnica minimizza, se non addirittura elimina, la necessita di eseguire
  codice nativo, come query SQL, per manipolare il dominio.
- L'uso del pattern Active Record permette a RoR delineare in maniera netta
- la separazione fra modello e controlli.
+ L'uso del pattern Active Record permette a RoR di delineare in maniera
+ netta la separazione fra modello e controlli.
 \begin_inset Newline newline
 \end_inset
 
@@ -296,10 +1322,10 @@ Il database, ed in generale qualunque sistema garantisca la persistenza
 \end_layout
 
 \begin_layout Standard
-Oltre alla rappresentazione dei dati, gli Active Record estendono le funzionalit
-à del modello con relazioni di ereditarietà fra i tipi esistenti, permettono
- la validazione attraverso l'invocazione di metodi e la definizione interrogazio
-ni attraverso una libreria di sistema.
+Il modulo ActiveRecord di RoR fornisce molte funzionalità che estendono
+ la rappresentazione ad oggetti del dominio con relazioni di ereditarietà
+ fra i tipi esistenti, permettono la validazione attraverso l'invocazione
+ di metodi e la definizione interrogazioni attraverso una libreria di sistema.
 \end_layout
 
 \begin_layout Standard
@@ -345,14 +1371,145 @@ I controlli
 \end_layout
 
 \begin_layout Standard
-Essendo i controlli gli elementi di interconnessione fra il modello e le
- viste è difficile per lo sviluppatore mantenerne l'implementazione semplice.
- Proprio per semplificare la definizione ed il mantenimento sono presenti
- alcuni accorgimenti in RoR.
+Un controllo in RoR è rappresentato da una classe che estende ActionController::
+Base e fornisce dei metodi pubblici a cui corrispondono le richieste soddisfacib
+ili dall'applicazione.
 \end_layout
 
 \begin_layout Standard
-La configurazione delle richieste instradabili è specificata in file separato
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class PostsController < ApplicationController
+\end_layout
+
+\begin_layout Plain Layout
+
+	# GET /posts
+\end_layout
+
+\begin_layout Plain Layout
+
+	# GET /posts.json
+\end_layout
+
+\begin_layout Plain Layout
+
+	def index
+\end_layout
+
+\begin_layout Plain Layout
+
+		if params[:search].present?
+\end_layout
+
+\begin_layout Plain Layout
+
+			@posts = Post 
+\end_layout
+
+\begin_layout Plain Layout
+
+				.where('title like ?', "#{params[:search]}%") 
+\end_layout
+
+\begin_layout Plain Layout
+
+				.order('created_at DESC') 
+\end_layout
+
+\begin_layout Plain Layout
+
+		else 
+\end_layout
+
+\begin_layout Plain Layout
+
+			@posts = Post.all.order('created_at DESC') 
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Frammento del controllo dei Post"
+
+\end_inset
+
+Frammento del controllo dei Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Frammento del controllo dei Post"
+
+\end_inset
+
+ è visibile il controller dei Post ed il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+index
+\begin_inset Quotes erd
+\end_inset
+
+, che si occupa di interagire con il modello per caricare gli articoli da
+ visualizzare nel browser per la pagina principale del blog; la convenzione
+ in RoR associa a ciascun metodo una vista con nome uguale.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+PostController estende ActionController::Base tramite la classe ApplicationContr
+oller.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per semplificare la definizione ed il mantenimento del codice dei controlli
+ sono presenti alcuni accorgimenti.
+ La configurazione delle richieste instradabili, è specificata in file separato
  
 \begin_inset Quotes eld
 \end_inset
@@ -365,9 +1522,9 @@ routes.rb
 \begin_inset Quotes erd
 \end_inset
 
-, all'interno del quale è possibile configurare le richieste HTTP soddisfabili
- e definire una gerarchia delle entità manipolate dall'applicazione secondo
- i principi delle architetture REST, acronimo per REpresentational State
+, all'interno del quale è possibile configurare le richieste HTTP che possono
+ essere soddisfatte e definire una gerarchia delle entità manipolate dall'applic
+azione secondo i principi delle architetture REST, REpresentational State
  Transfer.
 \end_layout
 
@@ -423,13 +1580,47 @@ routes.rb
 \end_layout
 
 \begin_layout Standard
+Nel frammento del file di configurazione dell'instradamento è specificata
+ un'ulteriore azione per l'entità Post, oltre a quelle standard, e le tre
+ azioni utilizzate per implementare i meccanismi di autenticazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Un altro accorgimento apprezzato durante lo sviluppo è la possibilità di
  definire dei filtri per i controlli.
- Per ogni controllo sono previsti alcuni stati a cui è possibili attribuire
- eventi, i filtri per l'appunto.
+ Per ogni azione dei controlli sono previsti alcuni stati
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Paragonabili alla annotazioni 
+\emph on
+@After
+\emph default
+, 
+\emph on
+@Before
+\emph default
+, 
+\emph on
+@AfterClass
+\emph default
+ e 
+\emph on
+@BeforeClass
+\emph default
+ in JUnit 4.x.
+\end_layout
+
+\end_inset
+
+ a cui è possibile attribuire delle callback.
  Sfruttando questa semplice tecnica è possibile fattorizzare alcuni comportament
-i comuni all'interno dei controlli di una stessa entità, come ad esempio
- la verifica delle autorizzazioni per alcune operazioni sensibili.
+i comuni all'interno di un controllo.
 \end_layout
 
 \begin_layout Standard
@@ -439,12 +1630,7 @@ status open
 
 \begin_layout Plain Layout
 
-before_action
-\end_layout
-
-\begin_layout Plain Layout
-
-	:require_login,
+before_action :require_login,
 \end_layout
 
 \begin_layout Plain Layout
@@ -470,6 +1656,88 @@ L'uso dei filtri in RBlog.
 
 \end_layout
 
+\begin_layout Standard
+Nell'implementazione di RBlog è stato definito un filtro per verificare
+ che non sia possibile compiere operazioni sensibili senza aver compiuto
+ l'autenticazione.
+ Grazie al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+before_action
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile eseguire codice definito dall'utente prima di eseguire una
+ delle azioni specificate.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def require_login
+\end_layout
+
+\begin_layout Plain Layout
+
+	unless current_user
+\end_layout
+
+\begin_layout Plain Layout
+
+		redirect_to :log_in, :notice => 'Effettua il login prima.'
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Verifica delle credenziali di accesso.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+current_user
+\begin_inset Quotes erd
+\end_inset
+
+ è un metodo definito all'interno della classe 
+\begin_inset Quotes eld
+\end_inset
+
+ApplicationController
+\begin_inset Quotes erd
+\end_inset
+
+, quindi disponibile in tutti i controlli dell'applicazione, che verifica
+ all'interno della sessione HTTP criptata la presenza di un attributo corrispond
+ente all'identificatore univoco di uno degli autori di RBlog.
+\end_layout
+
 \begin_layout Subsection
 Le viste
 \end_layout
@@ -483,6 +1751,10 @@ Le viste in RoR sono definibili introducendo nei file HTML elementi dinamici
 
 \begin_layout Subsubsection*
 ERB
+\end_layout
+
+\begin_layout Standard
+/***/
 \end_layout
 
 \begin_layout Standard
@@ -673,28 +1945,18 @@ http://guides.rubyonrails.org/testing.html
 \end_inset
 
  Sfruttando il framework RSpec, standard de-facto in Ruby, è possibile testare
- il modello attraverso i record attivi ed anche verificare i propri controller,
- definendo i parametri HTTP e dati.
- RSpec fornisce molte funzionalità, un'analisi più approfondita è effettuata
+ il modello ed anche verificare i propri controller, definendo i parametri
+ HTTP e dati.
+ RSpec fornisce molte funzionalità; un'analisi più approfondita è effettuata
  nelle sezioni relative all'implementazione dei test di accettazione.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Da Ruby 1.9 è anche incluso la libreria MiniTest, che fornisce le funzionalità
- per arricchire i propri test con delle callback da applicare a differenti
- stati dell'esecuzione della libreria di test, introduce oggetti 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-mock
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-, consente di effettuare misurazioni delle prestazioni e molto altro.
+Da Ruby 1.9 è anche incluso la libreria MiniTest
 \begin_inset Foot
 status open
 
@@ -714,35 +1976,31 @@ https://github.com/seattlerb/minitest
 
 \end_inset
 
-
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Paragonabili alla annotazioni 
-\emph on
-@After
-\emph default
-, 
-\emph on
-@Before
-\emph default
-, 
-\emph on
-@AfterClass
-\emph default
- e 
-\emph on
-@BeforeClass
-\emph default
- in JUnit 4.x.
-\end_layout
-
+, che fornisce le funzionalità per arricchire i propri test con delle callback
+ da applicare a differenti stati dell'esecuzione della libreria di test,
+ introduce oggetti 
+\begin_inset Quotes eld
 \end_inset
 
- Esistono numerose gemme sviluppate da terze parti per aggiungere funzionalità
- e semplificare il processo di testing, ad esempio per la pulizia dei database
- utilizzati DatabaseCleaner
+
+\emph on
+mock
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, consente di effettuare misurazioni delle prestazioni e molto altro.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esistono numerose librerie sviluppate da terze parti che, dovendo sviluppare
+ un'applicazione web più complessa di RBlog, aggiungerebbero numerose funzionali
+tà semplificando il processo di testing, ad esempio DatabaseCleaner
 \begin_inset Foot
 status open
 
@@ -762,7 +2020,8 @@ https://github.com/DatabaseCleaner/database_cleaner
 
 \end_inset
 
- è molto diffusa, al pari di Factory Girl
+ è molto diffusa per la pulizia dei database utilizzati, così come di Factory
+ Girl
 \begin_inset Foot
 status open
 
@@ -797,8 +2056,8 @@ E' anche previsto che il modello sia presente in tre versioni, -test, sviluppo
 \begin_inset Newline newline
 \end_inset
 
-Rail fornisce inoltre il comando Rake per poter gestire al meglio l'esecuzione
- selettiva delle proprie librerie di test.
+RoR fornisce inoltre il tool a linea di comando Rake per poter gestire al
+ meglio l'esecuzione selettiva delle proprie librerie di test.
 \begin_inset Foot
 status open
 
@@ -828,21 +2087,9 @@ Peculiarità
 \begin_layout Standard
 L'obbiettivo di questa tesi non è l'uso approfondito di RoR e delle sue
  funzionalità, ma durante l'implementazione del blog sono state notate alcune
- peculiarità del framework e del suo 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-ecosistema
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- che hanno contribuito affinché lo sviluppo si svolgesse in maniera lineare,
- concentrando l'attenzione sui test di accettazione piuttosto che a problematich
-e di contorno.
+ peculiarità del framework che hanno contribuito affinché lo sviluppo si
+ svolgesse in maniera lineare, concentrando l'attenzione sui test di accettazion
+e piuttosto che a problematiche di contorno.
 \begin_inset Newline newline
 \end_inset
 
@@ -850,9 +2097,10 @@ e di contorno.
 \end_layout
 
 \begin_layout Standard
-A differenza di altre piattaforme, in cui sono presenti strumenti esterni
- per supportare la compilazione e la risoluzione delle dipendenze come Maven
- e Gradle, Ruby introduce le gemme.
+Come in altre piattaforme, in cui sono presenti strumenti per supportare
+ la compilazione e la risoluzione delle dipendenze, Ruby introduce RubyGems,
+ un package manager simile a Maven e Gradle per il mondo Java, per la gestione
+ delle gemme.
  Ogni gemma rappresenta una libreria ed è definita attraverso nome, versione
  ed architettura di riferimento.
  
@@ -953,11 +2201,16 @@ Frammento del Gemfile di RBlog.
 \end_layout
 
 \begin_layout Standard
-Fra le gemme utilizzate, la più preziosa è Spring.
- La libreria permette di caricare in anticipo le modifiche fatte al codice
- sorgente dell'applicazione in maniera che sia sempre in esecuzione la versione
- più recente, evitando all'utente di dover riavviare l'esecuzione manualmente
- ad ogni cambiamento.
+Fra le gemme utilizzate, la più utile è stata Spring.
+ La libreria permette di mantenere l'applicazione in esecuzione in background,
+ monitorando le modifiche effettuate al codice del progetto.
+\end_layout
+
+\begin_layout Standard
+Spring utilizza un meccanismo di RoR per l'aggiornamento a run-time delle
+ classi del progetto, mantenendo in esecuzione la versione più recente dell'appl
+icazione ed evitando di dover riavviare l'esecuzione manualmente ad ogni
+ cambiamento.
 \begin_inset Newline newline
 \end_inset
 
@@ -966,9 +2219,9 @@ Fra le gemme utilizzate, la più preziosa è Spring.
 
 \begin_layout Standard
 Nel contesto di sviluppo di applicazioni MVC è facile introdurre delle discrepan
-ze fra il modello e la rappresentazione delle entità all'interno dell'applicazio
-ne, soprattutto sfruttando strumenti di versionamento che offrono operazioni
- equivalenti alla 
+ze fra gli schemi degli strumenti di persistenza e la rappresentazione delle
+ entità all'interno dell'applicazione, soprattutto sfruttando strumenti
+ di versionamento che offrono operazioni equivalenti alla 
 \begin_inset Quotes eld
 \end_inset
 
@@ -985,38 +2238,111 @@ revert
 \end_layout
 
 \begin_layout Standard
-In RoR è previsto il meccanismo delle migrazioni che fornisce un meccanismo
- per mantenere lo schema del modello consistente durante il processo di
- sviluppo.
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class CreatePosts < ActiveRecord::Migration
+\end_layout
+
+\begin_layout Plain Layout
+
+	def change
+\end_layout
+
+\begin_layout Plain Layout
+
+		create_table :posts do |t|
+\end_layout
+
+\begin_layout Plain Layout
+
+			t.string :title
+\end_layout
+
+\begin_layout Plain Layout
+
+			t.text :body
+\end_layout
+
+\begin_layout Plain Layout
+
+			t.timestamps
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Migrazione relativa all'introduzione dell'entità Post nel modello.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In RoR è previsto il meccanismo delle migrazioni per mantenere gli schema
+ consistenti con il processo di sviluppo.
  Ogni variazione alla struttura del modello è tradotto in una migrazione,
  un breve script in Ruby, in cui sono definite le operazioni compiute a
  basso livello, come l'aggiunta di colonne, la rimozione di un vincolo etc.;
- le informazioni sulle migrazioni sono mantenute nel modello e tengono traccia
- dei cambiamenti apportati e dello stato attuale dello schema, permettendo
+ le informazioni sulle migrazioni sono mantenute all'interno di una tabella,
+ presente in tutti i database dell'applicazione, e tengono traccia dei cambiamen
+ti apportati e dello stato attuale dello schema del dominio, permettendo
  di mantenere tutte le componenti dell'architettura MVC consistenti fra
  loro.
 \end_layout
 
 \begin_layout Subsubsection*
-Don't Repeat Yourself
+Don't Repeat Yourself ~ DRY
 \end_layout
 
 \begin_layout Standard
-Il principio di mantenere il proprio senza ripetizioni e ben fattorizzato
+Il principio di mantenere il proprio codice senza ripetizioni e ben fattorizzato
  è un'ottima pratica di programmazione.
  Un progetto DRY permette agli sviluppatori di modificare il codice più
  semplicemente; una funzionalità descritta in un numero ridotto di unità
- di compilazioni e ben fattorizzata è facilmente individuabile, correggibile
+ di compilazione e ben fattorizzata è facilmente individuabile, correggibile
  e modificabile senza incorrere in modifiche involontarie ad altre parti
  del sistema.
 \end_layout
 
 \begin_layout Standard
 RoR fornisce differenti funzionalità, quali librerie, helper e viste parziali,
- per aiutare lo sviluppatore a definire applicazioni DRY.
+ per aiutare lo sviluppatore a definire applicazioni senza ripetizioni.
 \begin_inset Newline newline
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 Nell'implementazione delle viste è comune che alcuni elementi siano presenti
  più volte all'interno della stessa applicazione o anche all'interno della
  stessa pagina.
@@ -1032,6 +2358,41 @@ render
 \end_inset
 
  dei parametri.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I metodi e le librerie in RoR tipicamente si prestano ad una grande varietà
+ di usi e comportamenti, per una descrizione più precisa è possibile consultare
+ la documentazione online.
+ 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Selezione_001.jpg
+	display false
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1075,6 +2436,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Render Partial View"
+
+\end_inset
+
 Utilizzo di una visita parziale con il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -1094,6 +2461,28 @@ render
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Il codice ERB del listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Render Partial View"
+
+\end_inset
+
+ è utilizzato dalla vista per la lettura di un singolo post e dalla vista
+ per la visualizzazione delle anteprime di tutti gli articoli presenti sul
+ blog.
+ Nell'esempio è passato al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+render
+\begin_inset Quotes erd
+\end_inset
+
+ il nome della vista parziale da espandere e alcuni parametri.
 \end_layout
 
 \begin_layout Standard
@@ -1146,33 +2535,35 @@ Vista parziale contenente alcune operazioni su un singolo post.
 \end_layout
 
 \begin_layout Standard
-Inoltre, data una vista parziale che visualizza un singolo elemento, è anche
- possibile passare al metodo render una collezione di oggetti sulla quale
- iterare, fornendo opzionalmente anche un separatore.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-I metodi e le librerie in RoR tipicamente si prestano ad una grande varietà
- di usi e comportamenti, per una descrizione più precisa è possibile consultare
- la documentazione online.
+La vista parziale verifica l'autenticazione del visitatore, se la variabile
  
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
-\end_layout
-
+\begin_inset Quotes eld
 \end_inset
 
-
-\end_layout
-
+current_user
+\begin_inset Quotes erd
 \end_inset
 
+ ha valore nullo il codice non è eseguito, ed eventualmente visualizza due
+ immagini contenenti i collegamenti alle pagine di modifica e cancellazione
+ del post.
+ 
+\begin_inset Quotes eld
+\end_inset
 
+edit_post_image_link
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+remove_post_image_link
+\begin_inset Quotes erd
+\end_inset
+
+ sono due metodi ausiliari definiti ad-hoc.
 \begin_inset Newline newline
 \end_inset
 
@@ -1180,9 +2571,9 @@ http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
 \end_layout
 
 \begin_layout Standard
-La piattaforma RoR fornisce anche numerosi Helper: elementi utilizzati per
- fattorizzare metodi di utilità all'interno di moduli.
- Gli aiutanti in RoR sono sfruttati da tutte le componenti dell'architettura
+La piattaforma RoR fornisce anche numerosi Helper: moduli Ruby con funzionalità
+ per il supporto dello sviluppo.
+ Gli Helper in RoR sono sfruttati da tutte le componenti dell'architettura
  MVC e sono utili per gestire problematiche classiche dello sviluppo di
  applicazioni web: la gestione di file, formattazione di date, gestione
  di form e generazione del relativo codice HTML sono solo alcuni dei problemi
@@ -1215,10 +2606,9 @@ Il metodo 'truncate', appartenente al modulo TextHelper.
 \end_layout
 
 \begin_layout Standard
-Come già osservato durante l'uso delle viste parziali, le librerie di sistema
- sono ricche di parametri opzionali, spesso permettono l'uso di blocchi
- definiti dall'utente e sono ben documentate: ogni metodo presente è ampiamente
- descritto anche tramite esempi.
+Come già osservato le librerie di sistema sono ricche di parametri opzionali,
+ spesso permettono l'uso di blocchi definiti dall'utente e sono ben documentate:
+ ogni metodo presente è ampiamente descritto anche tramite esempi.
 \end_layout
 
 \begin_layout Standard
@@ -1336,9 +2726,29 @@ http://www.yaml.org/
 
 , un formato di serializzazione facilmente leggibile e scrivibile, e Ruby
  stesso.
- Lo sviluppatore inoltre può anche sfruttare i numerosi tool a linea di
- comando per la prima generazione delle risorse, utili anche per avere una
- traccia contenente le impostazioni più plausibili per una nuova applicazione.
+\end_layout
+
+\begin_layout Standard
+Il listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Frammento-in-YAML"
+
+\end_inset
+
+ descrive la configurazione della connessione ai database PostgreSQL utilizzati
+ per lo sviluppo di RBlog: la prima parte del documento riguarda la dichiarazion
+e dei parametri standard, mentre i valori che seguono l'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+development
+\begin_inset Quotes erd
+\end_inset
+
+ sono specifici del database per lo sviluppo.
+ Il documento originale continua elencando i parametri per la connessione
+ al database per i test.
 \end_layout
 
 \begin_layout Standard
@@ -1401,6 +2811,12 @@ password: ...
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Frammento-in-YAML"
+
+\end_inset
+
 Frammento in YAML relativo alla configurazione del modello.
 \end_layout
 
@@ -1411,7 +2827,10 @@ Frammento in YAML relativo alla configurazione del modello.
 
 \end_inset
 
-
+Lo sviluppatore inoltre può anche sfruttare i numerosi tool a linea di comando
+ per generare il codice relativo a viste, controlli e modello, ma anche
+ file di configurazione, utili per ottenere una bozza contenente le impostazioni
+ più plausibili per una nuova applicazione.
 \end_layout
 
 \begin_layout Standard
@@ -1422,6 +2841,12 @@ Frammento in YAML relativo alla configurazione del modello.
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Hello-RBlog!"
+
+\end_inset
+
 Hello RBlog!
 \end_layout
 
@@ -2669,21 +4094,8 @@ Paragrafo anticipato.
 
 \end_inset
 
-L'implementazione di passo è definibile all'interno di un blocco
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-In Ruby è possibile attribuire ad ogni metodo un blocco contenente del codice
- da eseguire durante l'esecuzione.
- I blocchi sono paragonabili ad espressioni lambda, ma non sono elementi
- di prim'ordine del linguaggio.
-\end_layout
-
-\end_inset
-
- e non esiste alcuna limitazione né controllo sulle espressioni che possono
- essere utilizzate.
+L'implementazione di passo è definibile all'interno di un blocco e non esiste
+ alcuna limitazione né controllo sulle espressioni che possono essere utilizzate.
 \begin_inset Newline newline
 \end_inset
 

@@ -10,6 +10,7 @@
 \usepackage{ucs}
 \usepackage[latin9]{inputenc}
 \usepackage{listings}
+\usepackage{multicol}
 
 \date{}
 
@@ -192,6 +193,27 @@ filename "Capitoli/Capitolo 01 - Introduzione.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "Capitoli/Capitolo 02 - RoR.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset CommandInset include
+LatexCommand include
+filename "Pagine singole/Acronimi.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Pagine singole/Riferimenti.lyx"
 
 \end_inset
 
