@@ -1,0 +1,1006 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Relazione.lyx
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby - Official Site"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.ruby-lang.org/it/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Symbold Doc"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://ruby-doc.org/core-2.1.4/Symbol.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby String Doc"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.ruby-doc.org/core-2.1.4/String.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby 2.2 Release"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.ruby-lang.org/en/news/2014/09/18/ruby-2-2-0-preview1-released/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Hash"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.ruby-doc.org/core-2.1.4/Hash.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby GC - Gupta SlideShow"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.scribd.com/doc/27174770/Garbage-Collection-and-the-Ruby-Heap"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Object Doc"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.ruby-doc.org/core-2.1.4/Object.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Basic Object Doc"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.ruby-doc.org/core-2.1.4/BasicObject.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Koans"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://rubykoans.com/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ruby Monk"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://rubymonk.com/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RubyMine"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.jetbrains.com/ruby/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Fowler's Active Record"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.martinfowler.com/eaaCatalog/activeRecord.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Controller"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/action_controller_overview.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR ActionController::Base"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://api.rubyonrails.org/classes/ActionController/Base.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Routing"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/routing.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Controller Filter"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/action_controller_overview.html#filters"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR ERB"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://en.wikipedia.org/wiki/ERuby"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Layouts & Views"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/layouts_and_rendering.html#understanding-yield"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ERB"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://en.wikipedia.org/wiki/ERuby"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR UrlHelper"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Testing"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/testing.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RSpec"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/rspec/rspec"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "MiniTest"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/seattlerb/minitest"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "DatabaseCleaner"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/DatabaseCleaner/database_cleaner"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Factory Girl"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/thoughtbot/factory_girl"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Rake"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/testing.html##rake-tasks-for-running-your-tests"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RubyGems"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://rubygems.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Maven"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://maven.apache.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Gradle"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.gradle.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "GemFile"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://bundler.io/gemfile.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Spring Gem"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/rails/spring"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Git Revert"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://git-scm.com/docs/git-revert"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Migrations"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/migrations.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RoR Partial Render"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "YAML"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.yaml.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "PostgreSQL"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.postgresql.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Cucumber"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://cukes.info/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "UserStory"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.agilemodeling.com/artifacts/userStory.htm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Fowler Business Readable DSL"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Gherkin"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/cucumber/cucumber/wiki/Gherkin"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Capybara"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://jnicklas.github.io/capybara/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Capybara Drivers"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/jnicklas/capybara#drivers"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "PhantomJS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Poltergeist"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Chrome web inspector"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "WebKit"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "AJAX"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Capybara::Node"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Capybara::Modules"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Cucumber::Tranform"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.relishapp.com/cucumber/cucumber/docs/transforms"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RSpec-Core"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RSpec-Expectations"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RSpec-Mocks"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RSpec-Rails"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Test::Unit"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://guides.rubyonrails.org/testing.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "MiniTest::Spec"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/metaskills/minitest-spec-rails"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Sass"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "XPath"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://en.wikipedia.org/wiki/XPath"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Cucumber Hook"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/cucumber/cucumber/wiki/Hooks"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "BCrypt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JQueryUI"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
