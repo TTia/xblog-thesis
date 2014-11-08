@@ -191,6 +191,14 @@ Da rivedere
 \end_layout
 
 \begin_layout Standard
+http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 MVC è l'acronimo per Model-View-Controller, un pattern architetturale per
  l'implementazione di interfacce utente, e nel caso specifico di questa
  tesi, di applicazioni Web.
