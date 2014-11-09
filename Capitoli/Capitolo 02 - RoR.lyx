@@ -331,8 +331,7 @@ Gli attributi d'istanza non sono dichiarati a priori ma dinamicamente, come
 \begin_inset Quotes erd
 \end_inset
 
-.
- Gli attributi di classe si accedono tramite 
+, gli attributi di classe con 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1010,6 +1009,21 @@ array.each do |i|
 \begin_layout Plain Layout
 
 end
+\end_layout
+
+\begin_layout Plain Layout
+
+=> 1
+\end_layout
+
+\begin_layout Plain Layout
+
+=> 2
+\end_layout
+
+\begin_layout Plain Layout
+
+=> ...
 \end_layout
 
 \begin_layout Plain Layout
