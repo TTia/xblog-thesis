@@ -1290,7 +1290,7 @@ L'interpretazione di RoR del pattern MVC
 
 \begin_layout Standard
 Di seguito sono descritte le componenti principali del pattern architetturale
- MVC in funzione dell'interpretazione data da RoR e gli strumenti utilizzati
+ MVC in funzione dell'interpretazione data da RoR e degli strumenti utilizzati
  per l'implementazione.
  E' anche presente una sezione riguardante il testing, in diverse forme,
  e come sia integrato all'interno del framework e dell'ambiente di sviluppo
@@ -1334,10 +1334,18 @@ Non si accede direttamente al database, e in generale a qualunque sistema
 \end_layout
 
 \begin_layout Standard
-Il modulo ActiveRecord di RoR fornisce molte funzionalità che estendono
- la rappresentazione ad oggetti del dominio con relazioni di ereditarietà
- fra i tipi esistenti, permettono la validazione attraverso l'invocazione
- di metodi e la definizione interrogazioni attraverso una libreria di sistema.
+Il modulo 
+\begin_inset Quotes eld
+\end_inset
+
+ActiveRecord
+\begin_inset Quotes erd
+\end_inset
+
+ di RoR fornisce molte funzionalità che estendono la rappresentazione ad
+ oggetti del dominio con relazioni di ereditarietà fra i tipi esistenti,
+ permettono la validazione attraverso l'invocazione di metodi e la definizione
+ interrogazioni attraverso una libreria di sistema.
 \end_layout
 
 \begin_layout Standard
@@ -1866,7 +1874,7 @@ status open
 
 \begin_layout Plain Layout
 
-		<p>Hello, <%= user.first_name %>.</p>
+		<p>Hello, <%= user.first_name %></p>
 \end_layout
 
 \begin_layout Plain Layout
@@ -2161,7 +2169,7 @@ key "RoR UrlHelper"
 
 \end_inset
 
- e fornisce le funzionalità per definire elementi utili alla navigazione
+, che fornisce le funzionalità per definire elementi utili alla navigazione
  web, nell'esempio è utilizzato per generare un collegamento al singolo
  post con il testo equivalente al titolo.
 \end_layout
@@ -2288,7 +2296,7 @@ e piuttosto che a problematiche di contorno.
 
 \begin_layout Standard
 Come in altre piattaforme, in cui sono presenti strumenti per supportare
- la compilazione e la risoluzione delle dipendenze, Ruby introduce RubyGems
+ la compilazione e la risoluzione delle dipendenze, Ruby utilizza RubyGems
 \begin_inset CommandInset citation
 LatexCommand cite
 key "RubyGems"
@@ -2528,7 +2536,7 @@ key "RoR Migrations"
  Ogni variazione alla struttura del modello è tradotto in una migrazione,
  un breve script in Ruby, in cui sono definite le operazioni compiute a
  basso livello, come l'aggiunta di colonne, la rimozione di un vincolo etc.;
- le informazioni sulle migrazioni sono mantenute all'interno di una tabella,
+ gli identificatori sulle migrazioni sono mantenute all'interno di una tabella,
  presente in tutti i database dell'applicazione, e tengono traccia dei cambiamen
 ti apportati e della versione dello schema del dominio, permettendo di mantenere
  tutte le componenti dell'architettura MVC consistenti fra loro.
