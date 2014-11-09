@@ -93,7 +93,7 @@ In questo capitolo è trattato lo sviluppo di RBlog attraverso Ruby on Rails,
 \end_layout
 
 \begin_layout Standard
-In questa prima sezione è introdotto Ruby, linguaggio in cui è implementato
+Nella prima sezione è introdotto Ruby, linguaggio in cui è implementato
  RoR, di cui sono indicate le principali caratteristiche, introducendo elementi
  utili per favorire la comprensione del progetto.
 \end_layout
@@ -1866,7 +1866,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Hello ERB!
 \end_layout
 
