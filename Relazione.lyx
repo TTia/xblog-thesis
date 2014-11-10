@@ -130,6 +130,16 @@ filename "Capitoli/Capitolo 02 - RoR.lyx"
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Capitoli/Capitolo 03 -Spring.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \start_of_appendix
 \begin_inset CommandInset include
 LatexCommand include

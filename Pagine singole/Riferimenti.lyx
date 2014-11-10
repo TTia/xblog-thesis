@@ -1100,5 +1100,22 @@ target "http://jqueryui.com/"
 
 \end_layout
 
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "POJO"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.martinfowler.com/bliki/POJO.html"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
