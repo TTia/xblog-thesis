@@ -1,0 +1,7460 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Relazione.lyx
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Spring
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "ch:rubyonrails"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Spring MVC
+\end_layout
+
+\begin_layout Standard
+Introduzione al capitolo
+\end_layout
+
+\begin_layout Standard
+Descrizione contenuto delle sezioni
+\end_layout
+
+\begin_layout Subsection
+Spring Tool Suite
+\end_layout
+
+\begin_layout Standard
+Versione di eclipse
+\end_layout
+
+\begin_layout Standard
+STS
+\end_layout
+
+\begin_layout Standard
+Supporto a Javascript, ...
+\end_layout
+
+\begin_layout Standard
+Git, CMS
+\end_layout
+
+\begin_layout Standard
+Libreria disponibili
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:L'interpretazione di Spring del pattern MVC"
+
+\end_inset
+
+L'interpretazione di Spring del pattern MVC
+\end_layout
+
+\begin_layout Standard
+Descrizione della sessione
+\end_layout
+
+\begin_layout Subsection
+Il modello
+\end_layout
+
+\begin_layout Standard
+JPA, Java Persistence API, è una specifica Java per l'accesso, la persistenza
+ e la gestione dei dati di DBMS relazionali, nella quale sono descritti
+ i criteri per mappare un POJO, Plain Old Java Object, su un database.
+\end_layout
+
+\begin_layout Standard
+Il vantaggio nell'utilizzo di una libreria che implementi la specifica,
+ JPA infatti non fornisce alcuna implementazione, consiste nel poter modellare
+ il dominio attraverso classi Java.
+ Un POJO, termine introdotto da Martin Fowler
+\begin_inset CommandInset citation
+LatexCommand cite
+key "POJO"
+
+\end_inset
+
+, è un oggetto Java che attraverso l'insieme dei suoi attributi rappresenta
+ informazioni di un dato presente nel dominio e le relazioni che intercorrono
+ con altre entità.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+EclipseLink è una delle implementazioni esistenti per JPA, fornisce tutte
+ le funzionalità previste dallo standard alla versione 2.1, e rispetto ad
+ altre implementazioni come Hibernate, attualmente è leggermente più performante
+ ed ha una miglior gestione del caricamento delle entità.
+\end_layout
+
+\begin_layout Standard
+JPA 2.1, la versione attuale, fornisce agli sviluppatori sia strumenti per
+ effettuare la definizione dello schema sia per effettuare interrogazioni
+ senza utilizzare SQL puro, mantenendo parte dell'astrazione introdotta
+ utilizzando la tecnica ORM.
+\end_layout
+
+\begin_layout Subsubsection*
+DDL con JPA
+\end_layout
+
+\begin_layout Standard
+Lo schema del modello di SBlog è stato definito esclusivamente tramite le
+ annotazioni previste dalla specifica, JPA fa ampio uso del meccanismo della
+ reflection
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il meccanismo della reflection in Java permette di ispezionare del codice
+ compilato al fine individuare all'interno delle classi elementi di interesse.
+ Nell'esempio il meccanismo permette di individuare gli attributi annotati
+ e leggere le informazioni associate ad essi.
+\end_layout
+
+\end_inset
+
+ per analizzare e utilizzare le diverse componenti presenti.
+\end_layout
+
+\begin_layout Standard
+Il dominio di SBlog è composto da due entità 
+\begin_inset Quotes eld
+\end_inset
+
+Author
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ che rispettivamente descrivono gli autori del blog e gli articoli presenti,
+ tramite i propri attributi d'istanza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Entity
+\end_layout
+
+\begin_layout Plain Layout
+
+public class Post {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dichiarazione dell'entità Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Per dichiarare una nuova entità è necessario definire una classe Java e
+ utilizzare l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@Entity
+\begin_inset Quotes erd
+\end_inset
+
+, che presenta diversi overload per specificare parametri come il nome della
+ tabella utilizzato nello schema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Id
+\end_layout
+
+\begin_layout Plain Layout
+
+@GeneratedValue(strategy = GenerationType.TABLE)
+\end_layout
+
+\begin_layout Plain Layout
+
+Integer id;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@Column(nullable = false, unique = true)
+\end_layout
+
+\begin_layout Plain Layout
+
+String title;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dichiarazione di alcuni attributi per l'entità Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rappresentata la tabella, per aggiungere delle colonne è sufficiente introdurre
+ degli attributi d'istanza ed annotarli con 
+\begin_inset Quotes eld
+\end_inset
+
+@Column
+\begin_inset Quotes erd
+\end_inset
+
+ o altre annotazioni più specifiche.
+ Tramite i parametri è possibile dichiarare dei vincoli sui valori, ad esempio
+ il titolo di un post deve essere sempre presente ed essere unico.
+ Il tipo della colonna è inferito dal tipo Java, il tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Integer
+\begin_inset Quotes erd
+\end_inset
+
+ corrisponde a 
+\begin_inset Quotes eld
+\end_inset
+
+integer
+\begin_inset Quotes erd
+\end_inset
+
+ in PostgreSQL e 
+\begin_inset Quotes eld
+\end_inset
+
+String
+\begin_inset Quotes erd
+\end_inset
+
+ a 
+\begin_inset Quotes eld
+\end_inset
+
+varchar(255)
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per la definizione di colonne che rappresentano la chiave primaria della
+ tabella è stata utilizzata l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@Id
+\begin_inset Quotes erd
+\end_inset
+
+ generando i valori in maniera univoca, EclipseLink genererà un valore unico
+ all'interno della tabella 
+\begin_inset Quotes eld
+\end_inset
+
+post
+\begin_inset Quotes erd
+\end_inset
+
+ per ogni nuovo articolo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Temporal(TemporalType.TIMESTAMP)
+\end_layout
+
+\begin_layout Plain Layout
+
+Date updatedAt;
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dichiarazione di un attributo temporale.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@Temporal
+\begin_inset Quotes erd
+\end_inset
+
+ permette dichiarare delle colonne di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Date
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Calendar
+\begin_inset Quotes erd
+\end_inset
+
+, non è ancora possibile utilizzare la classe 
+\begin_inset Quotes eld
+\end_inset
+
+LocalDate
+\begin_inset Quotes erd
+\end_inset
+
+ introdotta con Java 8 che fornisce diversi metodi per una migliore gestione
+ delle fasce orarie.
+ L'enumerazione 
+\begin_inset Quotes eld
+\end_inset
+
+TemporalType
+\begin_inset Quotes erd
+\end_inset
+
+ permette di specificare il tipo da mantere sul database, scegliendo fra
+ 
+\begin_inset Quotes eld
+\end_inset
+
+java.sql.Date
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+java.sql.Time
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+java.sql.Timestamp
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre gli attributi primitivi che rappresentano le colonne delle tuple,
+ sono presenti attributi composti: ogni articolo ha un solo autore ed ogni
+ autore può scrivere più articoli, definendo una relazione uno a molti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class Author {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	@OneToMany(..., fetch = FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+	Set<Post> posts;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+public class Post {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+    @ManyToOne(..., fetch=FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+	Author author;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Le relazioni presenti fra le entità del modello.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con le annotazioni 
+\begin_inset Quotes eld
+\end_inset
+
+OneToMany
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes erd
+\end_inset
+
+ManyToOne
+\begin_inset Quotes erd
+\end_inset
+
+ e il parametro 
+\begin_inset Quotes eld
+\end_inset
+
+fetch
+\begin_inset Quotes erd
+\end_inset
+
+, è possibile caricare in maniera 
+\begin_inset Quotes eld
+\end_inset
+
+lazy
+\begin_inset Quotes erd
+\end_inset
+
+ le entità correlate, come i post scritti da un autore, posticipando l'operazion
+e al momento dell'eventuale accesso.
+ Al contrario, sfruttando il caricamento degli oggetti in maniera 
+\begin_inset Quotes eld
+\end_inset
+
+eager
+\begin_inset Quotes erd
+\end_inset
+
+, EclipseLink carica dal modello ogni attributo direttamente o indirettamente
+ interessato dalla query, evitando successive interazioni con i database.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La definizione delle relazioni varia in funzione delle entità e di come
+ è previsto che siano effettuati gli accessi ai POJO nell'applicazione.
+ In JPA è possibile dichiarare relazioni unidirezionali, in cui l'associazione
+ è mantenuta da un solo oggetto e non è possibile effettuare la navigazione
+ in direzione contraria, oppure bidirezionali.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH},
+\end_layout
+
+\begin_layout Plain Layout
+
+	fetch=FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+@JoinTable(name = AUTHOR_POST_JOIN_TABLE,
+\end_layout
+
+\begin_layout Plain Layout
+
+	joinColumns = @JoinColumn(name = POST_JOIN_COLUMN),          	inverseJoinColumn
+s = @JoinColumn(name = AUTHOR_JOIN_COLUMN),             uniqueConstraints
+ = @UniqueConstraint(columnNames = {                     	AUTHOR_JOIN_COLUMN,
+ POST_JOIN_COLUMN}))
+\end_layout
+
+\begin_layout Plain Layout
+
+Author author;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attributo author per la classe Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@OneToMany(mappedBy = "author",
+\end_layout
+
+\begin_layout Plain Layout
+
+	cascade = { CascadeType.ALL },
+\end_layout
+
+\begin_layout Plain Layout
+
+	fetch = FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+Set<Post> posts;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attributo posts per la classe Author.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per dichiarare una relazione uno a molti sono state utilizzate le annotazioni
+ 
+\begin_inset Quotes eld
+\end_inset
+
+@ManyToOne
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+@OneToMany
+\begin_inset Quotes erd
+\end_inset
+
+.
+ L'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+fetch
+\begin_inset Quotes erd
+\end_inset
+
+ specifica il comportamento di EclipseLink per il caricamento dei dati,
+ 
+\begin_inset Quotes eld
+\end_inset
+
+cascade
+\begin_inset Quotes erd
+\end_inset
+
+ invece specifica i vincoli di integrità referenziale di propagazione.
+ A differenza di altre proprietà del DDL di JPA, la propagazione delle operazion
+i non ha ripercussioni sullo schema dei database ed è gestita direttamente
+ sui POJO; la mancanza di controlli sul DBMS obbliga a descrivere accuratamente
+ la logica delle proprie operazioni CRUD, per mantenere la consistenza fra
+ i record dei database e gli oggetti ed evitare errori.
+\end_layout
+
+\begin_layout Standard
+Oltre alle relazioni utilizzate per SBlog sono ovviamente disponibili le
+ annotazioni per implementare associazioni con altre cardinalità.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@JoinTable
+\begin_inset Quotes erd
+\end_inset
+
+ dell'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+author
+\begin_inset Quotes erd
+\end_inset
+
+ specifica la tabella ausiliaria in cui mantenere la relazione, che conterrà
+ coppie formate da identificatori dell'autore e dell'articolo.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+@UniqueConstraint
+\begin_inset Quotes erd
+\end_inset
+
+ specifica il vincolo di unicità.
+\end_layout
+
+\begin_layout Standard
+Inoltre scegliendo di rappresentare la relazione con un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+Set
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile gestire a più alto livello la cardinalità dell'associazione.
+\end_layout
+
+\begin_layout Subsubsection*
+Generazione dello schema
+\end_layout
+
+\begin_layout Standard
+La configurazione di Spring avviene principalmente tramite DI, Dependency
+ Injection, e la definizione di bean.
+ I bean sono metodi factory che istanziano oggetti rappresentanti le diverse
+ proprietà configurabili del framework; tramite la DI gli oggetti sono istanziat
+i ed utilizzati quando opportuno.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La definizione dei bean può avvenire sia tramite factory method opportunamente
+ annotati, che utilizzando file XML.
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Bean
+\end_layout
+
+\begin_layout Plain Layout
+
+public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFact
+oryBean();
+\end_layout
+
+\begin_layout Plain Layout
+
+	em.setDataSource(dataSource());
+\end_layout
+
+\begin_layout Plain Layout
+
+	em.setPackagesToScan("sblog.orm");
+\end_layout
+
+\begin_layout Plain Layout
+
+	JpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter(); 	em.setJpaVe
+ndorAdapter(vendorAdapter);
+\end_layout
+
+\begin_layout Plain Layout
+
+	em.setJpaProperties(additionalProperties());
+\end_layout
+
+\begin_layout Plain Layout
+
+	em.setJpaDialect(new EclipseLinkJpaDialect());
+\end_layout
+
+\begin_layout Plain Layout
+
+	return em;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Configurazione Entity Manager"
+
+\end_inset
+
+Configurazione del metodo factory per la gestione delle entità del modello.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Per impostare la connessione ai database e configurare i parametri dell'entity
+ manager di JPA è necessario introdurre almeno due bean.
+ In particolare il metodo factory 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Configurazione Entity Manager"
+
+\end_inset
+
+ specifica l'implementazione scelta per la specifica e alcune proprietà
+ attraverso un apposito metodo 
+\begin_inset Quotes eld
+\end_inset
+
+additionalProperties
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fra le proprietà configurabili di EclipseLink è possibile scegliere se generare
+ direttamente il database o un script contenente il DDL, inoltre ad ogni
+ avvio può essere verificato lo schema ed eventualmente apportate delle
+ modiche se non stati fatti dei cambiamenti alle classi delle entità.
+\end_layout
+
+\begin_layout Subsubsection*
+Query
+\end_layout
+
+\begin_layout Standard
+Per semplificare la definizione di operazioni CRUD e effettuare delle interrogaz
+ioni sul dominio, Spring include una gerarchia di interfacce Java generiche.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public interface PostRepository extends JpaRepository<Post, Integer> {
+\end_layout
+
+\begin_layout Plain Layout
+
+	public Post findPostByTitle(String title); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	public List<Post> findPostByTitleContainingIgnoreCase(String title);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:PostRepository"
+
+\end_inset
+
+Interfaccia PostRepository per la gestione e interrogazione dell'entità
+ Post sul modello.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per utilizzare le funzionalità presenti nella libreria è stata creata un'interfa
+ccia 
+\begin_inset Quotes eld
+\end_inset
+
+PostRepository
+\begin_inset Quotes erd
+\end_inset
+
+ che estende 
+\begin_inset Quotes eld
+\end_inset
+
+JpaRepository
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Come si può osservare nell'implementazione, l'interfaccia padre è generica
+ su il tipo di entità ed il tipo della chiave primaria.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+L'uso di 
+\begin_inset Quotes eld
+\end_inset
+
+Integer
+\begin_inset Quotes erd
+\end_inset
+
+ come tipo della chiave primaria dell'entità Post, piuttosto che utilizzare
+ il tipo primitivo 
+\begin_inset Quotes eld
+\end_inset
+
+int
+\begin_inset Quotes erd
+\end_inset
+
+, è stato dettato dalla necessità di usare il tipo come parametro generico
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+JpaRepository
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+JpaRepository
+\begin_inset Quotes erd
+\end_inset
+
+ estende le interfacce generiche 
+\begin_inset Quotes eld
+\end_inset
+
+CrudRepository
+\begin_inset Quotes erd
+\end_inset
+
+, che fornisce i metodi corrispondenti alle operazioni CRUD, 
+\begin_inset Quotes eld
+\end_inset
+
+PagingAndSortingRepository
+\begin_inset Quotes erd
+\end_inset
+
+ che definisce la possibilità di effettuare interrogazioni paginate
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Data un'interrogazione, la paginazione restituisce un sottoinsieme delle
+ entità risultato in funzione dei parametri di cardinalità e ordinalità.
+ 
+\end_layout
+
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Repository
+\begin_inset Quotes erd
+\end_inset
+
+ che è la radice della gerarchia.
+\begin_inset Newline newline
+\end_inset
+
+L'implementazione delle funzionalità dichiarate nelle interfaccia è fornita
+ dalla libreria JPA Criteria, che inferisce dinamicamente dalla segnatura
+ del metodo Java una query JPQL, Java Persistence query language.
+\end_layout
+
+\begin_layout Standard
+JPQL è un linguaggio per la definizione di query che utilizza il paradigma
+ ad oggetti, ad esempio le proiezioni SQL sono effettuate utilizzando la
+ notazione puntata per l'accesso agli attributi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' possibile estendere le numerose funzionalità presenti nella libreria
+ dichiarando nuovi metodi, nell'interfaccia 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:PostRepository"
+
+\end_inset
+
+ sono stati introdotti due metodi che rispettano le convezioni introdotte
+ dalla libreria Spring Data Repositories e generano interrogazioni sulle
+ entità Post: il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findPostByTitle
+\begin_inset Quotes erd
+\end_inset
+
+ individua un singolo oggetto in funzione del parametro, mentre 
+\begin_inset Quotes eld
+\end_inset
+
+findPostByTitleContainingIgnoreCase
+\begin_inset Quotes erd
+\end_inset
+
+ interroga il modello per ottenere le entità il cui titolo soddisfi l'espression
+e regolare.
+\end_layout
+
+\begin_layout Standard
+Come si può intuire dal secondo metodo, l'implementazione di interrogazioni
+ con un alto numero di condizioni di selezione comporta la dichiarazione
+ di metodi con segnature eccessivamente lunghe e complicate.
+ Per evitare a questo problema è possibile annotare i metodi del interfaccia
+ repository con 
+\begin_inset Quotes eld
+\end_inset
+
+@Query
+\begin_inset Quotes erd
+\end_inset
+
+ specificando direttamente il testo dell'interrogazione in JPQL.
+\end_layout
+
+\begin_layout Subsection
+I controlli
+\end_layout
+
+\begin_layout Standard
+Rispetto a RoR, la cui configurazione dei controlli è principalmente inferita
+ in funzione delle convenzioni del framework, in Spring è necessario utilizzare
+ un discreto numero di annotazioni.
+\end_layout
+
+\begin_layout Standard
+Come per RBlog, sono stati sviluppati tre controller per gestire le richieste
+ riguardanti gli autori, i post e le procedure di autenticazione ed autorizzazio
+ne.
+ Un controller in Spring coincide con una classe, annotata con 
+\begin_inset Quotes eld
+\end_inset
+
+@Controller
+\begin_inset Quotes erd
+\end_inset
+
+ che ne definisce il ruolo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Controller
+\end_layout
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/posts")
+\end_layout
+
+\begin_layout Plain Layout
+
+public class PostController extends AbstractController {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET) 	public String
+ show(@PathVariable Integer id, Model model) { 		Post post = /*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+		model.addAttribute("page_title", post.getTitle());
+\end_layout
+
+\begin_layout Plain Layout
+
+		model.addAttribute("content_template", "/posts/show");
+\end_layout
+
+\begin_layout Plain Layout
+
+		model.addAttribute("posts", new Post[] { post });
+\end_layout
+
+\begin_layout Plain Layout
+
+		return super.defaultMapping(model);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Dichiarazione metodo Show"
+
+\end_inset
+
+Dichiarazione di un controller per i Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+PostController
+\begin_inset Quotes erd
+\end_inset
+
+ è la classe che gestisce le richieste riguardanti gli articoli presenti
+ sul blog.
+ L'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RequestMapping
+\begin_inset Quotes erd
+\end_inset
+
+ definisce i parametri delle richieste d'instradamento ed è utilizzabile
+ sia per classi che singoli metodi.
+ L'uso dell'annotazione per la classe specifica la radice delle richieste
+ soddisfacibili dai metodi presenti.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+, che permette la lettura di un singolo post, soddisfa l'instradamento delle
+ richieste HTTP del tipo 
+\begin_inset Quotes eld
+\end_inset
+
+posts/42
+\begin_inset Quotes erd
+\end_inset
+
+ concatenando gli attributi 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+ dell'annotazione sulla classe e sul singolo metodo.
+ L'uso duplice dell'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RequestMapping
+\begin_inset Quotes erd
+\end_inset
+
+ semplifica la definizione di un insieme di richieste in stile REST.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre a specificare gli URL delle richieste, tramite l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RequestMapping
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile configurare quali tipi di connessioni HTTP sono accettati dal
+ metodo, 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+ ad esempio accetta esclusivamente richieste in GET.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una particolarità del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+ è di essere parametrico sull'identificatore intero dei post, l'attributo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+/{id}
+\begin_inset Quotes erd
+\end_inset
+
+ associa, previa conversione di tipo, il valore della stringa all'oggetto
+ 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Integer
+\begin_inset Quotes erd
+\end_inset
+
+ annotato tramite 
+\begin_inset Quotes eld
+\end_inset
+
+@PathVariable
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La struttura delle azioni a cui è associata una pagina web, come il metodo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+, prevede un oggetto di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Model
+\begin_inset Quotes erd
+\end_inset
+
+, utilizzato come parametro di output, al quale aggiungere coppie chiave-valore
+ rappresentanti gli attributi dinamici necessari alla vista e una stringa
+ come valore di ritorno per specificare l'elemento da renderizzare.
+\end_layout
+
+\begin_layout Standard
+Per rendere più modulare SBlog, il ritorno delle azioni restituisce sempre
+ una stringa che fa riferimento al layout del sito.
+ Il parametro 
+\begin_inset Quotes eld
+\end_inset
+
+content_template
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzato da un'apposita espressione in Thymeleaf, il template engine
+ scelto per SBlog, definisce il contenuto della pagina, nell'esempio verrà
+ visualizzata la vista 
+\begin_inset Quotes eld
+\end_inset
+
+/posts/show
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Maggiori dettagli su Thymeleaf sono presenti nella successiva sezione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/autocomplete_title", method = RequestMethod.GET)
+\end_layout
+
+\begin_layout Plain Layout
+
+@ResponseBody
+\end_layout
+
+\begin_layout Plain Layout
+
+public String[] autocompleteTitle( 			@RequestParam(value = "title", required
+ = true) String title) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return postService.queryByTitle(title);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Implementazione di un metodo privo di interfaccia web.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per gestire le richieste HTTP di tipo GET, che forniscono i parametri direttamen
+te nell'URL, è utilizzata l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RequestParam
+\begin_inset Quotes erd
+\end_inset
+
+ che permette di ottenere un riferimento ai valori forniti e di introdurre
+ anche dei vincoli, nell'esempio è richiesto che sia presente un parametro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+title
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Oltre agli attributi 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+required
+\begin_inset Quotes erd
+\end_inset
+
+ è anche possibile definire un valore di default da applicare in assenza
+ del dato.
+\end_layout
+
+\begin_layout Standard
+Per ottenere un riferimento ad un parametro presente nel body di una richiesta
+ HTTP è possibile utilizzare l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RequestBody
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La particolarità del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+autocompleteTitle
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto all'azione 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+ descritta in precedenza è nel tipo di risposta che fornisce.
+ Il metodo, definito per l'auto-completamento del widget di JQuery UI già
+ presente in RBlog, restituisce la serializzazione di un array di stringhe
+ invece che il riferimento ad una vista.
+ L'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@ResponseBody
+\begin_inset Quotes erd
+\end_inset
+
+ indica che il valore di ritorno dev'essere inserito all'interno di un 
+\begin_inset Quotes eld
+\end_inset
+
+body
+\begin_inset Quotes erd
+\end_inset
+
+ di una risposta web.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le azioni di Spring utilizzano ampiamente i parametri come output.
+ Introducendo ulteriori parametri rispetto a quelli descritti finora negli
+ esempi è possibile attivare e gestire funzionalità utili per le viste.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/new", method = RequestMethod.POST) public String
+ newPost(@Valid Post post, BindingResult bindingResult, 			Model model,
+ RedirectAttributes redirectAttributes, 			HttpSession httpSession) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ad esempio, la vista relativa alla scrittura di un nuovo articolo prevede
+ la gestione di numerosi aspetti, a differenza di RoR che disaccoppia le
+ azioni la gestione dei form e della persistenza dell'entità, in Spring
+ i due comportamenti sono implementati insieme.
+ I parametri utilizzati sono:
+\end_layout
+
+\begin_layout Itemize
+un'istanza di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ che rappresenta l'articolo, l'oggetto può essere vuoto in quanto la pagina
+ è appena stata visualizzata o contenente i dati dopo aver effettuato il
+ salvataggio;
+\end_layout
+
+\begin_layout Itemize
+un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+BindingResult
+\begin_inset Quotes erd
+\end_inset
+
+ che contiene i possibili messaggi di errore del processo di validazione
+ per ogni elemento del form;
+\end_layout
+
+\begin_layout Itemize
+un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+Model
+\begin_inset Quotes erd
+\end_inset
+
+ per fornire parametri alla vista;
+\end_layout
+
+\begin_layout Itemize
+un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+RedirectAttributes
+\begin_inset Quotes erd
+\end_inset
+
+ per gestire la ridirezione in caso di salvataggio del post;
+\end_layout
+
+\begin_layout Itemize
+un parametro 
+\begin_inset Quotes eld
+\end_inset
+
+HttpSession
+\begin_inset Quotes erd
+\end_inset
+
+ per la gestione della sessione e la verifica delle autorizzazioni;
+\end_layout
+
+\begin_layout Standard
+La tecnica scelta da Spring per gestire i diversi aspetti comporta un'eccessiva
+ mole di parametri e funzionalità da implementare in un singolo metodo.
+ Sta allo sviluppatore intervenire fattorizzando le azioni e gestire manualmente
+ le diverse casistiche, operazioni implementate di default in RoR alla creazione
+ di un nuovo controllo.
+\end_layout
+
+\begin_layout Subsubsection*
+I Service
+\end_layout
+
+\begin_layout Standard
+Per fattorizzare la logica dei controller Spring definisce i service, componenti
+ che hanno il compito di far interagire i controller con le classi repository
+ definite dall'utente.
+\end_layout
+
+\begin_layout Standard
+In SBlog è presente un 
+\begin_inset Quotes eld
+\end_inset
+
+SessionService
+\begin_inset Quotes erd
+\end_inset
+
+, che fornisce le funzionalità per l'autenticazione e la codifica delle
+ password, e 
+\begin_inset Quotes eld
+\end_inset
+
+PostService
+\begin_inset Quotes erd
+\end_inset
+
+ che assicura la consistenza delle informazioni sul modello, ad esempio
+ impostando le corrette informazioni sulla data di creazione e di aggiornamento
+ un articolo.
+\end_layout
+
+\begin_layout Standard
+I service, così come gli helper in RoR, permettono di disaccoppiare la logica
+ delle operazioni dalle azioni dei controller, permettendo un'implementazione
+ più semplice delle componenti.
+\end_layout
+
+\begin_layout Subsubsection*
+La dependecy injection
+\end_layout
+
+\begin_layout Standard
+Per utilizzare al meglio le diverse componenti in SBlog è stato fatto ampio
+ uso dell'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@AutoWired
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Controller
+\end_layout
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/posts")
+\end_layout
+
+\begin_layout Plain Layout
+
+public class PostController extends AbstractController {
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Autowired 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	PostService postService;
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Autowired
+\end_layout
+
+\begin_layout Plain Layout
+
+	AuthorService authorService;
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Autowired
+\end_layout
+
+\begin_layout Plain Layout
+
+	SessionService sessionService;
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Uso dell'annotazione @Autowired.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per ogni componente esistente in Spring, sia essa un 
+\begin_inset Quotes eld
+\end_inset
+
+@Repository
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+@Controller
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+@Service
+\begin_inset Quotes erd
+\end_inset
+
+, esiste un corrispondente 
+\begin_inset Quotes eld
+\end_inset
+
+bean
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Grazie all'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@AutoWired
+\begin_inset Quotes erd
+\end_inset
+
+ e alla dependency injection, le corrette istanze dei componenti sono 
+\begin_inset Quotes eld
+\end_inset
+
+iniettate
+\begin_inset Quotes erd
+\end_inset
+
+ quando necessario, semplificando notevolmente la risoluzione delle dipendenze.
+\end_layout
+
+\begin_layout Subsection
+Le viste
+\end_layout
+
+\begin_layout Standard
+Introduzione ad Thymeleaf
+\end_layout
+
+\begin_layout Standard
+plugin per eclipse
+\end_layout
+
+\begin_layout Standard
+properties, in generale, e per TL
+\end_layout
+
+\begin_layout Standard
+Difficoltà nel utilizzo di Sass e simili
+\end_layout
+
+\begin_layout Subsubsection*
+Thymeleaf
+\end_layout
+
+\begin_layout Standard
+JSP?
+\end_layout
+
+\begin_layout Standard
+Uso degli attributi
+\end_layout
+
+\begin_layout Standard
+Vantaggi: sviluppo offline, testo di default, viste senza logica
+\end_layout
+
+\begin_layout Standard
+Svantaggi
+\end_layout
+
+\begin_layout Subsection
+Il testing
+\end_layout
+
+\begin_layout Standard
+Libertà di scelta
+\end_layout
+
+\begin_layout Standard
+JUnit
+\end_layout
+
+\begin_layout Standard
+Utilità di spring, @RunWith
+\end_layout
+
+\begin_layout Subsection
+Peculiarità
+\end_layout
+
+\begin_layout Standard
+Bean
+\end_layout
+
+\begin_layout Standard
+Bean via @annotazioni
+\end_layout
+
+\begin_layout Standard
+Legacy code
+\end_layout
+
+\begin_layout Standard
+Maven, Starter, Spring Boot, configurazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Hello-RBlog!"
+
+\end_inset
+
+Hello RBlog!
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo della prima funzionalità 
+\begin_inset Quotes eld
+\end_inset
+
+Hello RBlog!
+\begin_inset Quotes erd
+\end_inset
+
+ è minimo, è necessario che l'applicazione sia in esecuzione ed il sito
+ web raggiungibile.
+ Inoltre il blog deve consentire la navigazione verso alcune pagine statiche.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una pagina web statica è una pagina web i cui contenuti sono formattati
+ direttamente in HTML, e non subiscono modifiche in funzione dello stato
+ attuale dell'applicazione.
+ Al contrario le pagine dinamiche rappresentano lo stato di una o più entità
+ presente all'interno del sito e possono variare nel tempo.
+ In RBlog un esempio di pagina statica è la pagina che descrive l'abstract
+ del progetto, mentre una pagina dinamica è la pagina che mostra un singolo
+ post, ed ovviamente cambia nel contenuto in funzione dell'articolo scelto.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Cucumber
+\end_layout
+
+\begin_layout Standard
+Il primo tassello scelto per l'implementazione dei test di accettazione
+ su Rlog è Cucumber
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cucumber"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Cucumber è un framework per il supporto al BDD, Behaviour Driven Development,
+ e la definizione di test di accettazione.
+ Il framework è disponibile anche in Java, .Net, Python, PHP e molti altri
+ linguaggi e piattaforme.
+\end_layout
+
+\begin_layout Paragraph
+Le funzionalità
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap1
+\end_layout
+
+\begin_layout Plain Layout
+
+Funzionalità: Hello RBlog!
+\end_layout
+
+\begin_layout Plain Layout
+
+Per leggere i post e visitare il blog
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che RBlog permettesse la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+La prima feature di RBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il primo obbiettivo dei test di accettazione è di individuare le funzionalità
+ da sviluppare, le caratteristiche e potenzialità che l'applicazione offre
+ e i diversi scenari che le definiscono.
+\end_layout
+
+\begin_layout Standard
+Le funzionalità in Cucumber sono elementi esclusivamente descrittivi, non
+ sono utilizzate esplicitamente nell'implementazione dei test ma hanno lo
+ scopo di far cogliere la giusta prospettiva al team di sviluppo e descrivere
+ genericamente l'obbiettivo degli scenari.
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Non ho capito la correzione 
+\begin_inset Quotes eld
+\end_inset
+
+Perchè in italiano?
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Sia il titolo che la descrizione possono essere in linguaggio naturale e
+ non hanno alcun impatto nell'implementazione degli scenari, per lo sviluppo
+ di RBlog sono state usate le user story
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UserStory"
+
+\end_inset
+
+ secondo il formato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Per
+\emph default
+ <beneficio>, 
+\emph on
+come
+\emph default
+ <ruolo>, 
+\emph on
+vorrei
+\emph default
+ <obbiettivo, desiderio>
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per facilitare lo sviluppo di test all'interno del proprio progetto è consigliat
+o seguire la convenzione di inserire all'interno della cartella 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+features
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ i test di accettazione ed attribuire ai relativi file l'estenzione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+.feature
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+, oltre alla descrizione della funzionalità è presente un'etichetta che
+ permette di organizzare e categorizzare quanto sviluppato con Cucumber;
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+@cap1
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ caratterizza sia la user-story sia gli scenari che la definiscono per ereditari
+età.
+ L'etichetta è stata introdotta per poter eseguire in maniera selettiva
+ gli scenari della prima funzionalità.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cucumber --tags @cap1
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comando per l'esecuzione degli scenari relativi alla feature 
+\begin_inset Quotes eld
+\end_inset
+
+Hello RBlog!
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' possibile introdurre un numero arbitrario di etichette per ciascuna funzional
+ità o scenario e, sfruttando l'opzione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+--tags
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, definire il corretto insieme di test da eseguire, tramite gli operatori
+ logici AND, OR e NOT.
+\end_layout
+
+\begin_layout Paragraph
+Gli scenari
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Visita alla pagina iniziale
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora posso visitare la pagina dell'autore
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso visitare la pagina dell'abstract
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x01 Homepage"
+
+\end_inset
+
+Navigazione verso la pagina iniziale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il primo scenario descrive la navigazione verso la homepage, relativo alla
+ funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x00 Hello RBlog!"
+
+\end_inset
+
+ ed introduce la sintassi di Cucumber.
+ Gli scenari sono caratterizzati da un titolo, che riassume il comportamento
+ e da un insieme di passi.
+ Seguendo la logica del BDD, ogni passo può alternativamente essere di tipo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Given
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+When
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Then
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tramite i passi di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Given
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile verificare che il sistema sia in uno stato prefissato e conosciuto
+ all'utente, stato dal quale sarà possibile compiere le azioni descritte
+ successivamente nel test.
+ Rispetto ad uno use-case un passo 
+\begin_inset Quotes eld
+\end_inset
+
+Given
+\begin_inset Quotes erd
+\end_inset
+
+ è l'equivalente di una precondizione.
+\end_layout
+
+\begin_layout Standard
+I passi 
+\begin_inset Quotes eld
+\end_inset
+
+When
+\begin_inset Quotes erd
+\end_inset
+
+ descrivono le azioni compiute e permettono la transizione del sistema verso
+ un nuovo stato, analogamente agli eventi di una macchina a stati.
+\end_layout
+
+\begin_layout Standard
+Lo scopo dei passi 
+\begin_inset Quotes eld
+\end_inset
+
+Then
+\begin_inset Quotes erd
+\end_inset
+
+ è di osservare il risultato delle azioni compiute precedentemente.
+ Le osservazioni dovrebbero essere consistenti con i benefici dichiarati
+ per la funzionalità ed analizzare solo quanto è osservabile tramite l'interfacc
+ia del sistema ed ottenuto come conseguenza alle azioni compiute.
+ Ad esempio, non è compito dei test di accettazione su RBlog verificare
+ le tuple della tabella Post nel modello.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La scelta del prefisso del passo non limita le potenzialità del passo stesso,
+ ma ovviamente un uso corretto favorisce la leggibilità del test.
+ E' anche possibile sfruttare i prefissi 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+And
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+But
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ per rendere i propri scenari più scorrevoli; alle congiunzioni è attribuito
+ il tipo del passo precedente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Schema dello scenario: Visita alla pagina dell'autore e alla pagina dell'abstrac
+t
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Quando navigo verso "<nome della pagina>"
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora la pagina è intitolata "<nome della pagina>"     
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso tornare alla pagina iniziale   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Esempi:
+\end_layout
+
+\begin_layout Plain Layout
+
+| nome della pagina |
+\end_layout
+
+\begin_layout Plain Layout
+
+| Autore            |
+\end_layout
+
+\begin_layout Plain Layout
+
+| Abstract          |
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:01x02 Pagine statiche"
+
+\end_inset
+
+Navigazione verso le pagine statiche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cucumber offre la possibilità di definire scenari parametrici.
+ Sfruttando la sintassi 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+Schema dello 
+\emph default
+scenario
+\begin_inset Quotes erd
+\end_inset
+
+, la tabella 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Esempi
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e i delimitatori 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+< >
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile verificare tanti scenari quanti sono i parametri all'interno
+ della tabella: lo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ è eseguito sia sulla pagina dell'autore che sulla pagina dell'abstract.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Visita alle pagine statiche: la pagina dell'autore e all'abstract
+ della tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dato apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+Quando navigo verso "Autore"
+\end_layout
+
+\begin_layout Plain Layout
+
+Allora la pagina è intitolata "Autore"
+\end_layout
+
+\begin_layout Plain Layout
+
+E posso tornare alla pagina iniziale
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Testo generato dallo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Business Readable DSL
+\end_layout
+
+\begin_layout Standard
+Il linguaggio utilizzato per descrivere le funzionalità e gli scenari in
+ Cucumber è Gherkin
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gherkin"
+
+\end_inset
+
+.
+ Gli autori, gli stessi di Cucumber, descrivono il linguaggio come Business
+ Readable DSL
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler Business Readable DSL"
+
+\end_inset
+
+, definizione introdotta da Martin Fowler nel 2008.
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
+ne all'analisi e alla revisione del codice a figure non tecniche.
+ Fowler sottolinea come sia più importante definire un linguaggio leggibile
+ per tutte le diverse figure professionali coinvolte nello sviluppo rispetto
+ ad uno anche scrivibile in maniera cooperativa.
+ Un Business Readable DSL sopperisce alla necessità primaria di stabilire
+ un canale di comunicazione arricchente fra le diverse parti che partecipano
+ allo sviluppo, al contrario secondo Fowler, un Business Writeable DSL richiede
+ un impegno troppo alto in termini di tempo e risorse umane coinvolte.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+I18n
+\end_layout
+
+\begin_layout Standard
+Cucumber supporta attualmente 40 lingue, numero in rapida crescita secondo
+ gli sviluppatori.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per ottenere la lista aggiornata delle lingue supportate è possibile eseguire
+ il comando cucumber --i18n help o consultare la risorsa contenente il dizionari
+o 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ E' così possibile definire i passi degli scenari con le parole chiave nella
+ lingua scelta: ad esempio per la definizione delle funzionalità di RBlog
+ è stata utilizzata la lingua italiana.
+ Per utilizzare uno dei pacchetti linguistici esistenti è necessario un
+ header 
+\begin_inset Quotes eld
+\end_inset
+
+# language: xx
+\begin_inset Quotes erd
+\end_inset
+
+ all'interno dei file 
+\begin_inset Quotes eld
+\end_inset
+
+.feature
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Supporto a Cucumber in RubyMine
+\end_layout
+
+\begin_layout Standard
+RubyMine, l'ambiente di sviluppo scelto per sviluppare tramite RoR, integra
+ le funzionalità di Cucumber e assiste il programmatore nel corso dello
+ sviluppo dei test: la sintassi di Gherkin è evidenziata, è presente l'auto-comp
+letamento delle parole chiave del DSL in tutte le lingue, è possibile navigare
+ dalla definizione all'implementazione del passo ed è fornita un'interfaccia
+ grafica per l'esecuzione dei test, configurabile in funzione delle etichette,
+ file delle funzionalità da includere ed altri parametri.
+\end_layout
+
+\begin_layout Subsection
+Capybara
+\end_layout
+
+\begin_layout Standard
+Capybara
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Capybara"
+
+\end_inset
+
+ è una libreria in Ruby che permette la definizione di test di accettazione
+ automatici per applicazioni web, non necessariamente scritte tramite RoR,
+ simulando le azioni eseguibili via interfaccia grafica.
+ 
+\end_layout
+
+\begin_layout Standard
+Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
+ primitive di funzioni semplici, intuitive e versatili.
+ Le funzionalità di Capybara sono astratte e mantengono la stessa prospettiva
+ di un test effettuato manualmente da un utente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La configurazione è effettuata tramite un breve script in Ruby: è necessario
+ scegliere un browser web ed il relativo driver per Capybara importando
+ la libreria nel file 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+features/support/env.rb
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+require 'cucumber/rails'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/cucumber'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/rspec'
+\end_layout
+
+\begin_layout Plain Layout
+
+require 'capybara/poltergeist'
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dipendenze all'interno dello script di configurazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infine, se necessario, è possibile configurare il driver scelto: la struttura
+ di Capybara permette l'uso di diversi driver e browser.
+ Tutti i driver
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Capybara Drivers"
+
+\end_inset
+
+ devono implementare le funzionalità obbligatorie indicate nella libreria,
+ ma è consentito non fornire il resto delle operazioni ma essere comunque
+ annoverati fra i driver esistenti per Capybara.
+ Per RBlog è stato utilizzato PhantomJS
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PhantomJS"
+
+\end_inset
+
+ ed il driver Poltergeist
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Poltergeist"
+
+\end_inset
+
+, che verranno trattati in seguito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Capybara.default_driver = :poltergeist
+\end_layout
+
+\begin_layout Plain Layout
+
+Capybara.register_driver :poltergeist do |app|
+\end_layout
+
+\begin_layout Plain Layout
+
+	options = { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		:js_errors => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:timeout => 120,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:debug => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		:phantomjs_options => ['--load-images=yes', '--disk-cache=false'],
+\end_layout
+
+\begin_layout Plain Layout
+
+		:inspector => true,
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	Capybara::Poltergeist::Driver.new(app, options)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configurazione di Poltergeist
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le opzioni più rilevanti per Poltergeist sono:
+\end_layout
+
+\begin_layout Itemize
+:js_errors rileva ogni errore relativo alle esecuzione di codice JavaScript
+ e genera un errore in Ruby;
+\end_layout
+
+\begin_layout Itemize
+:inspector è un'opzione sperimentale che permette il debug dell'esecuzione
+ tramite una terza applicazione, come ad esempio Chrome web inspector
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chrome web inspector"
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+:debug reindirizza l'output dell'esecuzione in modalità debug verso STDERR.
+\end_layout
+
+\begin_layout Subsubsection*
+PhantomJS
+\end_layout
+
+\begin_layout Standard
+PhantomJS è un browser headless, supporta tutte le funzionalità di un browser
+ web moderno ma senza possedere un'interfaccia grafica e si basa sul motore
+ di rendering WebKit
+\begin_inset CommandInset citation
+LatexCommand cite
+key "WebKit"
+
+\end_inset
+
+, lo stesso utilizzato da Chrome e Safari.
+\end_layout
+
+\begin_layout Standard
+E' particolarmente adatto all'esecuzione automatica di applicazioni web
+ non richiedendo di un framework per la gestione di GUI, funzionalità spesso
+ mancante sui server che effettuano l'integrazione continua.
+\end_layout
+
+\begin_layout Standard
+Con PhantomJS è anche possibile far coincidere il fallimento dei propri
+ test in funzione di errori su codice JavaScript, funzionalità non presente
+ su altri browser, grazie all'opzione :js_errors precedentemente descritta.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+PhantomJS è installabile tramite i pacchetti d'installazione presenti sul
+ sito ufficiale 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://phantomjs.org/download.html
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Poltergeist
+\end_layout
+
+\begin_layout Standard
+Poltergeist è un driver per il browser PhantomJS ed implementa la totalità
+ delle funzionalità obbligatorie e molte delle opzionali disponibili.
+ Dopo aver configurato il driver nel file 
+\begin_inset Quotes eld
+\end_inset
+
+env.rb
+\begin_inset Quotes erd
+\end_inset
+
+ tutte le operazioni saranno gestite tramite la libreria di Capybara.
+\end_layout
+
+\begin_layout Standard
+La combinazione Capybara - Poltergeist - PhantomJS è attualmente una delle
+ più diffuse per lo sviluppo di test di accettazione automatici in Ruby
+ perché da ottimi risultati nella gestione di strumenti asincroni come AJAX
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AJAX"
+
+\end_inset
+
+, è estremamente veloce ed è molto accurata nella gestione di falsi positivi,
+ come ad esempio il click su eventi esistenti nel DOM, Document Object Model,
+ di una pagina HTML ma non visibili.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+L'installazione di Poltergeist è effettuata attraverso il gemfile e la gemma
+ 
+\begin_inset Quotes eld
+\end_inset
+
+poltergeist
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quando viene richiesto il click su un elemento, Poltergeist non genera un
+ evento attraverso il DOM ma simula un evento reale, ad esempio scendendo
+ lungo la pagina nel caso in cui l'elemento non dovesse essere visibile.
+ Inoltre sono previste diverse casistiche di errori, come l'impossibilità
+ di compiere azioni su un elemento coperto.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Implementazione dei passi
+\end_layout
+
+\begin_layout Standard
+La struttura dei passi in Cucumber è definita a priori e non varia in funzione
+ del tipo implementato.
+ Per implementare un passo è necessario creare uno script Ruby, ad esempio
+ 
+\begin_inset Quotes eld
+\end_inset
+
+features/steps_definition/constraints.rb
+\begin_inset Quotes erd
+\end_inset
+
+, e definirne l'implementazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^apro RBlog$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	visit steps_helper.rblog_url
+\end_layout
+
+\begin_layout Plain Layout
+
+	#...
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+Implementazione del passo 
+\begin_inset Quotes eld
+\end_inset
+
+apro RBlog
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
+ per gli altri tipi disponibili, è possibile specificare un'espressione
+ regolare ed il comportamento associato.
+ All'esecuzione dei test, è verificata la presenza un'implementazione per
+ ogni passo definito.
+ E' necessario che per ogni passo in Gherkin esista un'unica espressione
+ regolare corrispondente fra i metodi disponibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^apro (.*)$/) do |site_name|
+\end_layout
+
+\begin_layout Plain Layout
+
+	#...
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ipotetica implementazione ulteriore.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'introduzione di un'ulteriore implementazione, anche se con tipo differente,
+ genere un'ambiguità che secondo il comportamento standard di Cucumber non
+ è risolta.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sfruttando l'opzione --guess di Cucumber è possibile far variare il comportament
+o per la scelta dell'implementazione da applicare.
+\end_layout
+
+\end_inset
+
+L'implementazione di passo è definibile all'interno di un blocco e non esiste
+ alcuna limitazione né controllo sulle espressioni che possono essere utilizzate.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'implementazione dei passi non è vincolata dal tipo definito, ad esempio
+ è possibile sfruttare un'asserzione come invariante.
+ Questa particolarità di Cucumber offre la possibilità di definire più librerie
+ di test di accettazione in differenti lingue ed utilizzare lo stesso codice
+ per l'implementazione dei passi.
+ Una potenzialità simile può essere utile per documentare lo sviluppo di
+ progetti che coinvolgono stake-holders di diverse nazionalità.
+\end_layout
+
+\begin_layout Paragraph
+La struttura di Capybara
+\end_layout
+
+\begin_layout Standard
+Vediamo quali funzionalità Capybara offra per semplificare la scrittura
+ delle espressioni necessarie per l'implementazione dei passi in Cucumber.
+\end_layout
+
+\begin_layout Standard
+Gli elementi di una pagina web sono indicati come nodi
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Capybara::Node"
+
+\end_inset
+
+ in Capybara, la gerarchia è la seguente:
+\end_layout
+
+\begin_layout Itemize
+la classe più semplice è Capybara::Node::Simple e rappresenta gli elementi
+ di una pagina web, tali oggetti possono essere individuati all'interno
+ del documento e analizzati in funzione degli attributi, ma non sono utilizzabil
+i per compiere azioni;
+\end_layout
+
+\begin_layout Itemize
+la classe Capybara::Node::Base è la classe padre di Capybara::Node::Element
+ e Capybara::Node::Document, gli oggetti delle classi figlie condividono
+ gli stessi metodi tramite i moduli Finders, Matchers e Actions.
+ A differenza dei nodi semplici, sono utilizzabili per compiere azioni;
+\end_layout
+
+\begin_layout Itemize
+la classe Element rappresenta un singolo elemento all'interno del DOM della
+ pagina;
+\end_layout
+
+\begin_layout Itemize
+la classe Document rappresenta i documenti HTML nella loro interezza.
+\end_layout
+
+\begin_layout Standard
+Le funzionalità di Capybara sono suddivise in tre moduli: 
+\begin_inset Quotes eld
+\end_inset
+
+Finders
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Actions
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Matchers
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Capybara::Modules"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il modulo 
+\begin_inset Quotes eld
+\end_inset
+
+Finders
+\begin_inset Quotes erd
+\end_inset
+
+ contiene un insieme di funzionalità dedicate all'individuazione di nodi
+ all'interno della pagina.
+ I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
+ ad esempio 
+\begin_inset Quotes eld
+\end_inset
+
+find_button
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+, e della cardinalità attesa: il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+all
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce tutti gli elementi che soddisfano la ricerca a differenza dei
+ metodi 
+\begin_inset Quotes eld
+\end_inset
+
+find_*
+\begin_inset Quotes erd
+\end_inset
+
+ dai quali è atteso l'individuazione di esattamente un nodo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modulo 
+\begin_inset Quotes eld
+\end_inset
+
+Actions
+\begin_inset Quotes erd
+\end_inset
+
+ permette l'interazione con l'interfaccia della pagina: sono quindi previsti,
+ ad esempio, metodi per la compilazione di form HTML e la selezione di elementi.
+ Le operazioni permettono anche di specificare delle opzioni per effettuare
+ delle variazioni o verificare alcune proprietà prima di compiere l'evento.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il metodo click_link permette di specificare l'opzione :href per verificare
+ l'uguaglianza del attributo href prima di effettuare il click sul collegamento.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infine il modulo Matchers verifica le proprietà di un nodo, sia esso un
+ sotto elemento della pagina o il documento stesso.
+ Ad esempio è possibile verificare che sia presente un selettore, indicando
+ l'identificatore css o una query XPath, o la presenza di attributo per
+ l'elemento che invoca il metodo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La libreria di Capybara è ricca di funzionalità e si presta in maniera versatile
+ a diversi usi e preferenze.
+ Per la maggior parte dei metodi è prevista la possibilità di specificare
+ delle opzioni ed influire, in funzione della natura dell'operazione, sul
+ comportamento di default.
+ Inoltre, soprattutto all'interno del modulo 
+\begin_inset Quotes eld
+\end_inset
+
+Matchers
+\begin_inset Quotes erd
+\end_inset
+
+, esistono diversi modi per definire le istruzioni, facilitando la scrittura
+ dei test.
+\end_layout
+
+\begin_layout Paragraph
+Navigare all'interno del sito
+\end_layout
+
+\begin_layout Standard
+Nel passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+ è utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+visit
+\begin_inset Quotes erd
+\end_inset
+
+ che permette la navigazione verso una certa pagina web.
+ All'esecuzione del metodo coincide una richiesta HTTP in GET all'indirizzo
+ indicato come parametro, che può essere sia relativo che assoluto.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il metodo rblog_url dell'oggetto denominato steps_helper, appartiene alla
+ classe StepsHelper, utilizzata per contenere alcuni metodi d'utilità sfruttati
+ durante lo sviluppo dei test.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^navigo verso "([^"]*)"$/) do |page_name|
+\end_layout
+
+\begin_layout Plain Layout
+
+	find_link(page_name).click
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:evento naviga verso"
+
+\end_inset
+
+Navigazione nel sito, sfruttando il testo visualizzato di un link.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+visit
+\begin_inset Quotes erd
+\end_inset
+
+, utilizzato per aprire la pagina iniziale del blog, non verifica la presenza
+ all'interno della pagina di un collegamento verso la destinazione, ma semplicem
+ente effettua la richiesta all'indirizzo indicato.
+\end_layout
+
+\begin_layout Standard
+Per verificare la presenza di link alle pagine statiche nell'homepage è
+ stato utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Il metodo ricerca un collegamento all'interno della pagina in funzione
+ dell'identificatore degli elementi HMTL 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+ o del testo visualizzato.
+ Come per le altre varianti dei metodi 
+\begin_inset Quotes eld
+\end_inset
+
+find_*
+\begin_inset Quotes erd
+\end_inset
+
+ in Finders, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+find_link
+\begin_inset Quotes erd
+\end_inset
+
+ solleva un'eccezione nel caso in cui la ricerca non dovesse individuare
+ uno ed un solo elemento.
+ Per navigare all'interno del sito web si invoca il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+click
+\begin_inset Quotes erd
+\end_inset
+
+ sul nodo restituito, come mostrato nell'implementazione del passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:evento naviga verso"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A differenza del passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Implementazione \"apro RBlog\""
+
+\end_inset
+
+, dove non sono presenti parametri, nel passo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:evento naviga verso"
+
+\end_inset
+
+ viene selezionato il collegamento che coincide con il valore di 
+\begin_inset Quotes eld
+\end_inset
+
+page_name
+\begin_inset Quotes erd
+\end_inset
+
+, tramite un blocco con un singolo parametro.
+ Cucumber per ogni passo che contiene del testo fra virgolette, genera dei
+ blocchi parametrici automaticamente.
+ E' possibile applicare lo stesso procedimento manualmente, sostituendo
+ all'interno dell'espressione del passo un proprio pattern e aggiungendo
+ un parametro a cui attribuire il valore.
+ I parametri all'interno dei passi hanno tipo stringa, ma è possibile definire
+ delle conversioni di tipo tramite il metodo Transform
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cucumber::Tranform"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Definizione delle asserzioni con RSpec
+\end_layout
+
+\begin_layout Standard
+All'interno della libreria di Capybara non sono presenti le funzionalità
+ per la verifica di asserzioni, è quindi necessario sfruttare librerie terze,
+ come ad esempio RSpec.
+\end_layout
+
+\begin_layout Standard
+RSpec è un framework per il testing scritto in Ruby, le cui funzionalità
+ sono suddivise in quattro moduli:
+\end_layout
+
+\begin_layout Itemize
+RSpec-Core
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RSpec-Core"
+
+\end_inset
+
+ fornisce la struttura per la definizione di funzionalità e scenari per
+ il BDD;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Expectations
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RSpec-Expectations"
+
+\end_inset
+
+ è una libreria di metodi per definire asserzioni;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Mocks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RSpec-Mocks"
+
+\end_inset
+
+ è un framework per l'implementazione di stub, oggetti mock, verifiche sull'invo
+cazione di metodi e dell'interazione fra oggetti;
+\end_layout
+
+\begin_layout Itemize
+RSpec-Rails
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RSpec-Rails"
+
+\end_inset
+
+ è un framework per la definizione di test sulle componenti che definiscono
+ un'applicazione RoR, come il modello, i controlli e le viste ma anche gli
+ Helper e l'instradamento delle richieste.
+\end_layout
+
+\begin_layout Standard
+Oltre a RSpec è possibile l'integrazione all'interno di unit-test, Test::Unit
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Test::Unit"
+
+\end_inset
+
+ in Rails, oppure con le asserzioni definite in MiniTest::Spec
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MiniTest::Spec"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La struttura di un'asserzione in RSpec è definita da due elementi: l'oggetto
+ da verificare ed uno o più matcher, concatenati da operatori logici.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La maggior parte dei matcher di RSpec prevedono la verifica di una singola
+ proprietà, ma esistono anche matcher compositi con arietà variabile.
+ La lista completa è consultabile sulla documentazione ufficiale 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.relishapp.com/rspec/rspec-expectations/v/3-1/docs/composing-matchers
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dalla versione 2.11 di RSpec, la versione corrente è la 3.1.0, è stata modificata
+ la sintassi del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+expect
+\begin_inset Quotes erd
+\end_inset
+
+ per renderla più leggibile e versatile.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+expect(obj).not_to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+expect{ ...
+ }.to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+expect do
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+end.to <matcher>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esempi dell'uso del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+expect
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco,
+ che viene verificato dai matcher indicati.
+ Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
+ dell'operazione implementata e degli argomenti.
+ L'uso corretto dei matcher è come parametri dei metodi 
+\begin_inset Quotes eld
+\end_inset
+
+to
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+not_to
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^posso visitare la pagina dell'autore$/) do 
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(find_link('Autore').visible?).to be_truthy 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifica la presenza del link
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ richiede la possibilità di navigare verso la pagina statica dell'autore.
+ L'asserzione è stata implementata sfruttando le funzionalità di Capybara,
+ per individuare il collegamento in funzione del testo mostrato e ottenere
+ la visibilità del nodo, e RSpec con il matcher 
+\begin_inset Quotes eld
+\end_inset
+
+be_truthy
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^la pagina è intitolata "([^"]*)"$/) do |title_value|
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(page.title).to eq(title_value)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Implementazione di un'asserzione parametrica.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nello scenario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:01x02 Pagine statiche"
+
+\end_inset
+
+ è richiesto il confronto di un parametro, definito attraverso l'espressione
+ regolare, ed il titolo della pagina.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Capybara::DSL::page è un getter e restituisce la rappresentazione della
+ pagina attualmente aperta nel browser.
+\end_layout
+
+\end_inset
+
+ In RSpec esistono tre matcher per la verifica dell'uguaglianza: 
+\begin_inset Quotes eld
+\end_inset
+
+equal?
+\begin_inset Quotes erd
+\end_inset
+
+ verifica se le variabili si riferiscono allo stesso oggetto, 
+\begin_inset Quotes eld
+\end_inset
+
+eql?
+\begin_inset Quotes erd
+\end_inset
+
+ effettua un confronto sullo stato dell'istanza mentre l'operatore 
+\begin_inset Quotes eld
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+ confronta sia il tipo degli oggetti che i relativi stati, sfruttando eventuali
+ conversioni.
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^apro RBlog$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	visit steps_helper.rblog_url
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(page.status_code).to be == 200
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Implementazione \"apro RBlog\"-1"
+
+\end_inset
+
+Implementazione del passo 
+\begin_inset Quotes eld
+\end_inset
+
+apro RBlog
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tramite il matcher 
+\begin_inset Quotes eld
+\end_inset
+
+be
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile utilizzare gli operatori definiti in Ruby.
+ Nella precondizione è verificato che lo stato HTTP sia equivalente a 200,
+ che corrisponde alla corretta terminazione della richiesta.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduzione del CSS
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Feature: Introducendo il (S)CSS
+\end_layout
+
+\begin_layout Plain Layout
+
+Per rendere l'esperienza di navigazione gradevole
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che il sito esponesse una grafica omogenea
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+Seconda funzionalità per RBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo sviluppo attuale di RBlog prevede una semplice struttura e la navigazione
+ fra le pagine esistenti, l'homepage e due pagine statiche contenenti una
+ breve descrizione del progetto e della tesi.
+ L'iterazione corrente introduce i fogli di stile e la verifica tramite
+ Capybara degli effettivi cambiamenti nell'aspetto delle pagine.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un aspetto importante nello sviluppo di applicazioni web è rispettare i
+ principi di accessibilità consigliati dal W3C, il consorzio che si occupa
+ della standardizzazione di internet e dei suoi servizi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+«The power of the Web is in its universality.
+ Access by everyone regardless of disability is an essential aspect.»
+\emph default
+ Tim Berners-Lee, W3C Director and inventor of the World Wide Web
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella funzionalità non è richiesto che il sito sia accessibile da persone
+ con disabilità, ma è comunque necessario verificare non solo la struttura
+ delle pagine ma anche alcuni requisiti estetici siano rispettati: potrebbe
+ essere necessario che le pagine verifichino un certo schema di colori o
+ che sia presente un unico font.
+\end_layout
+
+\begin_layout Standard
+Le caratteristiche estetiche dell'interfaccia e l'usabilità sono requisiti
+ importanti nello sviluppo di un'applicazione web, ne consegue che anche
+ gli strumenti per la definizione di test di accettazione dovrebbero offrire
+ delle funzionalità per l'analisi di proprietà non esclusivamente legate
+ alla struttura del DOM ed alle proprietà dei nodi, affinché tali richieste
+ possano essere introdotte all'interno di scenari e funzionalità.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Quotes eld
+\end_inset
+
+CSS with superpowers
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+RubyMine offre la possibilità di scegliere come implementare i propri fogli
+ di stile: ovviamente è previsto l'uso del CSS3 per il quale è integrato
+ il supporto, ma è anche disponibile sfruttare Sass
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sass"
+
+\end_inset
+
+, Scss e Less, estensioni dello standard che introducono nuove caratteristiche
+ ai classici fogli di stile.
+\end_layout
+
+\begin_layout Standard
+RubyMine genera per ogni controller un foglio di stile in Sass, e vista
+ la completa integrazione di questo linguaggio nell'ambiente di sviluppo
+ è stato deciso di sfruttarlo per il progetto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+.posts {
+\end_layout
+
+\begin_layout Plain Layout
+
+	#notice {
+\end_layout
+
+\begin_layout Plain Layout
+
+		margin: 1em 15%;
+\end_layout
+
+\begin_layout Plain Layout
+
+		text-align: center;
+\end_layout
+
+\begin_layout Plain Layout
+
+		p {
+\end_layout
+
+\begin_layout Plain Layout
+
+			color: forestgreen;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento del foglio di stile in Sass relativo ai post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sass fornisce alcuni strumenti sintattici per facilitare il riuso e l'organizzaz
+ione di regole: la caratteristica che maggiormente semplifica lo sviluppo
+ dei fogli di stile è la possibilità di definire una gerarchia nelle regole.
+ I fogli di stile appaiono più lineari e leggibili, rispecchiano la struttura
+ del documento, è c'è un minor rischio di errori, non è necessario etichettare
+ ogni elemento del DOM con identificatori e classi, ed è molto più semplice
+ applicare delle correzioni a piccole porzioni dell'applicazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La sintassi di Sass prevede l'uso di variabili, ad esempio per salvare i
+ riferimenti ad un colore o ad un font, consente l'importazione di altri
+ documenti Sass e la definizione di fogli di stile parziali per fattorizzare
+ alcuni elementi comuni dell'interfaccia.
+ I file in Sass sono processati e compilati in un file CSS prima dell'utilizzo;
+ il procedimento è gestito in automatico da RubyMine.
+\end_layout
+
+\begin_layout Subsection
+Testare il css
+\end_layout
+
+\begin_layout Standard
+Per verificare le potenzialità di Capybara relativamente all'analisi 
+\begin_inset Quotes eld
+\end_inset
+
+stilistica
+\begin_inset Quotes erd
+\end_inset
+
+ delle pagine è stato scelto di analizzare il colore di sfondo di alcuni
+ elementi.
+ All'interno dell'intestazione delle pagine sono presenti i collegamenti
+ introdotti dalla precedente funzionalità; nell'iterazione corrente sono
+ stati definiti diversi fogli di stile che creano un semplice effetto cromatico:
+ il colore dello sfondo dei collegamenti nell'intestazione cambia al passaggio
+ del cursore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+.banner_link:hover {
+\end_layout
+
+\begin_layout Plain Layout
+
+	background-color: #8c2828;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento del foglio di stile relativo ai collegamenti nell'intestazione
+ di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Lo scenario relativo a questa funzionalità descrive il comportamento atteso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: l'intestazione espone dei semplici effetti cromatici
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato che è presente l'intestazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E l'intestazione permette la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E i collegamenti non hanno sfondo
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando il cursore si sposta sui collegamenti
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora lo sfondo del collegamento cambia
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Scenario relativo alla funzionalità.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Analisi delle proprietà dei nodi
+\end_layout
+
+\begin_layout Standard
+Il modulo Matchers di Capybara espone molti metodi e soluzioni equivalenti
+ per la lettura dei valori presenti negli attributi dei nodi del documento,
+ inoltre in HTML è possibile definire lo stile di un singolo nodo inserendo
+ le regole desiderate all'interno dell'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Supponiamo che le pagine HTML dichiarino le regole di stile all'interno
+ dei nodi stessi e non attraverso fogli di stile linkati nell'intestazione
+ del documento HTML: durante l'analisi del valore di un attributo strutturato
+ come 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ Capybara non effettua alcuna operazione straordinaria.
+ Viene quindi estratta una stringa da analizzare tramite espressioni regolari
+ create ad hoc per la regola CSS a cui si è interessati.
+\end_layout
+
+\begin_layout Paragraph
+Analisi dei fogli di stile e corrispondenza all'interno del DOM
+\end_layout
+
+\begin_layout Standard
+La pratica di definire lo stile direttamente all'interno delle pagine HTML
+ è deprecata in quanto minimizza il riuso del codice e rende estremamente
+ fragile l'insieme delle viste in termini di manutenibilità.
+\end_layout
+
+\begin_layout Standard
+Capybara, più precisamente Poltergeist, non effettua alcuna valutazione
+ dei fogli di stile allegati alla pagina e non associa le regole presenti
+ ai rispettivi nodi del DOM.
+ Le regole sono ignorate e l'accesso agli attributi 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+background-color
+\begin_inset Quotes erd
+\end_inset
+
+ restituiscono valore nullo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+expect(banner_link_div[:style]).not_to be_nil
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Asserzione fallita sull'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ per i collegamenti dell'intestazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Preso atto delle mancanze di Capybara e Poltergeist, per completare l'implementa
+zione dello scenario è stato individuata una soluzione alternativa tramite
+ la funzionalità del framework di eseguire script JQuery all'interno della
+ pagina.
+\end_layout
+
+\begin_layout Standard
+JQuery è una libreria scritta in JavaScript che permette l'analisi e manipolazio
+ne del DOM, gestisce gli eventi all'interno della pagina, le animazioni
+ e fornisce delle interfacce per semplificare l'uso di Ajax.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def background_color(id, page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	jscript = "$('#{id}').css('backgroundColor')"
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.evaluate_script(jscript)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Analisi del colore di sfondo dell'elemento via JQuery.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo utilizza il selettore generato dall'identificatore e accede alla
+ proprietà desiderata, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+css
+\begin_inset Quotes erd
+\end_inset
+
+ di JQuery supporta tutte le funzionalità del CSS3, permettendo sia la lettura
+ che la modifica degli elementi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Purtroppo però, anche questa soluzione è parziale.
+ La proprietà principale delle regole del CSS è l'ereditarietà: la definizione
+ di una regola per un certo elemento ha conseguenze anche sui sotto elementi
+ presenti nel DOM.
+ Gli attributi stilistici si propagano a cascata, se applicabili, e hanno
+ conseguenze in funzione dell'importanza, la regola può essere definita
+ dal browser web, dall'utente o dall'autore del sito, e dalla specificità
+ della definizione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^i collegamenti non hanno sfondo$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	#header_rgb_background = steps_helper.background_color(steps_helper.header_id,
+ page) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	@textual_header_link_divs.each do |banner_link_div|
+\end_layout
+
+\begin_layout Plain Layout
+
+		id = banner_link_div[:id]
+\end_layout
+
+\begin_layout Plain Layout
+
+		background_color = steps_helper.background_color("##{id}", page)
+\end_layout
+
+\begin_layout Plain Layout
+
+		expect(background_color).to eq('rgba(0, 0, 0, 0)')
+\end_layout
+
+\begin_layout Plain Layout
+
+		#expect(steps_helper.background_color("##{id}", page)).to be  eq(header_rgb_back
+ground)
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Precondizione sul colore dei collegamenti nell'intestazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'implementazione del passo è presente un'asserzione commentata che impedisce
+ il successo del test.
+ JQuery infatti non effettua alcuna verifica sull'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+div
+\begin_inset Quotes erd
+\end_inset
+
+ corrispondente all'intestazione e per il quale è presente un colore di
+ sfondo, restituendo il valore di default 
+\begin_inset Quotes eld
+\end_inset
+
+rgba(0, 0, 0, 0)
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sia lo scenario che è stato descritto che quelli non trattati della funzionalità
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+ non verificano proprietà elaborate dei fogli di stile, ma le limitazioni
+ presenti non permettono di sfruttare i test di accettazione per la verifica
+ dei principi di accessibilità né per aspetti più elementari della grafica
+ delle pagine web.
+\end_layout
+
+\begin_layout Subsection
+Il contesto degli scenari
+\end_layout
+
+\begin_layout Standard
+In Cucumber è possibile dichiarare all'interno delle funzionalità un contesto,
+ definito da un numero arbitrario di passi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Contesto:
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato apro RBlog
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Background della funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I passi definiti nel contesto sono eseguiti prima di ogni scenario appartenente
+ alla funzionalità e sono utilizzati per fattorizzare alcune premesse e
+ per rendere più incisivi gli scenari.
+ Per evitare di complicare eccessivamente i test di accettazione è consigliato
+ utilizzare un numero di passi ridotto nel contesto per mantenere alta la
+ leggibilità degli scenari.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una pratica empirica suggerisce di mantenere le funzionalità essenziali
+ per permettere la lettura del contesto e dello scenario senza dover scorrere
+ nella schermata.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'esempio è stato definito un contesto evitare la ripetizione del passo
+ relativo alla prima iterazione in tutti gli scenari della funzionalità.
+\end_layout
+
+\begin_layout Subsection
+Debug con Capybara
+\end_layout
+
+\begin_layout Standard
+Utilizzare Poltergeist e PhantomJS semplifica la verifica di applicazioni
+ web che sfruttano JavaScript e metodi asincroni, ma non offre all'utente
+ la possibilità di verificare tramite la GUI, Graphical User Interface,
+ le azioni che vengono effettuate nei test.
+\end_layout
+
+\begin_layout Standard
+Per effettuare il debug, Poltergeist offre alcuni metodi per catturare la
+ pagina corrente: tramite il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+save_and_open_page
+\begin_inset Quotes erd
+\end_inset
+
+ si ottiene il codice HTML del DOM, mentre con il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+save_and_open_screenshot
+\begin_inset Quotes erd
+\end_inset
+
+ viene catturata e salvata la schermata del browser.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'interno dell'implementazione dei passi è possibile introdurre dei breackpoin
+t, ma l'interfaccia e la proprietà che i nodi espongono non permette una
+ semplice analisi.
+ Durante lo sviluppo è stata combinata la possibilità di salvare le schermate
+ del browser e inserire delle interruzioni nell'esecuzione dei test per
+ verificare manualmente lo stato dell'esecuzione.
+\end_layout
+
+\begin_layout Subsection
+XPath
+\end_layout
+
+\begin_layout Standard
+Le funzionalità del modulo Finders permettono di effettuare query tramite
+ XPath
+\begin_inset CommandInset citation
+LatexCommand cite
+key "XPath"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^l'intestazione è posizionata all'inizio$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	header = page.find(:xpath, 'descendant::body/*[1]')
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(@header).to eq(header)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Query per la selezione del primo elemento del 
+\begin_inset Quotes eld
+\end_inset
+
+body
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il vantaggio di creare dei selettori attraverso query XPath consiste nella
+ possibilità di introdurre sia vincoli sulla struttura, nel frammento di
+ codice è selezionato il primo elemento appartenente al 
+\begin_inset Quotes eld
+\end_inset
+
+body
+\begin_inset Quotes erd
+\end_inset
+
+ della pagina, sia vincoli sul contenuto degli attributi e dei valori.
+\end_layout
+
+\begin_layout Standard
+La definizione di selettori tramite CSS permette la definizione di query
+ sulla struttura del DOM, ma è possibile solo verificare il testo dei nodi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def post_divs_matching_title(page, post_title)
+\end_layout
+
+\begin_layout Plain Layout
+
+	xpath_query = "//div[@class = 'post'][p/a[contains(text(),'#{post_title}')]]"
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.all(:xpath, xpath_query)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Query per la selezione dei 
+\begin_inset Quotes eld
+\end_inset
+
+div
+\begin_inset Quotes erd
+\end_inset
+
+ con un titolo corrispondente al paramentro.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+find
+\begin_inset Quotes erd
+\end_inset
+
+ di Capybara, ma in generale tutti i metodi del modulo Finders, supportano
+ la definizione di selettori attraverso XPath e CSS ma non è distinto automatica
+mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
+ sono stati invocati con il simbolo 
+\begin_inset Quotes eld
+\end_inset
+
+:xpath
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definizione del modello
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Gestione dei post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei poter inserire, leggere, modificare e rimuovere dei post su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter documentare la tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:03x00 Modello"
+
+\end_inset
+
+Funzionalità dell'iterazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo dell'iterazione corrente è aggiungere delle pagine dinamiche
+ per la gestione dei post su RBlog.
+ Le funzionalità supportate sono le CRUD, Create, Read, Update, Delete.
+ La generazione dei controller e del modello è stata fatta sfruttando le
+ funzionalità a riga di comando del comando 
+\begin_inset Quotes eld
+\end_inset
+
+rails generate
+\begin_inset Quotes erd
+\end_inset
+
+ che permette la definizione di tutte le componenti presenti nel framework
+ attraverso una sintassi intuitiva.
+\end_layout
+
+\begin_layout Standard
+Le componenti generate richiedono ovviamente di essere personalizzate ma
+ espongono una struttura completa che minimizza la configurazione.
+\end_layout
+
+\begin_layout Subsection
+Dipendenze
+\end_layout
+
+\begin_layout Standard
+Nella definizione degli scenari è conveniente utilizzare uno stile che favorisca
+ sia lo sviluppatore, che ha il compito di scrivere e mantenere i test di
+ accettazione, sia gli stakes holder, che tramite gli scenari possono seguire
+ lo sviluppo del prodotto.
+\end_layout
+
+\begin_layout Standard
+Gli scenari devono essere indipendenti fra loro e l'ordine di esecuzione
+ non deve aver conseguenze sul risultato.
+ Mantenere delle dipendenze funzionali all'interno nella libreria di testing
+ può introdurre diverse problematiche all'aumentare della cardinalità dei
+ test e della complessità o alla variazione dello condizioni d'esecuzione,
+ introducendo ad esempio l'esecuzione in parallelo di più scenari.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli scenari della funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:03x00 Modello"
+
+\end_inset
+
+ sfruttando le interfacce di RBlog per creare, modificare e rimuovere post.
+ E' quindi necessario introdurre delle procedure per annullare le modifiche
+ compiute.
+\end_layout
+
+\begin_layout Paragraph
+Hooks
+\end_layout
+
+\begin_layout Standard
+Cucumber definisce degli istanti durante l'esecuzione dei test ai quali
+ 
+\begin_inset Quotes eld
+\end_inset
+
+agganciare
+\begin_inset Quotes erd
+\end_inset
+
+ l'esecuzione di eventi definiti dallo sviluppatore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Scrittura di un nuovo post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato il post "Lorem Ipsum" non è leggibile su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	E apro la pagina per la creazione di un nuovo post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco "Lorem Ipsum" come titolo
+\end_layout
+
+\begin_layout Plain Layout
+
+	E inserisco del testo riempitivo come contenuto
+\end_layout
+
+\begin_layout Plain Layout
+
+	E salvo il post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora il post "Lorem Ipsum" è stato creato con successo
+\end_layout
+
+\begin_layout Plain Layout
+
+	E il post "Lorem Ipsum" è leggibile su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Creazione di un nuovo post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo scenario si conclude con la creazione di un nuovo post dal titolo 
+\begin_inset Quotes eld
+\end_inset
+
+Lorem Ipsum
+\begin_inset Quotes erd
+\end_inset
+
+, eseguendo nuovamente il test la prima pre-condizione non sarebbe verificata.
+ Tramite il meccanismo degli hook
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cucumber Hook"
+
+\end_inset
+
+ in Cucumber sono state definite delle procedure per annullare tutte le
+ modifiche effettuate sull'applicazione.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La definizione degli hook non richiede alcuna configurazione, è sufficiente
+ inserire il nuovo file all'interno della cartella contenente l'implementazione
+ dei passi.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+After('@clear') do
+\end_layout
+
+\begin_layout Plain Layout
+
+	clear_all_ipsums(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hook eseguito al termine degli scenari.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel frammento è utilizzato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+After
+\begin_inset Quotes erd
+\end_inset
+
+, a cui è attribuita l'operazione da eseguire al termine dello scenario.
+ Il metodo è applicato esclusivamente agli scenari che sono etichettati
+ con 
+\begin_inset Quotes eld
+\end_inset
+
+@clear
+\begin_inset Quotes erd
+\end_inset
+
+, se fosse utilizzato senza parametri l'esecuzione avverrebbe al termine
+ di ogni scenario della libreria.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+clear_all_ipsums
+\begin_inset Quotes erd
+\end_inset
+
+ verifica la presenza di articoli i cui titoli contengano il testo 
+\begin_inset Quotes eld
+\end_inset
+
+Lorem Ipsum
+\begin_inset Quotes erd
+\end_inset
+
+ e ne effettuano la cancellazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+After
+\begin_inset Quotes erd
+\end_inset
+
+, ma in generale anche 
+\begin_inset Quotes eld
+\end_inset
+
+Before
+\begin_inset Quotes erd
+\end_inset
+
+ e gli hook per i singoli passi 
+\begin_inset Quotes eld
+\end_inset
+
+AfterStep
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+BeforeStep
+\begin_inset Quotes erd
+\end_inset
+
+, sono utilizzabili con un numero arbitrario di etichette.
+ Inoltre è possibile definire dei blocchi con un singolo parametro rappresentant
+e lo scenario che espone delle funzionalità per verificare il risultato
+ dello scenario\SpecialChar \@.
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Around('@fast') do |scenario, block|
+\end_layout
+
+\begin_layout Plain Layout
+
+	Timeout.timeout(0.5) do
+\end_layout
+
+\begin_layout Plain Layout
+
+		block.call
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+Around
+\begin_inset Quotes erd
+\end_inset
+
+ invece è utilizzato per essere eseguito 
+\begin_inset Quotes eld
+\end_inset
+
+intorno
+\begin_inset Quotes erd
+\end_inset
+
+ allo scenario e poter effetture delle misurazioni sulla velocità degli
+ scenario.
+ Lo scenario è passato al blocco del metodo attraverso un ulteriore parametro.
+\end_layout
+
+\begin_layout Paragraph
+Tool disponibili
+\end_layout
+
+\begin_layout Standard
+Per non introdurre un alto numero di librerie all'interno del progetto,
+ gli hook eseguono le azioni di regressione attraverso l'interfaccia grafica
+ dell'applicazione utilizzando le stesse funzionalità presenti nei passi.
+\end_layout
+
+\begin_layout Standard
+Esistono però delle librerie che, attraverso una sintassi semplificata,
+ offrono le funzionalità per la creazione e manipolazione di nuovi elementi
+ all'interno del modello come FactoryGirl, o strumenti come DatabaseCleaner
+ che offrono le funzionalità per l'eliminazione di quanto presente nel sistema
+ attraverso diverse strategie.
+\end_layout
+
+\begin_layout Standard
+Nel caso di librerie di test complesse potrebbe essere conveniente utilizzare
+ uno di questi strumenti per semplificare lo sviluppo e concentrarsi esclusivame
+nte sullo verifica degli scenari.
+\end_layout
+
+\begin_layout Subsection
+Gestione dei form
+\end_layout
+
+\begin_layout Standard
+Per le operazioni di inserimento e modifica dei post in RBlog sono state
+ definite due viste e un semplice form, contenuto all'interno di una vista
+ parziale.
+ La gestione degli eventi da parte di Capybara e Poltergeist è uno degli
+ aspetti in cui la coppia framework - driver eccelle.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^inserisco "([^"]*)" come titolo$/) do |title_value|
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.fill_in 'post_title', :with => title_value
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I campi dei form sono compilati attraverso il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+fill_in
+\begin_inset Quotes erd
+\end_inset
+
+ che individua i nodi HTML 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+text_area
+\begin_inset Quotes erd
+\end_inset
+
+ in funzione del nome del campo e inserisce il testo specificato dal parametro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+:with
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^salvo il post$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	click_button 'submit'
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le funzionalità del modulo Actions sono estremamente semplici ed intuitive:
+ sono supportati diversi tipologie di campi, dalle aree testuali ai check
+ box, è possibile selezionare un file da allegare tramite il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+attach_file
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Tutti i metodi presenti offrono allo sviluppatore del driver di estendere
+ le funzionalità attraverso un parametro 
+\begin_inset Quotes eld
+\end_inset
+
+options
+\begin_inset Quotes erd
+\end_inset
+
+ di tipo Hash, l'implementazione della struttura dato dizionario in Ruby.
+\end_layout
+
+\begin_layout Paragraph
+Il metodo within
+\end_layout
+
+\begin_layout Standard
+Per semplificare l'esecuzione di più operazioni che condividono lo stesso
+ nodo è disponbile il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+within
+\begin_inset Quotes erd
+\end_inset
+
+, che esegue il blocco associato nel contesto del nodo passato come parametro.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^cancello il post "([^"]*)"$/) do |post_title|
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(page.has_content?(post_title)).to be_truthy
+\end_layout
+
+\begin_layout Plain Layout
+
+	post_div = steps_helper.post_div_by_title(page, post_title)
+\end_layout
+
+\begin_layout Plain Layout
+
+	within(post_div) do
+\end_layout
+
+\begin_layout Plain Layout
+
+		#...
+\end_layout
+
+\begin_layout Plain Layout
+
+		find('.remove_post_button').click
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Login & Autorizzazione
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo della funzionalità è l'introduzione di un meccanismo di autenticazi
+one e gestione delle autorizzazioni in RBlog.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Autenticazione su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore di RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei che alcune operazioni sensibili siano permesse previa autenticazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter garantire l'autenticità dei contenuti
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Descrizione della funzionalità di autenticazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per supportare le operazioni di login e logout all'interno del blog è stata
+ modificata l'applicazione in tutte le sue componenti.
+ All'interno del modello è stato introdotta l'entità autore, definita da
+ un indirizzo email, unico all'interno del dominio, una password ed una
+ relazione uno a molti con i post.
+\end_layout
+
+\begin_layout Standard
+Per rendere più realistico il meccanismo di autenticazione, non è mantenuta
+ la password in chiaro ma la coppia impronta hash e salt, riducendo la sensibili
+tà ad attacchi di tipo dizionario sull'impronta hash della password.
+ Il salt è una stringa casuale da concatenare alla password in chiaro per
+ generare impronte hash più sicure.
+ La generazione del sale e il calcolo delle impronte è effettuato tramite
+ la gemma BCrypt
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BCrypt"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class SessionsController < ApplicationController
+\end_layout
+
+\begin_layout Plain Layout
+
+	def create
+\end_layout
+
+\begin_layout Plain Layout
+
+		author = Author.authenticate(params[:email], params[:hpassword])
+\end_layout
+
+\begin_layout Plain Layout
+
+		if author
+\end_layout
+
+\begin_layout Plain Layout
+
+			session[:author_id] = author.id
+\end_layout
+
+\begin_layout Plain Layout
+
+			redirect_to
+\end_layout
+
+\begin_layout Plain Layout
+
+				:root, :notice => 'Login effettuato, benvenuto!'
+\end_layout
+
+\begin_layout Plain Layout
+
+		else
+\end_layout
+
+\begin_layout Plain Layout
+
+			redirect_to :log_in, :notice => 'Credenziali invalide.'
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento del controllo per l'autenticazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il controllo 
+\begin_inset Quotes eld
+\end_inset
+
+SessionController
+\begin_inset Quotes erd
+\end_inset
+
+ è stato aggiunto all'applicazione, dichiarando l'instradamento per le richieste
+ alla pagina di login, la creazione della sessione ed il logout.
+ Il login su RBlog coincide con la creazione di una sessione con attributo
+ l'identificatore univoco dell'autore.
+ Rails fornisce le interfacce per la gestione di sessioni, che vengono criptate
+ di default.
+\end_layout
+
+\begin_layout Subsection
+Black-box Testing
+\end_layout
+
+\begin_layout Standard
+Lo sviluppo di test di accettazione automatici prevede di considerare il
+ sistema da una prospettiva esterna, senza alcuna conoscenza dell'implementazion
+e sottostante.
+ I test sono definiti e verificati osservando il comportamento di una scatola
+ nera e non dovrebbero fare assunzioni sul comportamento del software.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante questo requisito, i test sull'autenticazione rilassano il principio
+ del black-box testing per verificare le potenzialità di Capybara nella
+ gestione di sessioni e cookie.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def encrypted_session(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	cookies = page.driver.cookies
+\end_layout
+
+\begin_layout Plain Layout
+
+	cookies.values[0].value
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Accesso alla sessione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' importante ricordare che l'architettura di Capybara prevede l'utilizzo
+ di driver e funzionalità a basso livello, come la gestione delle sessioni,
+ potrebbero variare in funzione delle componenti scelte.
+\end_layout
+
+\begin_layout Standard
+Poltergeist implementa le funzionalità per la lettura dei cookie, come mostrato
+ nel metodo 
+\begin_inset Quotes eld
+\end_inset
+
+encrypted_session
+\begin_inset Quotes erd
+\end_inset
+
+, definendo diversi metodi per accedere alle proprietà.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sono presenti i metodi: 
+\begin_inset Quotes eld
+\end_inset
+
+name
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+domain
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+path
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+secure?
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+httponly?
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+expires
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre è possibile creare e rimuovere i cookie, funzionalità utili nella
+ definizione degli hook di Cucumber.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^mi autentico come "([^"]*)"$/) do |email|
+\end_layout
+
+\begin_layout Plain Layout
+
+	pre_login_encrypted_session = steps_helper.encrypted_session(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	visit steps_helper.login_page_url
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*.....*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*Login*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*.....*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	post_login_encrypted_session = steps_helper.encrypted_session(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(pre_login_encrypted_session).not_to
+\end_layout
+
+\begin_layout Plain Layout
+
+	eq(post_login_encrypted_session)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Login su RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'implementazione del passo di login comprende la compilazione dei campi
+ relativi all'email e alla password ed una semplice asserzione sul valore
+ criptato della sessione: dopo la verifica delle credenziali viene aggiunto
+ un attributo facendo variare la codifica.
+\end_layout
+
+\begin_layout Subsection
+Manutenibilità
+\end_layout
+
+\begin_layout Standard
+L'introduzione dell'autenticazione è l'unica funzionalità che abbia inciso
+ su tutte le componenti dell'applicazione ed anche sui test di accettazione
+ già presenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap3
+\end_layout
+
+\begin_layout Plain Layout
+
+@clear_and_logout
+\end_layout
+
+\begin_layout Plain Layout
+
+Funzionalità: Gestione dei post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore   
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei poter inserire, modificare e rimuovere dei post su RBlog   
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter documentare la mia tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  Contesto:     
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato che apro RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	E mi autentico come "mattia@rblog.io"
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Variazioni nella funzionalità di creazione dei post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Introducendo la verifica delle autorizzazioni, l'accesso alle funzionalità
+ di creazione, modifica e cancellazione di un post non sono più eseguibile
+ senza aver compiuto l'autenticazione.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Dalle pagine sono rimossi i collegamenti alle azioni riservate e l'accesso
+ diretto alle pagine senza aver effettuato l'autenticazione causa la ridirezione
+ verso la pagina di login.
+\end_layout
+
+\end_inset
+
+ E' stato quindi necessario modificare il contesto di alcune funzionalità
+ specificando l'azione di login ed estendere le operazioni di regressione
+ dopo ogni scenario per includere il logout.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+After('@clear_and_logout') do
+\end_layout
+
+\begin_layout Plain Layout
+
+	clear_all_ipsums(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	logout(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Il nuovo hook combina regressione del modello e logout.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La precedente etichetta 
+\begin_inset Quotes eld
+\end_inset
+
+@clear
+\begin_inset Quotes erd
+\end_inset
+
+ è stata sostituita da 
+\begin_inset Quotes eld
+\end_inset
+
+@clear_and_logout
+\begin_inset Quotes erd
+\end_inset
+
+, non è stata trovato alcun riferimento sull'ordine di esecuzione degli
+ hook che avrebbe permesso l'introduzione di una nuova etichetta piuttosto
+ che la modifica di quella esistente.
+\end_layout
+
+\begin_layout Standard
+Le variazioni riguardanti le operazioni di regressione hanno ulteriormente
+ complicato la funzionalità: ritengo che l'uso di etichette, sintatticamente
+ più vicine a Java che al linguaggio naturale, stoni all'interno di un documento
+ scritto attraverso un linguaggio Business Readable come Gherkin.
+\end_layout
+
+\begin_layout Standard
+L'uso di etichette su scenari e funzionalità dovrebbe essere utile solo
+ per organizzare i test in maniera non funzionale, come categorizzare in
+ base al tempo di esecuzione richiesto -ad esempio @rapido, @standard e
+ @lento- o stabilendo i giusti intervalli di l'esecuzione su un server per
+ la CI -ad esempio @sempre, @ogni_ora, @ogni_notte-.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Asincronia
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo delle prossime funzionalità è verificare le potenzialità di
+ Capybara con Javascript, JQuery, JQuery UI e Ajax, strumenti che permettono
+ la definizione di comportamenti asincroni.
+\end_layout
+
+\begin_layout Subsection
+JavaScript
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Easter Egging
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Sviluppatore
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei che nel blog fosse presente un mio logo
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per firmare il mio lavoro
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:05bx00 EasterEgg"
+
+\end_inset
+
+Introduzione di un breve script Javascript.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tramite questa funzionalità è introdotto un piccolo script Javascript, associato
+ all'evento 
+\begin_inset Quotes eld
+\end_inset
+
+onclick
+\begin_inset Quotes erd
+\end_inset
+
+ del 
+\begin_inset Quotes eld
+\end_inset
+
+div
+\begin_inset Quotes erd
+\end_inset
+
+ piè di pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<div id="footer" onclick="switch_easter_egg()">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<p>© 2014 - Mattia</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Footer di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function switch_easter_egg() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	var woodstock = $('#woodstock');
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (!woodstock.length) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		var img = document.createElement("img");
+\end_layout
+
+\begin_layout Plain Layout
+
+		img.src = "/assets/woodstock.png";
+\end_layout
+
+\begin_layout Plain Layout
+
+		img.id = "woodstock";
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+		document.getElementById("footer").appendChild(img);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}else{
+\end_layout
+
+\begin_layout Plain Layout
+
+		woodstock.remove();
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento della funzione per aggiunta e rimozione del logo.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La funzione, tramite un selettore JQuery, aggiunge o rimuove un piccolo
+ logo in fondo alla pagina.
+ Il click sull'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+#footer
+\begin_inset Quotes erd
+\end_inset
+
+ esegue la funzione e modifica di conseguenza il DOM.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Capybara è stato sviluppato sotto l'assunzione che nello sviluppo di applicazion
+i web moderne potenzialmente ogni elemento potrebbe essere il risultato
+ di un comportamento asincrono; per ogni operazione sul DOM è concesso che
+ l'elemento debba ancora apparire.
+ Capybara permette la configurazione di un parametro di attesa che specifica
+ il tempo massimo, dopo il quale verrà sollevata un'eccezione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Given(/^non è presente il logo nell'intestazione$/) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	step 'è presente il pié di pagina'
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(@footer.has_css?('img')).to be_falsy
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(@footer.has_css?('#woodstock')).to be_falsy
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'implementazione dei passi non subisce alcuna modifica in funzione del
+ tipo di comportamento dell'elemento sotto test.
+ Non è quindi necessario specificare manualmente dei timeout o delle pause
+ arbitrarie nei test, ma è Capybara stesso a gestire quest'aspetto.
+\end_layout
+
+\begin_layout Subsection
+JQueryUI
+\end_layout
+
+\begin_layout Standard
+JQuery UI
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JQueryUI"
+
+\end_inset
+
+ è una libreria grafica per l'introduzione di plugin grafici all'interno
+ di applicazioni web.
+ Attualmente alla versione 1.11, è sviluppata sfruttando JQuery e permette
+ una rapida integrazione di widget, come menu con auto-completamento o selettori
+ di date, ed effetti grafici.
+ Le uniche dipendenze richieste sono JQuery e Javascript.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'interno di RBlog, ed in particolare nell'intestazione del sito, è stato
+ introdotto un semplice form HTML per ricercare i post in funzione del titolo.
+ La ricerca definisce un parametro HTTP che è analizzato dallo stesso controllo
+ che popola la home page.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il comportamento tipico dei widget definiti in JQuery UI è intuitivo: le
+ azioni eseguite in maniera asincrona modificano il DOM della pagina corrente,
+ aggiungendo o modificando un insieme di nodi.
+ Per ogni plugin è presente un foglio di stile che descrive l'aspetto grafico
+ dell'elemento introdotto.
+ Ad esempio il menu con auto-completamento aggiunge una lista in HTML, attravers
+o i nodi 
+\begin_inset Quotes eld
+\end_inset
+
+ul
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+il
+\begin_inset Quotes erd
+\end_inset
+
+, come ultimi elementi del 
+\begin_inset Quotes eld
+\end_inset
+
+body
+\begin_inset Quotes erd
+\end_inset
+
+.
+ La lista numerata e gli elementi sono però visualizzati immediatamente
+ al di sotto del campo 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ a cui si riferiscono grazie ai fogli di stile.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+JQuery UI definisce anche diversi temi per i plugin, garantendo una migliore
+ integrazione estetica.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Ajax
+\end_layout
+
+\begin_layout Standard
+I parametri che definiscono il widget del menu permettono di indicare quale
+ sia la sorgente per auto-completare il testo immesso nel campo di 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+.
+ E' possibile dichiarare staticamente i dati oppure fornirli in maniera
+ dinamica in funzione del testo inserito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function autocomplete() {     
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ($("#search_input_text").length) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		$("#search_input_text").autocomplete({
+\end_layout
+
+\begin_layout Plain Layout
+
+			source: function (request, response){
+\end_layout
+
+\begin_layout Plain Layout
+
+				$.ajax({
+\end_layout
+
+\begin_layout Plain Layout
+
+					url: "/posts/autocomplete_title",
+\end_layout
+
+\begin_layout Plain Layout
+
+					data: {title: $("#search_input_text").val()}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+					success: function (data) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				         response(data);
+\end_layout
+
+\begin_layout Plain Layout
+
+					},
+\end_layout
+
+\begin_layout Plain Layout
+
+					failure: function () {
+\end_layout
+
+\begin_layout Plain Layout
+
+				         console.log("Failure");
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				})
+\end_layout
+
+\begin_layout Plain Layout
+
+			},
+\end_layout
+
+\begin_layout Plain Layout
+
+			minLength: 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+			focus: function (event, ui) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				$("#search_input_text").val(ui.item.value);
+\end_layout
+
+\begin_layout Plain Layout
+
+			},
+\end_layout
+
+\begin_layout Plain Layout
+
+			select: function (event, ui) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				$("#search_input_text").val(ui.item.value);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		});
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Funzione di autocompletamento in JavaScript.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+AJAX, acronimo di Asynchronous JavaScript and XML, è una libreria in JavaScript
+ per lo scambio di dati fra il web-browser ed il server che ospita l'applicazion
+e web.
+ Il comportamento è definito asincrono in quanto le informazioni che sono
+ ottenute tramite la libreria, sono caricati in background senza interferire
+ con il comportamento della pagina.
+\end_layout
+
+\begin_layout Standard
+In RBlog la compilazione del campo per la ricerca di post effettua una chiamata
+ AJAX ad un controllo che, ricevuto un parametro GET, restituisce un array
+ di stringhe serializzate tramite Json contenente i titoli dei post per
+ completare la ricerca.
+\begin_inset Newline newline
+\end_inset
+
+La funzione 
+\begin_inset Quotes eld
+\end_inset
+
+autocomplete
+\begin_inset Quotes erd
+\end_inset
+
+ è associata alla pagina di RBlog tramite gli eventi di JQuery.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$(window).bind('page:change', autocomplete);
+\end_layout
+
+\begin_layout Plain Layout
+
+$(document).ready(autocomplete);
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Callback per la funzione 
+\begin_inset Quotes eld
+\end_inset
+
+autocomplete
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Scenari sull'auto-completamento
+\end_layout
+
+\begin_layout Standard
+Rispetto alla funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:05bx00 EasterEgg"
+
+\end_inset
+
+, dove il DOM è modificato tramite una chiamata Javascript in maniera praticamen
+te istantanea, introdurre l'auto-completamento della ricerca introduce l'utilizz
+o di AJAX ed un maggior ritardo nell'aggiornamento della pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Ricerca fra i post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei poter ricercare i post su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter navigare fra i contenuti più velocemente
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Introduzione della ricerca.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo della funzionalità è verificare le potenzialità di Capybara
+ nella gestione di chiamate AJAX e nell'utilizzo di widget di JQuery UI.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fino alla versione 2.0 Capybara includeva il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+wait_until
+\begin_inset Quotes erd
+\end_inset
+
+ per la verifica di elementi potenzialmenti asincroni.
+ Il metodo nell'ultimo rilascio della libreria è stato integrato in tutte
+ le funzionalità e rimosso, permettendo di definire test senza la necessità
+ di definire timeout e attese.
+\end_layout
+
+\begin_layout Standard
+E' ora presente una nuova funzionalità per verificare pagine web che espongono
+ comportamenti asincroni.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ esegue il blocco associato fino a che non ha successo, permettendo il corretto
+ completamento delle funzioni AJAX.
+ L'esecuzione del blocco dipende dal tempo di attesa definito in Capybara,
+ configurabile in funzione delle necessità.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def finished_all_ajax_requests?(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.document.synchronize do
+\end_layout
+
+\begin_layout Plain Layout
+
+		page.find('#ui-id-1')
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def wait_for_ajax(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+	begin
+\end_layout
+
+\begin_layout Plain Layout
+
+		Timeout.timeout(Capybara.default_wait_time)
+\end_layout
+
+\begin_layout Plain Layout
+
+		do
+\end_layout
+
+\begin_layout Plain Layout
+
+			loop until finished_all_ajax_requests?(page)
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+	rescue Timeout::Error
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+	yield if block_given?
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Utilizzo del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+syncronize
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il vantaggio di utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto all'utilizzo classico della libreria, che non prevede l'introduzione
+ di attese o polling, consiste nella verifica delle situazioni dove un elemento
+ è presente sulla pagina, come la lista numerata del plugin di JQuery UI,
+ ma è necessario dare il tempo al browser di completarne il rendering, in
+ quanto le funzionalità di Capybara sono più veloci.
+\begin_inset Newline newline
+\end_inset
+
+Lo svantaggio dell'utilizzo del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ consiste nell'introduzione di stalli per l'esecuzione di test in cui gli
+ elementi asincroni non debbano apparire, come una ricerca senza suggerimenti.
+ Inoltre, l'attesa per un elemento potrebbe mascherare componenti lente
+ all'interno del sito e un cattivo Look and Feel, richiedendo comunque una
+ verifica manuale dell'applicazione web.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le difficoltà nella verifica di widget asincroni sono causate sia dalla
+ necessità di prevedere ritardi nella visualizzazione sia nella simulazione
+ dell'interazione con le componenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Autocompletamento della ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato nell'intestazione è presente la barra di ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato il post "Lorem Ipsum" esiste
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "lor" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora viene proposto il post "Lorem Ipsum"
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "xyz" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora non è proposto alcun post
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'auto-completamento in RBlog prevede che la compilazione del campo di ricerca
+ fornisca alcuni suggerimenti all'utente.
+ Inoltre al passaggio del cursore su una delle voci suggerite o utilizzando
+ la tastiera per selezionare un'opzione, il testo digitato dall'utente è
+ sostituito dalla voce corrente.
+\end_layout
+
+\begin_layout Standard
+Queste interazioni con il widget prevedono la definizione di passi che esplicita
+no una successione di eventi sugli elementi del DOM.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^inserisco il testo "([^"]*)" da ricercare$/) do |searched_text|
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.fill_in 'search', :with => searched_text
+\end_layout
+
+\begin_layout Plain Layout
+
+	search_input = page.find('#search_input_text')
+\end_layout
+
+\begin_layout Plain Layout
+
+	search_input.trigger(:focus)
+\end_layout
+
+\begin_layout Plain Layout
+
+	#search_input.trigger(:keydown)
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.execute_script %Q{ $('#search_input_text').trigger('keydown') }
+\end_layout
+
+\begin_layout Plain Layout
+
+	steps_helper.wait_for_ajax page
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Compilazione del menù con autocompletamento.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel passo è inserito il valore del parametro 
+\begin_inset Quotes eld
+\end_inset
+
+searched_text
+\begin_inset Quotes erd
+\end_inset
+
+, eseguito il focus dell'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ tramite il quale effettuare la ricerca ed è invocata la pressione del tasto
+ 
+\begin_inset Quotes eld
+\end_inset
+
+freccia giù
+\begin_inset Quotes erd
+\end_inset
+
+ per selezionare il primo elemento.
+ Il passo si conclude con l'attesa che il menù sia completamente renderizzato.
+\end_layout
+
+\begin_layout Standard
+Poltergeist non implementa tutti i possibili eventi disponibili, è quindi
+ necessario sfruttare script JQuery per colmare le mancanze del driver.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+When(/^ricerco "([^"]*)"$/) do |searched_text|
+\end_layout
+
+\begin_layout Plain Layout
+
+	step "inserisco il testo 
+\backslash
+"#{searched_text}
+\backslash
+" da ricercare"
+\end_layout
+
+\begin_layout Plain Layout
+
+	steps_helper.wait_for_ajax page do
+\end_layout
+
+\begin_layout Plain Layout
+
+		regexp = Regexp.new(Regexp.escape(searched_text), 'i')
+\end_layout
+
+\begin_layout Plain Layout
+
+		if page.has_css?('.ui-menu-item', :text => regexp)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint = page.find(:xpath, "//li[@class = 'ui-menu-item']")
+\end_layout
+
+\begin_layout Plain Layout
+
+			expect(post_hint.text).to match(%r{#{searched_text}}i)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint.trigger(:mouseenter)
+\end_layout
+
+\begin_layout Plain Layout
+
+			post_hint.click
+\end_layout
+
+\begin_layout Plain Layout
+
+		end
+\end_layout
+
+\begin_layout Plain Layout
+
+		find('#search_icon').click
+\end_layout
+
+\begin_layout Plain Layout
+
+	end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ricerca di un post tramite click di una delle opzioni proposte.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rispetto al passo precedente, dove il testo da ricercare veniva esclusivamente
+ inserito, nell'implementazione del evento corrente viene completata la
+ ricerca.
+\end_layout
+
+\begin_layout Standard
+Invocando il passo precedente il form è compilato, mentre le azioni sono
+ eseguite all'interno del blocco fornito al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+wait_for_ajax
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Con il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+has_css
+\begin_inset Quotes erd
+\end_inset
+
+, che individua nel DOM l'elemento che coincide con selettore ed il cui
+ testo soddisfa l'espressione regolare, si ottiene un riferimento al nodo
+ sul quale spostare il cursore ed effettuare il click.
+ Per completare la ricerca è eseguito un ulteriore click sull'immagine che
+ effettua l'invio del form.
+\begin_inset Newline newline
+\end_inset
+
+La difficoltà nell'utilizzo di plugin definiti tramite librerie grafiche
+ come JQuery UI o Bootstrap, consiste nella razionalizzazione degli eventi
+ che manualmente vengono compiuti per utilizzare le interfacce grafiche.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Then(/^viene proposto il post "([^"]*)"$/) do |hint|
+\end_layout
+
+\begin_layout Plain Layout
+
+	ui_menu_items = page.all(:xpath, "//li[@class = 'ui-menu-item'][text() =
+ 
+\backslash
+"#{hint}
+\backslash
+"]")
+\end_layout
+
+\begin_layout Plain Layout
+
+	expect(ui_menu_items.length).to be == 1 end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Avendo gestito l'asincronia ed utilizzato i giusti eventi, le asserzioni
+ non presentano ulteriori accorgimenti.
+\end_layout
+
+\end_body
+\end_document
