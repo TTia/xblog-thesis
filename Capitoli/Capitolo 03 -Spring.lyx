@@ -77,7 +77,7 @@ Spring
 \begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "ch:rubyonrails"
+name "ch:spring"
 
 \end_inset
 
@@ -981,7 +981,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:PostRepository"
@@ -1268,7 +1267,6 @@ public class PostController extends AbstractController {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Dichiarazione metodo Show"
@@ -1525,7 +1523,6 @@ public String[] autocompleteTitle( 			@RequestParam(value = "title", required
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Implementazione di un metodo privo di interfaccia web.
 \end_layout
 
@@ -1871,7 +1868,6 @@ public class PostController extends AbstractController {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Uso dell'annotazione @Autowired.
 \end_layout
 
@@ -1943,19 +1939,24 @@ Le viste
 \end_layout
 
 \begin_layout Standard
-Introduzione ad Thymeleaf
+Per l'implementazione delle viste di SBlog è stato utilizzato Thymeleaf,
+ una libreria Java per la generazione dinamica di documenti web.
+ La libreria, organizzata in due moduli contenenti le funzionalità standard
+ e quelle specifiche per Spring, permette la definizione di pagine dinamiche
+ utilizzando esclusivamente elementi sintattici esistenti nell'HTML.
+ Al contrario ERB e Razor, il template engine di MVC 5 descritto nel prossimo
+ capitolo, prevedono l'utilizzo di delimitatori per includere frammenti
+ di codice non interpretabili da un browser ma da processare tramite un
+ server web.
 \end_layout
 
 \begin_layout Standard
-plugin per eclipse
-\end_layout
-
-\begin_layout Standard
-properties, in generale, e per TL
-\end_layout
-
-\begin_layout Standard
-Difficoltà nel utilizzo di Sass e simili
+Dopo essermi documentato sui template engine comunemente utilizzati con
+ Spring e Java, ho scelto di non implementare le viste tramite JSP, JavaServer
+ Page.
+ Principalmente il motivo della scelta è stato dettato dai diversi problemi
+ tecnici nella configurazione della libreria utilizzando Spring MVC 4 e
+ Spring Boot, che verrà discusso in seguito.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1963,19 +1964,588 @@ Thymeleaf
 \end_layout
 
 \begin_layout Standard
-JSP?
+Tutti gli attributi utilizzati dalla libreria sono presenti nel namespace
+ 
+\begin_inset Quotes eld
+\end_inset
+
+http://www.thymeleaf.org
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In eclipse è presente un plugin per assistere lo sviluppatore nella definizione
+ delle viste, che implementa funzionalità elementari come l'auto-completamento
+ e la colorazione delle parole chiave.
+\end_layout
+
+\end_inset
+
+; una vista definita con Thymeleaf ha estensione e struttura identica ad
+ un documento HTML statico: i tag introdotti dalla libreria non vengono
+ analizzati dai browser permettendo l'implementazione di prototipi offline,
+ senza necessariamente avere un'architettura MVC funzionante.
 \end_layout
 
 \begin_layout Standard
-Uso degli attributi
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<html xmlns:th="http://www.thymeleaf.org">
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dichiarazione del namespace.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Come in RoR, uno degli obbiettivi nella definizione delle viste è individuare
+ delle tecniche per fattorizzare gli elementi comuni.
+ Tramite l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+th:replace
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile sostituire il nodo corrente con un'intera vista.
 \end_layout
 
 \begin_layout Standard
-Vantaggi: sviluppo offline, testo di default, viste senza logica
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<!DOCTYPE html>
+\end_layout
+
+\begin_layout Plain Layout
+
+<html xmlns:th="http://www.thymeleaf.org">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<head th:replace="/layouts/head"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<body th:class="${class_name}">
+\end_layout
+
+\begin_layout Plain Layout
+
+		<div id="header" th:replace="/layouts/header"></div>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<div th:replace="${content_template}"></div>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<div id="footer" th:replace="/layouts/footer"></div>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</body>
+\end_layout
+
+\begin_layout Plain Layout
+
+</html>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Struttura comune delle viste in SBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Svantaggi
+Le viste in SBlog prevedono un elemento 
+\begin_inset Quotes eld
+\end_inset
+
+head
+\begin_inset Quotes erd
+\end_inset
+
+, contenente i riferimenti alle risorse come fogli di stile
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A differenza di RoR e RubyMine, nella definizione delle viste non è stato
+ utilizzato Sass, o altre estensioni del CSS, per la mancanza di plugin
+ in Eclipse che forniscano la compilazione automatica ed il supporto alla
+ scrittura delle pagine di stile.
+\end_layout
+
+\end_inset
+
+ e librerie JavaScript.
+ Il 
+\begin_inset Quotes eld
+\end_inset
+
+body
+\begin_inset Quotes erd
+\end_inset
+
+ è suddiviso in tre principali aree: l'intestazione, il contenuto principale
+ ed il piè di pagina.
+\begin_inset Newline newline
+\end_inset
+
+Indicativamente, ogni attributo presente in HTML5 ha una controparte in
+ Thymeleaf per la definizione di comportamenti dinamici, brevemente nelle
+ prossime sezioni sono introdotte le funzionalità utilizzate ed alcuni frammenti
+ delle viste che le contengono.
+\end_layout
+
+\begin_layout Subsubsection*
+Visualizzazione dei post
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<div class='post' th:each="post : ${posts}">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<p class="post_title">
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:TL Iterazione sui post"
+
+\end_inset
+
+Iterazione su una collezione di post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+each
+\begin_inset Quotes erd
+\end_inset
+
+ presente nel primo nodo della vista parziale permette di iterare su una
+ collezione 
+\begin_inset Quotes eld
+\end_inset
+
+posts
+\begin_inset Quotes erd
+\end_inset
+
+ in maniera simile al costrutto 
+\begin_inset Quotes eld
+\end_inset
+
+foreach
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Gli oggetti presenti nella vista sono acceduti tramite l'istanza di 
+\begin_inset Quotes eld
+\end_inset
+
+Model
+\begin_inset Quotes erd
+\end_inset
+
+ presente nell'azione del controller che ha gestito la richiesta.
+ L'espressione 
+\begin_inset Quotes eld
+\end_inset
+
+${id}
+\begin_inset Quotes erd
+\end_inset
+
+ è la più utilizzata nella definizione delle viste ed effettua l'accesso
+ all'elemento associato alla chiave 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<div class="post_detail" th:text="${post.creationDetail()}"></div>
+\end_layout
+
+\begin_layout Plain Layout
+
+<div class="post_detail" th:text="${post.author.authorDetail()}"></div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Iterazione sugli attributi di un post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'interno delle espressioni di Thymeleaf gli attributi forniti alla vista
+ sono oggetti, ed è quindi possibile accedere ai metodi d'istanza e ai valori.
+ L'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+text
+\begin_inset Quotes erd
+\end_inset
+
+ sostituisce il testo presente all'interno del nodo HTML con il valore dell'espr
+essione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<a th:if="${post.body.length()} > 500" th:href="|/posts/${post.id}|">
+\end_layout
+
+\begin_layout Plain Layout
+
+	Leggi 			il resto...
+\end_layout
+
+\begin_layout Plain Layout
+
+</a>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Utilizzo di un'espressione if.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre all'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+each
+\begin_inset Quotes erd
+\end_inset
+
+ sono presenti altre istruzioni, come 
+\begin_inset Quotes eld
+\end_inset
+
+if
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+unless
+\begin_inset Quotes erd
+\end_inset
+
+, per controllare il flusso dell'esecuzione.
+ Nell'esempio il collegamento verrà visualizzato in funzione della guardia,
+ l'uso di costrutti come 
+\begin_inset Quotes eld
+\end_inset
+
+if
+\begin_inset Quotes erd
+\end_inset
+
+ condiziona la visita da parte di Thymeleaf di tutto il sotto-albero.
+\end_layout
+
+\begin_layout Subsubsection*
+Gestione dei form
+\end_layout
+
+\begin_layout Standard
+La gestione dei form è uno dei contesti per cui Thymeleaf è stata specializzata
+ per integrarsi al meglio con le funzionalità di Spring.
+ Per implementare la verifica dei dati inseriti nei form, in Spring è possibile
+ utilizzare le annotazioni presenti nel package 
+\begin_inset Quotes eld
+\end_inset
+
+javax.validation.constraints
+\begin_inset Quotes erd
+\end_inset
+
+ di JPA per la validazione; le annotazioni presenti permettono di verificare
+ i valori dei singoli attributi, non è possibile ad esempio verificare che
+ il titolo di un post non sia già presente nel dominio.
+\end_layout
+
+\begin_layout Standard
+A differenza di RoR, dove la validazione dei form coincide con la validazione
+ effettuata dai database, gli strumenti di Spring replicano i meccanismi
+ esistenti a basso livello e permettono di anticipare tali verifiche.
+ Questa scelta comporta la duplicazione dei vincoli sul dominio, esprimendoli
+ sia a livello logico che di persistenza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Size(min=5, max=100, message = "Il titolo deve essere compreso fra 5 e
+ 100 caratteri.")
+\end_layout
+
+\begin_layout Plain Layout
+
+@NotNull(message = "Titolo mancante.")
+\end_layout
+
+\begin_layout Plain Layout
+
+@Column(nullable = false, unique = true)
+\end_layout
+
+\begin_layout Plain Layout
+
+String title;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Uso delle annotazioni di JPA per la validazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre alle annotazioni della libreria è possibile implementarne di personalizzat
+e, ad esempio che verifichino l'unicità del titolo, definendo una nuova
+ annotazione e una classe contenente la logica.
+ Purtroppo nella definizione del vincolo di unicità, sono stati rilevati
+ errori nell'uso dei repository istanziati tramite DI e ho dovuto implementarne
+ la logica manualmente nel controllo dei post.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli errori del form sono forniti ai controller aggiungendo un parametro
+ di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+BindingResult
+\begin_inset Quotes erd
+\end_inset
+
+, già introdotto nella precedente sezione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<div class="error_explanation" th:if="${#fields.hasErrors('title')}">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<p id="error_description" th:errors="*{title}"></p>
+\end_layout
+
+\begin_layout Plain Layout
+
+</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento della vista per la visualizzazione degli errori sul campo del
+ titolo.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'interno delle viste di Thymeleaf sono state utilizzate le funzionalità
+ della classe ausiliaria 
+\begin_inset Quotes eld
+\end_inset
+
+fields
+\begin_inset Quotes erd
+\end_inset
+
+, che implementa le funzionalità per la gestione della compilazione dei
+ form HTML.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sono presenti altre classi per il supporto di operazioni comuni nelle viste,
+ come la formattazione di date.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rispetto a ERB e Razor, le viste sviluppate con Thymeleaf appaiono più semplici
+ e leggibili.
+ Utilizzando gli attributi per generare il contenuto dinamico si riduce
+ sensibilmente la propensione ad introdurre logica all'interno delle viste,
+ rispettando maggiormente i ruoli delle componenti del pattern MVC.
+ Tuttavia Thymeleaf introduce una sintassi articolata e non molto intuitiva
+ che può costituire un ostacolo anche nella definizione della logica elementare
+ di una vista, come la formattazione di una stringa o la generazione dinamica
+ di collegamenti.
 \end_layout
 
 \begin_layout Subsection
@@ -1983,7 +2553,8 @@ Il testing
 \end_layout
 
 \begin_layout Standard
-Libertà di scelta
+http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/htm
+l/testing.html
 \end_layout
 
 \begin_layout Standard
@@ -1991,7 +2562,8 @@ JUnit
 \end_layout
 
 \begin_layout Standard
-Utilità di spring, @RunWith
+Utilità di spring, @RunWith http://junit.sourceforge.net/javadoc/org/junit/runner/
+RunWith.html
 \end_layout
 
 \begin_layout Subsection
