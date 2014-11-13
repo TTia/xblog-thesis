@@ -71,7 +71,7 @@
 \begin_body
 
 \begin_layout Chapter
-Spring
+Spring 13/11/14
 \end_layout
 
 \begin_layout Standard
@@ -89,11 +89,25 @@ Spring MVC
 \end_layout
 
 \begin_layout Standard
-Introduzione al capitolo
+In questo capitolo è trattato lo sviluppo di SBlog con Spring, un framework
+ per la definizione di applicazioni web scritto in Java, e l'implementazione
+ della libreria di test di accettazione automatici utilizzata per RBlog
+ con Cucumber JVM e Selenium Web Driver.
 \end_layout
 
 \begin_layout Standard
-Descrizione contenuto delle sezioni
+La struttura di questo capitolo su Spring è simile al precedente: le prime
+ sezioni descrivono l'architettura del framework, introducendo gli strumenti
+ più significati nella definizione di SBlog, dalla sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Hello-SBlog!"
+
+\end_inset
+
+ è descritto il processo d'implementazione delle funzionalità e scenari
+ già descritti nel precedente capitolo, documentando tramite esempi e frammenti
+ di test lo sviluppo dei test di accettazione.
 \end_layout
 
 \begin_layout Subsection
@@ -101,23 +115,22 @@ Spring Tool Suite
 \end_layout
 
 \begin_layout Standard
-Versione di eclipse
+Spring Tool Suite, STS, è una versione personalizzata di Eclipse per supportare
+ lo sviluppo tramite il framework.
+ I plugin presenti nell'ambiente di sviluppo forniscono supporto per i diversi
+ linguaggi nello sviluppo web, come HTML, CSS o Javascript, l'integrazione
+ con le componenti del framework, come la creazione di progetti guidata
+ o la rappresentazione grafica delle componenti dell'applicazione, e le
+ funzionalità già presenti nella versione di Eclipse per Java EE, Enterprise
+ Edition.
 \end_layout
 
 \begin_layout Standard
-STS
-\end_layout
-
-\begin_layout Standard
-Supporto a Javascript, ...
-\end_layout
-
-\begin_layout Standard
-Git, CMS
-\end_layout
-
-\begin_layout Standard
-Libreria disponibili
+Per lo sviluppo di SBlog è stata utilizzata la versione 3.6.2 di Spring Tool
+ Suite, basata su Eclipse Luna 4.4.
+ Oltre ad utilizzare il software disponibile sul sito di Spring, è possibile
+ anche installare le funzionalità di STS in una versione già esistente di
+ Eclipse tramite l'apposito plugin.
 \end_layout
 
 \begin_layout Section
@@ -131,7 +144,12 @@ L'interpretazione di Spring del pattern MVC
 \end_layout
 
 \begin_layout Standard
-Descrizione della sessione
+Nella sezione saranno descritti le componenti dell'architettura MVC in funzione
+ dell'interpretazione data da Spring.
+ Rispetto a RoR, come descritto in seguito, il framework Java necessita
+ di una maggiore configurazione delle sue componenti, sono quindi inclusi
+ numerosi esempi per dare un'indicazione del processo di sviluppo e alcuni
+ riferimenti.
 \end_layout
 
 \begin_layout Subsection
@@ -139,7 +157,19 @@ Il modello
 \end_layout
 
 \begin_layout Standard
-JPA, Java Persistence API, è una specifica Java per l'accesso, la persistenza
+Per l'implementazione del modello in Spring è stato utilizzato JPA 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Rispetto a RoR, in Spring si gode di estrema libertà nella scelta delle
+ librerie da utilizzare per la propria applicazione web.
+ 
+\end_layout
+
+\end_inset
+
+, Java Persistence API, una specifica Java per l'accesso, la persistenza
  e la gestione dei dati di DBMS relazionali, nella quale sono descritti
  i criteri per mappare un POJO, Plain Old Java Object, su un database.
 \end_layout
@@ -155,9 +185,9 @@ key "POJO"
 
 \end_inset
 
-, è un oggetto Java che attraverso l'insieme dei suoi attributi rappresenta
- informazioni di un dato presente nel dominio e le relazioni che intercorrono
- con altre entità.
+, è un oggetto Java che rappresenta le informazioni di un'entità del dominio
+ e le relazioni che intercorrono con altri elementi attraverso l'insieme
+ dei suoi attributi.
 \begin_inset Newline newline
 \end_inset
 
@@ -167,7 +197,7 @@ key "POJO"
 \begin_layout Standard
 EclipseLink è una delle implementazioni esistenti per JPA, fornisce tutte
  le funzionalità previste dallo standard alla versione 2.1, e rispetto ad
- altre implementazioni come Hibernate, attualmente è leggermente più performante
+ altre librerie come Hibernate, attualmente è leggermente più performante
  ed ha una miglior gestione del caricamento delle entità.
 \end_layout
 
@@ -190,15 +220,17 @@ Lo schema del modello di SBlog è stato definito esclusivamente tramite le
 status open
 
 \begin_layout Plain Layout
-Il meccanismo della reflection in Java permette di ispezionare del codice
- compilato al fine individuare all'interno delle classi elementi di interesse.
- Nell'esempio il meccanismo permette di individuare gli attributi annotati
- e leggere le informazioni associate ad essi.
+Il meccanismo della reflection in Java permette di ispezionare il codice
+ compilato al fine individuare elementi di interesse.
 \end_layout
 
 \end_inset
 
- per analizzare e utilizzare le diverse componenti presenti.
+ per analizzare a run-time le entità esistenti.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -334,7 +366,10 @@ Rappresentata la tabella, per aggiungere delle colonne è sufficiente introdurre
 \end_inset
 
  o altre annotazioni più specifiche.
- Tramite i parametri è possibile dichiarare dei vincoli sui valori, ad esempio
+\end_layout
+
+\begin_layout Standard
+Tramite i parametri è possibile dichiarare dei vincoli sui valori, ad esempio
  il titolo di un post deve essere sempre presente ed essere unico.
  Il tipo della colonna è inferito dal tipo Java, il tipo 
 \begin_inset Quotes eld
@@ -381,16 +416,20 @@ Per la definizione di colonne che rappresentano la chiave primaria della
 \begin_inset Quotes erd
 \end_inset
 
- generando i valori in maniera univoca, EclipseLink genererà un valore unico
- all'interno della tabella 
+ generando i valori in maniera univoca all'interno della tabella corrispondente
+ all'entità 
 \begin_inset Quotes eld
 \end_inset
 
-post
+Post
 \begin_inset Quotes erd
 \end_inset
 
- per ogni nuovo articolo.
+.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -431,33 +470,12 @@ L'annotazione
 \begin_inset Quotes erd
 \end_inset
 
- permette dichiarare delle colonne di tipo 
-\begin_inset Quotes eld
-\end_inset
 
-Date
-\begin_inset Quotes erd
-\end_inset
+\begin_inset Foot
+status open
 
- e 
-\begin_inset Quotes eld
-\end_inset
-
-Calendar
-\begin_inset Quotes erd
-\end_inset
-
-, non è ancora possibile utilizzare la classe 
-\begin_inset Quotes eld
-\end_inset
-
-LocalDate
-\begin_inset Quotes erd
-\end_inset
-
- introdotta con Java 8 che fornisce diversi metodi per una migliore gestione
- delle fasce orarie.
- L'enumerazione 
+\begin_layout Plain Layout
+L'enumerazione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -491,6 +509,36 @@ java.sql.Timestamp
 \end_inset
 
 .
+\end_layout
+
+\end_inset
+
+ permette di rappresentare sul modello attributi di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Date
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Calendar
+\begin_inset Quotes erd
+\end_inset
+
+, non è ancora possibile utilizzare la classe 
+\begin_inset Quotes eld
+\end_inset
+
+LocalDate
+\begin_inset Quotes erd
+\end_inset
+
+ introdotta con Java 8 che fornisce diversi metodi per una migliore gestione
+ delle fasce orarie.
 \begin_inset Newline newline
 \end_inset
 
@@ -726,25 +774,7 @@ Attributo posts per la classe Author.
 \end_layout
 
 \begin_layout Standard
-Per dichiarare una relazione uno a molti sono state utilizzate le annotazioni
- 
-\begin_inset Quotes eld
-\end_inset
-
-@ManyToOne
-\begin_inset Quotes erd
-\end_inset
-
- e 
-\begin_inset Quotes eld
-\end_inset
-
-@OneToMany
-\begin_inset Quotes erd
-\end_inset
-
-.
- L'attributo 
+L'attributo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -761,7 +791,7 @@ cascade
 \begin_inset Quotes erd
 \end_inset
 
- invece specifica i vincoli di integrità referenziale di propagazione.
+ definisce i vincoli di integrità referenziale di propagazione.
  A differenza di altre proprietà del DDL di JPA, la propagazione delle operazion
 i non ha ripercussioni sullo schema dei database ed è gestita direttamente
  sui POJO; la mancanza di controlli sul DBMS obbliga a descrivere accuratamente
@@ -805,11 +835,8 @@ author
 \begin_inset Quotes erd
 \end_inset
 
- specifica il vincolo di unicità.
-\end_layout
-
-\begin_layout Standard
-Inoltre scegliendo di rappresentare la relazione con un oggetto 
+ introduce un vincolo di unicità.
+ Inoltre scegliendo di rappresentare la relazione con un oggetto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -817,7 +844,8 @@ Set
 \begin_inset Quotes erd
 \end_inset
 
- è possibile gestire a più alto livello la cardinalità dell'associazione.
+ è possibile gestire la cardinalità dell'associazione direttamente al livello
+ d'astrazione dei POJO.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -835,7 +863,7 @@ status open
 
 \begin_layout Plain Layout
 La definizione dei bean può avvenire sia tramite factory method opportunamente
- annotati, che utilizzando file XML.
+ annotati, sia utilizzando file XML.
 \end_layout
 
 \end_inset
@@ -914,8 +942,8 @@ Configurazione del metodo factory per la gestione delle entità del modello.
 
 \end_inset
 
-Per impostare la connessione ai database e configurare i parametri dell'entity
- manager di JPA è necessario introdurre almeno due bean.
+Per impostare la connessione ai database e configurare l'entity manager
+ è necessario introdurre almeno due bean.
  In particolare il metodo factory 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -923,8 +951,8 @@ reference "lis:Configurazione Entity Manager"
 
 \end_inset
 
- specifica l'implementazione scelta per la specifica e alcune proprietà
- attraverso un apposito metodo 
+ specifica l'implementazione scelta per JPA e alcune proprietà attraverso
+ un apposito metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1021,7 +1049,7 @@ JpaRepository
 
 .
  Come si può osservare nell'implementazione, l'interfaccia padre è generica
- su il tipo di entità ed il tipo della chiave primaria.
+ sulla classe che rappresenta i post ed il tipo della chiave primaria.
 \begin_inset Foot
 status open
 
@@ -1091,8 +1119,8 @@ status open
 
 \begin_layout Plain Layout
 Data un'interrogazione, la paginazione restituisce un sottoinsieme delle
- entità risultato in funzione dei parametri di cardinalità e ordinalità.
- 
+ entità risultato in funzione dei parametri di cardinalità e ordinalità,
+ rispettivamente il numero di elementi del risultato e la pagina scelta.
 \end_layout
 
 \end_inset
@@ -1158,8 +1186,9 @@ e regolare.
 \begin_layout Standard
 Come si può intuire dal secondo metodo, l'implementazione di interrogazioni
  con un alto numero di condizioni di selezione comporta la dichiarazione
- di metodi con segnature eccessivamente lunghe e complicate.
- Per evitare a questo problema è possibile annotare i metodi del interfaccia
+ di metodi con segnature eccessivamente lunghe e complicate, inoltre non
+ è possibile utilizzare l'operazione di join fra entità.
+ Per evitare a questi problema è possibile annotare i metodi del interfaccia
  repository con 
 \begin_inset Quotes eld
 \end_inset
@@ -1336,20 +1365,8 @@ value
 \begin_inset Quotes erd
 \end_inset
 
- dell'annotazione sulla classe e sul singolo metodo.
- L'uso duplice dell'annotazione 
-\begin_inset Quotes eld
-\end_inset
-
-@RequestMapping
-\begin_inset Quotes erd
-\end_inset
-
- semplifica la definizione di un insieme di richieste in stile REST.
-\begin_inset Newline newline
-\end_inset
-
-
+ dell'annotazione sulla classe e sul singolo metodo, semplificando la definizion
+e di di controlli in stile REST.
 \end_layout
 
 \begin_layout Standard
@@ -1504,7 +1521,7 @@ status open
 
 \begin_layout Plain Layout
 
-public String[] autocompleteTitle( 			@RequestParam(value = "title", required
+public String[] autocompleteTitle(@RequestParam(value = "title", required
  = true) String title) {
 \end_layout
 
@@ -1537,8 +1554,8 @@ Implementazione di un metodo privo di interfaccia web.
 \end_layout
 
 \begin_layout Standard
-Per gestire le richieste HTTP di tipo GET, che forniscono i parametri direttamen
-te nell'URL, è utilizzata l'annotazione 
+Per gestire le richieste HTTP di tipo GET, che includono i parametri direttament
+e nell'URL, è utilizzata l'annotazione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1674,7 +1691,7 @@ status open
 \begin_layout Standard
 Ad esempio, la vista relativa alla scrittura di un nuovo articolo prevede
  la gestione di numerosi aspetti, a differenza di RoR che disaccoppia le
- azioni la gestione dei form e della persistenza dell'entità, in Spring
+ azioni di gestione dei form e della persistenza dell'entità, in Spring
  i due comportamenti sono implementati insieme.
  I parametri utilizzati sono:
 \end_layout
@@ -1746,8 +1763,8 @@ HttpSession
 La tecnica scelta da Spring per gestire i diversi aspetti comporta un'eccessiva
  mole di parametri e funzionalità da implementare in un singolo metodo.
  Sta allo sviluppatore intervenire fattorizzando le azioni e gestire manualmente
- le diverse casistiche, operazioni implementate di default in RoR alla creazione
- di un nuovo controllo.
+ le diverse casistiche, operazioni comodamente implementate di default in
+ RoR alla creazione di un nuovo controllo.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1755,7 +1772,15 @@ I Service
 \end_layout
 
 \begin_layout Standard
-Per fattorizzare la logica dei controller Spring definisce i service, componenti
+Per fattorizzare la logica dei controller Spring definisce i service, classi
+ Java annotate con 
+\begin_inset Quotes eld
+\end_inset
+
+@Service
+\begin_inset Quotes erd
+\end_inset
+
  che hanno il compito di far interagire i controller con le classi repository
  definite dall'utente.
 \end_layout
@@ -1779,8 +1804,8 @@ PostService
 \end_inset
 
  che assicura la consistenza delle informazioni sul modello, ad esempio
- impostando le corrette informazioni sulla data di creazione e di aggiornamento
- un articolo.
+ inizializzando la data di creazione e di aggiornamento un articolo alla
+ creazione o alla modifica.
 \end_layout
 
 \begin_layout Standard
@@ -1906,7 +1931,7 @@ Per ogni componente esistente in Spring, sia essa un
 \begin_inset Quotes erd
 \end_inset
 
-, esiste un corrispondente 
+, è generato un corrispondente 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1954,9 +1979,9 @@ Per l'implementazione delle viste di SBlog è stato utilizzato Thymeleaf,
 Dopo essermi documentato sui template engine comunemente utilizzati con
  Spring e Java, ho scelto di non implementare le viste tramite JSP, JavaServer
  Page.
- Principalmente il motivo della scelta è stato dettato dai diversi problemi
- tecnici nella configurazione della libreria utilizzando Spring MVC 4 e
- Spring Boot, che verrà discusso in seguito.
+ Il motivo principale della scelta sono i diversi problemi tecnici nella
+ configurazione della libreria utilizzando Spring MVC 4 e Spring Boot, che
+ verrà discusso in seguito.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1979,16 +2004,17 @@ status open
 
 \begin_layout Plain Layout
 In eclipse è presente un plugin per assistere lo sviluppatore nella definizione
- delle viste, che implementa funzionalità elementari come l'auto-completamento
- e la colorazione delle parole chiave.
+ delle viste tramite l'auto-completamento e la colorazione delle parole
+ chiave.
 \end_layout
 
 \end_inset
 
 ; una vista definita con Thymeleaf ha estensione e struttura identica ad
- un documento HTML statico: i tag introdotti dalla libreria non vengono
- analizzati dai browser permettendo l'implementazione di prototipi offline,
- senza necessariamente avere un'architettura MVC funzionante.
+ un documento HTML statico: senza il supporto di un server web i tag introdotti
+ dalla libreria non vengono analizzati dai browser permettendo l'implementazione
+ di prototipi offline, per sviluppare l'interfaccia dell'applicazione non
+ è quindi necessario aver già un'architettura MVC funzionante.
 \end_layout
 
 \begin_layout Standard
@@ -2223,7 +2249,7 @@ foreach
 \begin_inset Quotes erd
 \end_inset
 
-.
+ di Java.
  Gli oggetti presenti nella vista sono acceduti tramite l'istanza di 
 \begin_inset Quotes eld
 \end_inset
@@ -2232,8 +2258,8 @@ Model
 \begin_inset Quotes erd
 \end_inset
 
- presente nell'azione del controller che ha gestito la richiesta.
- L'espressione 
+ presente nell'azione del controller che ha gestito la richiesta; l'espressione
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2241,8 +2267,7 @@ ${id}
 \begin_inset Quotes erd
 \end_inset
 
- è la più utilizzata nella definizione delle viste ed effettua l'accesso
- all'elemento associato alla chiave 
+ effettua l'accesso all'elemento associato alla chiave 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2288,7 +2313,7 @@ Iterazione sugli attributi di un post.
 
 \begin_layout Standard
 All'interno delle espressioni di Thymeleaf gli attributi forniti alla vista
- sono oggetti, ed è quindi possibile accedere ai metodi d'istanza e ai valori.
+ sono oggetti ed è quindi possibile accedere ai metodi d'istanza e ai valori.
  L'attributo 
 \begin_inset Quotes eld
 \end_inset
@@ -2362,7 +2387,7 @@ unless
 
 , per controllare il flusso dell'esecuzione.
  Nell'esempio il collegamento verrà visualizzato in funzione della guardia,
- l'uso di costrutti come 
+ in generale l'uso di costrutti come 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2378,7 +2403,7 @@ Gestione dei form
 \end_layout
 
 \begin_layout Standard
-La gestione dei form è uno dei contesti per cui Thymeleaf è stata specializzata
+La gestione dei form è uno dei contesti per cui Thymeleaf è stata specializzato
  per integrarsi al meglio con le funzionalità di Spring.
  Per implementare la verifica dei dati inseriti nei form, in Spring è possibile
  utilizzare le annotazioni presenti nel package 
@@ -2389,9 +2414,8 @@ javax.validation.constraints
 \begin_inset Quotes erd
 \end_inset
 
- di JPA per la validazione; le annotazioni presenti permettono di verificare
- i valori dei singoli attributi, non è possibile ad esempio verificare che
- il titolo di un post non sia già presente nel dominio.
+ di JPA per validare i valori dei singoli attributi, non è possibile ad
+ esempio verificare che il titolo di un post non sia già presente nel dominio.
 \end_layout
 
 \begin_layout Standard
@@ -2460,8 +2484,8 @@ e, ad esempio che verifichino l'unicità del titolo, definendo una nuova
 \end_layout
 
 \begin_layout Standard
-Gli errori del form sono forniti ai controller aggiungendo un parametro
- di tipo 
+Gli errori del form sono forniti ai controller tramite un parametro di tipo
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2541,10 +2565,10 @@ Rispetto a ERB e Razor, le viste sviluppate con Thymeleaf appaiono più semplici
  e leggibili.
  Utilizzando gli attributi per generare il contenuto dinamico si riduce
  sensibilmente la propensione ad introdurre logica all'interno delle viste,
- rispettando maggiormente i ruoli delle componenti del pattern MVC.
+ rispettando i ruoli delle componenti del pattern MVC.
  Tuttavia Thymeleaf introduce una sintassi articolata e non molto intuitiva
- che può costituire un ostacolo anche nella definizione della logica elementare
- di una vista, come la formattazione di una stringa o la generazione dinamica
+ che può costituire un ostacolo ad una rapida definizione della logica elementar
+e di una vista, come la formattazione di una stringa o la generazione dinamica
  di collegamenti.
 \end_layout
 
@@ -2553,17 +2577,65 @@ Il testing
 \end_layout
 
 \begin_layout Standard
-http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/htm
-l/testing.html
+Spring implementa le funzionalità per definire unit ed integration test.
+ Per SBlog non sono stati implementati test oltre a quelli di accettazione,
+ la struttura e la logica è molto simile a quanto sviluppato su RoR, ma
+ ritengo sia utile fornire qualche riferimento.
+\begin_inset Newline newline
+\end_inset
+
+L'implementazione di unit-test in Spring è possibile grazie alla DI e a
+ oggetti mock per poter testare in isolamento le singole funzionalità.
 \end_layout
 
 \begin_layout Standard
-JUnit
-\end_layout
+Per implementare i propri integration-test non è necessario effettuare il
+ deploy dell'intera applicazione, infatti sfruttando le funzionalità presenti
+ nel modulo 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Standard
-Utilità di spring, @RunWith http://junit.sourceforge.net/javadoc/org/junit/runner/
-RunWith.html
+spring-test
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Spring Test-Framework"
+
+\end_inset
+
+ è possibile verificare l'interazione delle diverse componenti.
+\begin_inset Newline newline
+\end_inset
+
+Tutti i test in Spring sono eseguibili tramite JUnit
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JUnit"
+
+\end_inset
+
+: l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@RunWith
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JUnit RunWith"
+
+\end_inset
+
+ permette di configurare quale runner utilizzare, è quindi possibile uniformare
+ l'ambiente di testing e le funzionalità di supporto per tutti i differenti
+ livelli di verifica dell'applicazione.
+ Maggiori dettagli su JUnit sono presenti nella prossima sezione.
 \end_layout
 
 \begin_layout Subsection
@@ -2571,19 +2643,205 @@ Peculiarità
 \end_layout
 
 \begin_layout Standard
-Bean
+Spring è estremamente modulare e consente all'utente piena libertà nella
+ scelta degli strumenti, che comporta tuttavia la necessità di configurare
+ i relativi bean.
+ Per semplificare lo sviluppo dell'applicazione è stato utilizzato Spring
+ Boot, un progetto degli stessi sviluppatori del framework.
 \end_layout
 
 \begin_layout Standard
-Bean via @annotazioni
+Per ridurre al minimo la necessità di configurazione di una nuova applicazione,
+ è possibile utilizzare i progetti 
+\begin_inset Quotes eld
+\end_inset
+
+starter
+\begin_inset Quotes erd
+\end_inset
+
+ esistenti.
 \end_layout
 
 \begin_layout Standard
-Legacy code
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<dependencies>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<groupId>org.springframework.boot</groupId> 		<artifactId>spring-boot-starter-we
+b</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<groupId>org.springframework.boot</groupId>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<groupId>org.springframework.boot</groupId>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<exclusions>
+\end_layout
+
+\begin_layout Plain Layout
+
+			<exclusion> 				<artifactId>hibernate-entitymanager</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+				<groupId>org.hibernate</groupId>
+\end_layout
+
+\begin_layout Plain Layout
+
+			</exclusion>
+\end_layout
+
+\begin_layout Plain Layout
+
+		</exclusions>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Alcuni 
+\begin_inset Quotes eld
+\end_inset
+
+starter
+\begin_inset Quotes erd
+\end_inset
+
+ di Spring Boot utilizzati per SBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Maven, Starter, Spring Boot, configurazione
+Aggiungendo gli opportuni 
+\begin_inset Quotes eld
+\end_inset
+
+starter
+\begin_inset Quotes erd
+\end_inset
+
+ alle dipendenze del proprio progetto, nell'esempio è mostrato un frammento
+ del POM
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Un POM, Project Object Model, è un file XML utilizzato da Maven per la definizio
+ne delle informazioni del progetto.
+ All'interno del file è possibile definire diversi processi di compilazione,
+ ad esempio includendo o meno le librerie per il testing, dichiarare le
+ dipendenze del progetto e molto altro.
+\end_layout
+
+\end_inset
+
+ di SBlog ma è possibile utilizzare anche Gradle, le maggior parte delle
+ componenti e dei bean necessari sono configurati con le impostazioni più
+ comuni.
+ Ovviamente alcune proprietà specifiche, come le credenziali per la connessione
+ ai database, sono da impostare manualmente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le componenti non configurabili tramite Spring Boot, sia perché troppo specifich
+e sia perché riguardanti strumenti non presenti negli 
+\begin_inset Quotes eld
+\end_inset
+
+starter
+\begin_inset Quotes erd
+\end_inset
+
+, sono configurabili tramite i bean.
+ Spring, attualmente alla versione 4.1, è retro-compatibile permettendo la
+ definizione di bean attraverso file XML, definendo una gerarchia di classi
+ o tramite l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@Bean
+\begin_inset Quotes erd
+\end_inset
+
+ ed i factory method, tecnica utilizzata in SBlog.
 \end_layout
 
 \begin_layout Standard
@@ -2596,69 +2854,42 @@ Maven, Starter, Spring Boot, configurazione
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:Hello-RBlog!"
+name "sec:Hello-SBlog!"
 
 \end_inset
 
-Hello RBlog!
+Hello SBlog!
 \end_layout
 
 \begin_layout Standard
-L'obbiettivo della prima funzionalità 
-\begin_inset Quotes eld
-\end_inset
-
-Hello RBlog!
-\begin_inset Quotes erd
-\end_inset
-
- è minimo, è necessario che l'applicazione sia in esecuzione ed il sito
- web raggiungibile.
- Inoltre il blog deve consentire la navigazione verso alcune pagine statiche.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Una pagina web statica è una pagina web i cui contenuti sono formattati
- direttamente in HTML, e non subiscono modifiche in funzione dello stato
- attuale dell'applicazione.
- Al contrario le pagine dinamiche rappresentano lo stato di una o più entità
- presente all'interno del sito e possono variare nel tempo.
- In RBlog un esempio di pagina statica è la pagina che descrive l'abstract
- del progetto, mentre una pagina dinamica è la pagina che mostra un singolo
- post, ed ovviamente cambia nel contenuto in funzione dell'articolo scelto.
-\end_layout
-
-\end_inset
-
-
+Per effettuare un confronto il più attendibile possibile, la libreria di
+ test di accettazione definita per RBlog e scritta in Gherkin è stata riutilizza
+ta anche per la versione del blog in Spring.
+ I due blog sono equivalenti nelle funzionalità e molto simili nelle nelle
+ tecnologie utilizzate, in questa e nelle prossime sezioni è descritto il
+ processo di definizione dei test, omettendo però la descrizione dei tool
+ già utilizzati per RBlog.
 \end_layout
 
 \begin_layout Subsection
-Cucumber
+Cucumber-JVM
 \end_layout
 
 \begin_layout Standard
-Il primo tassello scelto per l'implementazione dei test di accettazione
- su Rlog è Cucumber
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Cucumber"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Cucumber è un framework per il supporto al BDD, Behaviour Driven Development,
- e la definizione di test di accettazione.
- Il framework è disponibile anche in Java, .Net, Python, PHP e molti altri
- linguaggi e piattaforme.
+Cucumber-JVM, il porting in Java del framework per Cucumber, presenta differenze
+ minime rispetto alla versione per Ruby, principalmente dovute alle diversità
+ del linguaggio.
 \end_layout
 
 \begin_layout Paragraph
 Le funzionalità
+\end_layout
+
+\begin_layout Standard
+Il linguaggio utilizzato per la definizione delle funzionalità e degli scenari
+ è Gherkin, utilizzando i test già scritti per RBlog non è stato rilevato
+ alcun problema sintattico né relativo alle funzionalità supportate dalla
+ versione Java di Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -2696,13 +2927,7 @@ Vorrei che RBlog permettesse la navigazione
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:01x00 Hello RBlog!"
-
-\end_inset
-
-La prima feature di RBlog
+La prima feature di SBlog
 \end_layout
 
 \end_inset
@@ -2716,129 +2941,8 @@ La prima feature di RBlog
 \end_layout
 
 \begin_layout Standard
-Il primo obbiettivo dei test di accettazione è di individuare le funzionalità
- da sviluppare, le caratteristiche e potenzialità che l'applicazione offre
- e i diversi scenari che le definiscono.
-\end_layout
-
-\begin_layout Standard
-Le funzionalità in Cucumber sono elementi esclusivamente descrittivi, non
- sono utilizzate esplicitamente nell'implementazione dei test ma hanno lo
- scopo di far cogliere la giusta prospettiva al team di sviluppo e descrivere
- genericamente l'obbiettivo degli scenari.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Non ho capito la correzione 
-\begin_inset Quotes eld
-\end_inset
-
-Perchè in italiano?
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Sia il titolo che la descrizione possono essere in linguaggio naturale e
- non hanno alcun impatto nell'implementazione degli scenari, per lo sviluppo
- di RBlog sono state usate le user story
-\begin_inset CommandInset citation
-LatexCommand cite
-key "UserStory"
-
-\end_inset
-
- secondo il formato 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-Per
-\emph default
- <beneficio>, 
-\emph on
-come
-\emph default
- <ruolo>, 
-\emph on
-vorrei
-\emph default
- <obbiettivo, desiderio>
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Per facilitare lo sviluppo di test all'interno del proprio progetto è consigliat
-o seguire la convenzione di inserire all'interno della cartella 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-features
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- i test di accettazione ed attribuire ai relativi file l'estenzione 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-.feature
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Nella funzionalità 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x00 Hello RBlog!"
-
-\end_inset
-
-, oltre alla descrizione della funzionalità è presente un'etichetta che
- permette di organizzare e categorizzare quanto sviluppato con Cucumber;
- 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-@cap1
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- caratterizza sia la user-story sia gli scenari che la definiscono per ereditari
-età.
- L'etichetta è stata introdotta per poter eseguire in maniera selettiva
- gli scenari della prima funzionalità.
-\begin_inset Newline newline
-\end_inset
-
-
+Avendo già descritto la struttura di una funzionalità in Gherkin, è possibile
+ concentrare l'attenzione sulla configurazione del framework.
 \end_layout
 
 \begin_layout Standard
@@ -2848,23 +2952,52 @@ status open
 
 \begin_layout Plain Layout
 
-cucumber --tags @cap1
+<dependency>
 \end_layout
 
 \begin_layout Plain Layout
 
+	<groupId>info.cukes</groupId> 	<artifactId>cucumber-junit</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<version>1.1.8</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<scope>test</scope>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>info.cukes</groupId> 	<artifactId>cucumber-picocontainer</artifactId>
+ 	<version>1.1.8</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<scope>test</scope>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comando per l'esecuzione degli scenari relativi alla feature 
-\begin_inset Quotes eld
-\end_inset
-
-Hello RBlog!
-\begin_inset Quotes erd
-\end_inset
-
-
+Aggiunta delle dipendenze per il BDD in Maven.
 \end_layout
 
 \end_inset
@@ -2878,25 +3011,19 @@ Hello RBlog!
 \end_layout
 
 \begin_layout Standard
-E' possibile introdurre un numero arbitrario di etichette per ciascuna funzional
-ità o scenario e, sfruttando l'opzione 
+Per l'esecuzione dei test in Java innanzitutto è necessario includere le
+ dipendenze all'interno del POM di Maven.
+ Oltre a 
 \begin_inset Quotes eld
 \end_inset
 
-
-\emph on
---tags
-\emph default
-
+cucumber-junit
 \begin_inset Quotes erd
 \end_inset
 
-, definire il corretto insieme di test da eseguire, tramite gli operatori
- logici AND, OR e NOT.
-\end_layout
-
-\begin_layout Paragraph
-Gli scenari
+ è necessario includere anche PicoContainer, una libreria per il supporto
+ alla DI utilizzata per individuare le classi contenenti gli hook e le definizio
+ne dei passi.
 \end_layout
 
 \begin_layout Standard
@@ -2906,253 +3033,17 @@ status open
 
 \begin_layout Plain Layout
 
-Scenario: Visita alla pagina iniziale
+@RunWith(Cucumber.class)
 \end_layout
 
 \begin_layout Plain Layout
 
+@CucumberOptions(format = {tags = {"@cap1", "~@ignore"})
 \end_layout
 
 \begin_layout Plain Layout
 
-Dato apro RBlog
-\end_layout
-
-\begin_layout Plain Layout
-
-Allora posso visitare la pagina dell'autore
-\end_layout
-
-\begin_layout Plain Layout
-
-E posso visitare la pagina dell'abstract
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:01x01 Homepage"
-
-\end_inset
-
-Navigazione verso la pagina iniziale
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il primo scenario descrive la navigazione verso la homepage, relativo alla
- funzionalità 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x00 Hello RBlog!"
-
-\end_inset
-
- ed introduce la sintassi di Cucumber.
- Gli scenari sono caratterizzati da un titolo, che riassume il comportamento
- e da un insieme di passi.
- Seguendo la logica del BDD, ogni passo può alternativamente essere di tipo
- 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-Given
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-When
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- e 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-Then
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Tramite i passi di tipo 
-\begin_inset Quotes eld
-\end_inset
-
-Given
-\begin_inset Quotes erd
-\end_inset
-
- è possibile verificare che il sistema sia in uno stato prefissato e conosciuto
- all'utente, stato dal quale sarà possibile compiere le azioni descritte
- successivamente nel test.
- Rispetto ad uno use-case un passo 
-\begin_inset Quotes eld
-\end_inset
-
-Given
-\begin_inset Quotes erd
-\end_inset
-
- è l'equivalente di una precondizione.
-\end_layout
-
-\begin_layout Standard
-I passi 
-\begin_inset Quotes eld
-\end_inset
-
-When
-\begin_inset Quotes erd
-\end_inset
-
- descrivono le azioni compiute e permettono la transizione del sistema verso
- un nuovo stato, analogamente agli eventi di una macchina a stati.
-\end_layout
-
-\begin_layout Standard
-Lo scopo dei passi 
-\begin_inset Quotes eld
-\end_inset
-
-Then
-\begin_inset Quotes erd
-\end_inset
-
- è di osservare il risultato delle azioni compiute precedentemente.
- Le osservazioni dovrebbero essere consistenti con i benefici dichiarati
- per la funzionalità ed analizzare solo quanto è osservabile tramite l'interfacc
-ia del sistema ed ottenuto come conseguenza alle azioni compiute.
- Ad esempio, non è compito dei test di accettazione su RBlog verificare
- le tuple della tabella Post nel modello.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La scelta del prefisso del passo non limita le potenzialità del passo stesso,
- ma ovviamente un uso corretto favorisce la leggibilità del test.
- E' anche possibile sfruttare i prefissi 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-And
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- e 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-But
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- per rendere i propri scenari più scorrevoli; alle congiunzioni è attribuito
- il tipo del passo precedente.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Schema dello scenario: Visita alla pagina dell'autore e alla pagina dell'abstrac
-t
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Dato apro RBlog
-\end_layout
-
-\begin_layout Plain Layout
-
-Quando navigo verso "<nome della pagina>"
-\end_layout
-
-\begin_layout Plain Layout
-
-Allora la pagina è intitolata "<nome della pagina>"     
-\end_layout
-
-\begin_layout Plain Layout
-
-E posso tornare alla pagina iniziale   
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Esempi:
-\end_layout
-
-\begin_layout Plain Layout
-
-| nome della pagina |
-\end_layout
-
-\begin_layout Plain Layout
-
-| Autore            |
-\end_layout
-
-\begin_layout Plain Layout
-
-| Abstract          |
+public class RunCukesTest {}
 \end_layout
 
 \begin_layout Plain Layout
@@ -3160,13 +3051,7 @@ Esempi:
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:01x02 Pagine statiche"
-
-\end_inset
-
-Navigazione verso le pagine statiche
+Runner per Cucumber-JVM
 \end_layout
 
 \end_inset
@@ -3180,205 +3065,17 @@ Navigazione verso le pagine statiche
 \end_layout
 
 \begin_layout Standard
-Cucumber offre la possibilità di definire scenari parametrici.
- Sfruttando la sintassi 
-\emph on
-
+Aggiunte le dipendenze e le funzionalità è sufficiente configurare un classe
+ con le annotazioni di JUnit per eseguire i test.
+ L'annotazione 
 \begin_inset Quotes eld
 \end_inset
 
-Schema dello 
-\emph default
-scenario
+@CucumberOptions
 \begin_inset Quotes erd
 \end_inset
 
-, la tabella 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-Esempi
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- e i delimitatori 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-< >
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
- è possibile verificare tanti scenari quanti sono i parametri all'interno
- della tabella: lo scenario 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x02 Pagine statiche"
-
-\end_inset
-
- è eseguito sia sulla pagina dell'autore che sulla pagina dell'abstract.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Scenario: Visita alle pagine statiche: la pagina dell'autore e all'abstract
- della tesi
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Dato apro RBlog
-\end_layout
-
-\begin_layout Plain Layout
-
-Quando navigo verso "Autore"
-\end_layout
-
-\begin_layout Plain Layout
-
-Allora la pagina è intitolata "Autore"
-\end_layout
-
-\begin_layout Plain Layout
-
-E posso tornare alla pagina iniziale
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Testo generato dallo scenario 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x02 Pagine statiche"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-Business Readable DSL
-\end_layout
-
-\begin_layout Standard
-Il linguaggio utilizzato per descrivere le funzionalità e gli scenari in
- Cucumber è Gherkin
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Gherkin"
-
-\end_inset
-
-.
- Gli autori, gli stessi di Cucumber, descrivono il linguaggio come Business
- Readable DSL
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Fowler Business Readable DSL"
-
-\end_inset
-
-, definizione introdotta da Martin Fowler nel 2008.
-\end_layout
-
-\begin_layout Standard
-L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
-ne all'analisi e alla revisione del codice a figure non tecniche.
- Fowler sottolinea come sia più importante definire un linguaggio leggibile
- per tutte le diverse figure professionali coinvolte nello sviluppo rispetto
- ad uno anche scrivibile in maniera cooperativa.
- Un Business Readable DSL sopperisce alla necessità primaria di stabilire
- un canale di comunicazione arricchente fra le diverse parti che partecipano
- allo sviluppo, al contrario secondo Fowler, un Business Writeable DSL richiede
- un impegno troppo alto in termini di tempo e risorse umane coinvolte.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-I18n
-\end_layout
-
-\begin_layout Standard
-Cucumber supporta attualmente 40 lingue, numero in rapida crescita secondo
- gli sviluppatori.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Per ottenere la lista aggiornata delle lingue supportate è possibile eseguire
- il comando cucumber --i18n help o consultare la risorsa contenente il dizionari
-o 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
- E' così possibile definire i passi degli scenari con le parole chiave nella
- lingua scelta: ad esempio per la definizione delle funzionalità di RBlog
- è stata utilizzata la lingua italiana.
- Per utilizzare uno dei pacchetti linguistici esistenti è necessario un
- header 
-\begin_inset Quotes eld
-\end_inset
-
-# language: xx
-\begin_inset Quotes erd
-\end_inset
-
- all'interno dei file 
-\begin_inset Quotes eld
-\end_inset
-
-.feature
-\begin_inset Quotes erd
-\end_inset
-
-.
+ indica i tag degli scenari da eseguire.
 \end_layout
 
 \begin_layout Paragraph
@@ -3386,60 +3083,40 @@ Supporto a Cucumber in RubyMine
 \end_layout
 
 \begin_layout Standard
-RubyMine, l'ambiente di sviluppo scelto per sviluppare tramite RoR, integra
- le funzionalità di Cucumber e assiste il programmatore nel corso dello
- sviluppo dei test: la sintassi di Gherkin è evidenziata, è presente l'auto-comp
-letamento delle parole chiave del DSL in tutte le lingue, è possibile navigare
- dalla definizione all'implementazione del passo ed è fornita un'interfaccia
- grafica per l'esecuzione dei test, configurabile in funzione delle etichette,
- file delle funzionalità da includere ed altri parametri.
+Per Eclipse è disponibile un plugin per Cucumber
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eclipse Cucumber JVM Plugin"
+
+\end_inset
+
+ che fornisce la formattazione del codice scritto in Gherkin, l'auto-completamen
+to e l'evidenziatura della sintassi per tutte le lingue supportate.
+\end_layout
+
+\begin_layout Standard
+Rispetto all'integrazione in RubyMine manca la possibilità di navigare dal
+ passo all'implementazione, inoltre la funzionalità per eseguire i test
+ tramite le risorse scritte in Gherkin sembra non funzionare, obbligando
+ ad eseguire direttamente il runner di JUnit.
 \end_layout
 
 \begin_layout Subsection
-Capybara
+Selenium 2.0
 \end_layout
 
 \begin_layout Standard
-Capybara
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Capybara"
-
-\end_inset
-
- è una libreria in Ruby che permette la definizione di test di accettazione
- automatici per applicazioni web, non necessariamente scritte tramite RoR,
- simulando le azioni eseguibili via interfaccia grafica.
- 
+Selenium 2.0 è una libreria per l'automazione la navigazione internet.
+ Rispetto alle versioni precedenti della libreria, gli sviluppatori affermano
+ di aver definito un'interfaccia più intuitiva e compatta.
 \end_layout
 
 \begin_layout Standard
-Capybara nasconde all'utente i dettagli tecnici della navigazione tramite
- primitive di funzioni semplici, intuitive e versatili.
- Le funzionalità di Capybara sono astratte e mantengono la stessa prospettiva
- di un test effettuato manualmente da un utente.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La configurazione è effettuata tramite un breve script in Ruby: è necessario
- scegliere un browser web ed il relativo driver per Capybara importando
- la libreria nel file 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-features/support/env.rb
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-.
+Selenium WebDriver, la libreria che implementa le operazioni per l'accesso
+ alle pagine web, utilizza il supporto nativo di ogni browser per l'automazione.
+ La prima differenza rispetto a Capybara è data dalla possibilità di utilizzare
+ tutte le funzionalità di browser web, come la navigazione grazie alla cronologi
+a e l'uso dei preferiti, piuttosto che limitarsi alla sola navigazione.
 \end_layout
 
 \begin_layout Standard
@@ -3449,27 +3126,23 @@ status open
 
 \begin_layout Plain Layout
 
-require 'cucumber/rails'
+<dependency>
 \end_layout
 
 \begin_layout Plain Layout
 
-require 'capybara'
+	<groupId>org.seleniumhq.selenium</groupId> 	<artifactId>selenium-java</artifactId
+>
 \end_layout
 
 \begin_layout Plain Layout
 
-require 'capybara/cucumber'
+	<version>2.43.1</version>
 \end_layout
 
 \begin_layout Plain Layout
 
-require 'capybara/rspec'
-\end_layout
-
-\begin_layout Plain Layout
-
-require 'capybara/poltergeist'
+</dependency>
 \end_layout
 
 \begin_layout Plain Layout
@@ -3477,7 +3150,7 @@ require 'capybara/poltergeist'
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Dipendenze all'interno dello script di configurazione.
+Aggiunta della dipendenza di Selenium a SBlog.
 \end_layout
 
 \end_inset
@@ -3491,132 +3164,8 @@ Dipendenze all'interno dello script di configurazione.
 \end_layout
 
 \begin_layout Standard
-Infine, se necessario, è possibile configurare il driver scelto: la struttura
- di Capybara permette l'uso di diversi driver e browser.
- Tutti i driver
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Capybara Drivers"
-
-\end_inset
-
- devono implementare le funzionalità obbligatorie indicate nella libreria,
- ma è consentito non fornire il resto delle operazioni ma essere comunque
- annoverati fra i driver esistenti per Capybara.
- Per RBlog è stato utilizzato PhantomJS
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PhantomJS"
-
-\end_inset
-
- ed il driver Poltergeist
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Poltergeist"
-
-\end_inset
-
-, che verranno trattati in seguito.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Capybara.default_driver = :poltergeist
-\end_layout
-
-\begin_layout Plain Layout
-
-Capybara.register_driver :poltergeist do |app|
-\end_layout
-
-\begin_layout Plain Layout
-
-	options = { 			
-\end_layout
-
-\begin_layout Plain Layout
-
-		:js_errors => true,
-\end_layout
-
-\begin_layout Plain Layout
-
-		:timeout => 120,
-\end_layout
-
-\begin_layout Plain Layout
-
-		:debug => true,
-\end_layout
-
-\begin_layout Plain Layout
-
-		:phantomjs_options => ['--load-images=yes', '--disk-cache=false'],
-\end_layout
-
-\begin_layout Plain Layout
-
-		:inspector => true,
-\end_layout
-
-\begin_layout Plain Layout
-
-	}
-\end_layout
-
-\begin_layout Plain Layout
-
-	Capybara::Poltergeist::Driver.new(app, options)
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Configurazione di Poltergeist
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Le opzioni più rilevanti per Poltergeist sono:
-\end_layout
-
-\begin_layout Itemize
-:js_errors rileva ogni errore relativo alle esecuzione di codice JavaScript
- e genera un errore in Ruby;
-\end_layout
-
-\begin_layout Itemize
-:inspector è un'opzione sperimentale che permette il debug dell'esecuzione
- tramite una terza applicazione, come ad esempio Chrome web inspector
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Chrome web inspector"
-
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Itemize
-:debug reindirizza l'output dell'esecuzione in modalità debug verso STDERR.
+Per poter definire i test utilizzando le funzionalità di Selenium è sufficiente
+ aggiungere la dipendenza del porting in Java al POM del progetto.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3624,111 +3173,57 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-PhantomJS è un browser headless, supporta tutte le funzionalità di un browser
- web moderno ma senza possedere un'interfaccia grafica e si basa sul motore
- di rendering WebKit
-\begin_inset CommandInset citation
-LatexCommand cite
-key "WebKit"
-
-\end_inset
-
-, lo stesso utilizzato da Chrome e Safari.
-\end_layout
-
-\begin_layout Standard
-E' particolarmente adatto all'esecuzione automatica di applicazioni web
- non richiedendo di un framework per la gestione di GUI, funzionalità spesso
- mancante sui server che effettuano l'integrazione continua.
-\end_layout
-
-\begin_layout Standard
-Con PhantomJS è anche possibile far coincidere il fallimento dei propri
- test in funzione di errori su codice JavaScript, funzionalità non presente
- su altri browser, grazie all'opzione :js_errors precedentemente descritta.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-PhantomJS è installabile tramite i pacchetti d'installazione presenti sul
- sito ufficiale 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://phantomjs.org/download.html
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
+Data la forte integrazione di Selenium con i browser web è stato scelto
+ di adottare anche per i test su SBlog PhantomJS.
+ Scegliendo di implementare i test di accettazione automatici con Cucumber,
+ nelle varie versioni, ed utilizzando lo stesso software per la navigazione
+ dei blog è più facile associare ad ogni problema o difficoltà un responsabile
+ ed effettuare un'analisi più accurata e metodica.
 \end_layout
 
 \begin_layout Subsubsection*
-Poltergeist
+Ghost Driver
 \end_layout
 
 \begin_layout Standard
-Poltergeist è un driver per il browser PhantomJS ed implementa la totalità
- delle funzionalità obbligatorie e molte delle opzionali disponibili.
- Dopo aver configurato il driver nel file 
-\begin_inset Quotes eld
-\end_inset
-
-env.rb
-\begin_inset Quotes erd
-\end_inset
-
- tutte le operazioni saranno gestite tramite la libreria di Capybara.
+Ghost Driver è un'implementazione JavaScript del protocollo WebDriver Web
+ di PhantomJS che permette di eseguire i comandi contattando tramite richieste
+ HTTP un servizio REST, che restituisce i risultati delle interazioni serializza
+ti con JSon.
 \end_layout
 
 \begin_layout Standard
-La combinazione Capybara - Poltergeist - PhantomJS è attualmente una delle
- più diffuse per lo sviluppo di test di accettazione automatici in Ruby
- perché da ottimi risultati nella gestione di strumenti asincroni come AJAX
-\begin_inset CommandInset citation
-LatexCommand cite
-key "AJAX"
-
-\end_inset
-
-, è estremamente veloce ed è molto accurata nella gestione di falsi positivi,
- come ad esempio il click su eventi esistenti nel DOM, Document Object Model,
- di una pagina HTML ma non visibili.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-L'installazione di Poltergeist è effettuata attraverso il gemfile e la gemma
- 
-\begin_inset Quotes eld
-\end_inset
-
-poltergeist
-\begin_inset Quotes erd
-\end_inset
-
-.
+Per configurare Ghost Driver è sufficiente aggiungere la dipendenza al POM.
 \end_layout
 
-\end_inset
-
- 
-\begin_inset Foot
+\begin_layout Standard
+\begin_inset listings
+inline false
 status open
 
 \begin_layout Plain Layout
-Quando viene richiesto il click su un elemento, Poltergeist non genera un
- evento attraverso il DOM ma simula un evento reale, ad esempio scendendo
- lungo la pagina nel caso in cui l'elemento non dovesse essere visibile.
- Inoltre sono previste diverse casistiche di errori, come l'impossibilità
- di compiere azioni su un elemento coperto.
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>com.github.detro.ghostdriver</groupId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<artifactId>phantomjsdriver</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<version>1.1.0</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
 \end_layout
 
 \end_inset
@@ -3741,18 +3236,23 @@ Implementazione dei passi
 \end_layout
 
 \begin_layout Standard
-La struttura dei passi in Cucumber è definita a priori e non varia in funzione
- del tipo implementato.
- Per implementare un passo è necessario creare uno script Ruby, ad esempio
- 
+L'implementazione di un passo in Cucumber-JVM è eseguita annotando un metodo
+ pubblico con una delle annotazioni corrispondenti al tipo di passo e specifican
+do il valore dell'espressione regolare.
+ Inoltre è possibile specificare un parametro 
 \begin_inset Quotes eld
 \end_inset
 
-features/steps_definition/constraints.rb
+timeout
 \begin_inset Quotes erd
 \end_inset
 
-, e definirne l'implementazione.
+ per specificare il tempo massimo di esecuzione del passo.
+\end_layout
+
+\begin_layout Standard
+Come per la versione in Ruby, non c'è corrispondenza fra il tipo dell'implementa
+zione, in Java è rappresentato dall'annotazione, ed i tipi di passi applicabili.
 \end_layout
 
 \begin_layout Standard
@@ -3762,28 +3262,28 @@ status open
 
 \begin_layout Plain Layout
 
-Given(/^apro RBlog$/) do
+@Dato("^apro SBlog$")
 \end_layout
 
 \begin_layout Plain Layout
 
-	visit steps_helper.rblog_url
+public void apro_SBlog() {
 \end_layout
 
 \begin_layout Plain Layout
 
-	#...
+	/*...*/
 \end_layout
 
 \begin_layout Plain Layout
 
-end
+}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:Implementazione \"apro RBlog\""
+name "lis:Implementazione \"apro SBlog\""
 
 \end_inset
 
@@ -3791,7 +3291,7 @@ Implementazione del passo
 \begin_inset Quotes eld
 \end_inset
 
-apro RBlog
+apro SBlog
 \begin_inset Quotes erd
 \end_inset
 
@@ -3809,273 +3309,158 @@ apro RBlog
 \end_layout
 
 \begin_layout Standard
-Sfruttando il metodo Given di Cucumber, in generale lo schema è valido anche
- per gli altri tipi disponibili, è possibile specificare un'espressione
- regolare ed il comportamento associato.
- All'esecuzione dei test, è verificata la presenza un'implementazione per
- ogni passo definito.
- E' necessario che per ogni passo in Gherkin esista un'unica espressione
- regolare corrispondente fra i metodi disponibili.
+Per implementare passi parametrici è sufficiente aggiungere dei parametri
+ al metodo; come in Ruby i valori estratti dall'espressione del passo hanno
+ tipo stringa, ma è possibile annotare i parametri con 
+\begin_inset Quotes eld
+\end_inset
+
+@Format
+\begin_inset Quotes erd
+\end_inset
+
+ per effettuare eventuali conversioni.
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-When(/^apro (.*)$/) do |site_name|
-\end_layout
-
-\begin_layout Plain Layout
-
-	#...
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Ipotetica implementazione ulteriore.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-L'introduzione di un'ulteriore implementazione, anche se con tipo differente,
- genere un'ambiguità che secondo il comportamento standard di Cucumber non
- è risolta.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Sfruttando l'opzione --guess di Cucumber è possibile far variare il comportament
-o per la scelta dell'implementazione da applicare.
-\end_layout
-
-\end_inset
-
-L'implementazione di passo è definibile all'interno di un blocco e non esiste
- alcuna limitazione né controllo sulle espressioni che possono essere utilizzate.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-L'implementazione dei passi non è vincolata dal tipo definito, ad esempio
- è possibile sfruttare un'asserzione come invariante.
- Questa particolarità di Cucumber offre la possibilità di definire più librerie
- di test di accettazione in differenti lingue ed utilizzare lo stesso codice
- per l'implementazione dei passi.
- Una potenzialità simile può essere utile per documentare lo sviluppo di
- progetti che coinvolgono stake-holders di diverse nazionalità.
+Eventuali inconsistenze fra il numero di parametri del passo e del metodo
+ sono segnalate tramite eccezione.
 \end_layout
 
 \begin_layout Paragraph
-La struttura di Capybara
+La struttura di Selenium
 \end_layout
 
 \begin_layout Standard
-Vediamo quali funzionalità Capybara offra per semplificare la scrittura
- delle espressioni necessarie per l'implementazione dei passi in Cucumber.
-\end_layout
-
-\begin_layout Standard
-Gli elementi di una pagina web sono indicati come nodi
+Rispetto alla struttura di Capybara, Selenium organizza le funzionalità
+ in maniera articolata
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Capybara::Node"
-
-\end_inset
-
- in Capybara, la gerarchia è la seguente:
-\end_layout
-
-\begin_layout Itemize
-la classe più semplice è Capybara::Node::Simple e rappresenta gli elementi
- di una pagina web, tali oggetti possono essere individuati all'interno
- del documento e analizzati in funzione degli attributi, ma non sono utilizzabil
-i per compiere azioni;
-\end_layout
-
-\begin_layout Itemize
-la classe Capybara::Node::Base è la classe padre di Capybara::Node::Element
- e Capybara::Node::Document, gli oggetti delle classi figlie condividono
- gli stessi metodi tramite i moduli Finders, Matchers e Actions.
- A differenza dei nodi semplici, sono utilizzabili per compiere azioni;
-\end_layout
-
-\begin_layout Itemize
-la classe Element rappresenta un singolo elemento all'interno del DOM della
- pagina;
-\end_layout
-
-\begin_layout Itemize
-la classe Document rappresenta i documenti HTML nella loro interezza.
-\end_layout
-
-\begin_layout Standard
-Le funzionalità di Capybara sono suddivise in tre moduli: 
-\begin_inset Quotes eld
-\end_inset
-
-Finders
-\begin_inset Quotes erd
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-Actions
-\begin_inset Quotes erd
-\end_inset
-
- e 
-\begin_inset Quotes eld
-\end_inset
-
-Matchers
-\begin_inset Quotes erd
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Capybara::Modules"
+key "Selenium Hierarchy"
 
 \end_inset
 
 .
+ La libreria è rappresentata attraverso più gerarchie di classi, interfacce
+ ed enumerazioni.
+ Di seguito sono introdotti gli elementi più importanti e maggiormente utilizzat
+i per il testing su SBlog:
 \end_layout
 
-\begin_layout Standard
-Il modulo 
+\begin_layout Itemize
+l'interfaccia 
 \begin_inset Quotes eld
 \end_inset
 
-Finders
+WebElement
 \begin_inset Quotes erd
 \end_inset
 
- contiene un insieme di funzionalità dedicate all'individuazione di nodi
- all'interno della pagina.
- I metodi sono suddivisi in funzione del tipo di elemento ricercato, come
- ad esempio 
-\begin_inset Quotes eld
-\end_inset
-
-find_button
-\begin_inset Quotes erd
-\end_inset
-
- e 
-\begin_inset Quotes eld
-\end_inset
-
-find_link
-\begin_inset Quotes erd
-\end_inset
-
-, e della cardinalità attesa: il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-all
-\begin_inset Quotes erd
-\end_inset
-
- restituisce tutti gli elementi che soddisfano la ricerca a differenza dei
- metodi 
-\begin_inset Quotes eld
-\end_inset
-
-find_*
-\begin_inset Quotes erd
-\end_inset
-
- dai quali è atteso l'individuazione di esattamente un nodo.
-\begin_inset Newline newline
-\end_inset
-
-
+ rappresenta gli elementi HTML e include le principali operazioni eseguibili
+ tramite Selenium.
+ Le linee guida della libreria prevedono che ogni metodo effettui un controllo
+ sulla validità del chiamante, verificando che sia presente nel DOM al momento
+ dell'esecuzione dell'operazione;
 \end_layout
 
-\begin_layout Standard
-Il modulo 
+\begin_layout Itemize
+l'interfaccia 
 \begin_inset Quotes eld
 \end_inset
 
-Actions
+WebDriver
 \begin_inset Quotes erd
 \end_inset
 
- permette l'interazione con l'interfaccia della pagina: sono quindi previsti,
- ad esempio, metodi per la compilazione di form HTML e la selezione di elementi.
- Le operazioni permettono anche di specificare delle opzioni per effettuare
- delle variazioni o verificare alcune proprietà prima di compiere l'evento.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Il metodo click_link permette di specificare l'opzione :href per verificare
- l'uguaglianza del attributo href prima di effettuare il click sul collegamento.
+ è la radice della gerarchia delle operazioni che descrivono le operazioni
+ eseguibili durante i test.
+ Le funzionalità dichiarate nell'interfaccia riguardano il controllo del
+ browser stesso, la selezione degli elementi presenti nel DOM e il supporto
+ al debug durante i test;
 \end_layout
 
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Infine il modulo Matchers verifica le proprietà di un nodo, sia esso un
- sotto elemento della pagina o il documento stesso.
- Ad esempio è possibile verificare che sia presente un selettore, indicando
- l'identificatore css o una query XPath, o la presenza di attributo per
- l'elemento che invoca il metodo.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La libreria di Capybara è ricca di funzionalità e si presta in maniera versatile
- a diversi usi e preferenze.
- Per la maggior parte dei metodi è prevista la possibilità di specificare
- delle opzioni ed influire, in funzione della natura dell'operazione, sul
- comportamento di default.
- Inoltre, soprattutto all'interno del modulo 
+\begin_layout Itemize
+la classe astratta 
 \begin_inset Quotes eld
 \end_inset
 
-Matchers
+By
 \begin_inset Quotes erd
 \end_inset
 
-, esistono diversi modi per definire le istruzioni, facilitando la scrittura
- dei test.
+ implementa diversi factory metodi per individuare elementi all'interno
+ del DOM.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElement
+\begin_inset Quotes erd
+\end_inset
+
+ dell'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ richiede un'istanza della classe 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ per compiere la ricerca nel documento.
+ Rispetto a Capybara le possibilità per implementare un selettore sono indicativ
+amente equivalenti, ma Selenium offre metodi come 
+\begin_inset Quotes eld
+\end_inset
+
+ByTagName
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+ByPartialLinkText
+\begin_inset Quotes erd
+\end_inset
+
+, derivati rispettivamente da 
+\begin_inset Quotes eld
+\end_inset
+
+ByCssSelector
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+ByLinkText
+\begin_inset Quotes erd
+\end_inset
+
+, che semplificano lo sviluppo dei test;
+\end_layout
+
+\begin_layout Itemize
+l'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebDriverException
+\begin_inset Quotes erd
+\end_inset
+
+ rappresenta la gerarchia degli errori presenti nella libreria.
 \end_layout
 
 \begin_layout Paragraph
@@ -4083,36 +3468,7 @@ Navigare all'interno del sito
 \end_layout
 
 \begin_layout Standard
-Nel passo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Implementazione \"apro RBlog\""
-
-\end_inset
-
- è utilizzato il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-visit
-\begin_inset Quotes erd
-\end_inset
-
- che permette la navigazione verso una certa pagina web.
- All'esecuzione del metodo coincide una richiesta HTTP in GET all'indirizzo
- indicato come parametro, che può essere sia relativo che assoluto.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Il metodo rblog_url dell'oggetto denominato steps_helper, appartiene alla
- classe StepsHelper, utilizzata per contenere alcuni metodi d'utilità sfruttati
- durante lo sviluppo dei test.
-\end_layout
-
-\end_inset
-
-
+La navigazione in Selenium è effettuabile utilizzando tre tipologie di metodi.
 \end_layout
 
 \begin_layout Standard
@@ -4122,17 +3478,7 @@ status open
 
 \begin_layout Plain Layout
 
-When(/^navigo verso "([^"]*)"$/) do |page_name|
-\end_layout
-
-\begin_layout Plain Layout
-
-	find_link(page_name).click
-\end_layout
-
-\begin_layout Plain Layout
-
-end
+driver.navigate().to(getSblogURL());
 \end_layout
 
 \begin_layout Plain Layout
@@ -4140,13 +3486,7 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:evento naviga verso"
-
-\end_inset
-
-Navigazione nel sito, sfruttando il testo visualizzato di un link.
+Navigazione esplicita.
 \end_layout
 
 \end_inset
@@ -4164,314 +3504,22 @@ Il metodo
 \begin_inset Quotes eld
 \end_inset
 
-visit
+navigate
 \begin_inset Quotes erd
 \end_inset
 
-, utilizzato per aprire la pagina iniziale del blog, non verifica la presenza
- all'interno della pagina di un collegamento verso la destinazione, ma semplicem
-ente effettua la richiesta all'indirizzo indicato.
-\end_layout
-
-\begin_layout Standard
-Per verificare la presenza di link alle pagine statiche nell'homepage è
- stato utilizzato il metodo 
+ restituisce un'istanza di tipo 
 \begin_inset Quotes eld
 \end_inset
 
-find_link
+Navigation
 \begin_inset Quotes erd
 \end_inset
 
-.
- Il metodo ricerca un collegamento all'interno della pagina in funzione
- dell'identificatore degli elementi HMTL 
-\begin_inset Quotes eld
-\end_inset
-
-a
-\begin_inset Quotes erd
-\end_inset
-
- o del testo visualizzato.
- Come per le altre varianti dei metodi 
-\begin_inset Quotes eld
-\end_inset
-
-find_*
-\begin_inset Quotes erd
-\end_inset
-
- in Finders, il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-find_link
-\begin_inset Quotes erd
-\end_inset
-
- solleva un'eccezione nel caso in cui la ricerca non dovesse individuare
- uno ed un solo elemento.
- Per navigare all'interno del sito web si invoca il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-click
-\begin_inset Quotes erd
-\end_inset
-
- sul nodo restituito, come mostrato nell'implementazione del passo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:evento naviga verso"
-
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A differenza del passo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Implementazione \"apro RBlog\""
-
-\end_inset
-
-, dove non sono presenti parametri, nel passo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:evento naviga verso"
-
-\end_inset
-
- viene selezionato il collegamento che coincide con il valore di 
-\begin_inset Quotes eld
-\end_inset
-
-page_name
-\begin_inset Quotes erd
-\end_inset
-
-, tramite un blocco con un singolo parametro.
- Cucumber per ogni passo che contiene del testo fra virgolette, genera dei
- blocchi parametrici automaticamente.
- E' possibile applicare lo stesso procedimento manualmente, sostituendo
- all'interno dell'espressione del passo un proprio pattern e aggiungendo
- un parametro a cui attribuire il valore.
- I parametri all'interno dei passi hanno tipo stringa, ma è possibile definire
- delle conversioni di tipo tramite il metodo Transform
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Cucumber::Tranform"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Paragraph
-Definizione delle asserzioni con RSpec
-\end_layout
-
-\begin_layout Standard
-All'interno della libreria di Capybara non sono presenti le funzionalità
- per la verifica di asserzioni, è quindi necessario sfruttare librerie terze,
- come ad esempio RSpec.
-\end_layout
-
-\begin_layout Standard
-RSpec è un framework per il testing scritto in Ruby, le cui funzionalità
- sono suddivise in quattro moduli:
-\end_layout
-
-\begin_layout Itemize
-RSpec-Core
-\begin_inset CommandInset citation
-LatexCommand cite
-key "RSpec-Core"
-
-\end_inset
-
- fornisce la struttura per la definizione di funzionalità e scenari per
- il BDD;
-\end_layout
-
-\begin_layout Itemize
-RSpec-Expectations
-\begin_inset CommandInset citation
-LatexCommand cite
-key "RSpec-Expectations"
-
-\end_inset
-
- è una libreria di metodi per definire asserzioni;
-\end_layout
-
-\begin_layout Itemize
-RSpec-Mocks
-\begin_inset CommandInset citation
-LatexCommand cite
-key "RSpec-Mocks"
-
-\end_inset
-
- è un framework per l'implementazione di stub, oggetti mock, verifiche sull'invo
-cazione di metodi e dell'interazione fra oggetti;
-\end_layout
-
-\begin_layout Itemize
-RSpec-Rails
-\begin_inset CommandInset citation
-LatexCommand cite
-key "RSpec-Rails"
-
-\end_inset
-
- è un framework per la definizione di test sulle componenti che definiscono
- un'applicazione RoR, come il modello, i controlli e le viste ma anche gli
- Helper e l'instradamento delle richieste.
-\end_layout
-
-\begin_layout Standard
-Oltre a RSpec è possibile l'integrazione all'interno di unit-test, Test::Unit
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Test::Unit"
-
-\end_inset
-
- in Rails, oppure con le asserzioni definite in MiniTest::Spec
-\begin_inset CommandInset citation
-LatexCommand cite
-key "MiniTest::Spec"
-
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La struttura di un'asserzione in RSpec è definita da due elementi: l'oggetto
- da verificare ed uno o più matcher, concatenati da operatori logici.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-La maggior parte dei matcher di RSpec prevedono la verifica di una singola
- proprietà, ma esistono anche matcher compositi con arietà variabile.
- La lista completa è consultabile sulla documentazione ufficiale 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://www.relishapp.com/rspec/rspec-expectations/v/3-1/docs/composing-matchers
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dalla versione 2.11 di RSpec, la versione corrente è la 3.1.0, è stata modificata
- la sintassi del metodo 
-\begin_inset Quotes eld
-\end_inset
-
-expect
-\begin_inset Quotes erd
-\end_inset
-
- per renderla più leggibile e versatile.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-expect(obj).not_to <matcher>
-\end_layout
-
-\begin_layout Plain Layout
-
-expect{ ...
- }.to <matcher>
-\end_layout
-
-\begin_layout Plain Layout
-
-expect do
-\end_layout
-
-\begin_layout Plain Layout
-
-...
-\end_layout
-
-\begin_layout Plain Layout
-
-...
-\end_layout
-
-\begin_layout Plain Layout
-
-end.to <matcher>
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Esempi dell'uso del metodo 
-\begin_inset Quotes eld
-\end_inset
-
-expect
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il metodo accetta un singolo parametro, sia esso un oggetto o un blocco,
- che viene verificato dai matcher indicati.
- Un matcher in RSpec è un metodo e fornisce un risultato booleano in funzione
- dell'operazione implementata e degli argomenti.
- L'uso corretto dei matcher è come parametri dei metodi 
+ che permette al driver di accedere alle funzionalità del browser e di navigare,
+ sia utilizzando la cronologia, sia indicando esplicitamente un URL da raggiunge
+re.
+ Il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4479,15 +3527,8 @@ to
 \begin_inset Quotes erd
 \end_inset
 
- e 
-\begin_inset Quotes eld
-\end_inset
-
-not_to
-\begin_inset Quotes erd
-\end_inset
-
-.
+ effettua richiesta in GET per l'URL specificato e blocca l'esecuzione fino
+ al caricamento della nuova pagina.
 \end_layout
 
 \begin_layout Standard
@@ -4497,17 +3538,12 @@ status open
 
 \begin_layout Plain Layout
 
-Then(/^posso visitare la pagina dell'autore$/) do 
+WebElement link = driver.findElement(By.linkText(linkText));
 \end_layout
 
 \begin_layout Plain Layout
 
-	expect(find_link('Autore').visible?).to be_truthy 
-\end_layout
-
-\begin_layout Plain Layout
-
-end
+link.click();
 \end_layout
 
 \begin_layout Plain Layout
@@ -4515,7 +3551,13 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Verifica la presenza del link
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:evento naviga verso selenium"
+
+\end_inset
+
+Navigazione nel sito, sfruttando il testo visualizzato di un link.
 \end_layout
 
 \end_inset
@@ -4529,22 +3571,111 @@ Verifica la presenza del link
 \end_layout
 
 \begin_layout Standard
-Lo scenario 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x02 Pagine statiche"
-
-\end_inset
-
- richiede la possibilità di navigare verso la pagina statica dell'autore.
- L'asserzione è stata implementata sfruttando le funzionalità di Capybara,
- per individuare il collegamento in funzione del testo mostrato e ottenere
- la visibilità del nodo, e RSpec con il matcher 
+Oltre alla navigazione esplicita, è possibile compiere effettuare un azione,
+ come la selezione di un collegamento, su un oggetto 
 \begin_inset Quotes eld
 \end_inset
 
-be_truthy
+WebElement
 \begin_inset Quotes erd
+\end_inset
+
+ individuato tramite un selettore.
+ Nell'esempio è effettuata la navigazione ad una delle pagine statiche del
+ blog presenti per la prima funzionalità, individuando il link attraverso
+ il testo degli elementi 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElement
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce il primo elemento che soddisfa il selettore di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Per ogni ricerca all'interno del DOM è previsto un tempo massimo di attesa
+ entro il quale l'elemento deve apparire ed una frequenza di polling.
+ L'eccezione 
+\begin_inset Quotes eld
+\end_inset
+
+NoSuchElementException
+\begin_inset Quotes erd
+\end_inset
+
+ è sollevata nel caso l'elemento non fosse presente.
+\end_layout
+
+\begin_layout Paragraph
+Integrazione con JUnit
+\end_layout
+
+\begin_layout Standard
+Per l'esecuzione degli scenari e la definizione delle asserzioni è stato
+ utilizzato JUnit, una libreria Java per la definizione di test.
+\end_layout
+
+\begin_layout Standard
+A differenza di RSpec, la cui struttura prevede 4 moduli organizzati per
+ funzionalità, non è possibile utilizzare un sottoinsieme di JUnit.
+ Per definire un test con JUnit è sufficiente annotare con 
+\begin_inset Quotes eld
+\end_inset
+
+@Test
+\begin_inset Quotes erd
+\end_inset
+
+ un metodo pubblico, utilizzando però Cucumber non è possibile far corrispondere
+ a ciascun scenario un singolo test.
+ I test infatti sono definiti dinamicamente tramite il runner di Cucumber
+ che seleziona i metodi corrispondenti a ciascun passo e non rispetta quindi
+ la struttura classica prevista da JUnit.
+\end_layout
+
+\begin_layout Standard
+In assenza della corrispondenza 
+\begin_inset Quotes eld
+\end_inset
+
+@Test
+\begin_inset Quotes erd
+\end_inset
+
+ - scenario, non è possibile utilizzare le funzionalità di JUnit implementate
+ tramite annotazione, come la verifica delle eccezioni o la definizione
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+@Rule
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JUnit Rule"
+
 \end_inset
 
 .
@@ -4555,23 +3686,30 @@ be_truthy
 \end_layout
 
 \begin_layout Standard
+Le asserzioni in JUnit sono metodi statici della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Assert
+\begin_inset Quotes erd
+\end_inset
+
+ ed offrono le funzionalità per la verifica dello stato di uno o più oggetti.
+\end_layout
+
+\begin_layout Standard
 \begin_inset listings
 inline false
 status open
 
 \begin_layout Plain Layout
 
-Then(/^la pagina è intitolata "([^"]*)"$/) do |title_value|
+WebElement logo = driver.findElement(By.id("logo"));
 \end_layout
 
 \begin_layout Plain Layout
 
-	expect(page.title).to eq(title_value)
-\end_layout
-
-\begin_layout Plain Layout
-
-end
+assertEquals(logo.getAttribute("href"), getSblogURL());
 \end_layout
 
 \begin_layout Plain Layout
@@ -4579,7 +3717,15 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Implementazione di un'asserzione parametrica.
+Verifica del attributo 
+\begin_inset Quotes eld
+\end_inset
+
+href
+\begin_inset Quotes erd
+\end_inset
+
+ del collegamento presente nell'intestazione.
 \end_layout
 
 \end_inset
@@ -4593,92 +3739,21 @@ Implementazione di un'asserzione parametrica.
 \end_layout
 
 \begin_layout Standard
-Nello scenario 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:01x02 Pagine statiche"
-
-\end_inset
-
- è richiesto il confronto di un parametro, definito attraverso l'espressione
- regolare, ed il titolo della pagina.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Capybara::DSL::page è un getter e restituisce la rappresentazione della
- pagina attualmente aperta nel browser.
-\end_layout
-
-\end_inset
-
- In RSpec esistono tre matcher per la verifica dell'uguaglianza: 
-\begin_inset Quotes eld
-\end_inset
-
-equal?
-\begin_inset Quotes erd
-\end_inset
-
- verifica se le variabili si riferiscono allo stesso oggetto, 
-\begin_inset Quotes eld
-\end_inset
-
-eql?
-\begin_inset Quotes erd
-\end_inset
-
- effettua un confronto sullo stato dell'istanza mentre l'operatore 
-\begin_inset Quotes eld
-\end_inset
-
-==
-\begin_inset Quotes erd
-\end_inset
-
- confronta sia il tipo degli oggetti che i relativi stati, sfruttando eventuali
- conversioni.
- 
 \begin_inset listings
 inline false
 status open
 
 \begin_layout Plain Layout
 
-Given(/^apro RBlog$/) do
+assertEquals(driver.getTitle(), pageTitle);
 \end_layout
 
 \begin_layout Plain Layout
 
-	visit steps_helper.rblog_url
-\end_layout
-
-\begin_layout Plain Layout
-
-	expect(page.status_code).to be == 200
-\end_layout
-
-\begin_layout Plain Layout
-
-end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Implementazione \"apro RBlog\"-1"
-
-\end_inset
-
-Implementazione del passo 
-\begin_inset Quotes eld
-\end_inset
-
-apro RBlog
-\begin_inset Quotes erd
-\end_inset
-
-.
+Verifica del titolo della pagina.
 \end_layout
 
 \end_inset
@@ -4692,17 +3767,6 @@ apro RBlog
 \end_layout
 
 \begin_layout Standard
-Tramite il matcher 
-\begin_inset Quotes eld
-\end_inset
-
-be
-\begin_inset Quotes erd
-\end_inset
-
- è possibile utilizzare gli operatori definiti in Ruby.
- Nella precondizione è verificato che lo stato HTTP sia equivalente a 200,
- che corrisponde alla corretta terminazione della richiesta.
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -4762,177 +3826,16 @@ Seconda funzionalità per RBlog
 
 \end_layout
 
-\begin_layout Standard
-Lo sviluppo attuale di RBlog prevede una semplice struttura e la navigazione
- fra le pagine esistenti, l'homepage e due pagine statiche contenenti una
- breve descrizione del progetto e della tesi.
- L'iterazione corrente introduce i fogli di stile e la verifica tramite
- Capybara degli effettivi cambiamenti nell'aspetto delle pagine.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Un aspetto importante nello sviluppo di applicazioni web è rispettare i
- principi di accessibilità consigliati dal W3C, il consorzio che si occupa
- della standardizzazione di internet e dei suoi servizi.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-«The power of the Web is in its universality.
- Access by everyone regardless of disability is an essential aspect.»
-\emph default
- Tim Berners-Lee, W3C Director and inventor of the World Wide Web
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Nella funzionalità non è richiesto che il sito sia accessibile da persone
- con disabilità, ma è comunque necessario verificare non solo la struttura
- delle pagine ma anche alcuni requisiti estetici siano rispettati: potrebbe
- essere necessario che le pagine verifichino un certo schema di colori o
- che sia presente un unico font.
-\end_layout
-
-\begin_layout Standard
-Le caratteristiche estetiche dell'interfaccia e l'usabilità sono requisiti
- importanti nello sviluppo di un'applicazione web, ne consegue che anche
- gli strumenti per la definizione di test di accettazione dovrebbero offrire
- delle funzionalità per l'analisi di proprietà non esclusivamente legate
- alla struttura del DOM ed alle proprietà dei nodi, affinché tali richieste
- possano essere introdotte all'interno di scenari e funzionalità.
-\end_layout
-
-\begin_layout Subsection
-\begin_inset Quotes eld
-\end_inset
-
-CSS with superpowers
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-RubyMine offre la possibilità di scegliere come implementare i propri fogli
- di stile: ovviamente è previsto l'uso del CSS3 per il quale è integrato
- il supporto, ma è anche disponibile sfruttare Sass
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Sass"
-
-\end_inset
-
-, Scss e Less, estensioni dello standard che introducono nuove caratteristiche
- ai classici fogli di stile.
-\end_layout
-
-\begin_layout Standard
-RubyMine genera per ogni controller un foglio di stile in Sass, e vista
- la completa integrazione di questo linguaggio nell'ambiente di sviluppo
- è stato deciso di sfruttarlo per il progetto.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-.posts {
-\end_layout
-
-\begin_layout Plain Layout
-
-	#notice {
-\end_layout
-
-\begin_layout Plain Layout
-
-		margin: 1em 15%;
-\end_layout
-
-\begin_layout Plain Layout
-
-		text-align: center;
-\end_layout
-
-\begin_layout Plain Layout
-
-		p {
-\end_layout
-
-\begin_layout Plain Layout
-
-			color: forestgreen;
-\end_layout
-
-\begin_layout Plain Layout
-
-		}
-\end_layout
-
-\begin_layout Plain Layout
-
-	}
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Frammento del foglio di stile in Sass relativo ai post.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sass fornisce alcuni strumenti sintattici per facilitare il riuso e l'organizzaz
-ione di regole: la caratteristica che maggiormente semplifica lo sviluppo
- dei fogli di stile è la possibilità di definire una gerarchia nelle regole.
- I fogli di stile appaiono più lineari e leggibili, rispecchiano la struttura
- del documento, è c'è un minor rischio di errori, non è necessario etichettare
- ogni elemento del DOM con identificatori e classi, ed è molto più semplice
- applicare delle correzioni a piccole porzioni dell'applicazione.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La sintassi di Sass prevede l'uso di variabili, ad esempio per salvare i
- riferimenti ad un colore o ad un font, consente l'importazione di altri
- documenti Sass e la definizione di fogli di stile parziali per fattorizzare
- alcuni elementi comuni dell'interfaccia.
- I file in Sass sono processati e compilati in un file CSS prima dell'utilizzo;
- il procedimento è gestito in automatico da RubyMine.
-\end_layout
-
 \begin_layout Subsection
 Testare il css
+\end_layout
+
+\begin_layout Standard
+https://github.com/Huddle/PhantomCSS
+\end_layout
+
+\begin_layout Standard
+http://huddle.github.io/Resemble.js/
 \end_layout
 
 \begin_layout Standard
@@ -5045,422 +3948,16 @@ Scenario relativo alla funzionalità.
 Analisi delle proprietà dei nodi
 \end_layout
 
-\begin_layout Standard
-Il modulo Matchers di Capybara espone molti metodi e soluzioni equivalenti
- per la lettura dei valori presenti negli attributi dei nodi del documento,
- inoltre in HTML è possibile definire lo stile di un singolo nodo inserendo
- le regole desiderate all'interno dell'attributo 
-\begin_inset Quotes eld
-\end_inset
-
-style
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Supponiamo che le pagine HTML dichiarino le regole di stile all'interno
- dei nodi stessi e non attraverso fogli di stile linkati nell'intestazione
- del documento HTML: durante l'analisi del valore di un attributo strutturato
- come 
-\begin_inset Quotes eld
-\end_inset
-
-style
-\begin_inset Quotes erd
-\end_inset
-
- Capybara non effettua alcuna operazione straordinaria.
- Viene quindi estratta una stringa da analizzare tramite espressioni regolari
- create ad hoc per la regola CSS a cui si è interessati.
-\end_layout
-
 \begin_layout Paragraph
 Analisi dei fogli di stile e corrispondenza all'interno del DOM
-\end_layout
-
-\begin_layout Standard
-La pratica di definire lo stile direttamente all'interno delle pagine HTML
- è deprecata in quanto minimizza il riuso del codice e rende estremamente
- fragile l'insieme delle viste in termini di manutenibilità.
-\end_layout
-
-\begin_layout Standard
-Capybara, più precisamente Poltergeist, non effettua alcuna valutazione
- dei fogli di stile allegati alla pagina e non associa le regole presenti
- ai rispettivi nodi del DOM.
- Le regole sono ignorate e l'accesso agli attributi 
-\begin_inset Quotes eld
-\end_inset
-
-style
-\begin_inset Quotes erd
-\end_inset
-
- o 
-\begin_inset Quotes eld
-\end_inset
-
-background-color
-\begin_inset Quotes erd
-\end_inset
-
- restituiscono valore nullo.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-expect(banner_link_div[:style]).not_to be_nil
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Asserzione fallita sull'attributo 
-\begin_inset Quotes eld
-\end_inset
-
-style
-\begin_inset Quotes erd
-\end_inset
-
- per i collegamenti dell'intestazione.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Preso atto delle mancanze di Capybara e Poltergeist, per completare l'implementa
-zione dello scenario è stato individuata una soluzione alternativa tramite
- la funzionalità del framework di eseguire script JQuery all'interno della
- pagina.
-\end_layout
-
-\begin_layout Standard
-JQuery è una libreria scritta in JavaScript che permette l'analisi e manipolazio
-ne del DOM, gestisce gli eventi all'interno della pagina, le animazioni
- e fornisce delle interfacce per semplificare l'uso di Ajax.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-def background_color(id, page)
-\end_layout
-
-\begin_layout Plain Layout
-
-	jscript = "$('#{id}').css('backgroundColor')"
-\end_layout
-
-\begin_layout Plain Layout
-
-	page.evaluate_script(jscript)
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Analisi del colore di sfondo dell'elemento via JQuery.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il metodo utilizza il selettore generato dall'identificatore e accede alla
- proprietà desiderata, il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-css
-\begin_inset Quotes erd
-\end_inset
-
- di JQuery supporta tutte le funzionalità del CSS3, permettendo sia la lettura
- che la modifica degli elementi.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Purtroppo però, anche questa soluzione è parziale.
- La proprietà principale delle regole del CSS è l'ereditarietà: la definizione
- di una regola per un certo elemento ha conseguenze anche sui sotto elementi
- presenti nel DOM.
- Gli attributi stilistici si propagano a cascata, se applicabili, e hanno
- conseguenze in funzione dell'importanza, la regola può essere definita
- dal browser web, dall'utente o dall'autore del sito, e dalla specificità
- della definizione.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Given(/^i collegamenti non hanno sfondo$/) do
-\end_layout
-
-\begin_layout Plain Layout
-
-	#header_rgb_background = steps_helper.background_color(steps_helper.header_id,
- page) 
-\end_layout
-
-\begin_layout Plain Layout
-
-	@textual_header_link_divs.each do |banner_link_div|
-\end_layout
-
-\begin_layout Plain Layout
-
-		id = banner_link_div[:id]
-\end_layout
-
-\begin_layout Plain Layout
-
-		background_color = steps_helper.background_color("##{id}", page)
-\end_layout
-
-\begin_layout Plain Layout
-
-		expect(background_color).to eq('rgba(0, 0, 0, 0)')
-\end_layout
-
-\begin_layout Plain Layout
-
-		#expect(steps_helper.background_color("##{id}", page)).to be  eq(header_rgb_back
-ground)
-\end_layout
-
-\begin_layout Plain Layout
-
-	end
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Precondizione sul colore dei collegamenti nell'intestazione.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Nell'implementazione del passo è presente un'asserzione commentata che impedisce
- il successo del test.
- JQuery infatti non effettua alcuna verifica sull'elemento 
-\begin_inset Quotes eld
-\end_inset
-
-div
-\begin_inset Quotes erd
-\end_inset
-
- corrispondente all'intestazione e per il quale è presente un colore di
- sfondo, restituendo il valore di default 
-\begin_inset Quotes eld
-\end_inset
-
-rgba(0, 0, 0, 0)
-\begin_inset Quotes erd
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sia lo scenario che è stato descritto che quelli non trattati della funzionalità
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:02x00 Introducendo il CSS"
-
-\end_inset
-
- non verificano proprietà elaborate dei fogli di stile, ma le limitazioni
- presenti non permettono di sfruttare i test di accettazione per la verifica
- dei principi di accessibilità né per aspetti più elementari della grafica
- delle pagine web.
 \end_layout
 
 \begin_layout Subsection
 Il contesto degli scenari
 \end_layout
 
-\begin_layout Standard
-In Cucumber è possibile dichiarare all'interno delle funzionalità un contesto,
- definito da un numero arbitrario di passi.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Contesto:
-\end_layout
-
-\begin_layout Plain Layout
-
-	Dato apro RBlog
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Background della funzionalità 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:02x00 Introducendo il CSS"
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-I passi definiti nel contesto sono eseguiti prima di ogni scenario appartenente
- alla funzionalità e sono utilizzati per fattorizzare alcune premesse e
- per rendere più incisivi gli scenari.
- Per evitare di complicare eccessivamente i test di accettazione è consigliato
- utilizzare un numero di passi ridotto nel contesto per mantenere alta la
- leggibilità degli scenari.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Una pratica empirica suggerisce di mantenere le funzionalità essenziali
- per permettere la lettura del contesto e dello scenario senza dover scorrere
- nella schermata.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Nell'esempio è stato definito un contesto evitare la ripetizione del passo
- relativo alla prima iterazione in tutti gli scenari della funzionalità.
-\end_layout
-
 \begin_layout Subsection
 Debug con Capybara
-\end_layout
-
-\begin_layout Standard
-Utilizzare Poltergeist e PhantomJS semplifica la verifica di applicazioni
- web che sfruttano JavaScript e metodi asincroni, ma non offre all'utente
- la possibilità di verificare tramite la GUI, Graphical User Interface,
- le azioni che vengono effettuate nei test.
-\end_layout
-
-\begin_layout Standard
-Per effettuare il debug, Poltergeist offre alcuni metodi per catturare la
- pagina corrente: tramite il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-save_and_open_page
-\begin_inset Quotes erd
-\end_inset
-
- si ottiene il codice HTML del DOM, mentre con il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-save_and_open_screenshot
-\begin_inset Quotes erd
-\end_inset
-
- viene catturata e salvata la schermata del browser.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-All'interno dell'implementazione dei passi è possibile introdurre dei breackpoin
-t, ma l'interfaccia e la proprietà che i nodi espongono non permette una
- semplice analisi.
- Durante lo sviluppo è stata combinata la possibilità di salvare le schermate
- del browser e inserire delle interruzioni nell'esecuzione dei test per
- verificare manualmente lo stato dell'esecuzione.
 \end_layout
 
 \begin_layout Subsection
@@ -5468,159 +3965,6 @@ XPath
 \end_layout
 
 \begin_layout Standard
-Le funzionalità del modulo Finders permettono di effettuare query tramite
- XPath
-\begin_inset CommandInset citation
-LatexCommand cite
-key "XPath"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-Then(/^l'intestazione è posizionata all'inizio$/) do
-\end_layout
-
-\begin_layout Plain Layout
-
-	header = page.find(:xpath, 'descendant::body/*[1]')
-\end_layout
-
-\begin_layout Plain Layout
-
-	expect(@header).to eq(header)
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Query per la selezione del primo elemento del 
-\begin_inset Quotes eld
-\end_inset
-
-body
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il vantaggio di creare dei selettori attraverso query XPath consiste nella
- possibilità di introdurre sia vincoli sulla struttura, nel frammento di
- codice è selezionato il primo elemento appartenente al 
-\begin_inset Quotes eld
-\end_inset
-
-body
-\begin_inset Quotes erd
-\end_inset
-
- della pagina, sia vincoli sul contenuto degli attributi e dei valori.
-\end_layout
-
-\begin_layout Standard
-La definizione di selettori tramite CSS permette la definizione di query
- sulla struttura del DOM, ma è possibile solo verificare il testo dei nodi.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-def post_divs_matching_title(page, post_title)
-\end_layout
-
-\begin_layout Plain Layout
-
-	xpath_query = "//div[@class = 'post'][p/a[contains(text(),'#{post_title}')]]"
-\end_layout
-
-\begin_layout Plain Layout
-
-	page.all(:xpath, xpath_query)
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Query per la selezione dei 
-\begin_inset Quotes eld
-\end_inset
-
-div
-\begin_inset Quotes erd
-\end_inset
-
- con un titolo corrispondente al paramentro.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-find
-\begin_inset Quotes erd
-\end_inset
-
- di Capybara, ma in generale tutti i metodi del modulo Finders, supportano
- la definizione di selettori attraverso XPath e CSS ma non è distinto automatica
-mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
- sono stati invocati con il simbolo 
-\begin_inset Quotes eld
-\end_inset
-
-:xpath
-\begin_inset Quotes erd
-\end_inset
-
-.
 \begin_inset Newpage pagebreak
 \end_inset
 

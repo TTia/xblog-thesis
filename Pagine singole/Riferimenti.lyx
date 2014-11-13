@@ -1117,5 +1117,107 @@ target "http://www.martinfowler.com/bliki/POJO.html"
 
 \end_layout
 
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Spring Test-Framework"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/testing.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JUnit"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://junit.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JUnit RunWith"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://junit.sourceforge.net/javadoc/org/junit/runner/RunWith.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Eclipse Cucumber JVM Plugin"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/cucumber/cucumber-eclipse"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Selenium Hierarchy"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/package-tree.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JUnit Rule"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/junit-team/junit/wiki/Rules"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
