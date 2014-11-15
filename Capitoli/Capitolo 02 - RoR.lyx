@@ -5680,13 +5680,57 @@ css
 
 \begin_layout Standard
 Purtroppo però, anche questa soluzione è parziale.
- La proprietà principale delle regole del CSS è l'ereditarietà: la definizione
+ Le funzionalità mancanti di Capybara per ottenere i valori stilistici di
+ un elemento del DOM, obbligherebbe l'uso di numerosi script JQuery.
+ Utilizzando direttamente l'identificatore dell'elemento HTML, oltre a richieder
+e di aggiungere molti attributi 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+class
+\begin_inset Quotes erd
+\end_inset
+
+ appositamente per l'implementazione dei test, non verifica la visibilità
+ del tag all'interno della pagina.
+ E' quindi necessario che lo sviluppatore effettui manualmente ulteriori
+ controlli, replicando il comportamento di Capybara per i 
+\begin_inset Quotes eld
+\end_inset
+
+find_*
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+La proprietà principale delle regole del CSS è l'ereditarietà: la definizione
  di una regola per un certo elemento ha conseguenze anche sui sotto elementi
  presenti nel DOM.
  Gli attributi stilistici si propagano a cascata, se applicabili, e hanno
  conseguenze in funzione dell'importanza, la regola può essere definita
  dal browser web, dall'utente o dall'autore del sito, e dalla specificità
  della definizione.
+ Esistono anche attributi, come 
+\begin_inset Quotes eld
+\end_inset
+
+background-color
+\begin_inset Quotes erd
+\end_inset
+
+ che non sono ereditari, nell'esempio è verificato che l'assenza di colore
+ coincida con la trasparenza.
 \end_layout
 
 \begin_layout Standard
@@ -5697,12 +5741,6 @@ status open
 \begin_layout Plain Layout
 
 Given(/^i collegamenti non hanno sfondo$/) do
-\end_layout
-
-\begin_layout Plain Layout
-
-	#header_rgb_background = steps_helper.background_color(steps_helper.header_id,
- page) 
 \end_layout
 
 \begin_layout Plain Layout
@@ -5723,12 +5761,6 @@ Given(/^i collegamenti non hanno sfondo$/) do
 \begin_layout Plain Layout
 
 		expect(background_color).to eq('rgba(0, 0, 0, 0)')
-\end_layout
-
-\begin_layout Plain Layout
-
-		#expect(steps_helper.background_color("##{id}", page)).to be  eq(header_rgb_back
-ground)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5760,26 +5792,19 @@ Precondizione sul colore dei collegamenti nell'intestazione.
 \end_layout
 
 \begin_layout Standard
-Nell'implementazione del passo è presente un'asserzione commentata che impedisce
- il successo del test.
- JQuery infatti non effettua alcuna verifica sull'elemento 
+Nell'implementazione del passo si può osservare come ogni collegamento nell'inte
+stazione sia trasparente.
+ La codifica rbga codifica attraverso i primi tre valori i colori rosso,
+ verde e blu, mentre il quarto campo 
 \begin_inset Quotes eld
 \end_inset
 
-div
+alpha
 \begin_inset Quotes erd
 \end_inset
 
- corrispondente all'intestazione e per il quale è presente un colore di
- sfondo, restituendo il valore di default 
-\begin_inset Quotes eld
-\end_inset
-
-rgba(0, 0, 0, 0)
-\begin_inset Quotes erd
-\end_inset
-
-.
+ può assumere valori fra 1.0, che rappresenta un colore completamente opaco,
+ e 0.0, che coincide con la piena trasparenza.
 \begin_inset Newline newline
 \end_inset
 
