@@ -71,7 +71,7 @@
 \begin_body
 
 \begin_layout Chapter
-Spring 13/11/14
+Spring
 \end_layout
 
 \begin_layout Standard
@@ -214,8 +214,8 @@ DDL con JPA
 
 \begin_layout Standard
 Lo schema del modello di SBlog è stato definito esclusivamente tramite le
- annotazioni previste dalla specifica, JPA fa ampio uso del meccanismo della
- reflection
+ annotazioni previste dalla specifica, JPA fa infatti ampio uso del meccanismo
+ della reflection
 \begin_inset Foot
 status open
 
@@ -825,8 +825,8 @@ author
 \begin_inset Quotes erd
 \end_inset
 
- specifica la tabella ausiliaria in cui mantenere la relazione, che conterrà
- coppie formate da identificatori dell'autore e dell'articolo.
+ specifica la struttura della tabella ausiliaria in cui mantenere la relazione,
+ che conterrà coppie formate da identificatori dell'autore e dell'articolo.
  
 \begin_inset Quotes eld
 \end_inset
@@ -836,7 +836,10 @@ author
 \end_inset
 
  introduce un vincolo di unicità.
- Inoltre scegliendo di rappresentare la relazione con un oggetto 
+\end_layout
+
+\begin_layout Standard
+Inoltre scegliendo di rappresentare la relazione con un oggetto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2868,7 +2871,7 @@ ta anche per la versione del blog in Spring.
  I due blog sono equivalenti nelle funzionalità e molto simili nelle nelle
  tecnologie utilizzate, in questa e nelle prossime sezioni è descritto il
  processo di definizione dei test, omettendo però la descrizione dei tool
- già utilizzati per RBlog.
+ già utilizzati in precedenza.
 \end_layout
 
 \begin_layout Subsection
@@ -2876,9 +2879,9 @@ Cucumber-JVM
 \end_layout
 
 \begin_layout Standard
-Cucumber-JVM, il porting in Java del framework per Cucumber, presenta differenze
- minime rispetto alla versione per Ruby, principalmente dovute alle diversità
- del linguaggio.
+Cucumber-JVM, il porting in Java del framework, presenta differenze minime
+ rispetto alla versione per Ruby, principalmente dovute alle diversità del
+ linguaggio.
 \end_layout
 
 \begin_layout Paragraph
@@ -2886,9 +2889,9 @@ Le funzionalità
 \end_layout
 
 \begin_layout Standard
-Nell'effettuare il porting dei test di accettazione in Gherkin non è stato
- rilevato alcun problema sintattico né relativo alle funzionalità supportate
- dalla versione Java di Cucumber.
+Nell'effettuare il porting della libreria non è stato rilevato alcun problema
+ sintattico né relativo alle funzionalità supportate dalla versione Java
+ di Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -3074,7 +3077,7 @@ Aggiunte le dipendenze e le funzionalità è sufficiente configurare un classe
 \begin_inset Quotes erd
 \end_inset
 
- indica i tag degli scenari da eseguire.
+ permette di filtrare gli scenari da eseguire in funzione dei tag.
 \end_layout
 
 \begin_layout Paragraph
@@ -3105,7 +3108,8 @@ Selenium
 \end_layout
 
 \begin_layout Standard
-Selenium è una libreria per l'automazione la navigazione internet.
+Selenium è una libreria per l'automazione della navigazione tramite browser
+ web.
  Rispetto alle versioni precedenti della libreria, gli sviluppatori affermano
  di aver definito un'interfaccia più intuitiva e compatta.
 \end_layout
@@ -3113,10 +3117,9 @@ Selenium è una libreria per l'automazione la navigazione internet.
 \begin_layout Standard
 Selenium WebDriver, la parte centrale della libreria che implementa le operazion
 i per l'accesso alle pagine web, utilizza il supporto nativo di ogni browser
- per l'automazione.
- La prima differenza rispetto a Capybara è nella possibilità di utilizzare
- tutte le funzionalità di browser web, come la navigazione grazie alla cronologi
-a e l'uso dei preferiti, piuttosto che limitarsi alla sola navigazione.
+ per l'automazione che permette, a differenza di Capybara, di poter di utilizzar
+e anche funzionalità ausiliarie, come la cronologia e l'uso dei preferiti,
+ piuttosto che limitarsi alla sola navigazione.
 \end_layout
 
 \begin_layout Standard
@@ -3165,7 +3168,7 @@ Aggiunta della dipendenza di Selenium a SBlog.
 
 \begin_layout Standard
 Per poter definire i test utilizzando le funzionalità di Selenium è sufficiente
- aggiungere la dipendenza del porting in Java al POM del progetto.
+ aggiungere la dipendenza al POM del progetto.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3173,23 +3176,17 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-Data la forte integrazione di Selenium con i browser web è stato scelto
- di adottare anche per i test su SBlog PhantomJS.
- Scegliendo di implementare i test di accettazione automatici con Cucumber,
- nelle varie versioni, ed utilizzando lo stesso software per la navigazione
- dei blog è più facile individuare per ogni problema tecnico la causan ed
- effettuare un'analisi più accurata.
-\end_layout
-
-\begin_layout Subsubsection*
-Ghost Driver
+Visti i buoni risultati ottenuti nell'implementazione dei test in Ruby e
+ data la forte integrazione di Selenium con i browser web è stato scelto
+ di adottare nuovamente PhantomJS.
 \end_layout
 
 \begin_layout Standard
-Ghost Driver è un'implementazione JavaScript del protocollo WebDriver Web
- di PhantomJS che permette di eseguire i comandi contattando tramite richieste
- HTTP l'interfaccia REST del browser, che restituisce i risultati delle
- interazioni serializzati con JSon.
+Il driver di PhantomJS scelto per Selenium è Ghost Driver, un'implementazione
+ JavaScript del protocollo Remote WebDriver Wire, che specifica come le
+ azioni debbano essere tradotte in richieste HTTP verso l'interfaccia REST
+ del browser e quale sia lo schema dei dati serializzati rappresentanti
+ il risultato.
 \end_layout
 
 \begin_layout Standard
@@ -3258,12 +3255,12 @@ timeout
 \begin_inset Quotes erd
 \end_inset
 
- per specificare il tempo massimo di esecuzione del passo.
+ per impostare il tempo massimo di esecuzione del passo.
 \end_layout
 
 \begin_layout Standard
 Come per la versione in Ruby, non c'è corrispondenza fra il tipo dell'implementa
-zione, in Java è rappresentato dall'annotazione, ed i tipi di passi applicabili.
+zione, che in Java è rappresentato dall'annotazione, ed i passi applicabili.
 \end_layout
 
 \begin_layout Standard
@@ -3321,8 +3318,19 @@ apro SBlog
 
 \begin_layout Standard
 Per implementare passi parametrici è sufficiente aggiungere dei parametri
- al metodo; come in Ruby i valori estratti dall'espressione del passo hanno
- tipo stringa, ma è possibile annotare i parametri con 
+ al metodo
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Le inconsistenze fra il numero di parametri del passo e del metodo sono
+ segnalate tramite eccezione.
+\end_layout
+
+\end_inset
+
+; come in Ruby i valori estratti dall'espressione del passo hanno tipo stringa,
+ ma è possibile annotare i parametri con 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3331,11 +3339,6 @@ Per implementare passi parametrici è sufficiente aggiungere dei parametri
 \end_inset
 
  per effettuare eventuali conversioni.
-\end_layout
-
-\begin_layout Standard
-Eventuali inconsistenze fra il numero di parametri del passo e del metodo
- sono segnalate tramite eccezione.
 \end_layout
 
 \begin_layout Paragraph
@@ -3372,22 +3375,6 @@ WebElement
  Le linee guida della libreria prevedono che ogni metodo effettui un controllo
  sulla validità del chiamante, verificando che sia presente nel DOM al momento
  dell'esecuzione dell'operazione;
-\end_layout
-
-\begin_layout Itemize
-l'interfaccia 
-\begin_inset Quotes eld
-\end_inset
-
-WebDriver
-\begin_inset Quotes erd
-\end_inset
-
- è la radice della gerarchia delle operazioni che descrivono le operazioni
- eseguibili durante i test.
- Le funzionalità dichiarate nell'interfaccia riguardano il controllo del
- browser stesso, la selezione degli elementi presenti nel DOM e il supporto
- al debug durante i test;
 \end_layout
 
 \begin_layout Itemize
@@ -3471,7 +3458,23 @@ WebDriverException
 \begin_inset Quotes erd
 \end_inset
 
- rappresenta la gerarchia degli errori presenti nella libreria.
+ rappresenta la gerarchia degli errori presenti nella libreria e 
+\begin_inset Quotes eld
+\end_inset
+
+NoSuchElementException
+\begin_inset Quotes erd
+\end_inset
+
+ segnala l'impossibilità di associare un elemento al selettore 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzato per una ricerca.
 \end_layout
 
 \begin_layout Paragraph
@@ -3538,8 +3541,8 @@ to
 \begin_inset Quotes erd
 \end_inset
 
- effettua richiesta in GET per l'URL specificato e blocca l'esecuzione fino
- al caricamento della nuova pagina.
+ effettua richiesta in GET all'URL fornito e blocca l'esecuzione fino al
+ caricamento della nuova pagina.
 \end_layout
 
 \begin_layout Standard
@@ -3582,8 +3585,8 @@ Navigazione nel sito, sfruttando il testo visualizzato di un link.
 \end_layout
 
 \begin_layout Standard
-Oltre alla navigazione esplicita, è possibile compiere effettuare un azione,
- come il click di un collegamento, su un oggetto 
+Oltre alla navigazione esplicita, è possibile compiere un azione, come il
+ click di un collegamento, su un oggetto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3603,6 +3606,10 @@ a
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3625,15 +3632,6 @@ By
 .
  Per ogni ricerca all'interno del DOM è previsto un tempo massimo di attesa
  entro il quale l'elemento deve apparire ed una frequenza di polling.
- L'eccezione 
-\begin_inset Quotes eld
-\end_inset
-
-NoSuchElementException
-\begin_inset Quotes erd
-\end_inset
-
- è sollevata nel caso l'elemento non sia presente.
 \end_layout
 
 \begin_layout Paragraph
@@ -3791,7 +3789,7 @@ Seconda funzionalità per SBlog
 \begin_layout Standard
 Nonostante sia sempre più diffusa la pratica di utilizzare linguaggi come
  Sass, che arricchiscono CSS 3 come già discusso nel precedente capitolo,
- non è ancora fornito il supporto in Eclipse.
+ in Eclipse non sono ancora supportati .
  Per evitare la riscrittura manuale ho compilato i fogli di stile tramite
  il comando 
 \begin_inset Quotes eld
@@ -3893,7 +3891,8 @@ reference "lis:02x00 Introducendo il CSS"
 \end_inset
 
  richiede di verificare alcuni elementi del layout di SBlog.
- L'interfaccia 
+ Per ottenere gli attributi stilistici di un elemento del DOM l'interfaccia
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3909,8 +3908,7 @@ getCssValue
 \begin_inset Quotes erd
 \end_inset
 
- per ottenere stringhe rappresentanti gli attributi stilistici di un elemento
- del DOM.
+.
 \end_layout
 
 \begin_layout Standard
@@ -3970,7 +3968,7 @@ Color
 \end_inset
 
  che interpreta stringhe nel formato appena mostrato, non è presente nessuna
- funzionalità per semplificare l'utilizzo dei valori restituiti, lo sviluppatore
+ funzionalità per semplificare l'utilizzo dei risultati, lo sviluppatore
  deve quindi, tramite espressioni regolari e conversioni di tipo, analizzare
  manualmente le stringhe per effettuare operazioni più complesse.
 \end_layout
@@ -3994,7 +3992,7 @@ margin
 \end_inset
 
 , che attraverso una tupla di quattro valori definisce tutti i margini di
- un elemento HTML, non è sono supportato.
+ un elemento HTML, non è supportato.
 \end_layout
 
 \begin_layout Standard
@@ -4189,8 +4187,8 @@ eseguibili tramite tastiera, come la pressione di uno o più tasti combinati,
 \end_layout
 
 \begin_layout Itemize
-eseguibili tramite il mouse, come il semplice click o azioni più complesse
- come il drag & drop;
+eseguibili tramite il mouse, come il semplice click o più complesse come
+ lo spostamento di elementi tramite drag & drop;
 \end_layout
 
 \begin_layout Standard
@@ -4397,6 +4395,16 @@ public void ogni_collegamento_ha_una_descrizione_testuale(){ 	List<WebElement>
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Verifica della presenza di una dichiarazione alternativa per le immagini.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4413,7 +4421,8 @@ By
 \begin_inset Quotes erd
 \end_inset
 
- è presente anche la possibilità di utilizzare espressioni XPath.
+ è presente anche la possibilità di utilizzare espressioni XPath, come mostrato
+ nel successivo frammento.
 \end_layout
 
 \begin_layout Standard
@@ -4430,6 +4439,19 @@ h(xpathExpression));
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Selettore definito tramite espressione XPath.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4538,7 +4560,7 @@ Con gli hook presenti in Cucumber è possibile definire delle callback da
  Rispetto all'implementazione in Ruby e grazie alle funzionalità di Selenium
  non è stato necessario effettuare la cancellazione delle sessioni HTTP
  create tramite l'autenticazione.
- Sono stati definiti due metodi, 
+ Sono stati infatti definiti due metodi, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4751,7 +4773,8 @@ clearIpsums
 \begin_inset Quotes erd
 \end_inset
 
- effettua la rimozione dei post con titolo contenente la stringa 
+ invece, effettua la rimozione dei post con titolo contenente la stringa
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4767,7 +4790,7 @@ Gestione dei form
 \end_layout
 
 \begin_layout Standard
-Selenium fornisce un'interfaccia lineare ed intuitiva per l'utilizzo di
+Selenium fornisce un'interfaccia lineare ed intuitiva per l'utilizzo dei
  form.
  Nel successivo metodo, che descrive una generica operazione di inserimento
  del testo, si può osservare come non sia necessario compiere operazioni
@@ -4811,6 +4834,16 @@ protected void insertPostTitle(String title) {
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Compilazione del titolo per un post.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4856,8 +4889,8 @@ sendKeys
 
 .
  Oltre alla compilazione testuale di un form, Selenium implementa le funzionalit
-à per la spunta dei checkbox, selezionare le opzioni di menu a tendina ed
- effettuare il caricamento di file.
+à per selezionare i checkbox, scegliere una o più opzioni attraverso i menu
+ a tendina ed effettuare il caricamento di file.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -4867,7 +4900,10 @@ Verificare gli errori
 \begin_layout Standard
 A differenza di RSpec, la cui struttura prevede 4 moduli organizzati per
  funzionalità, JUnit ha una struttura monolitica.
- Per definire un test con JUnit è necessario annotare con 
+\end_layout
+
+\begin_layout Standard
+Per definire un test con JUnit è necessario annotare con 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4877,9 +4913,9 @@ A differenza di RSpec, la cui struttura prevede 4 moduli organizzati per
 
  un metodo pubblico, utilizzando però Cucumber non è possibile far corrispondere
  a ciascun scenario un singolo test.
- I test infatti sono definiti dinamicamente tramite il runner di Cucumber
- che seleziona i metodi corrispondenti a ciascun passo e non rispetta quindi
- la struttura classica prevista da JUnit.
+ Quali metodi corrispondano all'implementazione di uno scenario è verificato
+ dinamicamente dal runner di Cucumber che non rispetta quindi la struttura
+ classica prevista da JUnit.
 \end_layout
 
 \begin_layout Standard
@@ -4889,12 +4925,12 @@ status open
 
 \begin_layout Plain Layout
 
-@Test
+@Test(expected=IndexOutOfBoundsException.class)
 \end_layout
 
 \begin_layout Plain Layout
 
-public void nomeDelTestInJUnit() {
+public void segFault() {
 \end_layout
 
 \begin_layout Plain Layout
@@ -4909,10 +4945,58 @@ public void nomeDelTestInJUnit() {
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+@Rule
+\end_layout
+
+\begin_layout Plain Layout
+
+public ExpectedException exception = ExpectedException.none();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@Test
+\end_layout
+
+\begin_layout Plain Layout
+
+public void segFault2() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	exception.expect(IndexOutOfBoundsException.class);
+\end_layout
+
+\begin_layout Plain Layout
+
+	//Faulty expression
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Implementazione di un test con JUnit.
+Verifica di errori tramite JUnit.
 \end_layout
 
 \end_inset
@@ -5113,9 +5197,17 @@ Per introdurre la gestione dell'autenticazione in SBlog è stato introdotto
 \end_layout
 
 \begin_layout Standard
-L'entità Session, per cui è stato definito il controllo, non è presente
- nel modello ma mantiene esclusivamente lo stato della navigazione, mantenendo
- all'interno della sessione HTTP un riferimento all'identificatore dell'utente.
+L'entità 
+\begin_inset Quotes eld
+\end_inset
+
+Session
+\begin_inset Quotes erd
+\end_inset
+
+, per cui è stato definito il controllo, non è presente nel modello ma mantiene
+ esclusivamente lo stato della navigazione, mantenendo all'interno della
+ sessione HTTP un riferimento all'identificatore dell'utente.
 \end_layout
 
 \begin_layout Standard
@@ -5163,6 +5255,20 @@ status open
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Azione per la gestione del logout.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5266,7 +5372,6 @@ public void mi_autentico_come(String email) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Login tramite Selenium.
 \end_layout
 
@@ -5461,8 +5566,26 @@ Per ricercare un elemento all'interno del DOM è possibile implementare un
 
 \begin_layout Standard
 Per l'implementazione dei test è stato scelto di utilizzare quest'ultima
- soluzione che prevede di impostare un'attesa massima ed una condizione
- da verificare.
+ soluzione.
+ Per istanziare un oggetto di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+WebDriverWait
+\begin_inset Quotes erd
+\end_inset
+
+ è necessario impostare un tempo di attesa massimo, mentre tramite il metodo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+until
+\begin_inset Quotes erd
+\end_inset
+
+ si interrompe l'esecuzione dello scenario ed è verificata la condizione
+ espressa dal parametro.
 \end_layout
 
 \begin_layout Standard
@@ -5497,7 +5620,6 @@ ed(By.id("woodstock")));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica della presenza del logo nel piè di pagina.
 \end_layout
 
@@ -5567,9 +5689,8 @@ Scenari sull'auto-completamento con JQuery UI
 Rispetto alla funzione Javascript della precedente funzionalità l'utilizzo
  del widget di JQuery UI per l'auto-completamento del menù introduce un
  overhead significativo nel caricamento della pagina, suddiviso fra tempo
- di completamente della richiesta HTTP tramite AJAX, completamento delle
- operazioni con JQuery e visualizzazione del componente grafico nel browser
- web.
+ di completamento della richiesta HTTP tramite AJAX, l'esecuzione della
+ funzione in JQuery e la visualizzazione del menù nel browser web.
 \end_layout
 
 \begin_layout Standard
@@ -5622,7 +5743,6 @@ Scenario: Autocompletamento della ricerca
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Scenario riguardante l'auto-completamento della ricerca.
 \end_layout
 
@@ -5698,7 +5818,6 @@ enceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica dei titoli suggeriti.
 \end_layout
 
@@ -5723,13 +5842,13 @@ presenceOfAllElementsLocatedBy
 
  restituisce una collezione di elementi identificati dal selettore, descritto
  tramite un'espressione XPath, ed attende entro il tempo massimo fissato
- fino a che almeno un elemento non appare nella pagina.
+ che almeno un elemento sia presente nella pagina.
 \end_layout
 
 \begin_layout Standard
 Ottenuti gli elementi, durante le iterazioni del ciclo for, è verificata
  la corrispondenza fra il testo del suggerimento e il titolo passato come
- parametro, e l'effettiva visualizzazione dell'elemento nel browser.
+ parametro e l'effettiva visualizzazione dell'elemento nel browser.
 \begin_inset Newline newline
 \end_inset
 

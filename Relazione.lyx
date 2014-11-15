@@ -11,6 +11,7 @@
 \usepackage[latin9]{inputenc}
 \usepackage{listings}
 \usepackage{multicol}
+\usepackage{fancyhdr}
 
 \date{}
 
@@ -39,6 +40,10 @@
 \setbox\hlboxpercent=\hbox{\verb.\%.}
 \setbox\hlboxhat=\hbox{\verb.^.}
 \def\urltilda{\kern -.15em\lower .7ex\hbox{\~{}}\kern .04em}
+
+
+\fancyhf{}
+\rfoot{15/11/2014 - pag. \thepage}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -64,9 +69,6 @@
 \paperfontsize default
 \spacing single
 \use_hyperref true
-\pdf_title "Dessert: una libreria per la simulazione a eventi discreti in .NET"
-\pdf_author "Alessio Parma <alessio.parma@gmail.com>"
-\pdf_keywords "des, .net, library, simpy, dessert, armando"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
@@ -108,7 +110,7 @@
 \quotes_language english
 \papercolumns 1
 \papersides 2
-\paperpagestyle headings
+\paperpagestyle fancy
 \listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\footnotesize},showstringspaces=false"
 \tracking_changes false
 \output_changes false
@@ -118,10 +120,6 @@
 \end_header
 
 \begin_body
-
-\begin_layout Standard
-
-\end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
