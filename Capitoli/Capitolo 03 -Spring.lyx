@@ -3893,10 +3893,7 @@ reference "lis:02x00 Introducendo il CSS"
 \end_inset
 
  richiede di verificare alcuni elementi del layout di SBlog.
-\end_layout
-
-\begin_layout Standard
-L'interfaccia 
+ L'interfaccia 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4187,19 +4184,24 @@ Actions
 \end_layout
 
 \begin_layout Itemize
-eventi eseguibili tramite tastiera, come la pressione di uno o più tasti
- combinati, ad esempio corrispondenti alle hotkeys implementate dal browser
- web;
+eseguibili tramite tastiera, come la pressione di uno o più tasti combinati,
+ ad esempio corrispondenti alle hotkeys implementate dal browser web;
 \end_layout
 
 \begin_layout Itemize
-eventi eseguibili tramite il mouse, come il semplice click o azioni più
- complesse come il drag & drop;
+eseguibili tramite il mouse, come il semplice click o azioni più complesse
+ come il drag & drop;
 \end_layout
 
 \begin_layout Standard
-Nell'esempio precedente è definita una macro azione, il costruttore con
- un solo parametro di tipo 
+Nell'esempio precedente è definita una macro azione ed anche se descritta
+ dal solo spostamento del cursore sopra l'elemento indicato, è utile per
+ mostrarne il comportamento
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il costruttore con un solo parametro di tipo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4207,9 +4209,12 @@ WebDriver
 \begin_inset Quotes erd
 \end_inset
 
- utilizza le azioni implementate da Selenium di default; anche se descritta
- dal solo spostamento del cursore sopra l'elemento indicato, è utile per
- mostrarne il comportamento.
+ utilizza le azioni implementate da Selenium di default.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -4440,10 +4445,9 @@ Debug con Selenium
 Come per Capybara, l'esecuzione di test in modalità debug non offre molte
  informazioni utili per individuare eventuali errori nell'applicazione o
  nell'implementazione dei test.
- Avendo utilizzato nuovamente PhantomJS, che in quanto browser headless
- non espone una GUI, è stato necessario combinare la possibilità di catturare
- le schermate e l'introduzione di breakpoint per valutare lo stato dell'esecuzio
-ne.
+ Avendo utilizzato nuovamente PhantomJS, che essendo un browser headless
+ non possiede una GUI, è stato necessario combinare la possibilità di catturare
+ le schermate e l'introduzione di breakpoint per valutare eventuali errori.
 \end_layout
 
 \begin_layout Standard
@@ -4531,13 +4535,10 @@ Hooks
 \begin_layout Standard
 Con gli hook presenti in Cucumber è possibile definire delle callback da
  associare ad un certo punto dell'esecuzione dei test.
- Rispetto alla precedente implementazione e grazie alle funzionalità di
- Selenium non è stato necessario effettuare la cancellazione delle sessioni
- HTTP create tramite l'autenticazione.
-\end_layout
-
-\begin_layout Standard
-Sono stati definiti due metodi, 
+ Rispetto all'implementazione in Ruby e grazie alle funzionalità di Selenium
+ non è stato necessario effettuare la cancellazione delle sessioni HTTP
+ create tramite l'autenticazione.
+ Sono stati definiti due metodi, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4553,9 +4554,9 @@ releaseWebDriver
 \begin_inset Quotes erd
 \end_inset
 
-, eseguiti rispettivamente prima e dopo ogni scenario.
- I metodi sono responsabili della creazione di una nuova finestra, per la
- quale è anche specificata una dimensione, ed la successiva chiusura.
+, eseguiti rispettivamente prima e dopo ogni scenario, responsabili della
+ creazione di una nuova finestra, per la quale è anche specificata una dimension
+e, e della successiva chiusura.
  Questa pratica, sicuramente costosa in termini di tempo d'esecuzione, permette
  però di eliminare le sessioni esistenti del browser ed evitare l'esecuzione
  di test in finestre precedentemente utilizzate per altri scenari.
@@ -4633,7 +4634,7 @@ finestra
 Per implementare un hook in Cucumber JVM è necessario dichiarare un metodo
  pubblico ed utilizzare una o più delle annotazioni fornite.
  Le annotazioni utilizzabili forniscono le stesse funzionalità descritte
- per la versioni in Ruby e permettono di indicare sia per quali tag è necessario
+ per la versione in Ruby e permettono di indicare sia per quali tag è necessario
  eseguire le callback, sia un attributo order che ne stabilisce la priorità
  d'esecuzione, nell'esempio il valore 0 specifica che il metodo 
 \begin_inset Quotes eld
@@ -4668,58 +4669,45 @@ public void clearIpsums() {
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 	String loremIpsumPostTitle = "Lorem Ipsum";
 \end_layout
 
 \begin_layout Plain Layout
 
-	try {
+	String xpathExpression =
 \end_layout
 
 \begin_layout Plain Layout
 
-		String xpathExpression =
+		String.format("//div[@class = 'post'][p/a[contains(text(),'%s')]]",
 \end_layout
 
 \begin_layout Plain Layout
 
-			String.format("//div[@class = 'post'][p/a[contains(text(),'%s')]]",
+			loremIpsumPostTitle);
 \end_layout
 
 \begin_layout Plain Layout
 
-				loremIpsumPostTitle);
 \end_layout
 
 \begin_layout Plain Layout
 
-		List<WebElement> postDivs = driver.findElements(By 					.xpath(xpathExpression))
-;
+	List<WebElement> postDivs = driver.findElements(By 				.xpath(xpathExpression));
 \end_layout
 
 \begin_layout Plain Layout
 
-		for (WebElement postDiv : postDivs){
+	for (WebElement postDiv : postDivs){
 \end_layout
 
 \begin_layout Plain Layout
 
-			postDiv.findElement(By.className("remove_post_button")).click();
-\end_layout
-
-\begin_layout Plain Layout
-
-		}
-\end_layout
-
-\begin_layout Plain Layout
-
-	} catch (NoSuchElementException e) {
-\end_layout
-
-\begin_layout Plain Layout
-
-		//
+		postDiv.findElement(By.className("remove_post_button")).click();
 \end_layout
 
 \begin_layout Plain Layout
@@ -4772,25 +4760,6 @@ Lorem Ipsum
 \end_inset
 
  in maniera simile a quanto effettuato per RBlog.
- Il blocco 
-\begin_inset Quotes eld
-\end_inset
-
-catch
-\begin_inset Quotes erd
-\end_inset
-
- per l'eccezione 
-\begin_inset Quotes eld
-\end_inset
-
-NoSuchElementException
-\begin_inset Quotes erd
-\end_inset
-
- è stato introdotto per evitare che test non funzionanti, ad esempio che
- falliscono la creazione di un post, non interrompano la corretta esecuzione
- della libreria.
 \end_layout
 
 \begin_layout Subsection
@@ -4885,8 +4854,9 @@ sendKeys
 
 \end_inset
 
-.Oltre alla compilazione testuale di un form, Selenium implementa le funzionalità
- per la spunta dei checkbox, selezionare le opzioni di menu a tendina ed
+.
+ Oltre alla compilazione testuale di un form, Selenium implementa le funzionalit
+à per la spunta dei checkbox, selezionare le opzioni di menu a tendina ed
  effettuare il caricamento di file.
 \end_layout
 
@@ -5139,12 +5109,12 @@ Descrizione della funzionalità di autenticazione.
 Per introdurre la gestione dell'autenticazione in SBlog è stato introdotto
  un controllo ed una vista per effettuare il login.
  Come per RBlog, le azioni prevedono la verifica dell'autorizzazione, ad
- esempio non è possibile effettuare il logon se l'utente non è autenticato.
+ esempio non è possibile effettuare il logout se l'utente non è autenticato.
 \end_layout
 
 \begin_layout Standard
 L'entità Session, per cui è stato definito il controllo, non è presente
- nel modello ma mantiene esclusivamente lo stato della navigazione, mantenedo
+ nel modello ma mantiene esclusivamente lo stato della navigazione, mantenendo
  all'interno della sessione HTTP un riferimento all'identificatore dell'utente.
 \end_layout
 
@@ -5403,7 +5373,7 @@ Cookie.Builder
  ricerca e modifica dei cookie esistenti.
  Come per RBlog però, le sessioni in Spring non espongono i valori in chiaro
  e non sono state effettuate operazioni di codifica e decodifica, evidentemente
- in linea con lo stile dei black box test.
+ in contrasto con lo stile dei black box test.
 \end_layout
 
 \begin_layout Standard
@@ -5483,11 +5453,10 @@ Introduzione di un breve script Javascript.
 \end_layout
 
 \begin_layout Standard
-Selenium prevede un doppio meccanismo per ricercare un elemento all'interno
- del DOM, è infatti possibile implementare un meccanismo implicito di attesa,
- in maniera simile a Capybara, impostando un tempo massimo di attesa per
- ogni ricerca, non è però possibile impostare una frequenza di polling,
- oppure utilizzare delle attese esplicite.
+Per ricercare un elemento all'interno del DOM è possibile implementare un
+ meccanismo implicito di attesa, in maniera simile a Capybara, impostando
+ un tempo massimo di attesa per ogni ricerca, non è però possibile impostare
+ una frequenza di polling, oppure utilizzare delle attese esplicite.
 \end_layout
 
 \begin_layout Standard
@@ -5586,7 +5555,7 @@ ExpectedConditions
 
  include diversi metodi per esprimere le attese esplicite in funzione di
  diverse condizioni, dalle più semplici che verificano la presenza di un
- elemento o di una stringa, fino all'attesa per una finestra di dialogo
+ elemento o di un testo nel DOM, fino all'attesa per una finestra di dialogo
  o elemento cliccabile.
 \end_layout
 
@@ -5595,12 +5564,12 @@ Scenari sull'auto-completamento con JQuery UI
 \end_layout
 
 \begin_layout Standard
-Rispetto alla risoluzione della funzione Javascript della precedente funzionalit
-à, come già descritto per RBlog, l'utilizzo di un widget di JQuery UI, che
- sfrutta anche una chiamata AJAX, rappresenta un sensibile incremento di
- tempi di esecuzione, suddiviso fra tempo di completamente della richiesta
- HTTP, completamento delle operazioni con JQuery e visualizzazione del component
-e grafico nel browser web.
+Rispetto alla funzione Javascript della precedente funzionalità l'utilizzo
+ del widget di JQuery UI per l'auto-completamento del menù introduce un
+ overhead significativo nel caricamento della pagina, suddiviso fra tempo
+ di completamente della richiesta HTTP tramite AJAX, completamento delle
+ operazioni con JQuery e visualizzazione del componente grafico nel browser
+ web.
 \end_layout
 
 \begin_layout Standard
@@ -5668,9 +5637,8 @@ Scenario riguardante l'auto-completamento della ricerca.
 \end_layout
 
 \begin_layout Standard
-All'interno dell'implementazione del passo è utilizzato nuovamente un metodo
- per l'attesa esplicita e la verifica della visibilità all'interno della
- pagina.
+Nel successivo listato è utilizzato un metodo per l'attesa esplicita per
+ individuare i suggerimenti visualizzati per il menu.
 \end_layout
 
 \begin_layout Standard
@@ -5754,18 +5722,26 @@ presenceOfAllElementsLocatedBy
 \end_inset
 
  restituisce una collezione di elementi identificati dal selettore, descritto
- tramite un'espressione XPath.
- Il metodo attende entro il tempo massimo fissato fino a che almeno un elemento
- non appare nella pagina.
+ tramite un'espressione XPath, ed attende entro il tempo massimo fissato
+ fino a che almeno un elemento non appare nella pagina.
+\end_layout
+
+\begin_layout Standard
+Ottenuti gli elementi, durante le iterazioni del ciclo for, è verificata
+ la corrispondenza fra il testo del suggerimento e il titolo passato come
+ parametro, e l'effettiva visualizzazione dell'elemento nel browser.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 L'implementazione del menu di auto-completamento di JQuery prevede che la
  collezione degli elementi che costituiscono i suggerimenti sia definita
  a priori.
- Al contrario, se il widget prevedesse la popolazione del menu dinamicamente
- scorrendo nella lista, sarebbe necessario invocare più volte il metodo
- 
+ Al contrario, se il widget prevedesse la popolazione dinamica del menu
+ scorrendo nella lista, il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5774,12 +5750,6 @@ presenceOfAllElementsLocatedBy
 \end_inset
 
  non risulterebbe attendibile per verificare la presenza di nuove entry.
-\end_layout
-
-\begin_layout Standard
-Ottenuti gli elementi, durante le iterazioni del ciclo for, è verificata
- la corrispondenza fra il testo del suggerimento e il titolo passato come
- parametro, e l'effettiva visualizzazione dell'elemento nel browser.
 \end_layout
 
 \end_body
