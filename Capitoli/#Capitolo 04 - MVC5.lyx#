@@ -146,7 +146,7 @@ Il modello
 \begin_layout Standard
 Per definire il modello con RoR e Spring è stato scelto di definire prima
  le entità, rispettivamente tramite gli ActiveRecord e JPA, ed utilizzare
- le classi per effettuare la generazione dei database su PostgreSql.
+ le classi per effettuare la generazione dei database di PostgreSql.
  RoR genera di default tre database e le tabelle delle migrazioni, ed anche
  JPA implementa ad alto livello molte funzionalità dei database relazioni,
  come i vincoli di integrità.
@@ -191,17 +191,17 @@ Entity Framework
 
 \begin_layout Standard
 La definizione dell'interfaccia del modello per un'applicazione web di MVC5
- non è una scelta vincolata ed è possibile individuare diverse opzioni.
- Per CSBlog è stato scelto l'Entity Framework, attualmente alla versione
- 6, che implementa l'astrazione del modello attraverso la tecnica ORM in
- maniera simile a quanto già visto per RoR e Spring.
+ non è una scelta vincolata ed è possibile scegliere fra diverse opzioni.
+ La più logica coincide con l'utilizzo dell'Entity Framework, attualmente
+ alla versione 6, che implementa l'astrazione del modello attraverso la
+ tecnica ORM in maniera simile a quanto già visto per RoR e Spring.
 \end_layout
 
 \begin_layout Standard
-L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog
- e si integra con ADO.NET, il framework responstabile per l'interazione con
- i sistemi di persistenza esistenti e del mantenimento della consistenza
- fra le entry e gli oggetti.
+L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog,
+ e si integra con ADO.NET, il framework che interagisce direttamente con
+ i sistemi di persistenza esistenti e mantenere la consistenza fra le entry
+ e gli oggetti.
 \begin_inset Newline newline
 \end_inset
 
@@ -209,11 +209,11 @@ L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog
 \end_layout
 
 \begin_layout Standard
-Le classi che descrivono le entità sono estendono 
+Le classi che descrivono le entità sono sottotipo di 
 \begin_inset Quotes eld
 \end_inset
 
-DbContext
+System.Data.Entity.DbContext
 \begin_inset Quotes erd
 \end_inset
 
@@ -221,8 +221,9 @@ DbContext
  di eseguire interrogazioni, di tener traccia dei cambiamenti allo stato
  delle istanze ed invocare le operazioni di creazione, aggiornamento e cancellaz
 ione.
- Visual Studio include un wizard per la configurazione del modello, che
- provvede a definire la connessione al database, a generare le classi parziali
+ Le funzionalità di Visual Studio includono un wizard per la configurazione
+ del modello, che provvede a definire la connessione al database, a generare
+ le classi parziali
 \begin_inset Foot
 status open
 
@@ -234,8 +235,8 @@ Una classe parziale in C# rappresenta una parte di una classe intera.
 
 \end_inset
 
- rappresentanti le entità e a configurare le risorse necessarie per il funzionam
-ento dell'EF.
+ rappresentanti le entità e a definire le classi necessarie per il funzionamento
+ dell'EF.
 \end_layout
 
 \begin_layout Standard
@@ -316,9 +317,9 @@ Posts
 \end_inset
 
  rappresentano le entità presenti nel database e sono utilizzate dall'EF
- per effettuare le query.
- Per implementare le interrogazioni necessarie per CSBlog è stato utilizzato
- LINQ, Language-Integrated Query.
+ per effettuare le operazioni di interrogazione e le CRUD, nello sviluppo
+ di CSBlog è stato utilizzato LINQ, Language-Integrated Query, per la definizion
+e ed esecuzione delle query.
 \end_layout
 
 \begin_layout Standard
@@ -381,14 +382,14 @@ Post
  delle entità è possibile definire le proprie interrogazioni sfruttando
  tutte le funzionalità esistenti per C# in VS, come l'auto-completamento
  e l'evidenziatura dei diversi elementi sintattici.
- Inoltre LINQ definisce query utilizzando metodi generici che permettono
- di verificare a compile-time il corretto utilizzo delle entità e degli
- attributi presenti nelle interrogazioni.
+ Ma soprattutto LINQ definisce query utilizzando metodi generici che permettono
+ di verificare a compile-time il corretto utilizzo dei tipi e delle operazioni
+ definite nelle interrogazioni.
 \begin_inset Newline newline
 \end_inset
 
 In maniera simile all'interfaccia per la definizione delle query con gli
- Active Record di RoR, lo sviluppatore può sfruttare l'astrazione introdotta
+ Active Record di RoR, lo sviluppatore di sfruttare l'astrazione introdotta
  dall'uso dell'EF e definire le proprie query in maniera veloce ed intuitiva.
  Rispetto però alla controparte in Ruby, LINQ è più completo permettendo
  la definizione di interrogazioni anche su altri sistemi per la persistenza,
@@ -409,17 +410,9 @@ IEnumerable
 
 \begin_layout Standard
 La semplice query di proiezione dell'esempio è suddivisibile in tre elementi:
- l'ottenimento del contesto tramite le classi dell'EF, rappresentato dall'oggett
-o 
-\begin_inset Quotes eld
-\end_inset
-
-db
-\begin_inset Quotes erd
-\end_inset
-
-, per specificare quale sia l'entità utilizzata nell'interrogazione, la
- specifica delle operazioni, come il metodo 
+ l'ottenimento del contesto tramite le classi dell'EF, per specificare quale
+ sia l'entità utilizzata nell'interrogazione, la specifica delle operazioni,
+ come il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -440,7 +433,7 @@ ToList
 status open
 
 \begin_layout Plain Layout
-In generale ogni invocazione che comporta un accesso esplicito agli oggetti
+In generale ogni invocazione che rappresenti un'accesso esplicito agli oggetti
  coincide con l'esecuzione della query.
  Ad esempio utilizzando il metodo 
 \begin_inset Quotes eld
@@ -502,8 +495,8 @@ Oltre alla generazione dell'interfaccia del modello, VS include un browser
  del modello che rappresenta la struttura delle entità esistenti e le relazioni
  che intercorrono fra loro.
  Direttamente nell'ambiente di sviluppo è possibile visualizzare e aggiornare
- la struttura del modello, sincronizzando gli schemi dei database utilizzati,
- ed anche gestire associazioni e relazioni di ereditarietà.
+ la struttura del modello, richiedendo ulteriori analisi degli schemi dei
+ database utilizzati, ed anche gestire associazioni e relazioni di ereditarietà.
 \end_layout
 
 \begin_layout Subsection
@@ -514,20 +507,21 @@ I controlli
 Come per la definizione del modello, anche per i controlli e le relative
  azioni, sono stati utilizzati gli strumenti di VS per la generazione automatica
  delle componenti.
- Il wizard per la configurazione è ben strutturato e permette di indicare
- quali azioni sia necessario generare, ad esempio è possibile creare un
- controllo contenente le operazioni CRUD oppure vuoto, e se utilizzare l'EF
- per associare il nuovo controllo ad una delle entità e generare dei metodi
- opportunamente connessi al modello.
+ Il wizard per la configurazione è ben strutturato di opzioni e permette
+ di indicare quali azioni è necessario generare, ad esempio è possibile
+ creare un controllo contenente le operazioni CRUD oppure vuoto, e se utilizzare
+ l'EF per associare il nuovo controllo ad una delle entità gestite e generare
+ dei metodi opportunamente connessi al modello.
 \end_layout
 
 \begin_layout Standard
-Durante il processo di configurazione del nuovo controllo è anche generato
- insieme di viste corrispondenti alle azioni create.
+La generazione di controlli, oltre a definire classi complete di azioni
+ funzionanti, definiscono anche un insieme di viste che implementano le
+ funzionalità corrispondenti.
  In maniera simile a RubyMine, gli strumenti dell'ambiente di sviluppo facilitan
 o lo sviluppo fornendo una struttura esistente per le nuove applicazioni
  e preziose indicazioni sulla struttura del framework e di come le componenti
- interagiscano fra loro.
+ siano concepite.
 \begin_inset Newline newline
 \end_inset
 
@@ -599,8 +593,8 @@ RegisterRoutes
 
  si occupa di registrare la convenzione scelta per la risoluzione delle
  richieste effettuate dagli utenti.
- Come si può osservare dal metodo, anche per CSBlog l'applicazione rispecchia
- l'organizzazione di un'architettura REST: ad esempio l'URL relativo 
+ Come si può osservare dal metodo, in CSBlog, la risoluzione avviene per
+ via gerarchica: ad esempio l'URL relativo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -618,10 +612,6 @@ default
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -722,101 +712,38 @@ Details
 \end_inset
 
 .
- Come in RoR per ogni azione, se non specificato diversamente, è prevista
- una vista con ugual nome, in particolare, dopo aver individuato il corretto
- 
-\begin_inset Quotes eld
-\end_inset
+ Come in RoR infatti per ogni azione di default è prevista una vista con
+ ugual nome, ad esempio l
+\end_layout
 
-Post
-\begin_inset Quotes erd
-\end_inset
+\begin_layout Standard
+Come per RoR, è prevista una convenzione per la risoluzione delle richieste
+ e una gera
+\end_layout
 
- all'interno del modello, il server web fornirà all'utente la vista corrisponden
-te al file 
-\begin_inset Quotes eld
-\end_inset
+\begin_layout Standard
+RouteConfig (mapping di default, disaccoppiati, controllo sugli elementi
+ pubblici) esempio di definizione
+\end_layout
 
-Views/Details.cshtml
-\begin_inset Quotes erd
-\end_inset
-
-.
- L'azione 
-\begin_inset Quotes eld
-\end_inset
-
-Details
-\begin_inset Quotes erd
-\end_inset
-
- accetta richieste HTTP di qualsiasi tipo, per applicare delle limitazioni
- è sufficiente annotare il metodo con attributi come 
-\begin_inset Quotes eld
-\end_inset
-
-HttpGet
-\begin_inset Quotes erd
-\end_inset
-
- o 
-\begin_inset Quotes eld
-\end_inset
-
+\begin_layout Standard
 HttpPost
-\begin_inset Quotes erd
-\end_inset
-
- presenti in MVC5.
 \end_layout
 
 \begin_layout Standard
-Il tipo 
-\begin_inset Quotes eld
-\end_inset
-
-ActionResult
-\begin_inset Quotes erd
-\end_inset
-
- utilizzato come risultato dell'azione ha il compito di incapsulare il risultato
- e permettere al framework fornire una risposta, nel frammento il metodo
- 
-\begin_inset Quotes eld
-\end_inset
-
-View
-\begin_inset Quotes erd
-\end_inset
-
- della classe padre 
-\begin_inset Quotes eld
-\end_inset
-
-Controller
-\begin_inset Quotes erd
-\end_inset
-
- istanzia un'oggetto 
-\begin_inset Quotes eld
-\end_inset
-
-ViewResult
-\begin_inset Quotes erd
-\end_inset
-
- che specifica la vista da renderizzare.
-\begin_inset Newline newline
-\end_inset
-
-
+Parametri
 \end_layout
 
 \begin_layout Standard
-Rispetto a Spring e RoR, non è prevista all'interno dell'architettura una
- componente con il ruolo di disaccoppiare i controlli dalla logica per l'accesso
- al modello, sta quindi all'utente introdurre il pattern che meglio si presta
- allo scopo ed implementarlo.
+Binding form
+\end_layout
+
+\begin_layout Standard
+ValidateAntiForgeryToken
+\end_layout
+
+\begin_layout Standard
+assenza di componenti come helper o service, Dipendenze tramite new
 \end_layout
 
 \begin_layout Subsection
