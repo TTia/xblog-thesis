@@ -824,23 +824,266 @@ Le viste
 \end_layout
 
 \begin_layout Standard
-convenzione razor
+Per l'implementazione delle viste di CSBlog è stato utilizzato Razor, un
+ linguaggio ASP.NET per l'implementazione di pagine dinamiche che introduce
+ una sintassi basata sul C# ed integrata in VS tramite, ad esempio è previsto
+ l'IntelliSense e la possibilità di creare nuove pagine sfruttando i wizard
+ presenti nell'ambiente di sviluppo.
 \end_layout
 
 \begin_layout Standard
-estensione
+Razor rappresenta la scelta di default per lo sviluppo di una nuova applicazione
+ web, introdotto dalla versione 4 del framework, introduce una sintassi
+ per ottimizzare la generazione di pagine HTML, definenendo un insieme di
+ costrutti per permettere allo sviluppatore di distinguere facilmente le
+ porzioni di codice dinamico.
 \end_layout
 
 \begin_layout Standard
-tipologia
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@{     var helloRazor = "Benvenuto su CSBlog!";     var weekDay = DateTime.Now.Day
+OfWeek;     var greetingMessage = greeting + " Oggi è: " + weekDay; } <p>@helloR
+azor</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Hello Razor!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-modello al quale è applicata la vista previsto uso del layout (_viewStart)
+Il design delle istruzioni è essenziale ed è paragonabile ad ERB, sono infatti
+ presenti anche in Razor dei dei delimitatori per includere all'interno
+ delle viste codice.
+ Nel frammento d'esempio è introdotto un blocco contente istruzioni C#,
+ che utilizzano le librerie di sistema, all'interno del quale è creato un
+ messaggio di benvenuto.
+ Tramite la notazione 
+\begin_inset Quotes eld
+\end_inset
+
+@variabile
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile accedere utilizzare all'interno della struttura del documento
+ per utilizzare l'espressione concatenata nel blocco.
 \end_layout
 
 \begin_layout Standard
-Bootstrap 
+La distinzione fra la sintassi 
+\begin_inset Quotes eld
+\end_inset
+
+@{...}
+\begin_inset Quotes erd
+\end_inset
+
+ e l'operatore 
+\begin_inset Quotes eld
+\end_inset
+
+@
+\begin_inset Quotes erd
+\end_inset
+
+ che permette di accedere ai valori e di utilizzarne le espressioni per
+ generare le viste dinamiche, permette di dichiarare viste in cui sono distinte
+ in maniera chiara le porzioni di codice che includono l'implementazione
+ della logica dalle istruzioni che esclusivamente utilizzano le funzionalità
+ in lettura.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<ul> @for (int i = 0; i < 10; i++) { <li>@i</li> } </ul>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Il ciclo 
+\begin_inset Quotes eld
+\end_inset
+
+for
+\begin_inset Quotes erd
+\end_inset
+
+ in Razor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La sintassi di Razor include anche i più comuni costrutti sintattici, nell'esemp
+io è mostrato l'utilizzo di un ciclo 
+\begin_inset Quotes eld
+\end_inset
+
+for
+\begin_inset Quotes erd
+\end_inset
+
+ le cui iterazioni generano nuovi elementi della lista 
+\begin_inset Quotes eld
+\end_inset
+
+ul
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'organizzazione e le convenzioni utilizzate da MVC5 semplifica la definizione
+ dell'intera applicazione, ed anche per la definizione delle viste è previsto
+ un meccanismo per fattorizzare al meglio il proprio codice.
+\end_layout
+
+\begin_layout Standard
+Per ogni vista da processare e visualizzare in risposta ad una richiesta
+ HTTP, viene ricercato il file 
+\begin_inset Quotes eld
+\end_inset
+
+_ViewStart.cshtml
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+cshtml
+\begin_inset Quotes erd
+\end_inset
+
+ è l'estensione delle viste in Razor.
+\end_layout
+
+\end_inset
+
+ all'interno della cartella 
+\begin_inset Quotes eld
+\end_inset
+
+Views
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Per CSBlog è stato utilizzata per indicare quale sia il file Razor contenente
+ il layout delle pagine.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@{     Layout = "~/Views/Shared/_Layout.cshtml"; }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A differenza delle altre piattaforme, anche la scelta del layout può essere
+ effettuata dinamicamente, permettendo di aver maggior controllo sull'aspetto
+ delle proprie pagine semplicemente cambiando il percorso della risorsa
+ o aggiungendo della logica all'assegnazione.
+ Ad esempio è possibile definire più versioni del proprio sito, ottimizzandone
+ l'uso in funzione del tipo di device che sta effettuando la navigazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org"> @Html.Partial("_HeadPart
+ial") <body>     @Html.Partial("_HeaderPartial")     <div id="content"> 
+        @RenderBody()     </div>     @Html.Partial("_FooterPartial")    
+  </body> </html>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per definire un layout è sufficiente creare una nuova vista con Razor ed
+ utilizzare funzionalità come 
+\begin_inset Quotes eld
+\end_inset
+
+Partial
+\begin_inset Quotes erd
+\end_inset
+
+, per espandere il contenuto di una vista parziale, o 
+\begin_inset Quotes eld
+\end_inset
+
+RenderBody
+\begin_inset Quotes erd
+\end_inset
+
+ per espandere la vista restituita dall'azione che ha gestito la richiesta.
+ Nell'esempio è mostrato com'è costituita la struttura di una pagina di
+ CSBlog.
 \end_layout
 
 \begin_layout Subsection
@@ -848,15 +1091,54 @@ Peculiarità
 \end_layout
 
 \begin_layout Standard
-generazione via wizard
+Visual Studio, ASP.NET e l'EF sono software estremamente ampi, ricchi di
+ funzionalità e professionali ma la creazione di una nuova applicazione
+ per MVC5 definisce un progetto nel quale sono utilizzate la maggior parte
+ delle componenti presenti nel framework.
+ Navigando fra i sorgenti del progetto è possibile approfondirne le funzionalità
+, intuirne le potenzialità e osservare le soluzioni proposte dal team di
+ VS.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-progetto di partenza articolato e funzionante
+Oltre ad includere un esempio di applicazione funzionante per ogni nuovo
+ progetto, VS fornisce agli sviluppatori numerosi wizard per generare e
+ configurare le nuove funzionalità.
+ Durante il progetto non è mai stato necessario modificare manualmente i
+ file XML per la configurazione dell'applicazione e l'introduzione di nuovi
+ controlli, viste o entità non ha richiesto uno studio approfondito del
+ framework per una singola funzionalità, come ad esempio per la definizione
+ del modello con JPA.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-zero xml da scrivere webconfig sito eseguibile 
+Inoltre VS integra all'interno dell'ambiente di sviluppo tutte le diverse
+ categorie di strumenti e linguaggi necessari per lo sviluppo di un'applicazione
+ web.
+ Oltre ai classici HTML, CSS e Javascript, è supportato di default lo sviluppo
+ tramite Sass e Boostrap
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Bootstrap è un'interessante framework, sviluppato originariamente da Twitter,
+ per la definizione di pagine web responsive.
+ E' particolarmente apprezzato per la definizione di siti facilmente navigabili
+ da device mobile in quanto non prevede l'utilizzo di fogli di stile per
+ definire la disposizione degli elementi nella pagina.
+\end_layout
+
+\end_inset
+
+, tecnologie innovative per lo sviluppo di applicazioni Web.
 \end_layout
 
 \begin_layout Standard
@@ -877,15 +1159,25 @@ Hello CSBlog!
 \end_layout
 
 \begin_layout Standard
-http://www.specflow.org/
-\end_layout
-
-\begin_layout Standard
-https://github.com/featurist/coypu
+Nella sezione sono introdotti gli strumenti per effettuare la definizione
+ dei test di accettazione automatici per CSBlog.
+ Nella prima parte è descritto il processo di configurazione di Coypu, la
+ libreria per l'automazione scelta per .NET, e di SpecFlow, il framework
+ per il BDD.
+ Successivamente sono introdotti i primi test e le funzionalità utilizzate
+ per l'implementazione.
 \end_layout
 
 \begin_layout Subsection
 SpecFlow
+\end_layout
+
+\begin_layout Standard
+SpecFlow è un framework per .NET.
+ Nonostante utilizzi Gherkin, non è un porting di Cucumber in C#, al momento
+ esistono le versioni Java, Ruby e JavaScript, bensì si limita ad utilizzarne
+ alcune componenti come il DSL e il relativo parser, entrambe presenti pubblicam
+ente su GitHub.
 \end_layout
 
 \begin_layout Paragraph
@@ -941,11 +1233,24 @@ La prima feature di SBlog
 \end_layout
 
 \begin_layout Standard
-NuGet
+Grazie all'utilizzo di SpecFlow è possibile riutilizzare la stessa libreria
+ utilizzata per lo sviluppo di RBlog e SBlog.
+ Nell'importazione e nello sviluppo dei post non sono state rilevate problemi
+ legati al linguaggio ed alle costrutti sintattici utilizzati, sono però
+ presenti delle differenze nell'implementazione, come verrà descritto nelle
+ successive sezioni.
+\end_layout
+
+\begin_layout Paragraph
+Supporto a Specflow in VS
 \end_layout
 
 \begin_layout Standard
-Esecuzione test
+Per utilizzare SpecFlow in VS è sufficiente installare tramite il gestore
+ dei pacchetti il relativo plugin.
+ Per eseguire le funzionalità e gli scenari tramite il runner di NUnit è
+ necessario installare un pacchetto aggiuntivo tramite la console di NuGet,
+ utilizzando il comando seguente.
 \end_layout
 
 \begin_layout Standard
@@ -955,25 +1260,12 @@ status open
 
 \begin_layout Plain Layout
 
-@RunWith(Cucumber.class)
-\end_layout
-
-\begin_layout Plain Layout
-
-@CucumberOptions(format = {tags = {"@cap1", "~@ignore"})
-\end_layout
-
-\begin_layout Plain Layout
-
-public class RunCukesTest {}
-\end_layout
-
-\begin_layout Plain Layout
-
+Install-Package SpecFlow.NUnit
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Runner per Cucumber-JVM
+
+Installazione del plugin per SpecFlow in VS.
 \end_layout
 
 \end_inset
@@ -984,14 +1276,49 @@ Runner per Cucumber-JVM
 \end_inset
 
 
-\end_layout
-
-\begin_layout Paragraph
-Supporto a Cucumber in RubyMine
 \end_layout
 
 \begin_layout Standard
-Funzionalità incluse
+Completate l'installazione del software non è necessario compiere alcuna
+ operazione di configurazione.
+ Il plugin estende il funzionamento di VS aggiungendo il completo supporto
+ a Gherkin, evidenziando la sintassi nelle diverse lingue esistenti, introducend
+o l'autocompletamento all'interno dei file 
+\begin_inset Quotes eld
+\end_inset
+
+.feature
+\begin_inset Quotes erd
+\end_inset
+
+, permettendo la navigazione da passo ad implementazione, permettendo la
+ generazione automatica degli stub rappresentanti i passi e aggiungendo
+ le funzionalità in Gherkin nei menù rapidi per la creazione delle risorse.
+\end_layout
+
+\begin_layout Standard
+Per l'esecuzione delle funzionalità è possibile selezionare direttamente
+ i file 
+\begin_inset Quotes eld
+\end_inset
+
+.feature
+\begin_inset Quotes erd
+\end_inset
+
+, eventualmente utilizzando il tag 
+\begin_inset Quotes eld
+\end_inset
+
+@ignore
+\begin_inset Quotes erd
+\end_inset
+
+ per saltare alcuni scenari, oppure sfruttare l'integrazione con NUnit per
+ eseguire scegliere quale sotto-insieme di scenari eseguire.
+ E' anche possibile sfruttare i diversi ordinamenti di NUnit per eseguire
+ gli scenari in funzione di durata di esecuzione, risultato del test, tag
+ utilizzati o namespace.
 \end_layout
 
 \begin_layout Subsection
@@ -999,23 +1326,213 @@ Coypu
 \end_layout
 
 \begin_layout Standard
-Motivazioni
+I parametri della scelta di una libreria per l'automazione della navigazione
+ via browser prevede che questa sia preferibilmente scritta nel linguaggio
+ utilizzato per implementare l'applicazione web, il cui sviluppo sia attivo,
+ che possibilmente sia open-source e che abbia una comunità attiva per poter
+ avere un riscontro in caso di difficoltà e problemi.
 \end_layout
 
 \begin_layout Standard
-sperimentazione, carenza di alternative in c# oltre a selenium#
+L'individuazione di una libreria per .NET che soddisfasse questi parametri
+ non è stato semplice.
+ Oltre a Selenium, già utilizzato per Java, sono stati valutati Watin, il
+ cui sviluppo è fermo dal 2011, e Telerick Testing Framework, che per quanto
+ sia un progetto attivo e ben documentato, sembra non essere utilizzato
+ ed essere privo di una propria comunità di utilizzatori.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-obbiettivi
+Viste le diverse difficoltà nella scelta di una libreria è stata effettuata
+ una scelta sperimentale utilizzando Coypu, un wrapper di Selenium Web Driver,
+ scritto in C# che nella propria implementazione si ispira al DSL di Capybara.
 \end_layout
 
 \begin_layout Standard
-punti di forza
+Il progetto è stato rilasciato la prima volta 2011, 2 anni prima del rilascio
+ della prima versione beta di Selenium 2.0 ed è attualmente sviluppato, anche
+ se il supporto è principalmente effettuato dal un singolo autore.
+ Nonostante si tratti di una libreria open-source utilizzata da una ridotta
+ comunità, che comunque è attiva e presente in diversi canali, presenta
+ un'interessante prospettiva dell'automazione della navigazione web che
+ merita di essere approfondita.
 \end_layout
 
 \begin_layout Standard
-spiluppo continuo precedente a sel 2
+I principali obbiettivi di Coypu riguardano la semplificazione e razionalizzazio
+ne delle funzionalità della libreria di Selenium e la definizione di una
+ libreria che, come Capybara, permetta di descrivere i propri test nella
+ maniera più vicina possibile a come un utente descriverebbe le proprie
+ azioni sul browser.
+\end_layout
+
+\begin_layout Subsubsection*
+Configurazione di una sessione di testing
+\end_layout
+
+\begin_layout Standard
+Come effettuato per Selenium in SBlog, anche per Coypu è stato scelto di
+ utilizzare un nuovo ambiente di testing per ogni scenario, aprendo una
+ nuova finestra prima prima dell'esecuzione e rilasciando le risorse al
+ termine.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[BeforeScenario]
+\end_layout
+
+\begin_layout Plain Layout
+
+public void Before(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	var sessionConfiguration = new SessionConfiguration             	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Port = 1448,
+\end_layout
+
+\begin_layout Plain Layout
+
+		Driver = typeof(SeleniumWebDriver),
+\end_layout
+
+\begin_layout Plain Layout
+
+		Browser = Coypu.Drivers.Browser.PhantomJS,
+\end_layout
+
+\begin_layout Plain Layout
+
+		Timeout = TimeSpan.FromSeconds(5)
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	_browser = new BrowserSession(sessionConfiguration);            	_browser.Maximi
+seWindow();             	_objectContainer.RegisterInstanceAs(_browser);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Creazione della sessione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche in SpecFlow è possibile definire delle callback, nell'esempio è definito
+ un hook 
+\begin_inset Quotes eld
+\end_inset
+
+BeforeScenario
+\begin_inset Quotes erd
+\end_inset
+
+ da eseguire prima di ogni scenario, contenente le istruzioni per la definizione
+ di una sessione.
+ In particolare tramite la classe 
+\begin_inset Quotes eld
+\end_inset
+
+SessionConfigurazion
+\begin_inset Quotes erd
+\end_inset
+
+ è impostata la porta del server web, il driver ed il browser utilizzato
+ ed il tempo massimo di esecuzione di ricerca per un selettore all'interno
+ della pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[AfterScenario]
+\end_layout
+
+\begin_layout Plain Layout
+
+public void AfterScenario(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	_browser.Dispose();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Chiusura del browser.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per completare la gestione della sessione di testing è invocato il metodo
+ dispone al termine di ogni scenario.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1023,11 +1540,47 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-Nuget
+Per utilizzare PhantomJS per come browser, è necessario mantenere l'eseguibile
+ all'interno del path del proprio sistema o all'interno della cartella 
+\begin_inset Quotes eld
+\end_inset
+
+bin
+\begin_inset Quotes erd
+\end_inset
+
+ del progetto in VS.
+ Per installare il browser localmente è possibile utilizzare la console
+ di Nuget ed eseguire il seguente comando.
 \end_layout
 
-\begin_layout Subsubsection*
-Driver?
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+install-package phantomjs.exe
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Installazione locale di PhantomJS.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1099,12 +1652,12 @@ La struttura di Coypu
 struttura
 \end_layout
 
-\begin_layout Standard
-possibilità di usare funzionalità native
-\end_layout
-
 \begin_layout Paragraph
 Navigare all'interno del sito
+\end_layout
+
+\begin_layout Standard
+timeout globale
 \end_layout
 
 \begin_layout Paragraph
@@ -1173,6 +1726,18 @@ Seconda funzionalità per SBlog
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+possibilità di usare funzionalità native
+\end_layout
+
+\begin_layout Standard
+esempio
+\end_layout
+
+\begin_layout Standard
+menne
 \end_layout
 
 \begin_layout Subsection
