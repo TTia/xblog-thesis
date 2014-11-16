@@ -1,0 +1,3188 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Relazione.lyx
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Spring 13/11/14
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "ch:spring"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+ASP.NET MVC 5
+\end_layout
+
+\begin_layout Standard
+In questo capitolo è trattato lo sviluppo di CSBlog, un'applicazione web
+ sviluppata tramite il framework ASP.NET MVC 5 e implementando la libreria
+ di test di accettazione già mostrata nei precedenti capitoli utilizzando
+ Specflow, una libreria per il BDD ispirata a Cucumber, e Coypu per automatizzar
+e la navigazione del browser web.
+\end_layout
+
+\begin_layout Standard
+In questo capitolo saranno descritte le particolarità del framework, dell'implem
+entazione delle diverse componenti e degli strumenti utilizzati per implementare
+ l'applicazione web.
+ Dalla sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Hello-CSBlog!"
+
+\end_inset
+
+ sono documentate le diverse funzionalità presenti nella libreria dei test
+ di accettazione e descritto il processo di testing, includendo esempi e
+ frammenti di codice.
+\end_layout
+
+\begin_layout Subsection
+Visual Studio 2013
+\end_layout
+
+\begin_layout Standard
+Per lo sviluppo di CSBlog, dei test di accettazione e la gestione del modello
+ è stato utilizzato Visual Studio 2013 Ultimate, VS, che integra le diverse
+ funzionalità per lo sviluppo web, la configurazione della propria applicazione
+ e l'implementazione delle diverse componenti del pattern.
+\end_layout
+
+\begin_layout Standard
+Tutti i plugin necessari, per il supporto a Specflow o l'installazione di
+ PhantomJS, sono stati installati tramite NuGet, il gestore di pacchetti
+ per il mondo .NET direttamente tramite l'ambiente di sviluppo.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:L'interpretazione di Spring del pattern MVC"
+
+\end_inset
+
+L'interpretazione di
+\end_layout
+
+\begin_layout Subsection
+Il modello
+\end_layout
+
+\begin_layout Standard
+Per definire il modello con RoR e Spring è stato scelto di definire prima
+ le entità, rispettivamente tramite gli ActiveRecord e JPA, ed utilizzare
+ le classi per effettuare la generazione dei database di PostgreSql.
+ RoR genera di default tre database e le tabelle delle migrazioni, ed anche
+ JPA implementa ad alto livello molte funzionalità dei database relazioni,
+ i vincoli di integrità.
+ E' quindi molto conveniente per lo sviluppatore progettare la persistenza
+ partendo dalle classi che rappresentano il dominio.
+\end_layout
+
+\begin_layout Standard
+Per MVC5 è stato scelto invece di definire il modello in maniera 
+\begin_inset Quotes eld
+\end_inset
+
+classica
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzando il DDL di SQL, utilizzando SQL Server Express, la versione
+ gratuita del database sviluppato da Microsoft.
+ Utilizzando la generazione guidata e gli strumenti grafici per la gestione
+ dei database, la creazione delle tabelle 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ ed 
+\begin_inset Quotes eld
+\end_inset
+
+Autore
+\begin_inset Quotes erd
+\end_inset
+
+ e la relazione presente fra le due entità, è stata compiuta in brevissimo
+ tempo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La definizione dell'interfaccia del modello per un'applicazione web di MVC5
+ non è una scelta vincolata ed è possibile scegliere fra diverse opzioni.
+ La più logica coincide con l'utilizzo dell'Entity Framework, attualmente
+ alla versione 6, che implementa l'astrazione del modello attraverso la
+ tecnica ORM in maniera simile a quanto già visto per RoR e Spring.
+\end_layout
+
+\begin_layout Standard
+L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog,
+ e si occupa di gestire le interazioni con ADO.NET, il framework che ha il
+ compito di comunicare direttamente con i sistemi di persistenza esistenti
+ e mantenere la consistenza fra le entry e gli oggetti.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le classi che descrivono le entità sono sottotipo di 
+\begin_inset Quotes eld
+\end_inset
+
+System.Data.Entity.DbContext
+\begin_inset Quotes erd
+\end_inset
+
+, che fornisce le funzionalità per applicare la tecnica ORM, permettendo
+ di eseguire interrogazioni, di tener traccia dei cambiamenti allo stato
+ delle istanze ed invocare le operazioni di creazione, aggiornamento e cancellaz
+ione.
+\end_layout
+
+\begin_layout Standard
+database first
+\end_layout
+
+\begin_layout Standard
+sqlexpress
+\end_layout
+
+\begin_layout Subsubsection*
+ef6
+\end_layout
+
+\begin_layout Standard
+ado.net
+\end_layout
+
+\begin_layout Standard
+generazione automatica, sync, interfaccia per la gestione
+\end_layout
+
+\begin_layout Standard
+browser grafico del modello
+\end_layout
+
+\begin_layout Standard
+azure 
+\end_layout
+
+\begin_layout Subsection
+I controlli
+\end_layout
+
+\begin_layout Standard
+RouteConfig (mapping di default, disaccoppiati, controllo sugli elementi
+ pubblici) esempio di definizione generazione automatica ValidateAntiForgeryToke
+n Dipendenze tramite new HttpPost assenza di componenti come helper o service
+ 
+\end_layout
+
+\begin_layout Subsection
+Le viste
+\end_layout
+
+\begin_layout Standard
+convenzione razor, estensione, tipologia, modello al quale è applicata la
+ vista previsto uso del layout (_viewStart) Bootstrap 
+\end_layout
+
+\begin_layout Subsection
+Peculiarità
+\end_layout
+
+\begin_layout Standard
+generazione, wizard, zero xml da scrivere webconfig sito eseguibile 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Hello-CSBlog!"
+
+\end_inset
+
+Hello SBlog!
+\end_layout
+
+\begin_layout Standard
+Per effettuare un confronto il più attendibile possibile, la libreria di
+ test di accettazione definita per RBlog e scritta in Gherkin è stata riutilizza
+ta anche per la versione del blog in Spring.
+ I due blog sono equivalenti nelle funzionalità e molto simili nelle nelle
+ tecnologie utilizzate, in questa e nelle prossime sezioni è descritto il
+ processo di definizione dei test, omettendo però la descrizione dei tool
+ già utilizzati per RBlog.
+\end_layout
+
+\begin_layout Subsection
+Cucumber-JVM
+\end_layout
+
+\begin_layout Standard
+Cucumber-JVM, il porting in Java del framework per Cucumber, presenta differenze
+ minime rispetto alla versione per Ruby, principalmente dovute alle diversità
+ del linguaggio.
+\end_layout
+
+\begin_layout Paragraph
+Le funzionalità
+\end_layout
+
+\begin_layout Standard
+Nell'effettuare il porting dei test di accettazione in Gherkin non è stato
+ rilevato alcun problema sintattico né relativo alle funzionalità supportate
+ dalla versione Java di Cucumber.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap1
+\end_layout
+
+\begin_layout Plain Layout
+
+Funzionalità: Hello RBlog!
+\end_layout
+
+\begin_layout Plain Layout
+
+Per leggere i post e visitare il blog
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che RBlog permettesse la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+La prima feature di SBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Avendo già descritto la struttura di una funzionalità in Gherkin, è possibile
+ concentrare l'attenzione sulla configurazione del framework.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>info.cukes</groupId> 	<artifactId>cucumber-junit</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<version>1.1.8</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<scope>test</scope>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>info.cukes</groupId> 	<artifactId>cucumber-picocontainer</artifactId>
+ 	<version>1.1.8</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<scope>test</scope>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aggiunta delle dipendenze per il BDD in Maven.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per l'esecuzione dei test in Eclipse innanzitutto è necessario includere
+ le dipendenze all'interno del POM di Maven.
+ Oltre a 
+\begin_inset Quotes eld
+\end_inset
+
+cucumber-junit
+\begin_inset Quotes erd
+\end_inset
+
+ è necessario includere anche PicoContainer, una libreria per il supporto
+ alla DI utilizzata per individuare le classi contenenti gli hook e le definizio
+ne dei passi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@RunWith(Cucumber.class)
+\end_layout
+
+\begin_layout Plain Layout
+
+@CucumberOptions(format = {tags = {"@cap1", "~@ignore"})
+\end_layout
+
+\begin_layout Plain Layout
+
+public class RunCukesTest {}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Runner per Cucumber-JVM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aggiunte le dipendenze e le funzionalità è sufficiente configurare un classe
+ con le annotazioni di JUnit per eseguire i test.
+ L'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@CucumberOptions
+\begin_inset Quotes erd
+\end_inset
+
+ indica i tag degli scenari da eseguire.
+\end_layout
+
+\begin_layout Paragraph
+Supporto a Cucumber in RubyMine
+\end_layout
+
+\begin_layout Standard
+In Eclipse è disponibile un plugin per Cucumber
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eclipse Cucumber JVM Plugin"
+
+\end_inset
+
+ che fornisce la formattazione del codice scritto in Gherkin, l'auto-completamen
+to e l'evidenziatura della sintassi per tutte le lingue supportate.
+\end_layout
+
+\begin_layout Standard
+Rispetto all'integrazione in RubyMine manca la possibilità di navigare dal
+ passo all'implementazione, inoltre la funzionalità per eseguire i test
+ tramite le risorse scritte in Gherkin sembra non funzionare, obbligando
+ ad eseguire direttamente il runner di JUnit.
+\end_layout
+
+\begin_layout Subsection
+Selenium
+\end_layout
+
+\begin_layout Standard
+Selenium è una libreria per l'automazione la navigazione internet.
+ Rispetto alle versioni precedenti della libreria, gli sviluppatori affermano
+ di aver definito un'interfaccia più intuitiva e compatta.
+\end_layout
+
+\begin_layout Standard
+Selenium WebDriver, la parte centrale della libreria che implementa le operazion
+i per l'accesso alle pagine web, utilizza il supporto nativo di ogni browser
+ per l'automazione.
+ La prima differenza rispetto a Capybara è nella possibilità di utilizzare
+ tutte le funzionalità di browser web, come la navigazione grazie alla cronologi
+a e l'uso dei preferiti, piuttosto che limitarsi alla sola navigazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>org.seleniumhq.selenium</groupId> 	<artifactId>selenium-java</artifactId
+>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<version>2.43.1</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aggiunta della dipendenza di Selenium a SBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per poter definire i test utilizzando le funzionalità di Selenium è sufficiente
+ aggiungere la dipendenza del porting in Java al POM del progetto.
+\end_layout
+
+\begin_layout Subsubsection*
+PhantomJS
+\end_layout
+
+\begin_layout Standard
+Data la forte integrazione di Selenium con i browser web è stato scelto
+ di adottare anche per i test su SBlog PhantomJS.
+ Scegliendo di implementare i test di accettazione automatici con Cucumber,
+ nelle varie versioni, ed utilizzando lo stesso software per la navigazione
+ dei blog è più facile individuare per ogni problema tecnico la causan ed
+ effettuare un'analisi più accurata.
+\end_layout
+
+\begin_layout Subsubsection*
+Ghost Driver
+\end_layout
+
+\begin_layout Standard
+Ghost Driver è un'implementazione JavaScript del protocollo WebDriver Web
+ di PhantomJS che permette di eseguire i comandi contattando tramite richieste
+ HTTP l'interfaccia REST del browser, che restituisce i risultati delle
+ interazioni serializzati con JSon.
+\end_layout
+
+\begin_layout Standard
+Per configurare Ghost Driver è sufficiente aggiungere la dipendenza al POM.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<dependency>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<groupId>com.github.detro.ghostdriver</groupId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<artifactId>phantomjsdriver</artifactId>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<version>1.1.0</version>
+\end_layout
+
+\begin_layout Plain Layout
+
+</dependency>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Implementazione dei passi
+\end_layout
+
+\begin_layout Standard
+L'implementazione di un passo in Cucumber-JVM è eseguita annotando un metodo
+ pubblico
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Non è necessario configurare in maniera particolare le classi contenenti
+ le implementazioni dei passi.
+\end_layout
+
+\end_inset
+
+ con una delle annotazioni corrispondenti ai passi e specificando il valore
+ dell'espressione regolare.
+ Inoltre è possibile specificare un parametro 
+\begin_inset Quotes eld
+\end_inset
+
+timeout
+\begin_inset Quotes erd
+\end_inset
+
+ per specificare il tempo massimo di esecuzione del passo.
+\end_layout
+
+\begin_layout Standard
+Come per la versione in Ruby, non c'è corrispondenza fra il tipo dell'implementa
+zione, in Java è rappresentato dall'annotazione, ed i tipi di passi applicabili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Dato("^apro SBlog$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void apro_SBlog() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Implementazione \"apro SBlog\""
+
+\end_inset
+
+Implementazione del passo 
+\begin_inset Quotes eld
+\end_inset
+
+apro SBlog
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per implementare passi parametrici è sufficiente aggiungere dei parametri
+ al metodo; come in Ruby i valori estratti dall'espressione del passo hanno
+ tipo stringa, ma è possibile annotare i parametri con 
+\begin_inset Quotes eld
+\end_inset
+
+@Format
+\begin_inset Quotes erd
+\end_inset
+
+ per effettuare eventuali conversioni.
+\end_layout
+
+\begin_layout Standard
+Eventuali inconsistenze fra il numero di parametri del passo e del metodo
+ sono segnalate tramite eccezione.
+\end_layout
+
+\begin_layout Paragraph
+La struttura di Selenium
+\end_layout
+
+\begin_layout Standard
+Rispetto alla struttura di Capybara, Selenium organizza le funzionalità
+ in maniera articolata
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selenium Hierarchy"
+
+\end_inset
+
+.
+ La libreria è rappresentata attraverso più gerarchie di classi, interfacce
+ ed enumerazioni.
+ Di seguito sono introdotti gli elementi più importanti e maggiormente utilizzat
+i per il testing su SBlog:
+\end_layout
+
+\begin_layout Itemize
+l'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ rappresenta gli elementi HTML e include le principali operazioni eseguibili
+ tramite Selenium.
+ Le linee guida della libreria prevedono che ogni metodo effettui un controllo
+ sulla validità del chiamante, verificando che sia presente nel DOM al momento
+ dell'esecuzione dell'operazione;
+\end_layout
+
+\begin_layout Itemize
+l'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebDriver
+\begin_inset Quotes erd
+\end_inset
+
+ è la radice della gerarchia delle operazioni che descrivono le operazioni
+ eseguibili durante i test.
+ Le funzionalità dichiarate nell'interfaccia riguardano il controllo del
+ browser stesso, la selezione degli elementi presenti nel DOM e il supporto
+ al debug durante i test;
+\end_layout
+
+\begin_layout Itemize
+la classe astratta 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ implementa diversi factory metod per individuare elementi all'interno del
+ DOM.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElement
+\begin_inset Quotes erd
+\end_inset
+
+ dell'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ richiede un'istanza della classe 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ per compiere la ricerca nel documento.
+ Rispetto a Capybara le possibilità per implementare un selettore sono indicativ
+amente equivalenti, ma Selenium offre metodi come 
+\begin_inset Quotes eld
+\end_inset
+
+ByTagName
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+ByPartialLinkText
+\begin_inset Quotes erd
+\end_inset
+
+, derivati rispettivamente da 
+\begin_inset Quotes eld
+\end_inset
+
+ByCssSelector
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+ByLinkText
+\begin_inset Quotes erd
+\end_inset
+
+, che semplificano lo sviluppo dei test;
+\end_layout
+
+\begin_layout Itemize
+l'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebDriverException
+\begin_inset Quotes erd
+\end_inset
+
+ rappresenta la gerarchia degli errori presenti nella libreria.
+\end_layout
+
+\begin_layout Paragraph
+Navigare all'interno del sito
+\end_layout
+
+\begin_layout Standard
+La navigazione in Selenium è effettuabile utilizzando tre tipologie di metodi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+driver.navigate().to(getSblogURL());
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Navigazione esplicita.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+navigate
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce un'istanza di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Navigation
+\begin_inset Quotes erd
+\end_inset
+
+ che permette al driver di accedere alle funzionalità del browser e di navigare,
+ sia utilizzando la cronologia, sia indicando esplicitamente un URL da raggiunge
+re.
+ Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+to
+\begin_inset Quotes erd
+\end_inset
+
+ effettua richiesta in GET per l'URL specificato e blocca l'esecuzione fino
+ al caricamento della nuova pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+WebElement link = driver.findElement(By.linkText(linkText));
+\end_layout
+
+\begin_layout Plain Layout
+
+link.click();
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:evento naviga verso selenium"
+
+\end_inset
+
+Navigazione nel sito, sfruttando il testo visualizzato di un link.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre alla navigazione esplicita, è possibile compiere effettuare un azione,
+ come il click di un collegamento, su un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ individuato tramite un selettore.
+ Nell'esempio è effettuata la navigazione ad una delle pagine statiche del
+ blog presenti per la prima funzionalità, individuando il link attraverso
+ il testo degli elementi 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElement
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce il primo elemento che soddisfa il selettore di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Per ogni ricerca all'interno del DOM è previsto un tempo massimo di attesa
+ entro il quale l'elemento deve apparire ed una frequenza di polling.
+ L'eccezione 
+\begin_inset Quotes eld
+\end_inset
+
+NoSuchElementException
+\begin_inset Quotes erd
+\end_inset
+
+ è sollevata nel caso l'elemento non sia presente.
+\end_layout
+
+\begin_layout Paragraph
+Integrazione con JUnit
+\end_layout
+
+\begin_layout Standard
+Per l'esecuzione degli scenari e la definizione delle asserzioni è stato
+ utilizzato JUnit, una libreria Java per la definizione di test.
+ Le asserzioni in JUnit sono metodi statici della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Assert
+\begin_inset Quotes erd
+\end_inset
+
+ ed offrono le funzionalità per la verifica dello stato di uno o più oggetti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+WebElement logo = driver.findElement(By.id("logo"));
+\end_layout
+
+\begin_layout Plain Layout
+
+assertEquals(logo.getAttribute("href"), getSblogURL());
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifica del attributo 
+\begin_inset Quotes eld
+\end_inset
+
+href
+\begin_inset Quotes erd
+\end_inset
+
+ del collegamento presente nell'intestazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+assertEquals(driver.getTitle(), pageTitle);
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifica del titolo della pagina.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduzione del CSS
+\end_layout
+
+\begin_layout Standard
+Per semplificare lo sviluppo delle applicazioni è stato scelto di riutilizzare
+ sia la struttura delle pagine che i fogli di stile creati per RBlog.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Feature: Introducendo il CSS
+\end_layout
+
+\begin_layout Plain Layout
+
+Per rendere l'esperienza di navigazione gradevole
+\end_layout
+
+\begin_layout Plain Layout
+
+Come Lettore
+\end_layout
+
+\begin_layout Plain Layout
+
+Vorrei che il sito esponesse una grafica omogenea
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+Seconda funzionalità per SBlog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante sia sempre più diffusa la pratica di utilizzare linguaggi come
+ Sass, che arricchiscono CSS 3 come già discusso nel precedente capitolo,
+ non è ancora fornito il supporto in Eclipse.
+ Per evitare la riscrittura manuale ho compilato i fogli di stile tramite
+ il comando 
+\begin_inset Quotes eld
+\end_inset
+
+sass *.scss
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il processo di conversione non gestisce al meglio i commenti presenti nei
+ file scss, generando dei fogli di stile non validi.
+ Per sicurezza infatti ho verificato i documenti con il validatore disponibile
+ sul sito del W3C.
+\end_layout
+
+\end_inset
+
+ per convertirli al formato classico.
+\end_layout
+
+\begin_layout Subsection
+Testare il css
+\end_layout
+
+\begin_layout Standard
+SBlog presenta quindi un layout molto simile alla precedente versione, compresi
+ i minimi effetti cromatici dell'intestazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: l'intestazione espone dei semplici effetti cromatici
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato che è presente l'intestazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E l'intestazione permette la navigazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	E i collegamenti non hanno sfondo
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando il cursore si sposta sui collegamenti
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora lo sfondo del collegamento cambia
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Variazione del colore del colore di background dei collegamenti nell'intestazion
+e.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Analisi delle proprietà stilistiche dei nodi
+\end_layout
+
+\begin_layout Standard
+La funzionalità 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:02x00 Introducendo il CSS"
+
+\end_inset
+
+ richiede di verificare alcuni elementi del layout di SBlog.
+ L'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ dichiara il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getCssValue
+\begin_inset Quotes erd
+\end_inset
+
+ per ottenere stringhe rappresentanti gli attributi stilistici di un elemento
+ del DOM.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Dato("^l'intestazione ha un colore di sfondo$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void l_intestazione_ha_un_colore_di_sfondo(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	String rgb = page.header.getCssValue("background-color");
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertNotNull(rgb);
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertNotEquals("rgba(0, 0, 0, 0)", rgb);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come si può osservare dall'implementazione, Selenium rispetto a Capybara
+ ottiene il corretto valore di un elemento del DOM, anche se il parametro
+ è attribuito tramite un foglio di stile incluso nell'header della pagina,
+ grazie ad una migliore integrazione con le funzionalità del browser.
+\end_layout
+
+\begin_layout Standard
+Purtroppo però, oltre alla classe 
+\begin_inset Quotes eld
+\end_inset
+
+Color
+\begin_inset Quotes erd
+\end_inset
+
+ che interpreta stringhe nel formato appena mostrato, non è presente nessuna
+ funzionalità per semplificare l'utilizzo dei valori restituiti, lo sviluppatore
+ deve quindi, tramite espressioni regolari e conversioni di tipo, analizzare
+ manualmente le stringhe per effettuare operazioni più complesse.
+\end_layout
+
+\begin_layout Standard
+Inoltre al metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getCssValue
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile fornire solo attributi validi per le specifiche del CSS 2,
+ ad esempio l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+margin
+\begin_inset Quotes erd
+\end_inset
+
+, che attraverso una tupla di quattro valori definisce tutti i margini di
+ un elemento HTML, non è sono supportato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Allora("^intestazione e pié di pagina hanno lo stesso colore di sfondo$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void intestazione_e_pié_di_pagina_hanno_lo_stesso_colore_di_sfondo(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	String headerBackgroundColor, footerBackgroundColor;
+\end_layout
+
+\begin_layout Plain Layout
+
+	headerBackgroundColor = page.header.getCssValue("background-color");
+\end_layout
+
+\begin_layout Plain Layout
+
+	footerBackgroundColor = page.footer.getCssValue("background-color");
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(headerBackgroundColor, footerBackgroundColor);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante le difficoltà nell'utilizzo dei risultati, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getCssValue
+\begin_inset Quotes erd
+\end_inset
+
+ risponde in maniera consistente ai principi del CSS.
+ Il valore di default dell'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+background-color
+\begin_inset Quotes erd
+\end_inset
+
+ per i collegamenti dell'intestazione coincide con la trasparenza massima,
+ come mostrato nel prossimo frammento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Dato("^i collegamenti non hanno sfondo$") public void i_collegamenti_non_hanno_
+sfondo(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	List<WebElement> bannerLinks = page.header.findElements(By.className("banner_link"
+));
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (WebElement banner_link : bannerLinks) { 		String rgb = banner_link.getCssVa
+lue("background-color");
+\end_layout
+
+\begin_layout Plain Layout
+
+		assertNotNull(rgb);
+\end_layout
+
+\begin_layout Plain Layout
+
+		assertEquals("rgba(0, 0, 0, 0)", rgb); 	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.setBannerLinks(bannerLinks);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Actions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Quando("^il cursore si sposta sui collegamenti$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void il_cursore_si_sposta_sui_collegamenti() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	Actions action = new Actions(driver);
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement bannerLink = page.getBannerLinks().get(0);
+\end_layout
+
+\begin_layout Plain Layout
+
+	action.moveToElement(bannerLink).perform();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Creazione di una macro azione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La classe 
+\begin_inset Quotes eld
+\end_inset
+
+Actions
+\begin_inset Quotes erd
+\end_inset
+
+ permette di emulare complicate operazioni effettuate sul browser, definendo
+ delle macro.
+ E' possibile definire azioni di due tipi:
+\end_layout
+
+\begin_layout Itemize
+eseguibili tramite tastiera, come la pressione di uno o più tasti combinati,
+ ad esempio corrispondenti alle hotkeys implementate dal browser web;
+\end_layout
+
+\begin_layout Itemize
+eseguibili tramite il mouse, come il semplice click o azioni più complesse
+ come il drag & drop;
+\end_layout
+
+\begin_layout Standard
+Nell'esempio precedente è definita una macro azione ed anche se descritta
+ dal solo spostamento del cursore sopra l'elemento indicato, è utile per
+ mostrarne il comportamento
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il costruttore con un solo parametro di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+WebDriver
+\begin_inset Quotes erd
+\end_inset
+
+ utilizza le azioni implementate da Selenium di default.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Gli eventi della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Actions
+\begin_inset Quotes erd
+\end_inset
+
+ restituiscono un'istanza dello stesso tipo, permettendo quindi la concatenazion
+i di più invocazioni di metodi.
+ Per eseguire la macro è presente il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+perform
+\begin_inset Quotes erd
+\end_inset
+
+.
+ E' anche possibile disaccoppiare la generazione dell'azione complessa dall'esec
+uzione tramite il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+build
+\begin_inset Quotes erd
+\end_inset
+
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+Actions
+\begin_inset Quotes erd
+\end_inset
+
+ che restituisce un'istanza di 
+\begin_inset Quotes eld
+\end_inset
+
+Action
+\begin_inset Quotes erd
+\end_inset
+
+, utile per eseguire più volte una stessa operazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Allora("^lo sfondo del collegamento cambia$") public void lo_sfondo_del_collega
+mento_cambia() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement bannerLink = page.getBannerLinks().get(0);
+\end_layout
+
+\begin_layout Plain Layout
+
+	String bannerLinkColor = bannerLink.getCssValue("background-color");
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertNotEquals("rgba(0, 0, 0, 0)", bannerLinkColor);
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals("rgba(91, 168, 42, 1)", bannerLinkColor);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cambiamento del colore di sfondo dei collegamenti.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come si può intuire dalle asserzioni presenti nel passo, lo spostamento
+ del cursore modifica il colore dello sfondo, verificando lo scenario.
+\end_layout
+
+\begin_layout Subsubsection*
+Selettori
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElement
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce il primo elemento, in ordine di apparizione all'interno del
+ DOM, che soddisfa il selettore specificato tramite i metodi statici di
+ 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Per ottenere tutti gli oggetti 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ validi è possibile utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+findElements
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Allora("^ogni collegamento ha una descrizione testuale$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void ogni_collegamento_ha_una_descrizione_testuale(){ 	List<WebElement>
+ linkedImages = driver.findElements(By 				.cssSelector("a img"));
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (WebElement linkedImage : linkedImages) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fra i selettori offerti da 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ è presente anche la possibilità di utilizzare espressioni XPath.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+WebElement findByXPath(String xpathExpression){ 	return driver.findElement(By.xpat
+h(xpathExpression));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Debug con Selenium
+\end_layout
+
+\begin_layout Standard
+Come per Capybara, l'esecuzione di test in modalità debug non offre molte
+ informazioni utili per individuare eventuali errori nell'applicazione o
+ nell'implementazione dei test.
+ Avendo utilizzato nuovamente PhantomJS, che essendo un browser headless
+ non possiede una GUI, è stato necessario combinare la possibilità di catturare
+ le schermate e l'introduzione di breakpoint per valutare eventuali errori.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definizione del modello
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Gestione dei post
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei poter inserire, leggere, modificare e rimuovere dei post su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter documentare la tesi
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:03x00 Modello"
+
+\end_inset
+
+Funzionalità dell'iterazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La funzionalità corrente introduce in SBlog le operazioni CRUD per i post.
+ Introdurre la gestione delle entità in un'applicazione web in Spring coincide
+ con l'implementazione delle componenti descritte all'interno del capitolo
+ introduttivo sul framework MVC.
+\end_layout
+
+\begin_layout Subsection
+Dipendenze
+\end_layout
+
+\begin_layout Standard
+Come già riscontrato nell'implementazione della stessa funzionalità per
+ RBlog, introdurre le entità e le relative operazioni richiede l'introduzione
+ di meccanismi per garantire che i test di accettazione siano ripetibili
+ ed indipendenti fra loro.
+\end_layout
+
+\begin_layout Paragraph
+Hooks
+\end_layout
+
+\begin_layout Standard
+Con gli hook presenti in Cucumber è possibile definire delle callback da
+ associare ad un certo punto dell'esecuzione dei test.
+ Rispetto all'implementazione in Ruby e grazie alle funzionalità di Selenium
+ non è stato necessario effettuare la cancellazione delle sessioni HTTP
+ create tramite l'autenticazione.
+ Sono stati definiti due metodi, 
+\begin_inset Quotes eld
+\end_inset
+
+setUpWebDriver
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+releaseWebDriver
+\begin_inset Quotes erd
+\end_inset
+
+, eseguiti rispettivamente prima e dopo ogni scenario, responsabili della
+ creazione di una nuova finestra, per la quale è anche specificata una dimension
+e, e della successiva chiusura.
+ Questa pratica, sicuramente costosa in termini di tempo d'esecuzione, permette
+ però di eliminare le sessioni esistenti del browser ed evitare l'esecuzione
+ di test in finestre precedentemente utilizzate per altri scenari.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Before
+\end_layout
+
+\begin_layout Plain Layout
+
+public void setUpWebDriver() { 		driver = new PhantomJSDriver(); 		assertNotNull
+(driver); 	driver.manage().window().setPosition(new Point(0, 0)); 	driver.manage().wi
+ndow().setSize(new Dimension(2048, 2048));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@After(order = 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+public void releaseWebDriver() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	driver.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Apertura e chiusura di una nuova 
+\begin_inset Quotes eld
+\end_inset
+
+finestra
+\begin_inset Quotes erd
+\end_inset
+
+ di PhantomJS.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per implementare un hook in Cucumber JVM è necessario dichiarare un metodo
+ pubblico ed utilizzare una o più delle annotazioni fornite.
+ Le annotazioni utilizzabili forniscono le stesse funzionalità descritte
+ per la versione in Ruby e permettono di indicare sia per quali tag è necessario
+ eseguire le callback, sia un attributo order che ne stabilisce la priorità
+ d'esecuzione, nell'esempio il valore 0 specifica che il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+releaseWebDriver
+\begin_inset Quotes erd
+\end_inset
+
+ verrà eseguito sempre come ultima operazione di uno scenario.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@After(value = "@clear")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void clearIpsums() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	driver.navigate().to(getSblogURL());
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	String loremIpsumPostTitle = "Lorem Ipsum";
+\end_layout
+
+\begin_layout Plain Layout
+
+	String xpathExpression =
+\end_layout
+
+\begin_layout Plain Layout
+
+		String.format("//div[@class = 'post'][p/a[contains(text(),'%s')]]",
+\end_layout
+
+\begin_layout Plain Layout
+
+			loremIpsumPostTitle);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	List<WebElement> postDivs = driver.findElements(By 				.xpath(xpathExpression));
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (WebElement postDiv : postDivs){
+\end_layout
+
+\begin_layout Plain Layout
+
+		postDiv.findElement(By.className("remove_post_button")).click();
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rimozione dei post 
+\begin_inset Quotes eld
+\end_inset
+
+Lorem Ipsum
+\begin_inset Quotes erd
+\end_inset
+
+ creati nello scenario.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La callback 
+\begin_inset Quotes eld
+\end_inset
+
+clearIpsums
+\begin_inset Quotes erd
+\end_inset
+
+ effettua la rimozione dei post con titolo contenente la stringa 
+\begin_inset Quotes eld
+\end_inset
+
+Lorem Ipsum
+\begin_inset Quotes erd
+\end_inset
+
+ in maniera simile a quanto effettuato per RBlog.
+\end_layout
+
+\begin_layout Subsection
+Gestione dei form
+\end_layout
+
+\begin_layout Standard
+Selenium fornisce un'interfaccia lineare ed intuitiva per l'utilizzo di
+ form.
+ Nel successivo metodo, che descrive una generica operazione di inserimento
+ del testo, si può osservare come non sia necessario compiere operazioni
+ particolari per individuare nel DOM e utilizzare i campi di input di un
+ 
+\begin_inset Quotes eld
+\end_inset
+
+form
+\begin_inset Quotes erd
+\end_inset
+
+ HTML.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+protected void insertPostTitle(String title) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement titleInput = driver.findElement(By.id("post_title"));
+\end_layout
+
+\begin_layout Plain Layout
+
+	titleInput.clear();
+\end_layout
+
+\begin_layout Plain Layout
+
+	titleInput.sendKeys(title);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+insertPostTitle
+\begin_inset Quotes erd
+\end_inset
+
+ inserisce il testo passato come parametro all'interno del form per la creazione
+ o modifica di un articolo
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+clear
+\begin_inset Quotes erd
+\end_inset
+
+ è necessario per gestire le operazioni di modifica, infatti il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+sendKeys
+\begin_inset Quotes erd
+\end_inset
+
+ si limita ad aggiungere il testo al campo, concatenando le stringhe.
+\end_layout
+
+\end_inset
+
+.
+ Oltre alla compilazione testuale di un form, Selenium implementa le funzionalit
+à per la spunta dei checkbox, selezionare le opzioni di menu a tendina ed
+ effettuare il caricamento di file.
+\end_layout
+
+\begin_layout Subsubsection*
+Verificare gli errori
+\end_layout
+
+\begin_layout Standard
+A differenza di RSpec, la cui struttura prevede 4 moduli organizzati per
+ funzionalità, JUnit ha una struttura monolitica.
+ Per definire un test con JUnit è necessario annotare con 
+\begin_inset Quotes eld
+\end_inset
+
+@Test
+\begin_inset Quotes erd
+\end_inset
+
+ un metodo pubblico, utilizzando però Cucumber non è possibile far corrispondere
+ a ciascun scenario un singolo test.
+ I test infatti sono definiti dinamicamente tramite il runner di Cucumber
+ che seleziona i metodi corrispondenti a ciascun passo e non rispetta quindi
+ la struttura classica prevista da JUnit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test
+\end_layout
+
+\begin_layout Plain Layout
+
+public void nomeDelTestInJUnit() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Implementazione di un test con JUnit.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In assenza della corrispondenza 
+\begin_inset Quotes eld
+\end_inset
+
+@Test
+\begin_inset Quotes erd
+\end_inset
+
+ - scenario, non è possibile utilizzare le funzionalità di JUnit implementate
+ tramite annotazione, come la verifica delle eccezioni o la definizione
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+@Rule
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JUnit Rule"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+try {
+\end_layout
+
+\begin_layout Plain Layout
+
+	visitHomePage();
+\end_layout
+
+\begin_layout Plain Layout
+
+	findPostDivByTitle(postTitle);
+\end_layout
+
+\begin_layout Plain Layout
+
+	fail();
+\end_layout
+
+\begin_layout Plain Layout
+
+} catch (NoSuchElementException e) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	//
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Un possibile 
+\begin_inset Quotes eld
+\end_inset
+
+work-around
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per definire asserzioni che verifichino la presenza di errori, nell'esempio
+ è verificato che nella home-page di SBlog non sia presente un post con
+ titolo uguale al parametro, è possibile utilizzare una combinazione del
+ metodo statico 
+\begin_inset Quotes eld
+\end_inset
+
+fail
+\begin_inset Quotes erd
+\end_inset
+
+ della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Assert
+\begin_inset Quotes erd
+\end_inset
+
+ di JUnit e un blocco 
+\begin_inset Quotes eld
+\end_inset
+
+try-catch
+\begin_inset Quotes erd
+\end_inset
+
+ sull'errore desiderato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Login & Autorizzazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Autenticazione su RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Autore di RBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei che alcune operazioni sensibili siano permesse previa autenticazione
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per poter garantire l'autenticità dei contenuti
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Descrizione della funzionalità di autenticazione.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per introdurre la gestione dell'autenticazione in SBlog è stato introdotto
+ un controllo ed una vista per effettuare il login.
+ Come per RBlog, le azioni prevedono la verifica dell'autorizzazione, ad
+ esempio non è possibile effettuare il logout se l'utente non è autenticato.
+\end_layout
+
+\begin_layout Standard
+L'entità Session, per cui è stato definito il controllo, non è presente
+ nel modello ma mantiene esclusivamente lo stato della navigazione, mantenendo
+ all'interno della sessione HTTP un riferimento all'identificatore dell'utente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/logout", method = RequestMethod.GET) public String
+ destroy(Model model, RedirectAttributes redirectAttributes, 			HttpSession
+ httpSession){
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sessionService.isLogged(httpSession)){
+\end_layout
+
+\begin_layout Plain Layout
+
+		redirectAttributes.addFlashAttribute("content_template", 					"/posts/index");
+\end_layout
+
+\begin_layout Plain Layout
+
+		redirectAttributes.addFlashAttribute("notice", "Arrivederci!");
+\end_layout
+
+\begin_layout Plain Layout
+
+		httpSession.invalidate();
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return "redirect:/";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+destroy
+\begin_inset Quotes erd
+\end_inset
+
+, dichiarato all'interno della classe SessionController, verifica il valore
+ della sessione ed eventualmente invalida il contenuto.
+ L'azione non restituisce un riferimento ad una vista, ma reindirizza la
+ navigazione verso l'home-page di SBlog, tramite la concatenazione della
+ stringa 
+\begin_inset Quotes eld
+\end_inset
+
+redirect:
+\begin_inset Quotes erd
+\end_inset
+
+ e l'indirizzo relativo di destinazione.
+ Al contrario di RoR, che definisce i 
+\begin_inset Quotes eld
+\end_inset
+
+Filter
+\begin_inset Quotes erd
+\end_inset
+
+, non è previsto una funzionalità per applicare delle callback per le azioni
+ dei controlli.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per poter sfruttare le funzionalità di Spring per la gestione della sessione,
+ è necessario aggiungere un parametro HttpSession alla segnatura del metodo,
+ che sarà opportunamente istanziato dal framework con i valori correnti
+ della navigazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Dato("^mi autentico come 
+\backslash
+"(.*?)
+\backslash
+"$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void mi_autentico_come(String email) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement loginLink = findById("log_in_link");
+\end_layout
+
+\begin_layout Plain Layout
+
+	loginLink.click();
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement emailInputElement = driver.findElement(By.name("email"));
+\end_layout
+
+\begin_layout Plain Layout
+
+	WebElement passwordInputElement = driver.findElement(By.name("password"));
+\end_layout
+
+\begin_layout Plain Layout
+
+	emailInputElement.sendKeys(email); 	passwordInputElement.sendKeys("password");
+ 	emailInputElement.submit();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Login tramite Selenium.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per effettuare il login in SBlog è sufficiente inserire email e password
+ nell'apposito form, operazioni effettuate tramite il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+sendKeys
+\begin_inset Quotes erd
+\end_inset
+
+ già mostrato in precedenza.
+ Il metodo, invocabile tramite un numero variabile di 
+\begin_inset Quotes eld
+\end_inset
+
+CharSequence
+\begin_inset Quotes erd
+\end_inset
+
+, simula pressione dei tasti.
+ Non è stato verificato nei test, ma la documentazione del metodo indica
+ che gli eventi relativi alla pressione del tasto, 
+\begin_inset Quotes eld
+\end_inset
+
+keyup
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+keydown
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+keypress
+\begin_inset Quotes erd
+\end_inset
+
+, sono scatenati per ogni carattere della stringa.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una funzionalità interessante di Selenium è la possibilità di inviare il
+ contenuto del form, invocando il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+submit
+\begin_inset Quotes erd
+\end_inset
+
+ su uno qualunque degli elementi inclusi in esso, come mostrato nel passo
+ precedente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'interno della libreria sono presenti due classi per la gestione dei
+ cookie: 
+\begin_inset Quotes eld
+\end_inset
+
+Cookie
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Cookie.Builder
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Le funzionalità presenti permettono la creazione, la cancellazione, la
+ ricerca e modifica dei cookie esistenti.
+ Come per RBlog però, le sessioni in Spring non espongono i valori in chiaro
+ e non sono state effettuate operazioni di codifica e decodifica, evidentemente
+ in contrasto con lo stile dei black box test.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Asincronia
+\end_layout
+
+\begin_layout Standard
+In questa sezione sono descritti i test di accettazione effettuati per verificar
+e le funzionalità di Selenium nella gestione di comportamenti asincroni.
+\end_layout
+
+\begin_layout Subsection
+JavaScript
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo della prima funzionalità è verificare il comportamento di Selenium
+ con un comportamento asincrono ma estremamente rapido.
+ Come per RBlog, è aggiunto, tramite una chiamata ad una funzione JavaScript
+ associata, una piccola logo al piè di pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Funzionalità: Easter Egging
+\end_layout
+
+\begin_layout Plain Layout
+
+	Come Sviluppatore
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vorrei che nel blog fosse presente un mio logo
+\end_layout
+
+\begin_layout Plain Layout
+
+	Per firmare il mio lavoro
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:05bx00 EasterEgg"
+
+\end_inset
+
+Introduzione di un breve script Javascript.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per ricercare un elemento all'interno del DOM è possibile implementare un
+ meccanismo implicito di attesa, in maniera simile a Capybara, impostando
+ un tempo massimo di attesa per ogni ricerca, non è però possibile impostare
+ una frequenza di polling, oppure utilizzare delle attese esplicite.
+\end_layout
+
+\begin_layout Standard
+Per l'implementazione dei test è stato scelto di utilizzare quest'ultima
+ soluzione che prevede di impostare un'attesa massima ed una condizione
+ da verificare.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Allora("^è presente il logo$")
+\end_layout
+
+\begin_layout Plain Layout
+
+public void è_presente_il_logo() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	new WebDriverWait(driver, 2).until(ExpectedConditions 				.presenceOfElementLocat
+ed(By.id("woodstock")));
+\end_layout
+
+\begin_layout Plain Layout
+
+	page.footer.findElement(By.cssSelector("img"));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifica della presenza del logo nel piè di pagina.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel listato precedente è descritta una condizione, corrispondente al metodo
+ statico 
+\begin_inset Quotes eld
+\end_inset
+
+presenceOfElementLocated
+\begin_inset Quotes erd
+\end_inset
+
+ della classe 
+\begin_inset Quotes eld
+\end_inset
+
+ExpectedConditions
+\begin_inset Quotes erd
+\end_inset
+
+, che effettua la verifica della presenza di un certo identificatore all'interno
+ del DOM
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Non è possibile attualmente definire una condizione che verifichi l'esistenza
+ di un selettore all'interno di un particolare elemento del DOM.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La classe 
+\begin_inset Quotes eld
+\end_inset
+
+ExpectedConditions
+\begin_inset Quotes erd
+\end_inset
+
+ include diversi metodi per esprimere le attese esplicite in funzione di
+ diverse condizioni, dalle più semplici che verificano la presenza di un
+ elemento o di un testo nel DOM, fino all'attesa per una finestra di dialogo
+ o elemento cliccabile.
+\end_layout
+
+\begin_layout Subsection
+Scenari sull'auto-completamento con JQuery UI
+\end_layout
+
+\begin_layout Standard
+Rispetto alla funzione Javascript della precedente funzionalità l'utilizzo
+ del widget di JQuery UI per l'auto-completamento del menù introduce un
+ overhead significativo nel caricamento della pagina, suddiviso fra tempo
+ di completamente della richiesta HTTP tramite AJAX, completamento delle
+ operazioni con JQuery e visualizzazione del componente grafico nel browser
+ web.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Scenario: Autocompletamento della ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato nell'intestazione è presente la barra di ricerca
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dato il post "Lorem Ipsum" esiste
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "lor" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora viene proposto il post "Lorem Ipsum"
+\end_layout
+
+\begin_layout Plain Layout
+
+	Quando inserisco il testo "xyz" da ricercare
+\end_layout
+
+\begin_layout Plain Layout
+
+	Allora non è proposto alcun post
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Scenario riguardante l'auto-completamento della ricerca.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel successivo listato è utilizzato un metodo per l'attesa esplicita per
+ individuare i suggerimenti visualizzati per il menu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Allora("^viene proposto il post 
+\backslash
+"(.*?)
+\backslash
+"$") public void viene_proposto_il_post(String postTitle) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	String xpathExpression = String.format("//li[@class = 'ui-menu-item']",
+ postTitle);
+\end_layout
+
+\begin_layout Plain Layout
+
+	List<WebElement> lis = new WebDriverWait(driver, 4).until(ExpectedConditions.pres
+enceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
+\end_layout
+
+\begin_layout Plain Layout
+
+	boolean isPostProposed = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (WebElement li : lis) { 		isPostProposed |= li.getText().equals(postTitle)
+ &&  li.isDisplayed();
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue(isPostProposed);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifica dei titoli suggeriti.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+presenceOfAllElementsLocatedBy
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce una collezione di elementi identificati dal selettore, descritto
+ tramite un'espressione XPath, ed attende entro il tempo massimo fissato
+ fino a che almeno un elemento non appare nella pagina.
+\end_layout
+
+\begin_layout Standard
+Ottenuti gli elementi, durante le iterazioni del ciclo for, è verificata
+ la corrispondenza fra il testo del suggerimento e il titolo passato come
+ parametro, e l'effettiva visualizzazione dell'elemento nel browser.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'implementazione del menu di auto-completamento di JQuery prevede che la
+ collezione degli elementi che costituiscono i suggerimenti sia definita
+ a priori.
+ Al contrario, se il widget prevedesse la popolazione dinamica del menu
+ scorrendo nella lista, il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+presenceOfAllElementsLocatedBy
+\begin_inset Quotes erd
+\end_inset
+
+ non risulterebbe attendibile per verificare la presenza di nuove entry.
+\end_layout
+
+\end_body
+\end_document
