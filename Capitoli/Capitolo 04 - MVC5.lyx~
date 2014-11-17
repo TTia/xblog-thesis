@@ -71,7 +71,7 @@
 \begin_body
 
 \begin_layout Chapter
-Spring 13/11/14
+MVC 5 17/11/14
 \end_layout
 
 \begin_layout Standard
@@ -127,16 +127,28 @@ Per lo sviluppo di CSBlog, dei test di accettazione e la gestione del modello
 Tutti i plugin necessari, per il supporto a Specflow o l'installazione di
  PhantomJS, sono stati installati tramite NuGet, il gestore di pacchetti
  per il mondo .NET direttamente tramite l'ambiente di sviluppo.
+ VS è un ambiente di sviluppo con enormi potenzialità, articolato e complesso,
+ nel corso delle prossime sezioni sono descritte le funzionalità utilizzate
+ per la definizione del progetto e dei test.
 \end_layout
 
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:L'interpretazione di Spring del pattern MVC"
+name "sec:L'interpretazione di MVC5"
 
 \end_inset
 
-L'interpretazione di
+L'interpretazione di ASP.NET del pattern MVC
+\end_layout
+
+\begin_layout Standard
+Nelle prossime sezioni è descritto il processo di definizione dell'architettura
+ di CSBlog, caratterizzato da un uso costante degli strumenti di VS per
+ la definizione delle varie componenti.
+ Al termine della sezione risulterà evidente come, nonostante il framework
+ MVC5 e l'intero progetto ASP.NET sia estremamente articolato, lo sviluppo
+ non risente delle grandi potenzialità messe a disposizione.
 \end_layout
 
 \begin_layout Subsection
@@ -163,10 +175,10 @@ classica
 \begin_inset Quotes erd
 \end_inset
 
- utilizzando il DDL di SQL, utilizzando SQL Server Express, la versione
- gratuita del database sviluppato da Microsoft.
- Utilizzando la generazione guidata e gli strumenti grafici per la gestione
- dei database, la creazione delle tabelle 
+ utilizzando il DDL di SQL, utilizzando SQL Server Express la versione gratuita
+ del database sviluppato da Microsoft, la generazione guidata e gli strumenti
+ grafici per la gestione dei database che hanno permesso la creazione delle
+ tabelle 
 \begin_inset Quotes eld
 \end_inset
 
@@ -182,7 +194,7 @@ Autore
 \begin_inset Quotes erd
 \end_inset
 
- e la relazione presente fra le due entità, è stata compiuta in breve tempo.
+ e della relazione presente fra le due entità in breve tempo.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -190,16 +202,11 @@ Entity Framework
 \end_layout
 
 \begin_layout Standard
-La definizione dell'interfaccia del modello per un'applicazione web di MVC5
- non è una scelta vincolata ed è possibile individuare diverse opzioni.
- Per CSBlog è stato scelto l'Entity Framework, attualmente alla versione
- 6, che implementa l'astrazione del modello attraverso la tecnica ORM in
- maniera simile a quanto già visto per RoR e Spring.
-\end_layout
-
-\begin_layout Standard
-L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog
- e si integra con ADO.NET, il framework responstabile per l'interazione con
+Per implementare l'interfaccia del modello di MVC5 è stato scelto l'Entity
+ Framework, attualmente alla versione 6, che implementa l'astrazione del
+ modello attraverso la tecnica ORM in maniera simile a quanto già visto
+ per RoR e Spring.
+ Il framework si integra con ADO.NET, responstabile dell'interazione con
  i sistemi di persistenza esistenti e del mantenimento della consistenza
  fra le entry e gli oggetti.
 \begin_inset Newline newline
@@ -209,7 +216,7 @@ L'Entity Framework rappresenta l'interfaccia del modello definito per CSBlog
 \end_layout
 
 \begin_layout Standard
-Le classi che descrivono le entità sono estendono 
+Le classi che descrivono le entità dell'EF estendono 
 \begin_inset Quotes eld
 \end_inset
 
@@ -217,10 +224,9 @@ DbContext
 \begin_inset Quotes erd
 \end_inset
 
-, che fornisce le funzionalità per applicare la tecnica ORM, permettendo
- di eseguire interrogazioni, di tener traccia dei cambiamenti allo stato
- delle istanze ed invocare le operazioni di creazione, aggiornamento e cancellaz
-ione.
+, che fornisce le funzionalità per eseguire interrogazioni, tener traccia
+ dei cambiamenti allo stato delle istanze ed invocare le operazioni di creazione
+, aggiornamento e cancellazione.
  Visual Studio include un wizard per la configurazione del modello, che
  provvede a definire la connessione al database, a generare le classi parziali
 \begin_inset Foot
@@ -284,7 +290,6 @@ public partial class CSBlogEntities : DbContext{
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Il contesto di CSBlog generato da VS.
 \end_layout
 
@@ -341,7 +346,6 @@ var postTitles = db.Posts.Select(p => p.title).ToList();
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Proiezione dei titoli dei post in CSBlog.
 \end_layout
 
@@ -382,8 +386,8 @@ Post
  tutte le funzionalità esistenti per C# in VS, come l'auto-completamento
  e l'evidenziatura dei diversi elementi sintattici.
  Inoltre LINQ definisce query utilizzando metodi generici che permettono
- di verificare a compile-time il corretto utilizzo delle entità e degli
- attributi presenti nelle interrogazioni.
+ di verificare a compile-time il corretto utilizzo delli tipi e degli attributi
+ presenti nelle interrogazioni.
 \begin_inset Newline newline
 \end_inset
 
@@ -562,11 +566,72 @@ status open
 
 \begin_layout Plain Layout
 
-    public class RouteConfig     {         public static void RegisterRoutes(Rou
-teCollection routes)         {             /*...*/            routes.MapRoute(
-                 name: "Default",                 url: "{controller}/{action}/{i
-d}",                 defaults: new { controller = "Post", action = "Index",
- id = UrlParameter.Optional }             );         }     }
+public class RouteConfig{
+\end_layout
+
+\begin_layout Plain Layout
+
+	public static void RegisterRoutes(RouteCollection routes){
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*...*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	routes.MapRoute(
+\end_layout
+
+\begin_layout Plain Layout
+
+		name: "Default",
+\end_layout
+
+\begin_layout Plain Layout
+
+		url: "{controller}/{action}/{id}",
+\end_layout
+
+\begin_layout Plain Layout
+
+		defaults: new {
+\end_layout
+
+\begin_layout Plain Layout
+
+			controller = "Post",
+\end_layout
+
+\begin_layout Plain Layout
+
+			action = "Index",
+\end_layout
+
+\begin_layout Plain Layout
+
+			id = UrlParameter.Optional
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \begin_layout Plain Layout
@@ -574,7 +639,6 @@ d}",                 defaults: new { controller = "Post", action = "Index",
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Definizione del pattern per la risoluzione delle richieste.
 \end_layout
 
@@ -631,13 +695,17 @@ status open
 
 \begin_layout Plain Layout
 
-namespace Blog.Controllers {     public class PostController : Controller
-     {
+namespace Blog.Controllers {
 \end_layout
 
 \begin_layout Plain Layout
 
-        private CSBlogEntities db = new CSBlogEntities();
+	public class PostController : Controller     {
+\end_layout
+
+\begin_layout Plain Layout
+
+	    private CSBlogEntities db = new CSBlogEntities();
 \end_layout
 
 \begin_layout Plain Layout
@@ -647,11 +715,52 @@ namespace Blog.Controllers {     public class PostController : Controller
 
 \begin_layout Plain Layout
 
-       public ActionResult Details(Guid? id)         {             if (id
- == null)             {                 return new HttpStatusCodeResult(HttpStat
-usCode.BadRequest);             }             Post post = db.Posts.Find(id);
-             if (post == null)             {                 return HttpNotFound
-();             }             return View(post);         }
+	    public ActionResult Details(Guid? id){
+\end_layout
+
+\begin_layout Plain Layout
+
+		if (id == null){
+\end_layout
+
+\begin_layout Plain Layout
+
+			return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Post post = db.Posts.Find(id);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if (post == null){
+\end_layout
+
+\begin_layout Plain Layout
+
+			return HttpNotFound();
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		return View(post);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
 \end_layout
 
 \begin_layout Plain Layout
@@ -669,7 +778,6 @@ usCode.BadRequest);             }             Post post = db.Posts.Find(id);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Visualizzazione di un singolo post.
 \end_layout
 
@@ -846,9 +954,32 @@ status open
 
 \begin_layout Plain Layout
 
-@{     var helloRazor = "Benvenuto su CSBlog!";     var weekDay = DateTime.Now.Day
-OfWeek;     var greetingMessage = greeting + " Oggi è: " + weekDay; } <p>@helloR
-azor</p>
+@{
+\end_layout
+
+\begin_layout Plain Layout
+
+	var helloRazor = "Benvenuto su CSBlog!";
+\end_layout
+
+\begin_layout Plain Layout
+
+	var weekDay = DateTime.Now.DayOfWeek;
+\end_layout
+
+\begin_layout Plain Layout
+
+	var greetingMessage = greeting + " Oggi è: " + weekDay;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+<p>@helloRazor</p>
 \end_layout
 
 \begin_layout Plain Layout
@@ -856,7 +987,6 @@ azor</p>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Hello Razor!
 \end_layout
 
@@ -920,7 +1050,27 @@ status open
 
 \begin_layout Plain Layout
 
-<ul> @for (int i = 0; i < 10; i++) { <li>@i</li> } </ul>
+<ul>
+\end_layout
+
+\begin_layout Plain Layout
+
+@for (int i = 0; i < 10; i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+	<li>@i</li>
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+</ul>
 \end_layout
 
 \begin_layout Plain Layout
@@ -928,7 +1078,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Il ciclo 
 \begin_inset Quotes eld
 \end_inset
@@ -1028,7 +1177,30 @@ status open
 
 \begin_layout Plain Layout
 
-@{     Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{
+\end_layout
+
+\begin_layout Plain Layout
+
+	Layout = "~/Views/Shared/_Layout.cshtml";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Il contenuto della vista _ViewStart.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1052,10 +1224,70 @@ status open
 
 \begin_layout Plain Layout
 
-<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org"> @Html.Partial("_HeadPart
-ial") <body>     @Html.Partial("_HeaderPartial")     <div id="content"> 
-        @RenderBody()     </div>     @Html.Partial("_FooterPartial")    
-  </body> </html>
+<!DOCTYPE html>
+\end_layout
+
+\begin_layout Plain Layout
+
+<html xmlns:th="http://www.thymeleaf.org">
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Html.Partial("_HeadPartial")
+\end_layout
+
+\begin_layout Plain Layout
+
+	<body>
+\end_layout
+
+\begin_layout Plain Layout
+
+		@Html.Partial("_HeaderPartial")
+\end_layout
+
+\begin_layout Plain Layout
+
+		<div id="content">
+\end_layout
+
+\begin_layout Plain Layout
+
+		@RenderBody()
+\end_layout
+
+\begin_layout Plain Layout
+
+		</div>
+\end_layout
+
+\begin_layout Plain Layout
+
+		@Html.Partial("_FooterPartial")
+\end_layout
+
+\begin_layout Plain Layout
+
+	</body>
+\end_layout
+
+\begin_layout Plain Layout
+
+</html>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+La struttura delle viste in CSBlog.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1173,11 +1405,10 @@ SpecFlow
 \end_layout
 
 \begin_layout Standard
-SpecFlow è un framework per .NET.
- Nonostante utilizzi Gherkin, non è un porting di Cucumber in C#, al momento
- esistono le versioni Java, Ruby e JavaScript, bensì si limita ad utilizzarne
- alcune componenti come il DSL e il relativo parser, entrambe presenti pubblicam
-ente su GitHub.
+SpecFlow è un framework per .NET che utilizza alcune componenti di Cucumber
+ come il DSL e il relativo parser, entrambe presenti pubblicamente su GitHub.
+ Nonostante utilizzi Gherkin, non è un porting dell'intero framework in
+ C# di cui al momento esistono le versioni Java, Ruby e JavaScript.
 \end_layout
 
 \begin_layout Paragraph
@@ -1236,9 +1467,9 @@ La prima feature di SBlog
 Grazie all'utilizzo di SpecFlow è possibile riutilizzare la stessa libreria
  utilizzata per lo sviluppo di RBlog e SBlog.
  Nell'importazione e nello sviluppo dei post non sono state rilevate problemi
- legati al linguaggio ed alle costrutti sintattici utilizzati, sono però
- presenti delle differenze nell'implementazione, come verrà descritto nelle
- successive sezioni.
+ legati al linguaggio ed ai costrutti sintattici utilizzati, sono però presenti
+ delle differenze nell'implementazione, come verrà descritto nelle successive
+ sezioni.
 \end_layout
 
 \begin_layout Paragraph
@@ -1249,8 +1480,8 @@ Supporto a Specflow in VS
 Per utilizzare SpecFlow in VS è sufficiente installare tramite il gestore
  dei pacchetti il relativo plugin.
  Per eseguire le funzionalità e gli scenari tramite il runner di NUnit è
- necessario installare un pacchetto aggiuntivo tramite la console di NuGet,
- utilizzando il comando seguente.
+ necessario anche un pacchetto aggiuntivo, installabile tramite la console
+ di NuGet utilizzando il comando seguente.
 \end_layout
 
 \begin_layout Standard
@@ -1264,7 +1495,6 @@ Install-Package SpecFlow.NUnit
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Installazione del plugin per SpecFlow in VS.
 \end_layout
 
@@ -1279,7 +1509,7 @@ Installazione del plugin per SpecFlow in VS.
 \end_layout
 
 \begin_layout Standard
-Completate l'installazione del software non è necessario compiere alcuna
+Completata l'installazione del software non è necessario compiere alcuna
  operazione di configurazione.
  Il plugin estende il funzionamento di VS aggiungendo il completo supporto
  a Gherkin, evidenziando la sintassi nelle diverse lingue esistenti, introducend
@@ -1315,10 +1545,9 @@ Per l'esecuzione delle funzionalità è possibile selezionare direttamente
 \end_inset
 
  per saltare alcuni scenari, oppure sfruttare l'integrazione con NUnit per
- eseguire scegliere quale sotto-insieme di scenari eseguire.
- E' anche possibile sfruttare i diversi ordinamenti di NUnit per eseguire
- gli scenari in funzione di durata di esecuzione, risultato del test, tag
- utilizzati o namespace.
+ scegliere quale sotto-insieme di scenari eseguire, è possibile sfruttare
+ i diversi ordinamenti di NUnit per eseguire gli scenari in funzione di
+ durata di esecuzione, risultato del test, tag utilizzati o namespace.
 \end_layout
 
 \begin_layout Subsection
@@ -1326,11 +1555,11 @@ Coypu
 \end_layout
 
 \begin_layout Standard
-I parametri della scelta di una libreria per l'automazione della navigazione
- via browser prevede che questa sia preferibilmente scritta nel linguaggio
- utilizzato per implementare l'applicazione web, il cui sviluppo sia attivo,
- che possibilmente sia open-source e che abbia una comunità attiva per poter
- avere un riscontro in caso di difficoltà e problemi.
+I parametri utilizzati per scegliere la libreiria per l'automazione della
+ navigazione via browser favoriscono strumenti preferibilmente scritti nel
+ linguaggio utilizzato per implementare l'applicazione web, il cui sviluppo
+ sia attivo, che possibilmente siano open-source e che abbiano una comunità
+ attiva per poter avere un riscontro in caso di difficoltà.
 \end_layout
 
 \begin_layout Standard
@@ -1339,7 +1568,7 @@ L'individuazione di una libreria per .NET che soddisfasse questi parametri
  Oltre a Selenium, già utilizzato per Java, sono stati valutati Watin, il
  cui sviluppo è fermo dal 2011, e Telerick Testing Framework, che per quanto
  sia un progetto attivo e ben documentato, sembra non essere utilizzato
- ed essere privo di una propria comunità di utilizzatori.
+ ed essere privo di una propria comunità di utenti.
 \begin_inset Newline newline
 \end_inset
 
@@ -1354,12 +1583,11 @@ Viste le diverse difficoltà nella scelta di una libreria è stata effettuata
 
 \begin_layout Standard
 Il progetto è stato rilasciato la prima volta 2011, 2 anni prima del rilascio
- della prima versione beta di Selenium 2.0 ed è attualmente sviluppato, anche
- se il supporto è principalmente effettuato dal un singolo autore.
+ della versione beta di Selenium 2.0 ed è attualmente sviluppato, anche se
+ il supporto è principalmente effettuato dal un singolo autore.
  Nonostante si tratti di una libreria open-source utilizzata da una ridotta
- comunità, che comunque è attiva e presente in diversi canali, presenta
- un'interessante prospettiva dell'automazione della navigazione web che
- merita di essere approfondita.
+ comunità, presenta un'interessante prospettiva dell'automazione della navigazio
+ne web che merita di essere approfondita.
 \end_layout
 
 \begin_layout Standard
@@ -1442,6 +1670,11 @@ seWindow();             	_objectContainer.RegisterInstanceAs(_browser);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Creazione-della-sessione."
+
+\end_inset
 
 Creazione della sessione.
 \end_layout
@@ -1516,7 +1749,6 @@ public void AfterScenario(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Chiusura del browser.
 \end_layout
 
@@ -1531,8 +1763,15 @@ Chiusura del browser.
 \end_layout
 
 \begin_layout Standard
-Per completare la gestione della sessione di testing è invocato il metodo
- dispone al termine di ogni scenario.
+Per rilasciare la sessione di testing è invocato il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+dispose
+\begin_inset Quotes erd
+\end_inset
+
+ al termine di ogni scenario.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1540,8 +1779,9 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-Per utilizzare PhantomJS per come browser, è necessario mantenere l'eseguibile
- all'interno del path del proprio sistema o all'interno della cartella 
+Per utilizzare PhantomJS per come browser per i propri test, è necessario
+ mantenere l'eseguibile all'interno del path del proprio sistema o all'interno
+ della cartella 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1555,7 +1795,31 @@ bin
 \end_layout
 
 \begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
 install-package phantomjs.exe
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Installazione locale di PhantomJS.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1569,17 +1833,17 @@ status open
 
 \begin_layout Plain Layout
 
-@Dato("^apro SBlog$")
+[Given(@"apro CSBlog")]
 \end_layout
 
 \begin_layout Plain Layout
 
-public void apro_SBlog() {
+public void DatoAproCSBlog(){
 \end_layout
 
 \begin_layout Plain Layout
 
-	/*...*/
+	/*..*/
 \end_layout
 
 \begin_layout Plain Layout
@@ -1616,15 +1880,129 @@ apro SBlog
 \end_layout
 
 \begin_layout Standard
-Dipendenza tipo passo con implementazione, più annotazioni
-\end_layout
+In maniera paragonabile a Cucumber e Cucumber-JVM, l'implementazione di
+ un passo coincide con la definizione di un metodo pubblico annotato con
+ un attributo, come Given nell'esempio, per indicare tramite l'espressione
+ regolare quale sia il passo implementato.
+ I passi devono essere inseriti all'interno di classi annotate con l'attributo
+ 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Paragraph
-La struttura di Coypu
+Binding
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Rispetto però ai framework BDD utilizzati finora, Specflow è più rigido
+ per quanto riguarda l'implementazione dei passi, per eseguire i passi degli
+ scenari è obbligatorio che il tipo dichiarato in Gherkin coincida con l'attribu
+to utilizzato.
 \end_layout
 
 \begin_layout Standard
-struttura
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Binding]
+\end_layout
+
+\begin_layout Plain Layout
+
+public class Constraints : BaseStep     {
+\end_layout
+
+\begin_layout Plain Layout
+
+	[Given(@"mi autentico come ""(.*)""")]
+\end_layout
+
+\begin_layout Plain Layout
+
+	[When(@"mi autentico come ""(.*)""")]
+\end_layout
+
+\begin_layout Plain Layout
+
+	public void DatoMiAutenticoCome(string email){
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*..*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*..*/
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Implementazione valida per una pre-condizione ed un evento.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre è possibile definire lo scope per ogni metodo o classe che implementi
+ le funzionalità scritte in Gherkin tramite l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+Scope
+\begin_inset Quotes erd
+\end_inset
+
+.
+ E' possibile definire un comportamento più o meno vincolante in funzione
+ del diverso posizionamento dell'attributo, annotando l'intera classe o
+ il singolo metodo.
+ Il codice del prossimo listato vincola la visibilità esprimendo le diverse
+ condizioni disponibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Scope(Tag = "xyz", Feature = "Funzionalità", Scenario = "Prova")]
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Definizione dello scope per 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -1632,15 +2010,408 @@ Navigare all'interno del sito
 \end_layout
 
 \begin_layout Standard
-timeout globale
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Given(@"apro CSBlog")]
 \end_layout
 
-\begin_layout Paragraph
-Integrazione con NUnit
+\begin_layout Plain Layout
+
+public void DatoAproCSBlog(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	browser.Visit("/");
+\end_layout
+
+\begin_layout Plain Layout
+
+	Assert.AreEqual("CSBlog", browser.Title);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Matcher
+Come in Selenium, Coypu fornisce all'utente diverse funzionalità per navigare
+ all'interno del browser.
+ Tramite l'istanza di 
+\begin_inset Quotes eld
+\end_inset
+
+BrowserSession
+\begin_inset Quotes erd
+\end_inset
+
+, che include le funzionalità per la gestione del browser come il ridimensioname
+nto della finestra, il refresh della pagina e la navigazione attraverso
+ la cronologia, è possibile navigare esplicitamente ad un URL passato come
+ parametro, nell'esempio è mostrato come sia anche possibile utilizzare
+ un percorso relativo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void AcceptModalDialog(Options options = null);
+\end_layout
+
+\begin_layout Plain Layout
+
+public void CancelModalDialog(Options options = null);
+\end_layout
+
+\begin_layout Plain Layout
+
+public bool HasDialog(string withText, Options options = null);
+\end_layout
+
+\begin_layout Plain Layout
+
+public bool HasNoDialog(string withText, Options options = null);
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Alcune delle funzionalità presenti nella classe BrowserWindow.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Approfondendo le funzionalità incluse nella classe 
+\begin_inset Quotes eld
+\end_inset
+
+BrowserWindow
+\begin_inset Quotes erd
+\end_inset
+
+, si intuisce la propensione di Coypu per la definizione di metodi che rappresen
+tino le normali iterazioni di un'utente con il browser durante la navigazione
+ web e siano il più intuitivi possibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[When(@"navigo verso ""(.*)""")]
+\end_layout
+
+\begin_layout Plain Layout
+
+public void QuandoNavigoVerso(string pageName){
+\end_layout
+
+\begin_layout Plain Layout
+
+	Assert.True(browser.FindLink(pageName).Exists());             	browser.ClickLink(pa
+geName);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La particolarità di Coypu è di organizzare la libreria in maniera che le
+ funzionalità utilizzate di frequente siano facilmente accessibili.
+ Ad esempio per utilizzare un collegamento presente nella pagina per navigare
+ all'interno del sito è sufficiente utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+ClickLink
+\begin_inset Quotes erd
+\end_inset
+
+ esistente all'interno della classe 
+\begin_inset Quotes eld
+\end_inset
+
+BrowserWindow
+\begin_inset Quotes erd
+\end_inset
+
+ che rappresenta la sessione di navigazione ed è quindi già istanziata al
+ momento dell'esecuzione dei test.
+\end_layout
+
+\begin_layout Standard
+Inoltre il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+ClickLink
+\begin_inset Quotes erd
+\end_inset
+
+ effettua il click dell'elemento in funzione del testo che appare e non
+ di un selettore CSS o XPath, facilitando la definizione di test che mantengono
+ la stessa prospettiva di un utente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+FindLink
+\begin_inset Quotes erd
+\end_inset
+
+ permette la ricerca all'interno di un DOM di un collegamento in funzione
+ del testo fornito come parametro.
+ Il metodo restituisce un'istanza di 
+\begin_inset Quotes eld
+\end_inset
+
+ElementScope
+\begin_inset Quotes erd
+\end_inset
+
+ che rappresenta un tag presente nel DOM, in maniera simile a Capybara,
+ sono presenti numerose proprietà per ottenere informazioni sull'elemento
+ ed i metodi per eseguire le azioni.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al fine di semplificare la definizione dei test, include in tutte le funzionalit
+à che effettuano analizzano il DOM un meccanismo di attesa implicito.
+ Assumendo che ogni elemento possa essere il risultato di un'operazione
+ asincrona, presente in Capybara e solo recentemente in Selenium, permette
+ all'utente di definire test più semplici e mantenibili.
+ Come definito nel metodo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Creazione-della-sessione."
+
+\end_inset
+
+, che rappresenta la creazione e configurazione di una nuova sessione per
+ la verifica di uno scenario, è possibile impostare sia il valore di attesa
+ massimo che la frequenza di pooling desiderata.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una carenza riscontrata nelle prime fasi di sviluppo è l'assenza di una
+ documentazione che chiarisca il funzionamento della libreria.
+ Nonostante Coypu permetta di intuire il funzionamento delle proprie funzionalit
+à direttamente dalla segnatura dei metodi, la definizione di qualche esempio
+ ne semplificherebbe l'utilizzo.
+\end_layout
+
+\begin_layout Paragraph
+Definire asserzioni con NUnit
+\end_layout
+
+\begin_layout Standard
+NUnit è una libreria per la definizione di unit-test in C# nata dal porting
+ di JUnit, attualmente è alla versione 2.6 e lo sviluppo è svolto in maniera
+ separata dalla versione Java.
+\end_layout
+
+\begin_layout Standard
+Nonostante i due progetti non siano più sviluppati dallo stesso team, utilizzand
+o le asserzioni di NUnit è facile riconoscere l'origine comune.
+ Ad esempio nel successivo passo, sono utilizzati i metodi 
+\begin_inset Quotes eld
+\end_inset
+
+AssertThat
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+AreEqual
+\begin_inset Quotes erd
+\end_inset
+
+, che rispettivamente verificano la presenza di un elemento con identificatore
+ HTML 
+\begin_inset Quotes eld
+\end_inset
+
+logo
+\begin_inset Quotes erd
+\end_inset
+
+ e effetua un confronto sul titolo della pagina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Then(@"posso tornare alla pagina iniziale")]
+\end_layout
+
+\begin_layout Plain Layout
+
+public void AlloraPossoTornareAllaPaginaIniziale(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	var logoLink = browser.FindId("logo");
+\end_layout
+
+\begin_layout Plain Layout
+
+	Assert.That(logoLink.Exists());
+\end_layout
+
+\begin_layout Plain Layout
+
+	logoLink.Click();
+\end_layout
+
+\begin_layout Plain Layout
+
+	Assert.AreEqual("CSBlog", browser.Title);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Uno degli obbiettivi degli autori di NUnit è di definire dei metodi che,
+ attraverso la propria segnatura, descrivano il proprio funzionamento e
+ siano facilmente leggibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Assert.That(myString, Is.EqualTo("Hello"));
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Un possibile uso dell'asserzione 
+\begin_inset Quotes eld
+\end_inset
+
+That
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+That
+\begin_inset Quotes erd
+\end_inset
+
+ nell'esempio è utilizzato per verificare un valore booleano, in generale
+ però è utilizzato per la sua caratteristica di accettare parametri 
+\begin_inset Quotes eld
+\end_inset
+
+IConstraint
+\begin_inset Quotes erd
+\end_inset
+
+.
+ L'interfaccia definisce un insieme di metodi per rappresentare una condizione
+ e, oltre alle classi esistenti nella libreria come mostrato nell'esempio,
+ permette la definizione di classi personalizzate.
+ In Coypu è presente una classe 
+\begin_inset Quotes eld
+\end_inset
+
+Shows
+\begin_inset Quotes erd
+\end_inset
+
+ che implementa diverse condizioni e esalta la leggibilità delle asserzioni,
+ come sarà mostrato nelle prossime sezioni.
 \end_layout
 
 \begin_layout Standard
@@ -1652,6 +2423,12 @@ Matcher
 
 \begin_layout Section
 Introduzione del CSS
+\end_layout
+
+\begin_layout Standard
+Le funzionalità presenti nella libreria di Coypu non includono le funzionalità
+ per leggere le proprietà di stile degli elementi presenti nel DOM di una
+ pagina.
 \end_layout
 
 \begin_layout Standard
@@ -1690,7 +2467,7 @@ name "lis:02x00 Introducendo il CSS"
 
 \end_inset
 
-Seconda funzionalità per SBlog
+Seconda funzionalità per CSBlog
 \end_layout
 
 \end_inset
@@ -1704,19 +2481,26 @@ Seconda funzionalità per SBlog
 \end_layout
 
 \begin_layout Standard
-possibilità di usare funzionalità native
+Nella funzionalità corrente dovrebbero essere verificati alcuni scenari
+ relativi all'aspetto della pagina, in particolare gli effetti cromatici
+ ampiamenti descritti nei precedenti capitoli e altre proprietà legate alla
+ corretta visualizzazione degli elementi.
 \end_layout
 
 \begin_layout Standard
-esempio
-\end_layout
+Nonostante gli sforzi dell'autore e dei numerosi sviluppatori, che frequentement
+e propongono le loro pull-request su GitHub, Coypu non può mantenere il
+ livello di sviluppo di Selenium.
+ Per fornire comunque pieno supporto ai propri utenti è possibile sfruttare
+ la libreria nativa, utilizzata dalle stesse funzionalità di Coypu, come
+ mostrato nel passo del listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Uso-delle-funzionalità"
 
-\begin_layout Standard
-menne
-\end_layout
+\end_inset
 
-\begin_layout Subsection
-Testare il css
+.
 \end_layout
 
 \begin_layout Standard
@@ -1726,32 +2510,37 @@ status open
 
 \begin_layout Plain Layout
 
-Scenario: l'intestazione espone dei semplici effetti cromatici
+[Given(@"l'intestazione ha un colore di sfondo")]
 \end_layout
 
 \begin_layout Plain Layout
 
-	Dato che è presente l'intestazione
+public void DatoLIntestazioneHaUnColoreDiSfondo(){
 \end_layout
 
 \begin_layout Plain Layout
 
-	E l'intestazione permette la navigazione
+	var selenium = ((OpenQA.Selenium.Remote.RemoteWebDriver)browser.Native);
 \end_layout
 
 \begin_layout Plain Layout
 
-	E i collegamenti non hanno sfondo
+	var color = selenium.FindElementById("header").GetCssValue("background-color");
 \end_layout
 
 \begin_layout Plain Layout
 
-	Quando il cursore si sposta sui collegamenti
+	Assert.NotNull(color);
 \end_layout
 
 \begin_layout Plain Layout
 
-	Allora lo sfondo del collegamento cambia
+	Assert.AreEqual("rgba(46, 47, 48, 1)", color);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1759,8 +2548,14 @@ Scenario: l'intestazione espone dei semplici effetti cromatici
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Variazione del colore del colore di background dei collegamenti nell'intestazion
-e.
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Uso-delle-funzionalità"
+
+\end_inset
+
+Uso delle funzionalità native di Selenium.
 \end_layout
 
 \end_inset
@@ -1771,22 +2566,33 @@ e.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection*
-Actions
-\end_layout
-
-\begin_layout Subsubsection*
-Selettori
-\end_layout
-
-\begin_layout Subsection
-Debug con Specflow
 \end_layout
 
 \begin_layout Standard
-problemi deploy
+Nel metodo è descritto l'utilizzo delle funzionalità di Selenium ed in particola
+re l'invocazione del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+GetCssValue
+\begin_inset Quotes erd
+\end_inset
+
+ per ottenere la rappresentazione 
+\begin_inset Quotes eld
+\end_inset
+
+rgba
+\begin_inset Quotes erd
+\end_inset
+
+ del colore di sfondo dell'intestazione.
+\end_layout
+
+\begin_layout Standard
+La versione per C# di Selenium è estremamente simile a quella per Java,
+ sintassi permettendo, e per questo motivo non è stata completata l'implementazi
+one degli scenari per la funzionalità corrente.
 \end_layout
 
 \begin_layout Standard
@@ -1861,8 +2667,177 @@ Hooks
 Gestione dei form
 \end_layout
 
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Given(@"mi autentico come ""(.*)""")]         [When(@"mi autentico
+ come ""(.*)""")]         public void DatoMiAutenticoCome(string email) 
+        {             string password = "password";             browser.ClickLink
+("Login");             browser.FillIn("Email").With(email);             browser.Fil
+lIn("Password").With(password);             browser.ClickButton("Login");
+         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [When(@"cancello il post ""(.*)""")]         public void QuandoCancelloIl
+Post(string title)         {             var post = findPostByTitle(title);
+             post.FindCss(".remove_post_button").Click();             browser.ClickB
+utton("Confermi la rimozione?");         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        public void AlloraIlContenutoDelPostEUn_AnteprimaDell_InteroPost(string
+ title)         {             var post = base.findPostByTitle(title);   
+          string body = post.FindCss(".post_body").Text;             Assert.IsNotEmp
+ty(body);             Assert.Less(body.Length, 550);             Assert.That(post,
+ Shows.Content("Leggi il resto"));         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Verificare gli errori
+\end_layout
+
+\begin_layout Standard
+errore unicità titolo
+\end_layout
+
+\begin_layout Standard
+form
+\end_layout
+
+\begin_layout Subsubsection*
+Selettori
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ public void DatoIlPostNonELeggibileSuCSBlog(string title)         {   
+          browser.Visit("/");             var posts = browser.FindAllCss(".post");
+\end_layout
+
+\begin_layout Plain Layout
+
+            foreach (var post in posts) {                 Assert.That(!post.FindLi
+nk(title).Exists());             }         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+            browser.FindCss(".post_title a", text: title).Exists();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        protected ElementScope header {get{return browser.FindId("header");}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Then(@"l_intestazione è posizionata all_inizio")]         public
+ void AlloraLInizio()         {             var first = browser.FindXPath("//body
+/*[1]");             Assert.True(first.Exists());             Assert.True(header.Exi
+sts());             Assert.AreEqual(first.Id, header.Id);         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        protected ElementScope FindNotice(string noticeMessage)        
+ {             var notice = browser.FindId("notice", new Options { TextPrecision=
+ TextPrecision.Exact});             Assert.That(notice.Exists());         
+    return notice;         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Options class
+\end_layout
+
+\begin_layout Subsection
+Debug con Specflow
+\end_layout
+
+\begin_layout Standard
+problemi deploy
 \end_layout
 
 \begin_layout Standard
