@@ -1219,5 +1219,39 @@ target "https://github.com/junit-team/junit/wiki/Rules"
 
 \end_layout
 
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "RubyMine Parallel Test Execution"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.railsonmaui.com/tips/rails/capybara-phantomjs-poltergeist-rspec-rails-tips.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Gatling"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://gatling.io/"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

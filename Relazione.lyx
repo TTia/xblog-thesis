@@ -132,6 +132,16 @@ filename "Capitoli/Capitolo 04 - MVC5.lyx"
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Pagine singole/Conclusione.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \start_of_appendix
 \begin_inset CommandInset include
 LatexCommand include
