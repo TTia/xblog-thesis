@@ -43,7 +43,7 @@
 
 
 \fancyhf{}
-\rfoot{18/11/2014 - pag. \thepage}
+\rfoot{15/11/2014 - pag. \thepage}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
