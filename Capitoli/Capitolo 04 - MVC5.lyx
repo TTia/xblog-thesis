@@ -2092,7 +2092,6 @@ public bool HasNoDialog(string withText, Options options = null);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Alcune delle funzionalità presenti nella classe BrowserWindow.
 \end_layout
 
@@ -2358,7 +2357,6 @@ Assert.That(myString, Is.EqualTo("Hello"));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Un possibile uso dell'asserzione 
 \begin_inset Quotes eld
 \end_inset
@@ -2488,9 +2486,9 @@ Nella funzionalità corrente dovrebbero essere verificati alcuni scenari
 \end_layout
 
 \begin_layout Standard
-Nonostante gli sforzi dell'autore e dei numerosi sviluppatori, che frequentement
-e propongono le loro pull-request su GitHub, Coypu non può mantenere il
- livello di sviluppo di Selenium.
+Nonostante gli sforzi dell'autore e degli sviluppatori, che frequentemente
+ propongono le loro pull-request su GitHub, Coypu non può mantenere il livello
+ di sviluppo di Selenium.
  Per fornire comunque pieno supporto ai propri utenti è possibile sfruttare
  la libreria nativa, utilizzata dalle stesse funzionalità di Coypu, come
  mostrato nel passo del listato 
@@ -2548,7 +2546,6 @@ public void DatoLIntestazioneHaUnColoreDiSfondo(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Uso-delle-funzionalità"
@@ -2607,6 +2604,11 @@ Definizione del modello
 \end_layout
 
 \begin_layout Standard
+Nella sezione sono descritte le componenti di MVC5 che permettono la gestione
+ delle entità attraverso CSBlog e lo sviluppo dei relativi test di accettazione.
+\end_layout
+
+\begin_layout Standard
 \begin_inset listings
 inline false
 status open
@@ -2659,12 +2661,982 @@ Funzionalità dell'iterazione.
 Dipendenze
 \end_layout
 
-\begin_layout Paragraph
-Hooks
+\begin_layout Standard
+Anche per i test in CSBlog è necessario provvedere alla regressione del
+ modello, rimuovendo dal database le entità create per verificare un particolare
+ scenario.
+ Come descritto nelle sezioni precedenti, con Coypu sono stati definiti
+ due hook per la creazione e rilascio della sessione del browser, che assicura
+ l'esecuzione dei test in nuovi ambienti ad ogni esecuzione e la rimozione
+ di ogni cookie e sessione HTTP relativi a precedenti azioni.
+\end_layout
+
+\begin_layout Standard
+Per completare il processo di regressione è necessario provvedere a rimuovere
+ anche eventuali post creati negli scenari.
+ La libreria di testing prevede l'utilizzo del tag 
+\begin_inset Quotes eld
+\end_inset
+
+@clear
+\begin_inset Quotes erd
+\end_inset
+
+ per segnalare le funzioalità o gli scenari che introducono ma non eliminano
+ nuovi contenuti sul blog.
+\end_layout
+
+\begin_layout Standard
+Nel successivo listato è mostrato l'intera callback eseguita alla conclusione
+ degli scenari, indipendentemente dal risultato delle asserzioni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [AfterScenario]         public void AfterScenario()         {  
+           if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("clear") 
+                 || FeatureContext.Current.FeatureInfo.Tags.Contains("clear"))
+             {                 login();
+\end_layout
+
+\begin_layout Plain Layout
+
+                string LoremIpsumTitle = "Lorem Ipsum";                
+ string xpathQuery = String.Format(                     "//div[@class = 'post'][p
+/a[contains(text(),'{0}')]]", LoremIpsumTitle);
+\end_layout
+
+\begin_layout Plain Layout
+
+                browser.Visit("/");                 foreach (var post in
+ browser.FindAllXPath(xpathQuery)) {                     post.FindCss(".remove_post
+_button").Click();                     browser.ClickButton("Confermi la rimozione?
+");                                     }             }             _browser.Disp
+ose();         }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Callback relativa alla terminazione degli scenari.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+AfterScenario
+\begin_inset Quotes erd
+\end_inset
+
+ accetta come parametri un numero variabile di tag per specificare per quali
+ scenari debba essere eseguito il metodo.
+ In Cucumber l'ordine di esecuzione degli hook coincide con l'ordine di
+ registrazione dei metodi, mentre in Cucumber-JVM che sfrutta il meccanismo
+ delle annotazioni, è possibile definire un'attributo per indicare la priorità
+ di ciascuna callback.
+\end_layout
+
+\begin_layout Standard
+Al contrario, in Specflow, non è possibile specificare alcun ordinamento
+ ed invece di definire due callback, rispettivamente per la rimozione di
+ eventuali post presenti nel blog e la conclusione della sessione di test,
+ è necessario all'interno di un generico hook verificare manualmente la
+ presenza del tag 
+\begin_inset Quotes eld
+\end_inset
+
+@clear
+\begin_inset Quotes erd
+\end_inset
+
+ per la funzionalità o lo scenario corrente ed eventualmente effettuare
+ la rimozione degi post.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per implementare gli hook in SpecFlow è necessario utilizzare gli attributi
+ per associare le callback agli eventi e implementare i metodi all'interno
+ di classi annotate con l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+Binding
+\begin_inset Quotes erd
+\end_inset
+
+, come per la definizione dell'implemtazione dei passi.
 \end_layout
 
 \begin_layout Subsection
 Gestione dei form
+\end_layout
+
+\begin_layout Standard
+Nella sottosezione corrente è descritta l'implementazione delle componenti
+ necessarie per l'impletazione della funzionalità per la creazione di un
+ nuovo post.
+ Come specificato nell'introduzione, VS permette la generazione dei controlli,
+ attraverso un wizard di configurazione, e genera le corrispondenti viste.
+\end_layout
+
+\begin_layout Standard
+Lo sviluppo si è svolto in maniera accellerata potendo sfruttare una struttura
+ già esistente e dovendo esclusivamente personalizzarne il comportamento.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+I controlli
+\end_layout
+
+\begin_layout Standard
+Ad ogni componente è associato un controllo ed una collezione di azioni
+ eseguibili, nel seguente frammento di codice sono mostrate le implementazione
+ delle azioni per la creazione dei post.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+    public class PostController : Controller     {         private CSBlogEntitie
+s db = new CSBlogEntities();
+\end_layout
+
+\begin_layout Plain Layout
+
+       public ActionResult Create()         {             if (!isAuthorized())
+                 return redirectToLoginPage();
+\end_layout
+
+\begin_layout Plain Layout
+
+          return View();         }
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*..*/
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento di codice contente l'azione 
+\begin_inset Quotes eld
+\end_inset
+
+Create
+\begin_inset Quotes erd
+\end_inset
+
+ per la visualizzazione della relativa vista.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come in RoR, sono presenti due metodi 
+\begin_inset Quotes eld
+\end_inset
+
+Create
+\begin_inset Quotes erd
+\end_inset
+
+ per disaccoppiare la gestione della vista per la creazione di un nuovo
+ post, contentente il form ed i campi del titolo e del contenuto, e la gestione
+ della persistenza dell'oggetto definito attraverso l'interfaccia dell'applicazi
+one nel modello.
+\end_layout
+
+\begin_layout Standard
+Il ritorno di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+View
+\begin_inset Quotes erd
+\end_inset
+
+, istanziato senza specificare parametri, risolve la richiesta visualizzando
+ la vista 
+\begin_inset Quotes eld
+\end_inset
+
+/Post/Create.cshtml
+\begin_inset Quotes erd
+\end_inset
+
+ il cui nome coincide con l'identificatore dell'azione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// POST: /Post/Create        [HttpPost]         [ValidateAntiForgeryToken]
+         public ActionResult Create([Bind(Include = "title,body")] Post
+ post)         {             if (!isAuthorized())                 return
+ redirectToLoginPage();             if (ModelState.IsValid)             {
+                 post.id = Guid.NewGuid();                 post.createdAt =
+ post.updatedAt = DateTime.Now;                                 post.authorId
+ = (Guid)Session["author_id"];
+\end_layout
+
+\begin_layout Plain Layout
+
+                db.Posts.Add(post);                 db.SaveChanges();     
+            TempData["notice"] = String.Format("Il post '{0}' è stato creato
+ con successo.", post.title);                 return RedirectToAction("Details",
+ new { post.id });             }
+\end_layout
+
+\begin_layout Plain Layout
+
+                   return View(post);         }
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:MVC5 Azione Persistenza Create"
+
+\end_inset
+
+Frammento di codice contente l'azione 
+\begin_inset Quotes eld
+\end_inset
+
+Create
+\begin_inset Quotes erd
+\end_inset
+
+ persistenza del nuovo oggetto creato.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante la creazione di nuovi post sia stata suddivisa in due azioni,
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+Create
+\begin_inset Quotes erd
+\end_inset
+
+ è piusttosto articolato.
+ Di seguito sono descritte le principali funzionalità:
+\end_layout
+
+\begin_layout Itemize
+l'espressione boolean 
+\begin_inset Quotes eld
+\end_inset
+
+ModelState.IsValid
+\begin_inset Quotes erd
+\end_inset
+
+ verifica che i vincoli definiti a livello di logica dell'entità siano soddisfat
+ti e si possa procedere nell'esecuzione delle istruzione per rendere persistenti
+ i dati inseriti dall'utente;
+\end_layout
+
+\begin_layout Itemize
+l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+ValidateAntiForgeryToken
+\begin_inset Quotes erd
+\end_inset
+
+ protegge l'applicazione, ed in particolare le pagine che permettono la
+ definizione di nuovi contenuti, da attacchi di over-posting e dalla forgiatura
+ di richieste 
+\begin_inset Quotes eld
+\end_inset
+
+cross-site
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Il processo per implementare la sicurezza dei form è abbastanza semplice
+ e consiste con la generazione di un valore unico all'interno del form durante
+ la visita della pagina e la copia del valore all'interno di un cookie HTTP
+ creato ad-hoc, al momento dell'invio dei dati inseriti è verificato da
+ MVC5 l'uguaglianza dei due valori eventualmente permettendo l'operazione;
+\end_layout
+
+\begin_layout Itemize
+l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+Bind
+\begin_inset Quotes erd
+\end_inset
+
+ del parametro 
+\begin_inset Quotes eld
+\end_inset
+
+post
+\begin_inset Quotes erd
+\end_inset
+
+ specifica quali campi del form devono essere utilizzati per inizializzare
+ l'oggetto, gli attributi della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ comprendono anche altre informazioni che sono però inizializzate secondo
+ la logica dell'applicazione;
+\end_layout
+
+\begin_layout Itemize
+la proprietà Session permette l'accesso ai valori presenti nella corrente
+ sessione HTTP,
+\begin_inset space ~
+\end_inset
+
+in cui è mantenuto un riferimento all'identificatore dell'utente che ha
+ effettuato l'autenticazione;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+db.Posts.Add
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+db.SaveChanges
+\begin_inset Quotes erd
+\end_inset
+
+ permettono aggiungono l'oggetto al modello e effettuano la persistenza
+ delle modifiche.
+\end_layout
+
+\begin_layout Itemize
+il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+RedirectToAction
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce un'istanza di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+RedirectToRouteResult
+\begin_inset Quotes erd
+\end_inset
+
+ per effettuare la ridirezione della richiesta dopo aver creato il post.
+ Combinando l'uso della ridirezione con il dizionario 
+\begin_inset Quotes eld
+\end_inset
+
+TempData
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile fornire alla vista che verrà visualizzata al termine dell'azione
+ corrente delle espressioni, il cui valore sarà mantenuto per una sola richiesta
+ HTTP come valore all'interno della sessione corrente;
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui la validazione degli attributi del post non sia andata a
+ buon fine, il post restituisce un riferimento alla vista 
+\begin_inset Quotes eld
+\end_inset
+
+Create
+\begin_inset Quotes erd
+\end_inset
+
+ fornendo lo stesso parametro ricevuto in input per inizializzare i campi
+ del form;
+\end_layout
+
+\begin_layout Standard
+Come in Spring, in cui è possibile sfruttare i parametri di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Model
+\begin_inset Quotes erd
+\end_inset
+
+ per per passare degli oggetti alla vista, in MVC5 è disponibile la proprietà
+ 
+\begin_inset Quotes eld
+\end_inset
+
+dynamic
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+ViewBag
+\begin_inset Quotes erd
+\end_inset
+
+ presente nella super classe 
+\begin_inset Quotes eld
+\end_inset
+
+Controller
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Il tipo 
+\begin_inset Quotes eld
+\end_inset
+
+dynamic
+\begin_inset Quotes erd
+\end_inset
+
+ in C# posticipa le operazioni di type-checking normalmente eseguite a compile
+ time al momento dell'esecuzione, semplificando l'utilizzo delle proprietà
+ come in questo caso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ViewBag.message = "Hello ViewBag";
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Esempio di utilizzo della proprietà 
+\begin_inset Quotes eld
+\end_inset
+
+ViewBag
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Attribuita la stringa all'espressione dinamica, il valore sarà utilizzabile
+ nelle viste in Razor.
+\end_layout
+
+\begin_layout Subsubsection*
+Le viste
+\end_layout
+
+\begin_layout Standard
+Dopo aver mostrato i controlli per la creazione di nuovi post, è ora descritta
+ la vista per la creazione di nuovi post.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@model Blog.Models.Post
+\end_layout
+
+\begin_layout Plain Layout
+
+@{     ViewBag.PageTitle = ViewBag.Title = "Crea un post"; }
+\end_layout
+
+\begin_layout Plain Layout
+
+@using (Html.BeginForm()) {     @Html.AntiForgeryToken()     <div class="form-hori
+zontal">
+\end_layout
+
+\begin_layout Plain Layout
+
+        @Html.ValidationSummary(true)         <div class="form_actions">
+             <input alt="Scrivi un nuovo post" id="submit" src="@Url.Content("~/I
+mages/save_48.png")"                    type="image" value="Create" />  
+       </div>         <p id="form_title">Scrivi un nuovo post</p>      
+   <div class="form-group">             @Html.LabelFor(model => model.title,
+ new { @class = "control-label" })             <div>                 @Html.Editor
+For(model => model.title)                 <div class="error_explanation">
+                     @Html.ValidationMessageFor(model => model.title)    
+             </div>             </div>         </div>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<!-- ..
+ -->
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In MVC, tramite le funzionalità di Razor è possibile tipare le proprie viste
+ indicando, tramite la sintassi 
+\begin_inset Quotes eld
+\end_inset
+
+@model
+\begin_inset Quotes erd
+\end_inset
+
+, quale sia il tipo dell'entità rappresentata dalla pagina corrente.
+ Nella classe 
+\begin_inset Quotes eld
+\end_inset
+
+Controller
+\begin_inset Quotes erd
+\end_inset
+
+ sono presenti le funzionalità per istanziare degli oggetti di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+ViewResult
+\begin_inset Quotes erd
+\end_inset
+
+ fornendo un istanza di 
+\begin_inset Quotes eld
+\end_inset
+
+object
+\begin_inset Quotes erd
+\end_inset
+
+ che rappresenterà il modello, come mostrato nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:MVC5 Azione Persistenza Create"
+
+\end_inset
+
+ in caso di fallimento della validazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella vista sono utilizzate diverse funzionalità di Razor:
+\end_layout
+
+\begin_layout Itemize
+nella parte iniziale della vista sono inizializzati alcuni valori della
+ proprietà 
+\begin_inset Quotes eld
+\end_inset
+
+ViewBag
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzati all'interno della vista rappresentante il layout per impostare
+ il titolo della pagina e dell'intestazione di CSBlog;
+\end_layout
+
+\begin_layout Itemize
+il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+BeginForm
+\begin_inset Quotes erd
+\end_inset
+
+, della classe 
+\begin_inset Quotes eld
+\end_inset
+
+FormExtensions
+\begin_inset Quotes erd
+\end_inset
+
+ di Razor, genera il codice HTML relativo all'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+form
+\begin_inset Quotes erd
+\end_inset
+
+ e permette di utilizzare altri metodi per la definizione delle varie componenti
+ del form;
+\end_layout
+
+\begin_layout Itemize
+il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+ValidationSummary
+\begin_inset Quotes erd
+\end_inset
+
+ restituisce le informazioni sulla validazione, nel caso in cui la vista
+ attuale sia visualizzata come conseguenza del fallimento delle operazioni
+ di persistenza;
+\end_layout
+
+\begin_layout Itemize
+i metodi 
+\begin_inset Quotes eld
+\end_inset
+
+LabelFor
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+EditorFor
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+TextAreaFor
+\begin_inset Quotes erd
+\end_inset
+
+ generano gli elementi di input del form e i relativi 
+\begin_inset Quotes eld
+\end_inset
+
+label
+\begin_inset Quotes erd
+\end_inset
+
+ HTML;
+\end_layout
+
+\begin_layout Itemize
+il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+ValidationMessageFor
+\begin_inset Quotes erd
+\end_inset
+
+ ritorna i messaggi d'errore che descrivono i problemi riscontrati durante
+ la validazione dell'entità, opportunamente formattati in HTML;
+\end_layout
+
+\begin_layout Subsubsection*
+Gestione degli errori nei form
+\end_layout
+
+\begin_layout Standard
+Utilizzando gli attributi dell'EF è possibile definire dei vincoli sugli
+ attributi delle entità.
+ Nel successivo listato è mostrato un frammento di codice relativo alla
+ proprietà 
+\begin_inset Quotes eld
+\end_inset
+
+title
+\begin_inset Quotes erd
+\end_inset
+
+ dell'entità 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Required(ErrorMessage = "Titolo mancante.")]
+\end_layout
+
+\begin_layout Plain Layout
+
+[StringLength(100, MinimumLength = 5, ErrorMessage = "Il titolo deve essere
+ compreso fra 5 e 100 caratteri.")]
+\end_layout
+
+\begin_layout Plain Layout
+
+[Remote("CheckForDuplication", "Post", AdditionalFields = "id")]
+\end_layout
+
+\begin_layout Plain Layout
+
+[Display(Name = "Titolo", Description = "Inserisci in questo campo il titolo
+ che vuoi dare al tuo articolo.")]         public string title { get; set;
+ }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli attributi 
+\begin_inset Quotes eld
+\end_inset
+
+Required
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+StringLength
+\begin_inset Quotes erd
+\end_inset
+
+ effettuano la verifica del valore della stringa e invalidano l'oggetto
+ nel caso il titolo sia mancante, troppo corto o troppo lungo; è anche possibile
+ associare a ciascun attributo un messaggio d'errore personalizzato che
+ rappresenta il testo mostrato all'interno della vista.
+\end_layout
+
+\begin_layout Standard
+Per effettuare operazioni di validazione come la verifica d'unicità del
+ titolo, non è possibile sfruttare gli attributi già definiti in EF.
+ Per verificare la presenza di altri post con il titolo uguale all'interno
+ del blog è effettuata una richiesta HTTP asincrona tramite JQuery, definita
+ tramite l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+Remote
+\begin_inset Quotes erd
+\end_inset
+
+ ed i parametri 
+\begin_inset Quotes eld
+\end_inset
+
+CheckForDuplication
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ che rispettivamente rappresentano l'azione e l'azione che gestiranno la
+ richiesta e il parametro aggiuntivo 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La verifica dell'unicità del titolo del post è effettuata sia alla creazione
+ che alla modifica di un post, il parametro aggiuntivo 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ può assumere valore nullo ed è utilizzato per associare il titolo passato
+ di default come parametro GET all'identificatore del post.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nel listato successivo, utilizzando LINQ per accedere al modello e JSon
+ per definire il risultato dell'azione, è verificato in funzione dei parametri
+ la presenza di eventuali post con titolo simili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [HttpGet]         public JsonResult CheckForDuplication(Guid? id,
+ string title)         {             var post = db.Posts                
+ .Where(p => p.title.Equals(title, StringComparison.CurrentCultureIgnoreCase))
+                 .FirstOrDefault();             if (post != null && (id ==
+ null || !post.id.Equals(id)))             {                 return Json("Il
+ titolo è già presente.", JsonRequestBehavior.AllowGet);             }   
+          return Json(true, JsonRequestBehavior.AllowGet);         }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Azione per la verifica dell'unicità del titolo dei post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Implementazione dei test
+\end_layout
+
+\begin_layout Standard
+Oltre alle funzionalità per la navigazione, la classe 
+\begin_inset Quotes eld
+\end_inset
+
+BrowserSession
+\begin_inset Quotes erd
+\end_inset
+
+ di Coypu fornisce le funzionalità per la gestione dei form e selezionare
+ gli elementi del DOM in funzione del tipo e del testo mostrato.
 \end_layout
 
 \begin_layout Standard
@@ -2688,21 +3660,14 @@ lIn("Password").With(password);             browser.ClickButton("Login");
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-        [When(@"cancello il post ""(.*)""")]         public void QuandoCancelloIl
-Post(string title)         {             var post = findPostByTitle(title);
-             post.FindCss(".remove_post_button").Click();             browser.ClickB
-utton("Confermi la rimozione?");         }
+Rispetto a Selenium, il DSL di Coypu è estremamente semplice e facilmente
+ utilizzabile; inoltre è evidente la propensione della libreria a favorire
+ la definizione di selettori in funzione del testo mostrato dai vari elementi.
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+Queste pratiche permettono la definizione di test leggibili e di semplice
+ comprensione, semplificando le future manutenzioni del codice.
 \end_layout
 
 \begin_layout Standard
@@ -2712,11 +3677,9 @@ status open
 
 \begin_layout Plain Layout
 
-        public void AlloraIlContenutoDelPostEUn_AnteprimaDell_InteroPost(string
- title)         {             var post = base.findPostByTitle(title);   
-          string body = post.FindCss(".post_body").Text;             Assert.IsNotEmp
-ty(body);             Assert.Less(body.Length, 550);             Assert.That(post,
- Shows.Content("Leggi il resto"));         }
+        protected ElementScope findPostByTitle(String title) {         
+    return browser.FindAllCss(".post").First(p => p.FindLink(title, new Options
+ { TextPrecision = TextPrecision.Substring }).Exists());         }
 \end_layout
 
 \end_inset
@@ -2724,20 +3687,157 @@ ty(body);             Assert.Less(body.Length, 550);             Assert.That(pos
 
 \end_layout
 
-\begin_layout Subsubsection*
-Verificare gli errori
+\begin_layout Standard
+Il metodo del listato precedente definisce una funzionalità ausiliaria per
+ ricercare all'interno del DOM un post, contenuto all'interno di un 
+\begin_inset Quotes eld
+\end_inset
+
+div
+\begin_inset Quotes erd
+\end_inset
+
+ con attributo di 
+\begin_inset Quotes eld
+\end_inset
+
+class
+\begin_inset Quotes erd
+\end_inset
+
+ uguale a 
+\begin_inset Quotes eld
+\end_inset
+
+post
+\begin_inset Quotes erd
+\end_inset
+
+, il cui titolo, rappresentato da un collegamento, contenga il testo indicato
+ dal parametro.
 \end_layout
 
 \begin_layout Standard
-errore unicità titolo
+Il metodo è una funzionalità utile per individuare il l'elemento HTML che
+ contiene le informazioni visualizzate per un certo post, il cui risultato
+ è utilizzato per effettuare ulteriori accessi all'HTML interno.
 \end_layout
 
 \begin_layout Standard
-form
+Nelle versioni in Ruby e Java, lo stesso metodo è stato definito utilizzando
+ un selettore ed un'espressione XPath.
+ Con Coypu e le funzionalità dell'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+IEnumerable
+\begin_inset Quotes erd
+\end_inset
+
+, che permettono l'uso di funzioni, è possibile definire query articolate
+ ma allo stesso tempo comprensibili.
+ Inoltre la definizione di selettori attraverso una concatenazione di metodi
+ riduce la fragilità dei metodi semplificando le manutenibilità del codice
+ e permette la verifica tramite la compilazione rispetto ad una query XPath
+ rappresentata in una stringa.
 \end_layout
 
 \begin_layout Subsubsection*
 Selettori
+\end_layout
+
+\begin_layout Standard
+In Coypu sono implementati una buona varietà di metodi per l'implementazione
+ di funzionalità per la definizione di selettori ed in generale effettuare
+ ricerche all'interno del DOM.
+ Oltre i metodi specifici per un tipo di elemento, come 
+\begin_inset Quotes eld
+\end_inset
+
+FindLink
+\begin_inset Quotes erd
+\end_inset
+
+ già mostrato in precedenza, sono presenti anche funzionalità più simili
+ a quelle viste per Selenium.
+\end_layout
+
+\begin_layout Standard
+Di seguito sono proposti alcuni esempi e frammenti dei passi contenti alcuni
+ dei metodi esistenti nella libreria.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+            browser.FindCss(".post_title a", text: title).Exists();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In maniera simile a Capybara, ed in particolare ai metodi del modulo 
+\begin_inset Quotes eld
+\end_inset
+
+Finders
+\begin_inset Quotes erd
+\end_inset
+
+, nel metodo 
+\begin_inset Quotes eld
+\end_inset
+
+FindCSS
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile specificare delle stringhe o delle espressioni regolari oltre
+ alle regole del CSS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        protected ElementScope header {get{return browser.FindId("header");}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre alle funzionalità classiche delle librerie di automazione web, come
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+FindId
+\begin_inset Quotes erd
+\end_inset
+
+, Coypu cerca di fornire delle variazioni tramite parametri opzionali o
+ implementando metodi derivati come 
+\begin_inset Quotes eld
+\end_inset
+
+FindIdEndingWith
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2763,33 +3863,31 @@ nk(title).Exists());             }         }
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-            browser.FindCss(".post_title a", text: title).Exists();
-\end_layout
-
+A differenza di Capybara, Coypu non restituisce errore nel caso in cui la
+ venga utilizzato un metodo per individuare un singolo elemento ed al contrario
+ siano presenti più potenziali risultati, ma restituisce il primo elemento
+ incontrato.
+\begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-        protected ElementScope header {get{return browser.FindId("header");}}
-\end_layout
-
+Per gestire collezioni di elementi sono disponibili metodi come 
+\begin_inset Quotes eld
 \end_inset
 
+FindAllCss
+\begin_inset Quotes erd
+\end_inset
 
+; rispetto ai metodi che restituiscono un singolo risultato, i metodi che
+ ricercano tutti i potenziali riscontri all'interno della pagina non applicano
+ strategie di attesa per eventuali elementi asincroni, bensì restituiscono
+ la collezione di lementi presenti al momento dell'invocazione.
+ Per modificare il comportamento è possibile definire un predicato per descriver
+e lo stato desiderato.
 \end_layout
 
 \begin_layout Standard
@@ -2811,6 +3909,12 @@ sts());             Assert.AreEqual(first.Id, header.Id);         }
 \end_layout
 
 \begin_layout Standard
+Nonostante la libreria propenda per l'utilizzo di funzionalità ad alto livello,
+ per favorire la leggibilità dei test, è anche possibile definire i seletori
+ tramite espressioni XPath.
+\end_layout
+
+\begin_layout Standard
 \begin_inset listings
 inline false
 status open
@@ -2829,7 +3933,28 @@ status open
 \end_layout
 
 \begin_layout Standard
-Options class
+In alcune parti della libreria si può notare la forte ispirazione che Capybara
+ ha dato al progetto, ad esempio i metodi permettono l'uso di un parametro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Options
+\begin_inset Quotes erd
+\end_inset
+
+ che ricorda l'uso del dizionario come parametro opzionale in Ruby.
+ Le istanze della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Options
+\begin_inset Quotes erd
+\end_inset
+
+ permettono di modificare il comportamento dei metodi, specificando la strategia
+ di attesa e di polling, il tipo di confronto sulle stringhe da utilizzare,
+ la cardinalità attesa e molti altri parametri.
 \end_layout
 
 \begin_layout Subsection
@@ -2837,7 +3962,23 @@ Debug con Specflow
 \end_layout
 
 \begin_layout Standard
-problemi deploy
+Durante lo sviluppo di CSBlog con VS sono state individuate alcune difficoltà
+ nell'applicare la tecnica dell'ATDD a causa dell'impossibilità di eseguire
+ il debug dei test.
+ All'interno dell'ambiente di sviluppo è possibile eseguire la propria applicazi
+one sia in modalità debug classica, VS monitora l'esecuzione ed eventualmente
+ gestisce e segnala gli errori, oppure è possibile procedere all'esecuzione
+ semplice.
+\end_layout
+
+\begin_layout Standard
+Dai test fatti su VS, qualsiasi sia il tipo di escuzione dell'applicazione,
+ sembra che non sia possile eseguire i propri test di accettazione in modalità
+ debug, perchè è consentito che venga eseguito al più un solo processo;
+ creando un secondo progetto contenente esclusivamente i test ed aprendo
+ due istanze di VS, una per lo sviluppo ed una per il testing, si dovrebbe
+ evitare i conflitti durante l'esecuzione, introducendo però possibili rallentam
+enti nel sistema.
 \end_layout
 
 \begin_layout Standard
