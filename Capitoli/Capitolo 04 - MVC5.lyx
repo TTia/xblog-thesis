@@ -2408,8 +2408,22 @@ Shows
 \begin_inset Quotes erd
 \end_inset
 
- che implementa diverse condizioni e esalta la leggibilità delle asserzioni,
- come sarà mostrato nelle prossime sezioni.
+ che implementa diverse condizioni e aumenta la leggibilità delle asserzioni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Assert.That(footer, Shows.Css("img"));
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3993,6 +4007,62 @@ Login & Autorizzazione
 \end_layout
 
 \begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap6 Funzionalità: Autenticazione su SBlog   Come Autore di SBlog   Vorrei
+ che alcune operazioni sensibili siano permesse previa autenticazione  
+ Per poter garantire l'autenticità dei contenuti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come per le funzionalità riguardanti l'analisi del CSS e delle proprietà
+ estetiche dei nodi dell'HTML, Coypu non implementa metodi specifici per
+ la gestione dei cookie e delle sessioni.
+ E' comunque possibile utilizzare le funzionalità native per effettuare
+ operazioni sui cookie e le sessioni HTTP come già descritto nella rispettiva
+ sezione in SBlog.
+\end_layout
+
+\begin_layout Subsection
+Accesso ai singoli attributi
+\end_layout
+
+\begin_layout Standard
+La classe 
+\begin_inset Quotes eld
+\end_inset
+
+ElementScope
+\begin_inset Quotes erd
+\end_inset
+
+ di Coypu ridefinisce il comportamento dell'operatore 
+\begin_inset Quotes eld
+\end_inset
+
+[ ]
+\begin_inset Quotes erd
+\end_inset
+
+: come in Capybara, è possibile accedere ai singoli elementi indicando la
+ stringa della proprietà desiderata.
+ La scelta di accedere alle proprietà di un elemento HTML come si accederebbe
+ ad un'array associativo presenta i vantaggi di essere facilmente leggibile
+ e comprensibile, inoltre dal punto di vista dell'implementazione è facilmente
+ estendibile nel caso il W3C prevedesse delle variazioni nell'HTML, come
+ è ad esempio accaduto per la versione HTML5.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -4001,6 +4071,25 @@ Login & Autorizzazione
 
 \begin_layout Section
 Asincronia
+\end_layout
+
+\begin_layout Standard
+Coypu è apparso su GitHub, in versione open-source, per la prima volta nel
+ 2011.
+ Nello stesso anno 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Coypu gestisce gli elementi della pagina con lo stesso principio di Capybara,
+ ogni elemento può potenzialmente essere asincrono.
+ Partendo proprio da questo presupposto è stato definito il progetto di
+ Coypu, preferendo la definizione di una strategia di ricerca globale tramite
+ attese e polling rispetto alla definizione di asserzioni sullo stato degli
+ elementi, perchè difficili da esprimere, implementare e mantenere.
 \end_layout
 
 \begin_layout Subsection
@@ -4034,6 +4123,22 @@ Funzionalità: Easter Egging
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+  Contesto:     Dato apro CSBlog
+\end_layout
+
+\begin_layout Plain Layout
+
+  Scenario: EasterEgg     Dato non è presente il logo nell'intestazione
+     Quando clicco sull'area del pié di pagina     Allora è presente il
+ logo
+\end_layout
+
+\begin_layout Plain Layout
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -4056,8 +4161,107 @@ Introduzione di un breve script Javascript.
 
 \end_layout
 
+\begin_layout Standard
+Nei successi listati è mostrata l'implementazione dello scenario 
+\begin_inset Quotes eld
+\end_inset
+
+EasterEgg
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Rispetto alle attese esplicite, ma anche a Capybara che sfrutta il metodo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ per verificare il completamento delle operazioni asincrone, l'implementazione
+ è nettamente più compatta e leggibile; inoltre non è presente alcuna particolar
+ità rispetto ai test descritti nelle precedenti sessioni che suggerisca
+ che il piè di pagina implementi un comportamento asincrono.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Given(@"non è presente il logo nell'intestazione")]         public
+ void DatoNonEPresenteIlLogoNellIntestazione()         {             Assert.That(
+footer, Shows.No.Css("img"));         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [When(@"clicco sull'area del pié di pagina")]         public void
+ QuandoCliccoSullAreaDelPieDiPagina()         {             footer.Click();
+         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Then(@"è presente il logo")]         public void AlloraEPresenteIlLogo(
+)         {             var footer = base.footer;             Assert.That(footer,
+ Shows.Css("img"));             Assert.That(footer.FindId("woodstock").Exists());
+         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Scenari sull'auto-completamento con JQuery UI
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@cap5 Funzionalità: Ricerca fra i post   Come Lettore   Vorrei poter ricercare
+ i post su RBlog   Per poter navigare fra i contenuti più velocemente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella funzionalità corrente è verificato il widget per l'auto-complemento
+ del menu della ricerca, implementato tramite JQuery UI ed una chiamata
+ AJAX.
 \end_layout
 
 \begin_layout Standard
@@ -4121,6 +4325,117 @@ Scenario riguardante l'auto-completamento della ricerca.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nei successivi listati sono incluse le implementazioni dei passi che verificano
+ la presenza del menù a tendina per il campo 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ della ricerca.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Then(@"viene proposto il post ""(.*)""")]         public void AlloraVien
+ePropostoIlPost(string title)         {             var suggestion = browser.Find
+Css(".ui-menu-item", title);             Assert.That(suggestion.Exists());
+         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Coypu anche per uno scenario più complesso, in quanto l'operazione asincrona
+ ha maggior latenza rispetto alla risoluzione della chiamata Javascript
+ dello scenario 
+\begin_inset Quotes eld
+\end_inset
+
+EasterEgg
+\begin_inset Quotes erd
+\end_inset
+
+, non necessità di introdurre istruzioni ad-hoc.
+ Inoltre Coypu è coerente nell'implementazione delle proprie funzionalità
+ e restituisce solo elementi effettivamente visibili nella pagina
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Tramite la configurazione della sessione di navigazione, è possibile richiedere
+ che siano individuati anche gli elementi non visibili.
+\end_layout
+
+\end_inset
+
+, al contrario utilizzando Selenium per questo stesso test è stato necessario
+ verificare l'effettiva visualizzazione dell'elemento 
+\begin_inset Quotes eld
+\end_inset
+
+ui-menu-item
+\begin_inset Quotes erd
+\end_inset
+
+ tramite il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+isDisplayed
+\begin_inset Quotes erd
+\end_inset
+
+ dell'interfaccia 
+\begin_inset Quotes eld
+\end_inset
+
+WebElement
+\begin_inset Quotes erd
+\end_inset
+
+ a causa del comportamento particolare del widget.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        [Then(@"non è proposto alcun post")]         public void AlloraNonEPropo
+stoAlcunPost()         {             Assert.That(browser, Shows.No.Css(".ui-menu-ite
+m"));         }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il widget per l'auto-completamento, probabilmente per minimizzare il numero
+ di operazioni di modifica del DOM, applica un meccanismo simile al caching.
+ Invece di rimuovere le opzioni proposte dalla pagina, che corrispondono
+ ai punti di una lista numerata in HTML, rende non visibile l'intera lista
+ ma ne mantiene gli elementi nel DOM.
+ Quando sarà effettuata una nuova ricerca all'interno della pagina, il widget
+ aggiusta la cardinalità della lista e sostiuisce il testo degli elementi
+ con i nuovi valori.
 \end_layout
 
 \end_body

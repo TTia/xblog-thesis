@@ -2604,7 +2604,8 @@ Definizione del modello
 \end_layout
 
 \begin_layout Standard
-L'introduzione del modello
+Nella sezione sono descritte le componenti di MVC5 che permettono la gestione
+ delle entità attraverso CSBlog e lo sviluppo dei relativi test di accettazione.
 \end_layout
 
 \begin_layout Standard
@@ -3747,7 +3748,96 @@ Selettori
 
 \begin_layout Standard
 In Coypu sono implementati una buona varietà di metodi per l'implementazione
- di 
+ di funzionalità per la definizione di selettori ed in generale effettuare
+ ricerche all'interno del DOM.
+ Oltre i metodi specifici per un tipo di elemento, come 
+\begin_inset Quotes eld
+\end_inset
+
+FindLink
+\begin_inset Quotes erd
+\end_inset
+
+ già mostrato in precedenza, sono presenti anche funzionalità più simili
+ a quelle viste per Selenium.
+\end_layout
+
+\begin_layout Standard
+Di seguito sono proposti alcuni esempi e frammenti dei passi contenti alcuni
+ dei metodi esistenti nella libreria.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+            browser.FindCss(".post_title a", text: title).Exists();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In maniera simile a Capybara, ed in particolare ai metodi del modulo 
+\begin_inset Quotes eld
+\end_inset
+
+Finders
+\begin_inset Quotes erd
+\end_inset
+
+, nel metodo 
+\begin_inset Quotes eld
+\end_inset
+
+FindCSS
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile specificare delle stringhe o delle espressioni regolari oltre
+ alle regole del CSS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        protected ElementScope header {get{return browser.FindId("header");}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oltre alle funzionalità classiche delle librerie di automazione web, come
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+FindId
+\begin_inset Quotes erd
+\end_inset
+
+, Coypu cerca di fornire delle variazioni tramite parametri opzionali o
+ implementando metodi derivati come 
+\begin_inset Quotes eld
+\end_inset
+
+FindIdEndingWith
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3773,33 +3863,31 @@ nk(title).Exists());             }         }
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-            browser.FindCss(".post_title a", text: title).Exists();
-\end_layout
-
+A differenza di Capybara, Coypu non restituisce errore nel caso in cui la
+ venga utilizzato un metodo per individuare un singolo elemento ed al contrario
+ siano presenti più potenziali risultati, ma restituisce il primo elemento
+ incontrato.
+\begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-        protected ElementScope header {get{return browser.FindId("header");}}
-\end_layout
-
+Per gestire collezioni di elementi sono disponibili metodi come 
+\begin_inset Quotes eld
 \end_inset
 
+FindAllCss
+\begin_inset Quotes erd
+\end_inset
 
+; rispetto ai metodi che restituiscono un singolo risultato, i metodi che
+ ricercano tutti i potenziali riscontri all'interno della pagina non applicano
+ strategie di attesa per eventuali elementi asincroni, bensì restituiscono
+ la collezione di lementi presenti al momento dell'invocazione.
+ Per modificare il comportamento è possibile definire un predicato per descriver
+e lo stato desiderato.
 \end_layout
 
 \begin_layout Standard
@@ -3821,6 +3909,12 @@ sts());             Assert.AreEqual(first.Id, header.Id);         }
 \end_layout
 
 \begin_layout Standard
+Nonostante la libreria propenda per l'utilizzo di funzionalità ad alto livello,
+ per favorire la leggibilità dei test, è anche possibile definire i seletori
+ tramite espressioni XPath.
+\end_layout
+
+\begin_layout Standard
 \begin_inset listings
 inline false
 status open
@@ -3839,7 +3933,28 @@ status open
 \end_layout
 
 \begin_layout Standard
-Options class
+In alcune parti della libreria si può notare la forte ispirazione che Capybara
+ ha dato al progetto, ad esempio i metodi permettono l'uso di un parametro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Options
+\begin_inset Quotes erd
+\end_inset
+
+ che ricorda l'uso del dizionario come parametro opzionale in Ruby.
+ Le istanze della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Options
+\begin_inset Quotes erd
+\end_inset
+
+ permettono di modificare il comportamento dei metodi, specificando la strategia
+ di attesa e di polling, il tipo di confronto sulle stringhe da utilizzare,
+ la cardinalità attesa e molti altri parametri.
 \end_layout
 
 \begin_layout Subsection
@@ -3875,6 +3990,11 @@ enti nel sistema.
 
 \begin_layout Section
 Login & Autorizzazione
+\end_layout
+
+\begin_layout Standard
+Come per le funzionalità riguardanti l'analisi del CSS e delle proprietà
+ estetiche dei nodi dell'HTML, Coypu non 
 \end_layout
 
 \begin_layout Standard
