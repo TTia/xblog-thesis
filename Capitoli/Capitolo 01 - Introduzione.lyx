@@ -323,40 +323,70 @@ I test di accettazione
 \end_layout
 
 \begin_layout Standard
-La definizione dei test di accettazione avviene durante la fase di programmazion
-e delle iterazioni di un processo di sviluppo e produce una insieme di scenari
- che rappresentano le funzionalità da implementare.
- Rispetto ad altre tipologie di testing, i test di accettazione sono definiti
- in linguaggio naturale, descrivendo le funzioni da verificare dal punto
- di vista degli utenti a cui il prodotto è destinato, prendendo in considerazion
-e la loro conoscenza del problema e del dominio in questione e descrivono
- il comportamento del prodotto, senza evidenziare il design, né l'implementazion
-e.
- I test di accettazione sono utilizzati sia per verificare che non siano
- presenti errori tecnici o nell'interpretazione delle specifiche da parte
- del team di sviluppo, sia per mantenere traccia dello stato dello sviluppo,
- ad esempio nel caso in cui tutti gli scenari individuati siano soddisfatti,
- le nuove funzionalità sono pronte per essere rilasciate.
-\end_layout
+Il Behaviour Driver Development, BDD, è una metodologia di sviluppo che
+ prevede la descrizione in linguaggio naturale delle funzionalità attese,
+ utilizzando una terminologia che colga il comportamento del sistema, piuttosto
+ che evidenziare dettagli tecnici dell'implementazione.
+ Il fulcro del BDD è la definizione dei test di accettazione\SpecialChar \@.
 
-\begin_layout Subsection
-Test di accettazione automatici
 \end_layout
 
 \begin_layout Standard
-Secondo il manifesto Agile ed applicando la metodologia Extreme Programming,
- i test di accettazione sono redatti a partire user stories.
- Il cliente ha il compito di indicare per ciascuna storia le condizioni
- di successo, per verificare che sia stata implementata con successo.
+Per ciascun test di accettazione, è possibile descrivere più criteri di
+ accettazione, o scenari, che descrivono in linguaggio naturale un caso
+ specifico della funzionalità.
+\end_layout
+
+\begin_layout Paragraph
+Business Readable DSL
 \end_layout
 
 \begin_layout Standard
-In un progetto che segue la metodologia XP, gli acceptance testing non dovrebber
-o essere relegati alla fase conclusiva dell'iterazione, dove alcuni utenti
- fisici hanno il compito di verificare manualmente gli scenari definiti
- per le user stories, bensì i test dovrebbero essere automatizzati per poter
- essere eseguiti spesso, come suggerito dalla pratica dell'integrazione
- continua.
+Il linguaggio utilizzato per descrivere le funzionalità e gli scenari nella
+ tesi è Gherkin
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gherkin"
+
+\end_inset
+
+, sviluppato per il framework Cucumber, che verrà presentato nel prossimo
+ capitolo.
+ Gli autori descrivono il linguaggio come Business Readable DSL
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler Business Readable DSL"
+
+\end_inset
+
+, definizione introdotta da Martin Fowler nel 2008.
+\end_layout
+
+\begin_layout Standard
+L'obbiettivo principale di un Business Readable DSL è permettere la partecipazio
+ne all'analisi e alla revisione del codice a figure non tecniche.
+ Fowler sottolinea come sia più importante definire un linguaggio leggibile
+ per tutte le diverse figure professionali coinvolte nello sviluppo rispetto
+ ad uno anche scrivibile in maniera cooperativa.
+ Un Business Readable DSL sopperisce alla necessità primaria di stabilire
+ un canale di comunicazione arricchente fra le diverse parti che partecipano
+ allo sviluppo, al contrario secondo Fowler, un Business Writeable DSL richiede
+ un impegno troppo alto in termini di tempo e risorse umane coinvolte.
+\end_layout
+
+\begin_layout Subsubsection*
+ATDD
+\end_layout
+
+\begin_layout Standard
+Acceptance Test Driven Development, ATDD, è una tecnica per produrre codice
+ rilevante e utile ai fini dell'implementazione di una certa funzionalità.
+\end_layout
+
+\begin_layout Standard
+Secondo la Agile Alliance, gli acceptance test dovrebbero essere automatizzati
+ per poter essere eseguiti spesso, come suggerito dalla pratica dell'integrazion
+e continua.
 \begin_inset Newline newline
 \end_inset
 
@@ -364,6 +394,12 @@ A differenze della verifica dei test effettuata manualmente dagli utenti,
  i test automatici hanno il vantaggio di restituire un risultato in maniera
  deterministica per un certo requisito e permettere al team di concentrare
  meglio i propri sforzi.
+\end_layout
+
+\begin_layout Standard
+Utilizzando la tecnica dell'ATDD sono prodotti test di accettazione che
+ rappresentano anche la documentazione della funzionalità ed essendo eseguibili
+ e verificabili, rappresentano la documentazione aggiornata del prodotto.
 \end_layout
 
 \begin_layout Section

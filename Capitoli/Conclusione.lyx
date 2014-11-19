@@ -88,8 +88,8 @@ I framework
 \end_layout
 
 \begin_layout Standard
-In questa prima sessione sono analizzate gli ambienti di sviluppo e le principal
-i funzionalità dei framework utilizzati, ed effettuato un confronto.
+In questa prima sezione sono analizzati gli ambienti di sviluppo e le principali
+ funzionalità dei framework utilizzati, ed effettuato un confronto.
 \end_layout
 
 \begin_layout Subsection
@@ -104,7 +104,7 @@ Una delle caratteristiche fondamentali per valutare un framework e l'ambiente
 \end_layout
 
 \begin_layout Subsubsection*
-IDE
+IDE: usabilità, disponibilità e costi
 \end_layout
 
 \begin_layout Standard
@@ -112,9 +112,9 @@ Per sviluppare le applicazioni web descritte nella tesi sono stati scelti
  gli ambienti di sviluppo più utilizzati e meglio integrati con ciascuna
  tecnologia.
  Nonostante tutti permettano di implementare applicazioni web tramite i
- framework MVC documentati nei precedenti capitoli, i progetti sono molto
- differenti fra loro per quanto riguarda il tipo di business, i prezzi e
- il processo di sviluppo.
+ framework MVC documentati nei precedenti capitoli, i prodotti analizzati
+ sono molto differenti fra loro per quanto riguarda il tipo di business,
+ i prezzi e il processo di sviluppo.
 \begin_inset Newline newline
 \end_inset
 
@@ -125,19 +125,20 @@ Per sviluppare le applicazioni web descritte nella tesi sono stati scelti
 Seguendo lo stesso ordine dei capitoli, il primo IDE utilizzato è RubyMine,
  un prodotto di JetBrains.
  Il software è sviluppato da un'azienda privata ed attualmente, secondo
- i prezzi del loro sito, il prezzo parte da circa 100€ per una singola licenza
- ed arriva 200€ per una licenza commerciale, valida per aziende ed associazioni.
+ il loro sito, il prezzo parte da circa 100€ per una singola licenza ed
+ arriva 200€ per una licenza commerciale, valida per aziende ed associazioni.
 \end_layout
 
 \begin_layout Standard
-Lo sviluppo di RubyMine è costante, nel corso della tesi sono stati installati
- diversi aggiornamenti gestiti internamente all'IDE, senza necessità di
- scaricare patch e dover riconfigurare il proprio ambiente di sviluppo.
+Lo sviluppo di RubyMine è costante con frequenti aggiornamenti.
+ Nel corso della tesi sono stati installati diversi aggiornamenti gestiti
+ internamente all'IDE, senza necessità di scaricare patch e dover riconfigurare
+ il proprio ambiente di sviluppo.
 \end_layout
 
 \begin_layout Standard
-La versione utilizzata per implementare RBlog è una versione accademica
- gratuita che include tutte le funzionalità presenti nella versione a pagamento.
+La versione utilizzata per implementare RBlog è quella professionale, mediante
+ una licenza accademica gratuita.
 \begin_inset Newline newline
 \end_inset
 
@@ -146,7 +147,7 @@ La versione utilizzata per implementare RBlog è una versione accademica
 
 \begin_layout Standard
 Spring Tool Suite, la versione di Eclipse specializzata per supportare lo
- sviluppo con Spring è un progetto privato della 
+ sviluppo con Spring, è un progetto privato della 
 \begin_inset Quotes eld
 \end_inset
 
@@ -196,7 +197,7 @@ La versione utilizzata per lo sviluppo è una licenza accademica ottenuta
  tramite la convenzione DreamSpark fra Microsoft ed Unige.
  Acquistare una copia di VS è decisamente oneroso, ma sono anche previste
  versioni essenziali come Visual Studio Express 2013, che è disponibile
- gratuitamente.
+ gratuitamente per scopi non commerciali.
 \begin_inset Newline newline
 \end_inset
 
@@ -209,8 +210,539 @@ Nonostante VS sia al momento eseguibile solo utilizzando un sistema operativo
  ritengo che sia il prodotto più completo e professionale fra quelli utilizzati.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multipiattaforma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Costo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Versione Accademica/No Profit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RubyMine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100€ - 200€
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gratis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non necessaria
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Diversi piani
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+d'acquisto, ma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+molto costosi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva degli IDE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Facilità di
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Installazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aggiornamento
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Uso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RubyMine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sconsigliato
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++/-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva dell'esperienza di sviluppo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
-Plugin
+Supporto a sviluppo di applicazioni MVC
 \end_layout
 
 \begin_layout Standard
@@ -298,6 +830,7 @@ Per supportare lo sviluppo di CSBlog e dei test è stato necessario installare
 Come descritto nel capitolo su MVC5, utilizzando VS sono presenti delle
  difficoltà nell'esecuzione dei test di accettazione a causa dell'impossibilità
  di eseguire più di un processo.
+ Questo complica l'uso dei test in modalità di debug.
  Al contrario, RubyMine è meno rigido e permette di monitorare il debug
  di un numero arbitrario di processi, che è una caratteristica utile per
  effettuare test che richiedono l'esecuzione del server web e dell'applicazione:
@@ -323,6 +856,301 @@ key "RubyMine Parallel Test Execution"
 
 , permettendo anche di ottenere una valutazione indicativa delle performance
  di una singola funzionalità.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Necessità di personalizzazione
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Esecuzione in
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MVC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATDD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+debug dei test
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RubyMine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva del supporto allo sviluppo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -370,7 +1198,7 @@ Per definire le dipendenze del proprio progetto e le librerie utilizzate
 
 \begin_layout Standard
 La struttura di un progetto in Spring varia in funzione del build manager
- utilizzato, scegliendo ad esempio fra Gradle o Maven.
+ utilizzato, scegliendo ad esempio Gradle o Maven.
  Per comodità in SBlog è stato utilizzato Maven, perché già integrato nella
  versione di Eclipse utilizzata da STS.
 \end_layout
@@ -378,9 +1206,10 @@ La struttura di un progetto in Spring varia in funzione del build manager
 \begin_layout Standard
 Come per RubyMine o VS è prevista la possibilità di creare un nuovo progetto
  utilizzando Spring e selezionando quali funzionalità siano richieste nell'appli
-cazione; il wizard termina con la generazione di un progetto contenente
- esclusivamente la struttura dei package, che rispecchia l'organizzazione
- di Maven in file sorgenti, test e risorse, ed il file 
+cazione.
+ Il wizard termina con la generazione di un progetto contenente esclusivamente
+ la struttura dei package, che rispecchia l'organizzazione di Maven in file
+ sorgenti, test e risorse, ed il file 
 \begin_inset Quotes eld
 \end_inset
 
@@ -396,16 +1225,18 @@ pom.xml
 \end_layout
 
 \begin_layout Standard
-Scegliendo di generare un progetto con JPA e Thymeleaf, all'esecuzione dell'appl
-icazione sono sollevate diverse eccezione che segnalano l'assenza dei bean
- di configurazione del modello e la mancanza del provider per JPA.
+Quindi, scegliendo di generare un progetto che utilizzi JPA e Thymeleaf,
+ all'esecuzione dell'applicazione sono sollevate diverse eccezione che segnalano
+ l'assenza dei bean di configurazione del modello e la mancanza del provider
+ per JPA.
 \end_layout
 
 \begin_layout Standard
 Oltre alla generazione automatica dei progetti, sono presenti anche diversi
  progetti starter da cui prendere spunto, ma che non possono essere utilizzati
  come base del progetto in quanto sono specifici per una singola tecnologia,
- ad esempio sono presenti gli starter per JSP, Thymeleaf e JPA.
+ ad esempio sono presenti gli starter per JSP, Thymeleaf e JPA, ma non per
+ combinazioni di tecnologie.
 \end_layout
 
 \begin_layout Standard
@@ -437,11 +1268,239 @@ Inoltre la creazione di un nuovo progetto genera un'applicazione completa
 
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusioni
+\end_layout
+
 \begin_layout Standard
-Sviluppando CSBlog come ultimo progetto, è risultato evidente come VS sia
- fortemente orientato alla produttività grazie all'ottima organizzazione
- e del continuo supporto fornito all'utente, rappresentando in assoluto
- il miglior IDE utilizzato nella tesi.
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Generazione di
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supporto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+progetto 
+\begin_inset Quotes eld
+\end_inset
+
+completo
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+alla configurazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RubyMine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva del supporto allo sviluppo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Complessivamente, è risultato evidente come VS sia fortemente orientato
+ alla produttività grazie all'ottima organizzazione e del continuo supporto
+ fornito all'utente, rappresentando in assoluto il miglior IDE utilizzato
+ nella tesi.
+\end_layout
+
+\begin_layout Standard
+Anche RubyMine è un'ambiente di sviluppo completo e ricco di funzionalità,
+ ma rispetto a VS, manca del supporto costante e dei wizard per la generazione
+ di componenti.
+\end_layout
+
+\begin_layout Standard
+STS invece è l'IDE più carente in termini di funzionalità che esulino dal
+ semplice sviluppo.
 \end_layout
 
 \begin_layout Subsection
@@ -456,7 +1515,7 @@ Configurazione
 La configurazione delle entità per il modello è uno degli aspetti più sensibili
  dell'intero sviluppo dell'applicazione MVC, in quanto ogni framework ha
  una propria interpretazione del modello, che differisce sia nei dettagli
- implementativi che a più ad alto livello nella rappresentazione delle entità.
+ implementativi che più ad alto livello nella rappresentazione delle entità.
 \begin_inset Newline newline
 \end_inset
 
@@ -593,11 +1652,12 @@ Al contrario, configurare il modello con Spring è un operazione che può
  risultare complicata.
  Innanzitutto, rispetto a RoR che propone un'unica libreria per definire
  il modello e su questa definisce i propri strumenti e convenzioni, JPA
- è un progetto fortemente modulare.
+ è un progetto fortemente modulare con varie possibili implementazioni dei
+ singoli moduli.
  L'utente deve quindi, ancor prima di implementare le classi, scegliere
- il provider che intende utilizzare e verificarne le particolarità, ad esempio
- per EclipseLink è opportuno comprendere com'è compiuto il caricamento dei
- dati dai sistemi di persistenza.
+ il provider che intende utilizzare (e verificarne le particolarità, ad
+ esempio per EclipseLink è opportuno comprendere com'è compiuto il caricamento
+ dei dati dai sistemi di persistenza).
 \end_layout
 
 \begin_layout Standard
@@ -789,6 +1849,278 @@ Author
  causa della sintassi del C#, decisamente più verbosa di Ruby.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Configurazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supporto per
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Qualità delle classi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+del sistema (DB)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+la definizione E/R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+prodotte.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RubyMine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leggibili e compatte
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leggibili e compatte
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva degli strumenti per la configurazione del modello
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Astrazione
 \end_layout
@@ -813,8 +2145,12 @@ status open
 
 \begin_layout Plain Layout
 
-post_titles = Post.select([:title]) 	.where('lower(title) LIKE ?', "%#{params[:tit
-le]}%")
+post_titles = Post.select([:title])
+\end_layout
+
+\begin_layout Plain Layout
+
+	.where('lower(title) LIKE ?', "%#{params[:title]}%")
 \end_layout
 
 \begin_layout Plain Layout
@@ -848,7 +2184,7 @@ Selezione dei titoli simili in RoR.
 \begin_layout Standard
 Sia in RoR che in MVC5, rispettivamente con l'interfaccia per le query degli
  Active Record e LINQ, è possibile definire delle interrogazioni utilizzando
- metodi e i costrutti del linguaggio, mantenendo le operazioni consistenti
+ metodi e costrutti del linguaggio, mantenendo le operazioni consistenti
  con il livello logico.
  LINQ, essendo implementato in C#, può verificare a compile-time i tipi
  ed in generale è utilizzabile anche in contesti non correlati alla persistenza
@@ -879,6 +2215,11 @@ var postTitles = db.Posts
 \begin_layout Plain Layout
 
 				.Select(p => p.title)
+\end_layout
+
+\begin_layout Plain Layout
+
+				.Take(10)
 \end_layout
 
 \begin_layout Plain Layout
@@ -914,9 +2255,10 @@ Repository
 \end_inset
 
  e la libreria JPA Criteria per la generazione dinamica delle interrogazioni
- JPQL; nonostante sia un metodo utile per implementare le interrogazioni
- più semplici, aumentando di complessità risulta poco scalabile, difficilmente
- mantenibile e leggibile.
+ JPQL.
+ Nonostante sia un metodo utile per implementare le interrogazioni più semplici,
+ aumentando di complessità risulta poco scalabile, difficilmente mantenibile
+ e leggibile.
  Inoltre non sono presenti molte funzionalità di SQL.
 \end_layout
 
@@ -954,6 +2296,456 @@ E' anche possibile definire le proprie query direttamente in JPQL, introducendo
  ad oggetti.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Query
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Persistenza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Evitare
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Controllo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leggibilità
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compattezza
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+linguaggi esterni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RoR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ORM Classico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spring
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ORM Classico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Solo banali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MVC5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ORM Classico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione riassuntiva dell'astrazione del modello e delle librerie per
+ le interrogazioni
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Validazione
 \end_layout
@@ -975,11 +2767,11 @@ not null
 
  per le chiavi primarie.
  Astraendo in maniera così decisa la rappresentazione delle entità è possibile
- compiere scegliere la miglior strategia di validazione ad alto livello,
- eseguendo le operazioni una sola volta, senza dover replicare a livello
- fisico tutte le verifiche; il framework si fa carico dell'intera gestione
- e permette di definire condizioni che verifichino lo stato dell'intero
- dominio, come l'unicità del titolo.
+ scegliere la miglior strategia di validazione ad alto livello, eseguendo
+ le operazioni una sola volta, senza dover replicare a livello fisico tutte
+ le verifiche.
+ Il framework si fa carico dell'intera gestione e permette di definire condizion
+i che verifichino lo stato dell'intero dominio, come l'unicità del titolo.
 \begin_inset Newline newline
 \end_inset
 
@@ -1042,6 +2834,34 @@ EF semplifica la definizione delle entità, non effettua assunzioni sul database
  ma duplica le operazioni di verifica, introducendo potenziali overhead.
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusioni
+\end_layout
+
+\begin_layout Standard
+Complessivamente, la gestione del modello (creazione, CRUD, vincoli e query)
+ in Spring è complicata e poco efficace, probabilmente a fronte della grande
+ libertà di scelta per la sua realizzazione.
+\end_layout
+
+\begin_layout Standard
+Il modello in RoR è compatto e il DB generato ha uno schema leggero, mancando
+ dei vincoli.
+ I modelli in MVC5 risentono, a livello di rappresentazione, della maggiore
+ prolissità di C#, ma godono dei maggiori controlli statici e generano un
+ DB più sicuro, grazie all'inserimento dei vincoli, ma più pesante.
+\end_layout
+
+\begin_layout Standard
+Pertanto, RoR risulta la scelta vincente, dal punto di vista del modello,
+ quando gli sviluppatori sono molto competenti ed il DB è totalmente incapsulato
+ dall'applicazione.
+ Viceversa, MVC5 (EF) risulta vincente, sempre dal punto di vista del modello,
+ quando il DB sia condiviso (ad esempio l'applicazione vada ad insistere
+ sul DB aziendale usato anche da altri applicativi) o gli sviluppatori meno
+ capaci.
+\end_layout
+
 \begin_layout Subsection
 I controlli
 \end_layout
@@ -1062,7 +2882,7 @@ Anche per la definizione dell'instradamento delle richieste le differenze
 \begin_layout Standard
 RoR, rispetto all'interpretazione del modello, fornisce diverse soluzioni
  per risolvere l'instradamento delle richieste HTTP.
- Innanzitutto è esistente una convenzione 
+ Innanzitutto esiste una convenzione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1125,6 +2945,12 @@ Rails.application.routes.draw do
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Instradamento pagine statiche RBlog"
+
+\end_inset
+
 Instradamento delle pagine statiche di RBlog.
 \end_layout
 
@@ -1139,9 +2965,16 @@ Instradamento delle pagine statiche di RBlog.
 \end_layout
 
 \begin_layout Standard
-Nel frammento è definito l'instradamento delle richieste alle pagine statiche
- e definito un simbolo per semplificare la definizione di collegamenti e
- azioni che sfruttano la ridirezione.
+Nel frammento 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Instradamento pagine statiche RBlog"
+
+\end_inset
+
+ è definito l'instradamento delle richieste alle pagine statiche e definito
+ un simbolo per semplificare la definizione di collegamenti e azioni che
+ sfruttano la ridirezione.
 \begin_inset Newline newline
 \end_inset
 
@@ -1150,7 +2983,15 @@ Nel frammento è definito l'instradamento delle richieste alle pagine statiche
 
 \begin_layout Standard
 Anche MVC5 prevede l'utilizzo di convenzioni per la risoluzione dell'instradamen
-to e la possibilità di definire il proprio pattern.
+to e la possibilità di definire il proprio pattern, come illustrato in listato
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Pattern CSBlog"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1184,7 +3025,13 @@ l }             );
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pattern per la risoluzione dell'instradamento in CSBlog.
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Pattern CSBlog"
+
+\end_inset
+
+per la risoluzione dell'instradamento in CSBlog.
 \end_layout
 
 \end_inset
@@ -1196,7 +3043,7 @@ Pattern per la risoluzione dell'instradamento in CSBlog.
 
 Al contrario l'instradamento in Spring non è risolto in funzione di convenzioni
  esistenti né è gestito in maniera separata dai controlli, ma è implementato
- tramite apposite annotazioni.
+ tramite apposite annotazioni all'interno dei singoli controlli.
 \begin_inset Newline newline
 \end_inset
 
@@ -1204,10 +3051,12 @@ Al contrario l'instradamento in Spring non è risolto in funzione di convenzioni
 \end_layout
 
 \begin_layout Standard
-Sia RoR che MVC5 propongono soluzioni valide: le funzionalità in Ruby forniscono
- più libertà all'utilizzatore e maggior potere espressivo, mentre in MVC5
- è possibile configurare il pattern globale dell'applicazione invece che
- utilizzare un metodo imposto.
+Complessivamente, sia RoR che MVC5 propongono soluzioni valide: le funzionalità
+ in Ruby forniscono più libertà all'utilizzatore e maggior potere espressivo,
+ mentre in MVC5 è possibile configurare il pattern globale dell'applicazione
+ invece che utilizzare un metodo imposto.
+ Spring risulta, invece, macchinoso da usare e il codice prodotto non isola
+ correttamente l'aspetto di instradamento.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1215,8 +3064,8 @@ Implementazione
 \end_layout
 
 \begin_layout Standard
-In RoR esistono numerose convenzione che permettono di implementare controlli
- minimali.
+In RoR esistono numerose convenzione che minimizzano l'implementazione dei
+ controlli minimali.
  Nel listato 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1225,7 +3074,7 @@ reference "lis:Show RBlog"
 \end_inset
 
  è evidente come sia conveniente per l'utente aderire alle pratiche esistenti
- -addirittura l'attributo 
+ (addirittura l'attributo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1233,7 +3082,7 @@ reference "lis:Show RBlog"
 \begin_inset Quotes erd
 \end_inset
 
- è definito solo per comodità-.
+ è definito solo per comodità).
 \end_layout
 
 \begin_layout Standard
@@ -1282,9 +3131,9 @@ Visualizzazione di un singolo post in RBlog.
 
 \begin_layout Standard
 Anche in MVC5 la possibilità di utilizzare un pattern per l'instradamento
- semplifica la definizione delle azioni, implementando esclusivamente la
- logica dell'operazione senza dover configurare eccessivamente aspetti legati
- al protocollo HTTP.
+ semplifica la definizione delle azioni, richiedendo di implementare esclusivame
+nte la logica dell'operazione senza dover configurare eccessivamente aspetti
+ legati al protocollo HTTP.
 \begin_inset Newline newline
 \end_inset
 
@@ -1473,6 +3322,23 @@ L'unico vantaggio di Spring su MVC5 è di permettere l'implementazione di
 \end_layout
 
 \begin_layout Subsubsection*
+Conclusioni
+\end_layout
+
+\begin_layout Standard
+Dal punto di vista dei controlli, RoR risulta chiaramente il migliore, supportan
+do una chiara divisione dei diversi aspetti e permettendo di scrivere codice
+ molto compatto, grazie all'uso di convenzioni.
+\end_layout
+
+\begin_layout Standard
+La totale mancanza di convenzioni in Spring, lo relega, dal punto di vista
+ dei controlli, alla posizione di coda, mentre MVC5, pur essendo più prolisso
+ di RoR e non forzando una specifica strutturazione con metodi di servizio
+ risulta poco efficace.
+\end_layout
+
+\begin_layout Subsubsection*
 Helper e Service
 \end_layout
 
@@ -1592,6 +3458,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "Titolo di un post con Thymeleaf."
+
+\end_inset
+
 Titolo di un post con Thymeleaf.
 \end_layout
 
@@ -1637,14 +3509,28 @@ if-else
 \begin_inset Quotes erd
 \end_inset
 
-.
+ per l'implementazione di logica e non solo a supporto della visualizzazione.
 \end_layout
 
 \begin_layout Standard
 Potendo posticipare alla generazione delle viste una piccola porzione della
  logica dell'applicazione, le azioni di RoR e MVC5 spesso forniscono esclusivame
 nte l'oggetto che è rappresentato nella vista, come il singolo post di cui
- mostrare gli attributi.
+ mostrare gli attributi, negli esempi in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Titolo di un post con Thymeleaf."
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Titolo di un post con ERB."
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -1673,7 +3559,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Titolo di un post con ERB.
+Titolo di un post con ERB
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Titolo di un post con ERB."
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -1736,8 +3629,8 @@ Inoltre Thymeleaf, introducendo le espressioni all'interno degli attributi,
  Tutta la gestione degli errori è effettuata a run-time tramite eccezioni.
  Se per evitare di anticipare troppa logica nelle azioni si sceglie di implement
 are un'espressione articolata in Thymeleaf, è possibile trovarsi nella scomoda
- posizione di ddecifrare lo stack-trace delle eccezioni per bilanciare una
- parentesi.
+ posizione di dover decifrare lo stack-trace delle eccezioni per bilanciare
+ una parentesi.
 \end_layout
 
 \begin_layout Standard
@@ -1751,11 +3644,20 @@ Al contrario utilizzando un template engine come ERB o Razor, è possibile
 
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusioni
+\end_layout
+
 \begin_layout Standard
 Dovendo indicare il miglior template engine, credo che la sintassi di Ruby
  sia particolarmente adatta per operazioni di scripting come la definizione
  di viste dinamiche, inoltre gli helper utilizabili in ERB hanno un'interfaccia
  più leggibile e sono meglio documentati delle funzionalità di Razor.
+\end_layout
+
+\begin_layout Standard
+La difficoltà di uso di Thymeleaf lo rendono poco produttivo e quindi la
+ scelta meno desiderabile, nonostante sia il più aderente al modello teorico.
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -1764,6 +3666,12 @@ Dovendo indicare il miglior template engine, credo che la sintassi di Ruby
 
 \begin_layout Section
 ATDD
+\end_layout
+
+\begin_layout Standard
+In questa sezione si confrontano i tre framework dal punto di vista del
+ supporto fornito alla definizione, implementazione ed esecuzione dei test
+ di accettazione.
 \end_layout
 
 \begin_layout Subsection
@@ -1776,19 +3684,19 @@ Nel corso della tesi sono stati utilizzati tre framework per il BDD: le
 \end_layout
 
 \begin_layout Standard
-Attualmente, Cucumber è il framework per il BDD più diffuso ed utilizzato,
- anche grazie a Gherkin, il DSL per la definizione dei test.
+Tutti si basano su Gherkin, il DSL per la definizione dei test leggibili
+ dagli utenti finali e strutturati in passi implementati indipendentemente.
  Il linguaggio per sviluppare i test di accettazione è ricco di funzionalità,
  ad esempio è possibile definire dei contesti comuni per le funzionalità,
  etichette per poter definire delle categorie di scenari o richiedere l'esecuzio
-ne di particolari callback, la possibilità parametrizzare i test tramite
- tabelle e molto altro.
+ne di particolari callback, parametrizzare i test tramite tabelle e molto
+ altro.
 \end_layout
 
 \begin_layout Standard
 L'unico elemento sintattico che stona con la definizione di DSL Business
- Readable è l'uso delle annotazioni, che introducono una notazione tecnica,
- la cui leggibilità dipende dallo sviluppatore.
+ Readable è l'uso dei tag, che introducono una notazione tecnica, la cui
+ leggibilità dipende dallo sviluppatore.
 \begin_inset Newline newline
 \end_inset
 
@@ -1796,7 +3704,8 @@ L'unico elemento sintattico che stona con la definizione di DSL Business
 \end_layout
 
 \begin_layout Standard
-Cucumber, nella versione originale per Ruby, e Cucumber-JVM sono praticamente
+Attualmente, Cucumber è il framework per il BDD più diffuso ed utilizzato.
+ Cucumber nella versione originale per Ruby, e Cucumber-JVM sono praticamente
  equivalenti nell'implementazione del framework, anche se sfruttano elementi
  sintattici propri dei rispettivi linguaggi.
 \begin_inset Newline newline
@@ -1806,9 +3715,9 @@ Cucumber, nella versione originale per Ruby, e Cucumber-JVM sono praticamente
 \end_layout
 
 \begin_layout Standard
-SpecFlow utilizza Gherkin come Cucumber, ma dà un'interpretazione più rigida
- del processo di associazione passo - implementazione, richiedendo la consistenz
-a del tipo utilizzato ed introducendo il meccanismo degli 
+SpecFlow dà un'interpretazione più rigida del processo di associazione passo
+ - implementazione, richiedendo la consistenza del tipo utilizzato ed introducen
+do il meccanismo degli 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1936,7 +3845,15 @@ Completo
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1945,7 +3862,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1954,7 +3878,7 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+Completo
 \end_layout
 
 \end_inset
@@ -1983,7 +3907,15 @@ Completo
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1992,7 +3924,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2001,7 +3940,7 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+Parziale
 \end_layout
 
 \end_inset
@@ -2030,7 +3969,14 @@ Completo
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2039,7 +3985,15 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2048,7 +4002,7 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+Completo
 \end_layout
 
 \end_inset
@@ -2062,7 +4016,7 @@ Si
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Confronto breve fra i framework per il BDD.
+Confronto riassuntivo fra i framework per il BDD.
 \end_layout
 
 \end_inset
@@ -2082,18 +4036,18 @@ Web Automation
 \begin_layout Standard
 Prima di analizzare le librerie degli strumenti utilizzati per automatizzare
  la navigazione web, è opportuno fare una precisazione sulla natura dei
- progetti.
+ loro progetti.
 \end_layout
 
 \begin_layout Standard
 Capybara e Coypu sono progetti open-source, disponibili su GitHub e mantenuti
  grazie agli sforzi degli autori e dei singoli sviluppatori che individuano
  bug ed effettuano correzioni.
- Entrambe i progetti sono attivi, la comunità di sviluppatori di Coypu è
- però più piccola e meno partecipe rispetto a quella di Capybara, ed esistenti
- da diversi anni, Capybara nasce nel 2009 e Coypu nel 2010.
+ Entrambe i progetti sono attivi, anche se la comunità di sviluppatori di
+ Coypu è più piccola e meno partecipe rispetto a quella di Capybara, ed
+ esistenti da diversi anni, Capybara nasce nel 2009 e Coypu nel 2010.
  Coypu però non è una libreria implementata da zero, ma sfrutta le funzionalità
- di Selenium per definire un progetto a più alto livello.
+ di Selenium per definire un livello di astrazione superiore.
 \begin_inset Newline newline
 \end_inset
 
@@ -2205,7 +4159,14 @@ Capybara
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2214,7 +4175,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2223,7 +4191,15 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2232,7 +4208,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2261,7 +4244,14 @@ Coypu
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2270,7 +4260,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2279,7 +4276,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2288,7 +4292,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2317,7 +4328,15 @@ Selenium
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2326,7 +4345,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2335,7 +4361,15 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2344,7 +4378,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2426,7 +4467,7 @@ Python PHP Perl JS
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Confronto breve fra le librerie.
+Confronto riassuntiva fra le librerie.
 \end_layout
 
 \end_inset
@@ -2480,7 +4521,7 @@ Options
 
  di Coypu.
  Selenium al contrario introduce una gerarchia di classi articolata e prevede
- diverse enumerazioni e classi factory per navifare nel browser.
+ diverse enumerazioni e classi factory per navigare nel browser.
 \begin_inset Newline newline
 \end_inset
 
@@ -2493,8 +4534,8 @@ Coypu e Capybara cercano di astrarre la navigazione dell'applicazione web
  sul contenuto testuale degli elementi e fornendo gli strumenti per definire
  espressioni regolari o stringhe parziali.
  Al contrario Selenium opta per un'implementazione più a basso livello,
- non è presente il selettore sul contenuto testuale, e l'utilizzo del pattern
- Page Object
+ ad esempio non è presente il selettore sul contenuto testuale, e per l'utilizzo
+ del pattern Page Object
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PageObject"
@@ -2541,11 +4582,10 @@ Implementazione del pattern Page Object.
 \end_layout
 
 \begin_layout Standard
-Un PO è un'astrazione di una pagina webin generale può rappresentare qualsiasi
+Un PO è un'astrazione di una pagina web, o più in generale di qualsiasi
  interfaccia grafica, effettuata tramite il paradigma ad oggetti.
  All'interno della classe sono descritte, tramite dei metodi, le funzionalità
- offerte dalla pagina, utilizzate dai test per definire effettuare la navigazion
-e.
+ offerte dalla pagina, utilizzate dai test per effettuare la navigazione.
  Il pattern permette di fattorizzare la definizione delle operazioni, rendendo
  il codice più mantenibile e rimuovendo dall'implementazione dei test ogni
  dettaglio a basso livello della pagina.
@@ -2646,7 +4686,14 @@ Capybara
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2664,7 +4711,15 @@ Si, alto livello
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2673,7 +4728,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2693,7 +4755,14 @@ Selenium
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2702,7 +4771,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2711,7 +4787,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2787,7 +4870,14 @@ Coypu
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2944,7 +5034,8 @@ style
 \end_inset
 
  è l'unico metodo nativo per ottenere informazioni riguardo lo stile di
- un tag HTML, oppure è possibile implementare uno script JQuery.
+ un tag HTML.
+ Però è possibile implementare script JQuery per ulteriori modalità d'accesso.
  Selenium invece implementa un metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -3059,7 +5150,15 @@ Valore serializzato
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3188,12 +5287,18 @@ Asincronia
 
 \begin_layout Standard
 Per la gestione dei comportamenti asincroni sono state utilizzate due tecniche
- differenti: tramite attese implicite, implementate in tutte le librerie,
- si assume che ogni elemento sia potenzialmente il risultato di un'operazione
- asincrona ed è fissato un tempo massimo di attesa ed una frequenza di polling,
- mentre con le attese esplicite è definite una condizione da verificare
- e si attende entro un certo tempo massimo che lo stato della pagina coincida
- con l'asserzione.
+ differenti: 
+\end_layout
+
+\begin_layout Itemize
+tramite attese implicite, implementate in tutte le librerie, si assume che
+ ogni elemento sia potenzialmente il risultato di un'operazione asincrona
+ ed è fissato un tempo massimo di attesa ed una frequenza di polling;
+\end_layout
+
+\begin_layout Itemize
+tramite attese esplicite si attende che lo stato della pagina coincida con
+ l'asserzione entro un certo tempo massimo.
 \begin_inset Newline newline
 \end_inset
 
@@ -3356,7 +5461,15 @@ Capybara
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/x.png
+	display false
+	scale 15
+	BoundingBox 20bp 20bp 108bp 108bp
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3365,7 +5478,14 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3394,7 +5514,14 @@ Selenium
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3403,7 +5530,14 @@ Si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3479,7 +5613,14 @@ Tramite Selenium
 \begin_inset Text
 
 \begin_layout Plain Layout
-Si
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/tick.jpg
+	display false
+	scale 10
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3524,10 +5665,10 @@ Manutenibilità
 
 \begin_layout Standard
 Utilizzando selettori legati alla struttura, sia che siano sul CSS o espressi
- tramite XPath, facilita la definizione di test fragili.
- Per evitare costanti operazioni di modifica dei test è opportuno utilizzare
- selettori più ad alto livello, come sul testo, soprattutto se, come in
- MVC5, è possibile fattorizzare le espressioni testuali.
+ tramite XPath, si facilita la definizione di test fragili.
+ Per evitare costanti operazioni di modifica dei test è quindi opportuno
+ utilizzare selettori più ad alto livello, come sul testo, soprattutto se,
+ come in MVC5, è possibile fattorizzare le espressioni testuali.
 \begin_inset Newline newline
 \end_inset
 
@@ -3548,7 +5689,8 @@ rspec-expectations
 \begin_inset Quotes erd
 \end_inset
 
- di RSpec, che attraverso Ruby, la segnatura del metodo 
+ di RSpec, che permette di definire metodi compatti e leggibili attraverso
+ Ruby, sfruttare la segnatura del metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3556,7 +5698,7 @@ expect
 \begin_inset Quotes erd
 \end_inset
 
-, la presenza di numerosi metodi per la definizione di condizioni, come
+ e la presenza di numerosi metodi per la definizione di condizioni, come
  
 \begin_inset Quotes eld
 \end_inset
@@ -3565,8 +5707,7 @@ raise_error
 \begin_inset Quotes erd
 \end_inset
 
- per la verifica di comportamenti eccezionali, permette di definire metodi
- compatti e leggibili.
+ per la verifica di comportamenti eccezionali.
 \begin_inset Newline newline
 \end_inset
 
@@ -3610,10 +5751,10 @@ Shows
 
 \begin_layout Standard
 JUnit, che utilizzato in isolamento è uno strumento completo, intuitivo
- e potente, con Cucumber non esprime a pieno le sue potenzialità: non è
- infatti possibile utilizzare nessuna funzionalità esistente per la verifica
- delle eccezioni, costringendo l'utente a provvedere manualmente, sviluppando
- test eccessivamente complessi.
+ e potente, con Cucumber non esprime a pieno le sue potenzialità.
+ Non è, infatti, possibile utilizzare nessuna funzionalità esistente per
+ la verifica delle eccezioni, costringendo l'utente a provvedere manualmente,
+ sviluppando test eccessivamente complessi.
 \end_layout
 
 \begin_layout Standard
@@ -3822,10 +5963,12 @@ Potendo scegliere lo stack di applicazioni per definire ed implementare
 \end_layout
 
 \begin_layout Standard
-Concretamente invece, Coypu infatti non è utilizzabile in Ruby, gli strumenti
- utilizzati per sviluppare RBlog rappresentano la miglior soluzione: si
- integrano perfettamente fra loro e permettono di implementare test in maniera
- estremamente leggibile e in un numero ridotto di righe di codice.
+Purtroppo Coypu non è utilizzabile in Ruby, per cui nelle scelte realistiche
+ bisogna rassegnarsi ad avere elementi sub-ottimali nello stack.
+ Gli strumenti utilizzati per sviluppare RBlog rappresentano la miglior
+ soluzione: si integrano perfettamente fra loro e permettono di implementare
+ test in maniera estremamente leggibile e in un numero ridotto di righe
+ di codice.
 \end_layout
 
 \begin_layout Standard
