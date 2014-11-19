@@ -78,8 +78,20 @@ Conclusione
 I framework
 \end_layout
 
+\begin_layout Standard
+In questa prima sessione sono analizzate gli ambienti di sviluppo e le principal
+i funzionalità dei framework utilizzati, ed effettuato un confronto.
+\end_layout
+
 \begin_layout Subsection
 Produttività
+\end_layout
+
+\begin_layout Standard
+Una delle caratteristiche fondamentali per valutare un framework e l'ambiente
+ di sviluppo scelto è la produttività, intesa come semplicità di gestire
+ il framework e le tecnologie necessarie per il progetto e l'immediatezza
+ della configurazione.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -110,7 +122,7 @@ Seguendo lo stesso ordine dei capitoli, il primo IDE utilizzato è RubyMine,
 
 \begin_layout Standard
 Lo sviluppo di RubyMine è costante, nel corso della tesi sono stati installati
- diversi aggiornamenti, gestiti internamente all'IDE, senza necessità di
+ diversi aggiornamenti gestiti internamente all'IDE, senza necessità di
  scaricare patch e dover riconfigurare il proprio ambiente di sviluppo.
 \end_layout
 
@@ -135,10 +147,9 @@ Pivotal Software
 
 , l'azienda che cura lo sviluppo dei diversi prodotti per Spring.
  Come già descritto all'interno del relativo capitolo, solo il plugin è
- sviluppato dagli autori di Spring, che utilizzano come supporto le versioni
- di Eclipse per JavaEE, uno dei diversi progetti open-source sviluppati
- interamente da una comunità di sviluppatori attiva e numerosa, che partecipano
- a titolo gratuito.
+ sviluppato dagli autori di Spring, mentre il resto dell'applicazione è
+ una versione di Eclipse per JavaEE, uno dei diversi progetti open-source
+ sviluppati interamente da una comunità di sviluppatori attiva e numerosa.
 \end_layout
 
 \begin_layout Standard
@@ -148,9 +159,8 @@ o STS non è un progetto open-source, ma è comunque distribuito a titolo
 \end_layout
 
 \begin_layout Standard
-Il metodo preferito per rilasciare aggiornamenti di Eclipse e di STS è fornire
- direttamente la nuova versione del prodotto, senza aggiornarne le funzionalità
- internamente.
+Per rilasciare aggiornamenti Eclipse e STS forniscono direttamente la nuova
+ versione del prodotto, senza aggiornarne le funzionalità internamente.
  Questo processo può essere scomodo nel caso in cui sia necessario installare
  plugin specifici per lo sviluppo non inclusi di default nel software.
 \begin_inset Newline newline
@@ -175,9 +185,9 @@ Come descritto nel relativo capitolo, VS è un prodotto estremamente professione
 \begin_layout Standard
 La versione utilizzata per lo sviluppo è una licenza accademica ottenuta
  tramite la convenzione DreamSpark fra Microsoft ed Unige.
- Acquistare una copia di VS è estremamente oneroso, ma sono anche previste
- versioni decisamente più essenziali come Visual Studio Express 2013, che
- è disponibile gratuitamente.
+ Acquistare una copia di VS è decisamente oneroso, ma sono anche previste
+ versioni essenziali come Visual Studio Express 2013, che è disponibile
+ gratuitamente.
 \begin_inset Newline newline
 \end_inset
 
@@ -185,7 +195,7 @@ La versione utilizzata per lo sviluppo è una licenza accademica ottenuta
 \end_layout
 
 \begin_layout Standard
-Nonostante VS sia al momento eseguibile sono utilizzando un sistema operativo
+Nonostante VS sia al momento eseguibile solo utilizzando un sistema operativo
  Windows, sia più esigente in termini di requisiti di sistema e sia a pagamento,
  ritengo che sia il prodotto più completo e professionale fra quelli utilizzati.
 \end_layout
@@ -206,9 +216,19 @@ Implementare un'applicazione web tramite un framework MVC comporta l'utilizzo
 \begin_layout Standard
 RubyMine è un'ambiente di sviluppo specifico per implementare applicazioni
  RoR ed include il supporto a tutti i linguaggi comunemente utilizzati in
- ambito web, fra i quali spicca CoffeeScript che permette di scrivere funzionali
-tà asincrone in maniera compatta che compilate generano codice JavaScript,
- e la possibilità di utilizzare Sass, per estendere i propri fogli di stile.
+ ambito web ed anche a nuove tecnologie
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Fra i linguaggi supportati spicca CoffeeScript che permette di scrivere
+ codice asincrono utilizzando una sintassi meno verbosa e generare codice
+ JavaScript come risultato della compilazione.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -234,8 +254,8 @@ STS si basa sulla versione per Java EE di Eclipse, che anche nella versione
 
 \begin_layout Standard
 Inoltre Spring è un framework estremamente modulare, all'interno del quale
- lo sviluppatore può scegliere fra molte tecnologie esistenti per uno stesso
- ambito.
+ lo sviluppatore ha la libertà di scegliere fra diversi strumenti per uno
+ stesso scopo.
  Probabilmente a causa della natura open-source dell'IDE, i plugin presentano
  spesso errori nell'integrazione con l'ambiente di sviluppo e sono carenti
  di funzionalità non essenziali ma utili, come l'estensione di Cucumber-JVM,
@@ -271,10 +291,9 @@ Come descritto nel capitolo su MVC5, utilizzando VS sono presenti delle
  di eseguire più di un processo.
  Al contrario, RubyMine è meno rigido e permette di monitorare il debug
  di un numero arbitrario di processi, che è una caratteristica utile per
- effettuare test che richiedono che il server web e l'applicazione siano
- funzionanti: ad esempio è una pratica comune effettuare stress test per
- ottenere indicazioni sulle performance dell'applicazione, utilizzando strumenti
- come Gatling
+ effettuare test che richiedono l'esecuzione del server web e dell'applicazione:
+ ad esempio è una pratica comune effettuare stress test per ottenere indicazioni
+ sulle performance, utilizzando strumenti come Gatling
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Gatling"
@@ -294,7 +313,7 @@ key "RubyMine Parallel Test Execution"
 \end_inset
 
 , permettendo anche di ottenere una valutazione indicativa delle performance
- dell'applicazione oltre che verificarne le funzionalità.
+ di una singola funzionalità.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -321,8 +340,8 @@ In RubyMine la prima generazione di una nuova applicazione è effettuata
 
 \begin_layout Standard
 Per definire le componenti del proprio progetto è possibile utilizzare tramite
- l'IDE le funzionalità a riga di comando di RoR, anche se è necessario specifica
-re le opzioni in maniera simile all'esecuzione tramite console, che generano
+ l'IDE le funzionalità a riga di comando di RoR -anche se è necessario specifica
+re le opzioni in maniera simile all'esecuzione tramite console- che generano
  la struttura delle componenti e forniscono all'utente una prima versione
  da personalizzare.
 \end_layout
@@ -462,14 +481,27 @@ status open
 
 \begin_layout Plain Layout
 
-class Post < ActiveRecord::Base 	belongs_to :author
+class Post < ActiveRecord::Base
 \end_layout
 
 \begin_layout Plain Layout
 
-	validates :title, presence: {message: 'Titolo mancante'} 	validates :title,
- length: {minimum: 5, 	                           too_short: "Il titolo
- deve essere almeno di 5 caratteri",
+	belongs_to :author
+\end_layout
+
+\begin_layout Plain Layout
+
+	validates :title, presence: {message: 'Titolo mancante'}
+\end_layout
+
+\begin_layout Plain Layout
+
+	validates :title, length: {minimum: 5,
+\end_layout
+
+\begin_layout Plain Layout
+
+					too_short: "Il titolo deve essere almeno di 5 caratteri",
 \end_layout
 
 \begin_layout Plain Layout
@@ -484,8 +516,17 @@ class Post < ActiveRecord::Base 	belongs_to :author
 
 \begin_layout Plain Layout
 
-							uniqueness: { case_sensitive: false, 	                        message:
- 'Esiste già un post con questo titolo' }
+							uniqueness: {
+\end_layout
+
+\begin_layout Plain Layout
+
+								case_sensitive: false,
+\end_layout
+
+\begin_layout Plain Layout
+
+								message: 'Esiste già un post con questo titolo' }
 \end_layout
 
 \begin_layout Plain Layout
@@ -513,8 +554,7 @@ Frammento della classe Post di RBlog.
 
 \begin_layout Standard
 Sfruttando ampiamente la sintassi di Ruby, le entità sono rappresentate
- attraverso una notazione ricca e versatile, ma estremamente leggibile e
- mantenibile.
+ attraverso una notazione versatile, estremamente leggibile e mantenibile.
  Rispetto a Spring e VS, le classi 
 \begin_inset Quotes eld
 \end_inset
@@ -546,7 +586,7 @@ Al contrario, configurare il modello con Spring è un operazione che può
  il modello e su questa definisce i propri strumenti e convenzioni, JPA
  è un progetto fortemente modulare.
  L'utente deve quindi, ancor prima di implementare le classi, scegliere
- il provider che intende utilizzare e verificare il comportamento, ad esempio
+ il provider che intende utilizzare e verificarne le particolarità, ad esempio
  per EclipseLink è opportuno comprendere com'è compiuto il caricamento dei
  dati dai sistemi di persistenza.
 \end_layout
@@ -738,8 +778,8 @@ Author
 \begin_inset Quotes erd
 \end_inset
 
- paragonabili alle entità di RoR, ma meno a meno espressive e leggibili,
- a causa della sintassi del C#, decisamente più verbosa di Ruby.
+ sono paragonabili alle entità di RoR, ma meno espressive e leggibili, a
+ causa della sintassi del C#, decisamente più verbosa di Ruby.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -799,8 +839,8 @@ Selezione dei titoli simili in RoR.
 \end_layout
 
 \begin_layout Standard
-Sia in RoR che in MVC5, rispettivamente con l'interfaccia delle query per
- gli Active Record e LINQ, è possibile definire delle interrogazioni utilizzando
+Sia in RoR che in MVC5, rispettivamente con l'interfaccia per le query degli
+ Active Record e LINQ, è possibile definire delle interrogazioni utilizzando
  metodi e i costrutti del linguaggio, mantenendo le operazioni consistenti
  con il livello logico.
  LINQ, essendo implementato in C#, può verificare a compile-time i tipi
@@ -871,7 +911,7 @@ Repository
  JPQL; nonostante sia un metodo utile per implementare le interrogazioni
  più semplici, aumentando di complessità risulta poco scalabile, difficilmente
  mantenibile e leggibile.
- Inoltre non sono presenti molte funzionalità del SQL.
+ Inoltre non sono presenti molte funzionalità di SQL.
 \end_layout
 
 \begin_layout Standard
@@ -953,8 +993,8 @@ javax.validation.contraints
 \end_inset
 
  per eseguire controlli simili anche a livello logico, con le quali, non
- mantenendo il controllo dell'intero dominio, non è possibile effettuare
- dei controlli in funzione delle entità già presenti.
+ mantenendo il controllo dell'intero dominio, non è possibile però effettuare
+ dei controlli in funzione delle entità già esistenti.
 \begin_inset Newline newline
 \end_inset
 
@@ -966,10 +1006,10 @@ L'EF di MVC5 mantiene una via intermedia fra le due implementazioni descritte.
  Per validare un'entità è possibile utilizzare gli attributi disponibili,
  che eseguiranno l'operazione di validazione sia a livello logico sia sul
  database.
- Ovviamente il caso di CSBlog è particolare rispetto alle altre due implementazi
-oni, in quanto i vincoli sul database, la rappresentazioni delle chiavi
- esterne e primarie e le operazioni di propagazione sono stati definiti
- prima del modello dell'applicazione.
+ Il caso di CSBlog è particolare rispetto alle altre due implementazioni,
+ in quanto i vincoli sul database, la rappresentazioni delle chiavi esterne
+ e primarie e le operazioni di propagazione sono stati definiti prima del
+ modello dell'applicazione.
 \begin_inset Newline newline
 \end_inset
 
@@ -1172,8 +1212,8 @@ Implementazione
 \end_layout
 
 \begin_layout Standard
-In RoR esistono numerose convenzione che semplificano permettono di implementare
- controlli minimali.
+In RoR esistono numerose convenzione che permettono di implementare controlli
+ minimali.
  Nel listato 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1243,17 +1283,21 @@ Anche in MVC5 la possibilità di utilizzare un pattern per l'instradamento
  semplifica la definizione delle azioni, implementando esclusivamente la
  logica dell'operazione senza dover configurare eccessivamente aspetti legati
  al protocollo HTTP.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Rispetto all'implementazione di RoR, nell'azione del listato
+Rispetto all'implementazione di RoR, nell'azione di MVC5 del listato
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lis:Show CSBlog"
 
 \end_inset
 
- è però necessario gestire esplicitamente il parametro 
+ è necessario gestire esplicitamente il parametro 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1346,8 +1390,8 @@ Visualizzazione di un singolo post in CSBlog.
 
 \begin_layout Standard
 Spring anche per i controlli non specifica alcuna convenzione ed è quindi
- necessario dichiarare ogni parametro tramite le annotazioni, articolate
- e poco leggibili, che appesantiscono notevolmente la definizione del metodo.
+ necessario dichiarare ogni parametro tramite annotazioni, articolate e
+ poco leggibili, che appesantiscono notevolmente la definizione del metodo.
  Inoltre la necessità di utilizzare parametri di output come Model, complica
  ulteriormente l'implementazione.
 \end_layout
@@ -1482,7 +1526,9 @@ In Spring, oltre ai ruoli
 \end_inset
 
 .
- I servizi sono utilizzati, tramite la DI e l'annotazione 
+ I servizi sono utilizzati per fattorizzare la logica dell'accesso al modello
+ da parte dei controlli e semplificarne le azioni, e istanziati tramite
+ la DI e l'annotazione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1490,8 +1536,7 @@ In Spring, oltre ai ruoli
 \begin_inset Quotes erd
 \end_inset
 
-, per fattorizzare la logica dell'accesso al modello da parte dei controlli
- e semplificarne le azioni.
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -1569,9 +1614,9 @@ Dal punto di vista teorico del pattern MVC, le viste non dovrebbero contenere
 
 \begin_layout Standard
 Thymeleaf definisce una grande varietà di attributi, il cui uso è orientato
- principalmente alla lettura delle espressioni, semplificando lo sviluppo
- di viste che siano il più lineari possibili, ma sposta la complessità nelle
- azioni dei controller che devono fornire più parametri.
+ principalmente alla lettura ed interpretazione delle espressioni, semplificando
+ lo sviluppo di viste che siano il più lineari possibili, ma sposta la complessi
+tà nelle azioni dei controller che devono fornire più parametri.
 \end_layout
 
 \begin_layout Standard
@@ -1597,9 +1642,9 @@ if-else
 \end_layout
 
 \begin_layout Standard
-Potendo posticipare all'analisi delle viste una piccola porzione della logica
- dell'applicazione, le azioni di RoR e MVC5 spesso forniscono esclusivamente
- l'oggetto che è rappresentato nella vista, come il singolo post di cui
+Potendo posticipare alla generazione delle viste una piccola porzione della
+ logica dell'applicazione, le azioni di RoR e MVC5 spesso forniscono esclusivame
+nte l'oggetto che è rappresentato nella vista, come il singolo post di cui
  mostrare gli attributi.
 \begin_inset Newline newline
 \end_inset
@@ -1694,7 +1739,7 @@ Inoltre Thymeleaf, introducendo le espressioni all'interno degli attributi,
  Tutta la gestione degli errori è effettuata a run-time tramite eccezioni.
  Se per evitare di anticipare troppa logica nelle azioni si sceglie di implement
 are un'espressione articolata in Thymeleaf, è possibile trovarsi nella scomoda
- posizione di decifrare lo stack-trace delle eccezioni per bilanciare una
+ posizione di ddecifrare lo stack-trace delle eccezioni per bilanciare una
  parentesi.
 \end_layout
 
@@ -1712,7 +1757,7 @@ Al contrario utilizzando un template engine come ERB o Razor, è possibile
 \begin_layout Standard
 Dovendo indicare il miglior template engine, credo che la sintassi di Ruby
  sia particolarmente adatta per operazioni di scripting come la definizione
- di viste dinamiche, inoltre gli helper disponibili hanno un'interfaccia
+ di viste dinamiche, inoltre gli helper utilizabili in ERB hanno un'interfaccia
  più leggibile e sono meglio documentati delle funzionalità di Razor.
 \end_layout
 
