@@ -24,6 +24,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -175,40 +176,146 @@ Il principale concetto che definisce l'architettura MVC è la separazioni
 \end_layout
 
 \begin_layout Standard
-Il modello è la prima componente individuabile, descrive il dominio del
- problema in maniera indipendente dalla logica e dalle interfacce offerte
- all'utente; in maniera più specifica, nel contesto delle applicazioni web,
- il modello è definito da uno o più strumenti per garantire la persistenza,
- potenzialmente etereogenei, che garantiscono il mantenimento delle informazioni
- del dominio e dall'interfaccia per accedere a tali dati.
+Il modello è la prima componente individuabile, descrive il dominio in maniera
+ indipendente dalla logica e dalle interfacce offerte all'utente; in maniera
+ più specifica, nel contesto delle applicazioni web, il modello è definito
+ da uno o più strumenti per garantire la persistenza, potenzialmente eterogenei.
 \end_layout
 
 \begin_layout Standard
 Tramite le viste il sistema fornisce all'utente una rappresentazione delle
- informazioni presenti, come la pagina web relativa ad un articolo su un
- blog.
+ informazioni presenti, e nel contesto di un'applicazione web rappresenta
+ la pagina visualizzata tramite il browser, caratterizzata da elementi attivi
+ che permettono l'interazione all'utente.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Introduzione/MVC-Process.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Dipendenze MVC"
+
+\end_inset
+
+Dipendenze essenziali nel modello MVC.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 I controlli rappresentano le entità che si occupano di ricevere ed interpretare
- le azioni compiute dall'utente modificando di conseguenza lo stato delle
- altre due componenti.
- Il controllo rappresenta la componente fondamentale per l'interconnessione
- dell'architettura e si presenta in una duplice accezione: dalla prospettiva
- del modello dovrebbe raggruppare le azioni 
-\begin_inset Quotes sld
+ le azioni compiute dall'utente.
+ Nella definizione teorica del pattern MVC, come schematizzato nella figura
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Dipendenze MVC"
+
 \end_inset
 
-complesse
-\begin_inset Quotes srd
+, i controlli manipolano il modello ma non interagiscono con le viste, che
+ si limitano a osservare lo stato del dominio e a reagire ad eventuali cambiamen
+ti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Introduzione/mvp.png
+	scale 60
+
 \end_inset
 
- che possono essere effettuate sul dominio e dovrebbe essere indipendente
- dagli aspetti tecnologici legati alle interfacce; dalla prospettiva dell'interf
-accia utente si incarica della gestione degli eventi, il click del mouse
- come l'invio di dati tramite un form HTML, e deve fornire un'interfaccia
- compatibile con l'insieme delle operazioni eseguibili il più linearmente
- possibile, evitando di dover sovraccaricare le viste di eccessiva logica.
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Model-View-Presenter"
+
+\end_inset
+
+Model View Presenter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al contrario, la maggior parte dei framework 
+\begin_inset Quotes eld
+\end_inset
+
+MVC
+\begin_inset Quotes erd
+\end_inset
+
+ attuali, danno un'interpretazione differente del ruolo del controllo, responsab
+ile di interagire sia con il modello che con le viste, come avviene per
+ il Model View Presenter, schematizzato in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Model-View-Presenter"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il presenter rappresenta la componente fondamentale per l'interconnessione
+ dell'architettura, è il gestore delle richieste effettuate dall'utente
+ tramite le viste e interagisce con il modello per fornire una rappresentazione
+ dei dati.
+\end_layout
+
+\begin_layout Standard
+L'approccio classico del pattern MVC non è adatto alle applicazioni web
+ moderne, in quanto le viste non possono reagire ai cambiamenti sul modello
+ secondo il pattern dell'observer.
 \end_layout
 
 \begin_layout Section
@@ -297,7 +404,8 @@ Oltre all'implementazione dei blog, nel seguito indicati con i nomi RBlog,
 
 \begin_layout Standard
 Durante la fase di design dei test di accettazione è stato scelto di far
- coincidere a ciascuna funzionalità lo sviluppo di una particolare tecnologia:
+ coincidere a ciascuna funzionalità lo sviluppo di una componente del blog,
+ utilizzando una singola tecnologia:
 \end_layout
 
 \begin_layout Enumerate
@@ -310,7 +418,7 @@ Hello *Blog!
 \end_inset
 
 , include gli scenari relativi al primo utilizzo del blog e alla navigazione
- grazie a delle pagine statiche.
+ fra pagine statiche.
  Per verificare tali scenari è necessario che l'applicazione sia eseguibile
  e opportunamente configurata;
 \end_layout
@@ -381,17 +489,12 @@ Autocompletamento della ricerca
 
 \begin_layout Standard
 Le funzionalità appena descritte e i relativi scenari saranno utilizzati
- per la definizione dei test di accettazione automatici, dando un'implementazion
-e per ogni progetto.
-\begin_inset Newline newline
-\end_inset
-
-
+ per la definizione dei test di accettazione automatici per ogni progetto.
 \end_layout
 
 \begin_layout Standard
 Per individuare il miglior stack di strumenti da utilizzare per i test sono
- stati individuati alcuni parametri da valutare nella scelta:
+ stati individuati alcuni parametri per effettuare la scelta:
 \end_layout
 
 \begin_layout Itemize
@@ -419,6 +522,43 @@ L'implementazione dei test di accettazione sarà utilizzata per ottenere
 
 \begin_layout Section
 Sommario
+\end_layout
+
+\begin_layout Standard
+Nei successivi capitolo è trattato lo sviluppo dei progetti e dell'implementazio
+ne dei test di accettazione automatici.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel secondo capitolo è descritto lo sviluppo di RBlog utilizzando Ruby on
+ Rails e lo stack di strumenti per il testing, definito da Cucumber, Capybara
+ e RSpec.
+\end_layout
+
+\begin_layout Standard
+Nel terzo capitolo è trattato lo sviluppo di SBlog utilizzando Spring MVC
+ per lo sviluppo dell'applicazione e Cucumber-JVM, Selenium e JUnit per
+ lo sviluppo dei test.
+\end_layout
+
+\begin_layout Standard
+L'ultimo progetto ad essere descritto è CSBlog nel quarto capitolo, sviluppato
+ tramite il framework ASP.NET MVC5 e lo stack SpecFlow, Coypu e NUnit.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infine, l'ultimo capitolo riassume le caratteristiche dei diversi progetti
+ effettuando un confronto sia dell'interpretazione data per ciascuna componente
+ del pattern MVC dai framework, sia delle potenzialità dei diversi strumenti
+ utilizzati per l'implementazione dei test di accettazione.
 \end_layout
 
 \end_body

@@ -74,6 +74,12 @@
 \begin_body
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusione"
+
+\end_inset
+
 Conclusione
 \end_layout
 

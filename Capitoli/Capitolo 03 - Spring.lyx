@@ -71,13 +71,10 @@
 \begin_body
 
 \begin_layout Chapter
-Spring 13/11/14
-\end_layout
-
-\begin_layout Standard
+Spring
 \begin_inset CommandInset label
 LatexCommand label
-name "ch:spring"
+name "chap:Spring"
 
 \end_inset
 
@@ -5266,7 +5263,6 @@ public void mi_autentico_come(String email) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Login tramite Selenium.
 \end_layout
 
@@ -5497,7 +5493,6 @@ ed(By.id("woodstock")));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica della presenza del logo nel piè di pagina.
 \end_layout
 
@@ -5622,7 +5617,6 @@ Scenario: Autocompletamento della ricerca
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Scenario riguardante l'auto-completamento della ricerca.
 \end_layout
 
@@ -5698,7 +5692,6 @@ enceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica dei titoli suggeriti.
 \end_layout
 

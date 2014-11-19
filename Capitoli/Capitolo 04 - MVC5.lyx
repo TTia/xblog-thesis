@@ -71,17 +71,13 @@
 \begin_body
 
 \begin_layout Chapter
-MVC 5
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "ch:spring"
+name "chap:MVC-5"
 
 \end_inset
 
-
+MVC 5
 \end_layout
 
 \begin_layout Section
@@ -2459,7 +2455,6 @@ Assert.That(footer, Shows.Css("img"));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Uso del tipo 
 \begin_inset Quotes eld
 \end_inset
@@ -4013,7 +4008,6 @@ public void DatoMiAutenticoCome(string email){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Login su CSBlog tramite Coypu.
 \end_layout
 
@@ -4064,7 +4058,6 @@ protected ElementScope findPostByTitle(String title) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Definizione di un selettore tramite i metodi di Coypu.
 \end_layout
 
@@ -4173,15 +4166,11 @@ browser.FindCss(".post_title a", text: title).Exists();
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Esempio del metodo 
 \begin_inset Quotes eld
 \end_inset
 
-
-\lang italian
 FindCss
-
 \begin_inset Quotes erd
 \end_inset
 
@@ -4234,15 +4223,11 @@ protected ElementScope header {get{return browser.FindId("header");}}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Esempio del metodo 
 \begin_inset Quotes eld
 \end_inset
 
-
-\lang italian
 FindId
-
 \begin_inset Quotes erd
 \end_inset
 
@@ -4322,15 +4307,11 @@ public void DatoIlPostNonELeggibileSuCSBlog(string title){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Esempio del metodo 
 \begin_inset Quotes eld
 \end_inset
 
-
-\lang italian
 FindAllCss
-
 \begin_inset Quotes erd
 \end_inset
 
@@ -4416,15 +4397,11 @@ public void AlloraLInizio(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Esempio del metodo 
 \begin_inset Quotes eld
 \end_inset
 
-
-\lang italian
 FindXPath
-
 \begin_inset Quotes erd
 \end_inset
 
@@ -4800,7 +4777,6 @@ public void DatoNonEPresenteIlLogoNellIntestazione(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Pre-condizione.
 \end_layout
 
@@ -4844,7 +4820,6 @@ public void QuandoCliccoSullAreaDelPieDiPagina(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Evento.
 \end_layout
 
@@ -4894,7 +4869,6 @@ public void AlloraEPresenteIlLogo(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Asserzione.
 \end_layout
 
@@ -4947,7 +4921,6 @@ Funzionalità: Ricerca fra i post
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Scenario sulla ricerca nei post.
 \end_layout
 
@@ -5078,7 +5051,6 @@ public void AlloraVienePropostoIlPost(string title){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica della presenza di un post nei suggerimenti.
 \end_layout
 
@@ -5170,7 +5142,6 @@ public void AlloraNonEPropostoAlcunPost(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Verifica dell'assenza di suggerimenti.
 \end_layout
 
