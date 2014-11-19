@@ -188,6 +188,10 @@ IDE: Integrated Development Environment
 \end_layout
 
 \begin_layout Standard
+IRB: Interactive Ruby Shell
+\end_layout
+
+\begin_layout Standard
 JPA: Java Persistence API
 \end_layout
 

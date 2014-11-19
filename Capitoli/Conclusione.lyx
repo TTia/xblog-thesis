@@ -755,7 +755,7 @@ Implementare un'applicazione web tramite un framework MVC comporta l'utilizzo
 \end_layout
 
 \begin_layout Standard
-RubyMine è un'ambiente di sviluppo specifico per implementare applicazioni
+RubyMine è un ambiente di sviluppo specifico per implementare applicazioni
  RoR ed include il supporto a tutti i linguaggi comunemente utilizzati in
  ambito web ed anche a nuove tecnologie
 \begin_inset Foot
@@ -835,7 +835,7 @@ Come descritto nel capitolo su MVC5, utilizzando VS sono presenti delle
  di un numero arbitrario di processi, che è una caratteristica utile per
  effettuare test che richiedono l'esecuzione del server web e dell'applicazione:
  ad esempio è una pratica comune effettuare stress test per ottenere indicazioni
- sulle performance, utilizzando strumenti come Gatling
+ sulle performance, utilizzando strumenti come Gatling~
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Gatling"
@@ -847,7 +847,7 @@ key "Gatling"
 
 \begin_layout Standard
 Inoltre, configurando opportunamente il proprio progetto, in RubyMine è
- anche possibile eseguire in parallelo l'esecuzione dei test di accettazione
+ anche possibile eseguire in parallelo l'esecuzione dei test di accettazione~
 \begin_inset CommandInset citation
 LatexCommand cite
 key "RubyMine Parallel Test Execution"
@@ -1493,7 +1493,7 @@ Complessivamente, è risultato evidente come VS sia fortemente orientato
 \end_layout
 
 \begin_layout Standard
-Anche RubyMine è un'ambiente di sviluppo completo e ricco di funzionalità,
+Anche RubyMine è un ambiente di sviluppo completo e ricco di funzionalità,
  ma rispetto a VS, manca del supporto costante e dei wizard per la generazione
  di componenti.
 \end_layout
@@ -3635,7 +3635,7 @@ are un'espressione articolata in Thymeleaf, è possibile trovarsi nella scomoda
 
 \begin_layout Standard
 Al contrario utilizzando un template engine come ERB o Razor, è possibile
- effettuare il debug della vista, utilizzare l'autocomplemento o l'intellisense
+ effettuare il debug della vista, utilizzare l'auto-complemento o l'IntelliSense
  e navigare fra i riferimenti per approfondire il funzionamento di un metodo
  ausiliario della libreria.
 \begin_inset Newline newline

@@ -73,6 +73,23 @@
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "A comparative study"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=4655401&url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F4641878%2F4655382%2F04655401.pdf%3Farnumber%3D4655401"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "Ruby - Official Site"
 
 \end_inset
@@ -1239,14 +1256,14 @@ target "http://www.railsonmaui.com/tips/rails/capybara-phantomjs-poltergeist-rsp
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "Gatling"
+key "PageObject"
 
 \end_inset
 
 
 \begin_inset CommandInset href
 LatexCommand href
-target "http://gatling.io/"
+target "http://martinfowler.com/bliki/PageObject.html"
 
 \end_inset
 
@@ -1256,14 +1273,14 @@ target "http://gatling.io/"
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "PageObject"
+key "Gatling"
 
 \end_inset
 
 
 \begin_inset CommandInset href
 LatexCommand href
-target "http://martinfowler.com/bliki/PageObject.html"
+target "http://gatling.io/"
 
 \end_inset
 

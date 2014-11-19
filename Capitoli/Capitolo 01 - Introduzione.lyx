@@ -87,16 +87,23 @@ Nell'articolo
 
 A comparative Study of Maintainability of Web Application on J2EE, .NET and
  Ruby on Rails
-\begin_inset Quotes srd
+\begin_inset Quotes erd
+\end_inset
+
+~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A comparative study"
+
 \end_inset
 
  scritto da Look Fang Fang Stella, Stan Jarzabek and Bimlesh Wadhwa nel
  2008 viene discusso il processo di introduzione di una nuova funzionalità
  sul codice esistente di un'applicazione Web e delle ripercussioni di questa
- operazione.
+ operazione nelle diverse piattaforme.
  Ruby on Rails, Spring e .NET condividono il pattern architetturale Model
  View Controller, descritto in seguito, e si prestano dunque ad un confronto
- alla pari: dall'articolo emerge come il neonato RoR, 
+ alla pari: dall'articolo emerge come il neonato Ruby on Rails 
 \begin_inset Foot
 status open
 
@@ -108,7 +115,7 @@ L'articolo è stato pubblicato pochi anni dopo il rilascio della prima versione.
 
 , si presentasse fin da subito come una piattaforme più moderna ed adeguata
  alla metodologia Agile, offrendo supporto ai relativi processi di sviluppo.
- Grazie ad un struttura più lineare, alla semplicità di definizione dei
+ Grazie ad una struttura più lineare, alla semplicità di definizione dei
  test e combinando il potere espressivo di Ruby, gli autori hanno individuato
  in RoR il framework che ha il minor impatto sul progetto per numero di
  linee di codice modificate ed al contempo mantiene il codice maggiormente
@@ -134,7 +141,7 @@ L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata per
  di test di accettazione automatici piuttosto che alla modificabilità.
  I framework scelti sono Ruby on Rails, Spring MVC e ASP.NET MVC5.
  Nel corso della tesi verrà trattata l'interpretazione data da ciascun framework
- del pattern architetturale MVC e documentato lo sviluppo delle applicazioni
+ del pattern Model View Controller e documentato lo sviluppo delle applicazioni
  web in funzione dell'implementazione dei test di accettazione automatici.
 \end_layout
 
@@ -144,12 +151,12 @@ Al fine di focalizzare l'attenzione sullo sviluppo e sulle problematiche
  web, riprendendo l'esempio del blog proposto nell'articolo in forma semplificat
 a.
  Sono state sviluppati tre progetti, che offrono le stesse funzionalità
- e condividono il codice relativo alle interfacce grafiche, presentando
- però delle ovvie differenze relative all'implementazione; inoltre è stato
- scelto di sfruttare il più possibile nuove tecnologie per verificare che
- gli strumenti per la definizione dei test di accettazione siano al passo
- con un settore, quale è lo sviluppo di applicazioni web, molto dinamico
- e variegato.
+ e condividono l'aspetto e le funzionalità dell'interfaccia grafica, presentando
+ però delle ovvie differenze relative all'implementazione.
+ Inoltre è stato scelto di sfruttare il più possibile nuove tecnologie per
+ verificare che gli strumenti per la definizione dei test di accettazione
+ siano al passo con un settore, quale è lo sviluppo di applicazioni web,
+ molto dinamico e variegato.
  Nel corso della tesi verranno documentati gli strumenti scelti, verificandone
  le potenzialità nei diversi scenari di test, effettuando confronti dove
  possibile ed evidenziando pregi o carenze rispetto alle controparti.
@@ -197,6 +204,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Introduzione/MVC-Process.png
 	scale 40
@@ -252,6 +260,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Introduzione/mvp.png
 	scale 60
@@ -318,6 +327,12 @@ L'approccio classico del pattern MVC non è adatto alle applicazioni web
  secondo il pattern dell'observer.
 \end_layout
 
+\begin_layout Standard
+Nonostante il pattern Model View Presenter sia più rispondente alla realtà
+ dello sviluppo web, in letteratura si fa sempre riferimento al pattern
+ MVC e per questo nel seguito della tesi si discuterà tale pattern.
+\end_layout
+
 \begin_layout Section
 I test di accettazione
 \end_layout
@@ -327,14 +342,22 @@ Il Behaviour Driver Development, BDD, è una metodologia di sviluppo che
  prevede la descrizione in linguaggio naturale delle funzionalità attese,
  utilizzando una terminologia che colga il comportamento del sistema, piuttosto
  che evidenziare dettagli tecnici dell'implementazione.
- Il fulcro del BDD è la definizione dei test di accettazione\SpecialChar \@.
+ Il fulcro del BDD è la definizione dei test di accettazione, usati per
+ la descrizione 
+\begin_inset Quotes eld
+\end_inset
 
+per esempi
+\begin_inset Quotes erd
+\end_inset
+
+ delle funzionalità, appunto.
 \end_layout
 
 \begin_layout Standard
 Per ciascun test di accettazione, è possibile descrivere più criteri di
  accettazione, o scenari, che descrivono in linguaggio naturale un caso
- specifico della funzionalità.
+ specifico della funzionalità, ovvero un suo esempio d'uso specifico.
 \end_layout
 
 \begin_layout Paragraph
@@ -343,7 +366,7 @@ Business Readable DSL
 
 \begin_layout Standard
 Il linguaggio utilizzato per descrivere le funzionalità e gli scenari nella
- tesi è Gherkin
+ tesi è Gherkin~
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Gherkin"
@@ -352,7 +375,7 @@ key "Gherkin"
 
 , sviluppato per il framework Cucumber, che verrà presentato nel prossimo
  capitolo.
- Gli autori descrivono il linguaggio come Business Readable DSL
+ Gli autori descrivono il linguaggio come Business Readable DSL~
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Fowler Business Readable DSL"
@@ -370,8 +393,102 @@ ne all'analisi e alla revisione del codice a figure non tecniche.
  ad uno anche scrivibile in maniera cooperativa.
  Un Business Readable DSL sopperisce alla necessità primaria di stabilire
  un canale di comunicazione arricchente fra le diverse parti che partecipano
- allo sviluppo, al contrario secondo Fowler, un Business Writeable DSL richiede
- un impegno troppo alto in termini di tempo e risorse umane coinvolte.
+ allo sviluppo.
+ Al contrario secondo Fowler, un Business Writeable DSL richiede un impegno
+ troppo alto in termini di tempo e risorse umane coinvolte.
+\end_layout
+
+\begin_layout Standard
+Il formato standard dei test in Gherkin è dato concatenazione di tre blocchi
+ di passi:
+\end_layout
+
+\begin_layout Itemize
+blocco 
+\begin_inset Quotes eld
+\end_inset
+
+Given
+\begin_inset Quotes erd
+\end_inset
+
+: una sequenza di condizioni (passi) che esprimono le condizioni iniziali
+ o di setup del test;
+\end_layout
+
+\begin_layout Itemize
+blocco 
+\begin_inset Quotes eld
+\end_inset
+
+When
+\begin_inset Quotes erd
+\end_inset
+
+: la definizione di uso della funzionalità descritta;
+\end_layout
+
+\begin_layout Itemize
+blocco 
+\begin_inset Quotes eld
+\end_inset
+
+Then
+\begin_inset Quotes erd
+\end_inset
+
+: le condizioni osservabili, risultato dell'operazione;
+\end_layout
+
+\begin_layout Standard
+Se le funzionalità dovessero essere leggibili solo da tecnici, potrebbe
+ essere sufficiente la definizione dei passi in lingua inglese.
+ Invece, per permettere la leggibilità a più utenti possibili, Gherkin supporta
+ attualmente 40 lingue, numero in rapida crescita secondo gli sviluppatori.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per ottenere la lista aggiornata delle lingue supportate è possibile eseguire
+ il comando cucumber --i18n help o consultare la risorsa contenente il dizionari
+o 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/cucumber/gherkin/blob/master/lib/gherkin/i18n.json
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ E' così possibile definire i passi degli scenari con le parole chiave nella
+ lingua scelta: ad esempio per la definizione delle funzionalità dei blog
+ è stata utilizzata la lingua italiana
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Per utilizzare uno dei pacchetti linguistici esistenti è necessario un header
+ 
+\begin_inset Quotes eld
+\end_inset
+
+# language: xx
+\begin_inset Quotes erd
+\end_inset
+
+ all'interno dei file scritti in Gherkin.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -381,6 +498,17 @@ ATDD
 \begin_layout Standard
 Acceptance Test Driven Development, ATDD, è una tecnica per produrre codice
  rilevante e utile ai fini dell'implementazione di una certa funzionalità.
+ L'ATDD porta a livello di intero sistema i principi del TDD, Test Driven
+ Development.
+\end_layout
+
+\begin_layout Standard
+Infatti, lo sviluppo del sistema inizia con lo sviluppo dei test di accettazione
+, il cui sviluppo condiviso fra tutti gli stakeholder permette di catturare
+ le specifiche del sistema.
+ Nelle fasi successive dello sviluppo, i test potranno naturalmente essere
+ impiegati anche per verificare la correttezza dell'implementazione e come
+ test di regressione.
 \end_layout
 
 \begin_layout Standard
@@ -407,7 +535,7 @@ Il caso di studio
 \end_layout
 
 \begin_layout Standard
-Lo scopo della tesi è verificare, a distanza di alcuni anni dall'articolo
+Lo scopo della tesi è ripetere, a distanza di alcuni anni dall'articolo
  
 \begin_inset Quotes sld
 \end_inset
@@ -417,20 +545,27 @@ A comparative Study of Maintainability of Web Application on J2EE, .NET and
 \begin_inset Quotes srd
 \end_inset
 
- le potenzialità attuali dei framework MVC Spring, Ruby on Rails e ASP.NET
- MVC, sviluppando un blog sulle tre piattaforme.
+ il confronto fra le potenzialità attuali dei framework MVC Spring, Ruby
+ on Rails e ASP.NET MVC.
+ A tale scopo, come nell'articolo originale, si userà come caso di studio
+ blog sviluppato sulle tre piattaforme.
 \end_layout
 
 \begin_layout Standard
-Grazie allo sviluppo delle applicazioni web sui diversi framework, sarà
- possibile comprendere l'interpretazione del pattern architetturale MVC
- e analizzare per ciascuna componente pregi e difetti.
+Grazie allo sviluppo della stessa applicazione web sui diversi framework,
+ sarà possibile comprendere l'interpretazione del pattern architetturale
+ MVC e analizzare per ciascuna componente pregi e difetti, in un confronto
+ alla pari.
 \end_layout
 
 \begin_layout Standard
-Oltre all'implementazione dei blog, nel seguito indicati con i nomi RBlog,
- SBlog e CSBlog -rispettivamente per le versioni in Spring, Ruby on Rails
- e ASP.NET MVC5- sono stati definite dei test di accettazione.
+Un elemento che inevitabilmente influenza un confronto fra strumenti di
+ sviluppo è il processo adottato per la realizzazione delle applicazioni.
+ Seguendo il trend moderno si è deciso di adottare uno stile ATDD.
+ Pertanto, oltre all'implementazione dei blog, nel seguito indicati con
+ i nomi RBlog, SBlog e CSBlog -rispettivamente per le versioni in Spring,
+ Ruby on Rails e ASP.NET MVC5- sono stati definite dei test di accettazione
+ e l'analisi del confronto è concentrata su questo aspetto.
  
 \begin_inset Newline newline
 \end_inset
@@ -440,8 +575,9 @@ Oltre all'implementazione dei blog, nel seguito indicati con i nomi RBlog,
 
 \begin_layout Standard
 Durante la fase di design dei test di accettazione è stato scelto di far
- coincidere a ciascuna funzionalità lo sviluppo di una componente del blog,
- utilizzando una singola tecnologia:
+ coincidere a ciascuna funzionalità lo sviluppo di una ulteriore componente
+ del blog, che richiedesse l'introduzione di una singola tecnologia, per
+ isolare al meglio i vari aspetti:
 \end_layout
 
 \begin_layout Enumerate
@@ -455,7 +591,7 @@ Hello *Blog!
 
 , include gli scenari relativi al primo utilizzo del blog e alla navigazione
  fra pagine statiche.
- Per verificare tali scenari è necessario che l'applicazione sia eseguibile
+ Per verificare tali scenari è necessario solo che l'applicazione sia eseguibile
  e opportunamente configurata;
 \end_layout
 
@@ -468,7 +604,7 @@ Introducendo il CSS
 \begin_inset Quotes erd
 \end_inset
 
- coincide con la definizione dei fogli di stile per il blog;
+ richiede la definizione dei fogli di stile per il blog;
 \end_layout
 
 \begin_layout Enumerate
@@ -514,12 +650,12 @@ Easter Egging
 \begin_inset Quotes eld
 \end_inset
 
-Autocompletamento della ricerca
+Auto-completamento della ricerca
 \begin_inset Quotes erd
 \end_inset
 
- definisce la possibilità di ricercare dei post all'interno del sito, inoltre
- è utilizzato un widget asincrono per effettuare l'auto-completamento della
+ definisce la possibilità di ricercare dei post all'interno del sito, richiedend
+o l'uso di un widget asincrono per effettuare l'auto-completamento della
  ricerca.
 \end_layout
 
@@ -529,7 +665,7 @@ Le funzionalità appena descritte e i relativi scenari saranno utilizzati
 \end_layout
 
 \begin_layout Standard
-Per individuare il miglior stack di strumenti da utilizzare per i test sono
+Per selezionare il miglior stack di strumenti da utilizzare per i test sono
  stati individuati alcuni parametri per effettuare la scelta:
 \end_layout
 
@@ -591,10 +727,11 @@ L'ultimo progetto ad essere descritto è CSBlog nel quarto capitolo, sviluppato
 \end_layout
 
 \begin_layout Standard
-Infine, l'ultimo capitolo riassume le caratteristiche dei diversi progetti
- effettuando un confronto sia dell'interpretazione data per ciascuna componente
- del pattern MVC dai framework, sia delle potenzialità dei diversi strumenti
- utilizzati per l'implementazione dei test di accettazione.
+Infine, l'ultimo capitolo riassume quanto osservato attraverso l'esperienza
+ di sviluppo dei diversi progetti, effettuando un confronto sia dell'interpretaz
+ione data per ciascuna componente del pattern MVC dai framework, sia delle
+ potenzialità dei diversi strumenti utilizzati per l'implementazione dei
+ progetti e dei test di accettazione.
 \end_layout
 
 \end_body
