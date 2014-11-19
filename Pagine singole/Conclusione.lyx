@@ -1,0 +1,1768 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Relazione.lyx
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Conclusione
+\end_layout
+
+\begin_layout Section
+I framework
+\end_layout
+
+\begin_layout Subsection
+Produttività
+\end_layout
+
+\begin_layout Subsubsection*
+IDE
+\end_layout
+
+\begin_layout Standard
+Per sviluppare le applicazioni web descritte nella tesi sono stati scelti
+ gli ambienti di sviluppo più utilizzati e meglio integrati con ciascuna
+ tecnologia.
+ Nonostante tutti permettano di implementare applicazioni web tramite i
+ framework MVC documentati nei precedenti capitoli, i progetti sono molto
+ differenti fra loro per quanto riguarda il tipo di business, i prezzi e
+ il processo di sviluppo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Seguendo lo stesso ordine dei capitoli, il primo IDE utilizzato è RubyMine,
+ un prodotto di JetBrains.
+ Il software è sviluppato da un'azienda privata ed attualmente, secondo
+ i prezzi del loro sito, il prezzo parte da circa 100€ per una singola licenza
+ ed arriva 200€ per una licenza commerciale, valida per aziende ed associazioni.
+\end_layout
+
+\begin_layout Standard
+Lo sviluppo di RubyMine è costante, nel corso della tesi sono stati installati
+ diversi aggiornamenti, gestiti internamente all'IDE, senza necessità di
+ scaricare patch e dover riconfigurare il proprio ambiente di sviluppo.
+\end_layout
+
+\begin_layout Standard
+La versione utilizzata per implementare RBlog è una versione accademica
+ gratuita che include tutte le funzionalità presenti nella versione a pagamento.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spring Tool Suite, la versione di Eclipse specializzata per supportare lo
+ sviluppo con Spring è un progetto privato della 
+\begin_inset Quotes eld
+\end_inset
+
+Pivotal Software
+\begin_inset Quotes erd
+\end_inset
+
+, l'azienda che cura lo sviluppo dei diversi prodotti per Spring.
+ Come già descritto all'interno del relativo capitolo, solo il plugin è
+ sviluppato dagli autori di Spring, che utilizzano come supporto le versioni
+ di Eclipse per JavaEE, uno dei diversi progetti open-source sviluppati
+ interamente da una comunità di sviluppatori attiva e numerosa, che partecipano
+ a titolo gratuito.
+\end_layout
+
+\begin_layout Standard
+A differenza dell'ambiente di sviluppo, l'insieme di funzionalità che definiscon
+o STS non è un progetto open-source, ma è comunque distribuito a titolo
+ gratuito.
+\end_layout
+
+\begin_layout Standard
+Il metodo preferito per rilasciare aggiornamenti di Eclipse e di STS è fornire
+ direttamente la nuova versione del prodotto, senza aggiornarne le funzionalità
+ internamente.
+ Questo processo può essere scomodo nel caso in cui sia necessario installare
+ plugin specifici per lo sviluppo non inclusi di default nel software.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visual Studio è un prodotto a pagamento sviluppato da Microsoft.
+ Per lo sviluppo di CSBlog è stata utilizzata la versione Ultimate 2014,
+ che rappresenta il prodotto più completo fra le varie versioni disponibili.
+\end_layout
+
+\begin_layout Standard
+Come descritto nel relativo capitolo, VS è un prodotto estremamente professione
+ e versatile.
+ Gli aggiornamenti sono gestiti internamente al software, mantenendo le
+ impostazioni personali dell'utente.
+\end_layout
+
+\begin_layout Standard
+La versione utilizzata per lo sviluppo è una licenza accademica ottenuta
+ tramite la convenzione DreamSpark fra Microsoft ed Unige.
+ Acquistare una copia di VS è estremamente oneroso, ma sono anche previste
+ versioni decisamente più essenziali come Visual Studio Express 2013, che
+ è disponibile gratuitamente.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante VS sia al momento eseguibile sono utilizzando un sistema operativo
+ Windows, sia più esigente in termini di requisiti di sistema e sia a pagamento,
+ ritengo che sia il prodotto più completo e professionale fra quelli utilizzati.
+\end_layout
+
+\begin_layout Subsubsection*
+Plugin
+\end_layout
+
+\begin_layout Standard
+Implementare un'applicazione web tramite un framework MVC comporta l'utilizzo
+ di un vasto stack di strumenti e tecnologie.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+RubyMine è un'ambiente di sviluppo specifico per implementare applicazioni
+ RoR ed include il supporto a tutti i linguaggi comunemente utilizzati in
+ ambito web, fra i quali spicca CoffeeScript che permette di scrivere funzionali
+tà asincrone in maniera compatta che compilate generano codice JavaScript,
+ e la possibilità di utilizzare Sass, per estendere i propri fogli di stile.
+\end_layout
+
+\begin_layout Standard
+Oltre a fornire gli strumenti per supportare l'implementazione delle applicazion
+i, RubyMine integra la possibilità di eseguire test di diversa granularità
+ senza dover installare e configurare plugin.
+ Per lo sviluppo di RBlog e l'implementazione della tecnica dell'ATDD è
+ stata utilizzata la versione classica dell'IDE senza installare alcuna
+ componente aggiuntiva, anche se l'ambiente di sviluppo fornisce gli strumenti
+ per installare funzionalità aggiuntive.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+STS si basa sulla versione per Java EE di Eclipse, che anche nella versione
+ classica include molte funzionalità specifiche per lo sviluppo web.
+ Per implementare e testare SBlog è stato necessario installare il plugin
+ per l'integrazione di Thymeleaf e di Cucumber, tramite l'apposito Marketplace.
+\end_layout
+
+\begin_layout Standard
+Inoltre Spring è un framework estremamente modulare, all'interno del quale
+ lo sviluppatore può scegliere fra molte tecnologie esistenti per uno stesso
+ ambito.
+ Probabilmente a causa della natura open-source dell'IDE, i plugin presentano
+ spesso errori nell'integrazione con l'ambiente di sviluppo e sono carenti
+ di funzionalità non essenziali ma utili, come l'estensione di Cucumber-JVM,
+ decisamente inferiore alla versione per SpecFlow in VS.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A differenza di RubyMine e STS, VS è un IDE non specializzato per lo sviluppo
+ di applicazioni Web, ma genericamente utilizzato per tutte gli strumenti
+ di .NET.
+ Nonostante lo sviluppo tramite MVC5 non sia l'unica prerogativa dell'IDE,
+ VS è definito in maniera modulare e procede all'istallazione di componenti
+ aggiuntive se e quando l'utente crea progetti che necessitano di estensioni
+ rispetto alla versione di base del software, come l'integrazione con Sass.
+\end_layout
+
+\begin_layout Standard
+Per supportare lo sviluppo di CSBlog e dei test è stato necessario installare
+ tramite NuGet, i plugin per Coypu, PhantomJS e SpecFlow.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come descritto nel capitolo su MVC5, utilizzando VS sono presenti delle
+ difficoltà nell'esecuzione dei test di accettazione a causa dell'impossibilità
+ di eseguire più di un processo.
+ Al contrario, RubyMine è meno rigido e permette di monitorare il debug
+ di un numero arbitrario di processi, che è una caratteristica utile per
+ effettuare test che richiedono che il server web e l'applicazione siano
+ funzionanti: ad esempio è una pratica comune effettuare stress test per
+ ottenere indicazioni sulle performance dell'applicazione, utilizzando strumenti
+ come Gatling
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gatling"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Inoltre, configurando opportunamente il proprio progetto, in RubyMine è
+ anche possibile eseguire in parallelo l'esecuzione dei test di accettazione
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RubyMine Parallel Test Execution"
+
+\end_inset
+
+, permettendo anche di ottenere una valutazione indicativa delle performance
+ dell'applicazione oltre che verificarne le funzionalità.
+\end_layout
+
+\begin_layout Subsubsection*
+Configurazione di un progetto
+\end_layout
+
+\begin_layout Standard
+Uno dei fattori che incide sensibilmente nello sviluppo di una nuova applicazion
+e MVC è la semplicità di configurare un nuovo progetto tramite l'ambiente
+ di sviluppo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In RubyMine la prima generazione di una nuova applicazione è effettuata
+ attraverso un wizard.
+ Al termine della procedura l'utente può già eseguire la propria applicazione,
+ che è definita da un'insieme di viste -già strutturate utilizzando un layout-
+ che contengono informazioni e guide su come iniziare lo sviluppo.
+\end_layout
+
+\begin_layout Standard
+Per definire le componenti del proprio progetto è possibile utilizzare tramite
+ l'IDE le funzionalità a riga di comando di RoR, anche se è necessario specifica
+re le opzioni in maniera simile all'esecuzione tramite console, che generano
+ la struttura delle componenti e forniscono all'utente una prima versione
+ da personalizzare.
+\end_layout
+
+\begin_layout Standard
+Per definire le dipendenze del proprio progetto e le librerie utilizzate
+ è molto conveniente utilizzare il Gemfile, perché definisce un DSL essenziale
+ e facilmente leggibile.
+ Per la configurazione di proprietà specifiche dell'applicazione, come i
+ parametri per connessione al database, sono utilizzabili script in YAML
+ o in Ruby, generati durante la creazione del progetto.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La struttura di un progetto in Spring varia in funzione del build manager
+ utilizzato, scegliendo ad esempio fra Gradle o Maven.
+ Per comodità in SBlog è stato utilizzato Maven, perché già integrato nella
+ versione di Eclipse utilizzata da STS.
+\end_layout
+
+\begin_layout Standard
+Come per RubyMine o VS è prevista la possibilità di creare un nuovo progetto
+ utilizzando Spring e selezionando quali funzionalità siano richieste nell'appli
+cazione; il wizard termina con la generazione di un progetto contenente
+ esclusivamente la struttura dei package, che rispecchia l'organizzazione
+ di Maven in file sorgenti, test e risorse, ed il file 
+\begin_inset Quotes eld
+\end_inset
+
+pom.xml
+\begin_inset Quotes erd
+\end_inset
+
+ per la configurazione delle dipendenze.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Scegliendo di generare un progetto con JPA e Thymeleaf, all'esecuzione dell'appl
+icazione sono sollevate diverse eccezione che segnalano l'assenza dei bean
+ di configurazione del modello e la mancanza del provider per JPA.
+\end_layout
+
+\begin_layout Standard
+Oltre alla generazione automatica dei progetti, sono presenti anche diversi
+ progetti starter da cui prendere spunto, ma che non possono essere utilizzati
+ come base del progetto in quanto sono specifici per una singola tecnologia,
+ ad esempio sono presenti gli starter per JSP, Thymeleaf e JPA.
+\end_layout
+
+\begin_layout Standard
+Per configurazione le singole proprietà di un'applicazione web è possibile
+ combinare l'uso Spring Boot ed i beans.
+ Nonostante includere fra le dipendenze di Maven i diversi progetti starter
+ riduca il numero di aspetti da configurare, è comunque necessario definire
+ alcuni bean, procedura che non è sempre intuitiva e rapida.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+VS è l'ambiente di sviluppo più completo e user-friendly fra quelli utilizzati
+ nella tesi.
+ La generazione dei progetti e delle singole componenti è possibile tramite
+ interfacce grafiche che guidano l'utente e documentano ogni passaggio attravers
+o esempi e spiegazioni.
+\end_layout
+
+\begin_layout Standard
+Inoltre la creazione di un nuovo progetto genera un'applicazione completa
+ e funzionante, anche se priva del modello.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sviluppando CSBlog come ultimo progetto, è risultato evidente come VS sia
+ fortemente orientato alla produttività grazie all'ottima organizzazione
+ e del continuo supporto fornito all'utente, rappresentando in assoluto
+ il miglior IDE utilizzato nella tesi.
+\end_layout
+
+\begin_layout Subsection
+Il modello
+\end_layout
+
+\begin_layout Subsubsection*
+Configurazione
+\end_layout
+
+\begin_layout Standard
+La configurazione delle entità per il modello è uno degli aspetti più sensibili
+ dell'intero sviluppo dell'applicazione MVC, in quanto ogni framework ha
+ una propria interpretazione del modello, che differisce sia nei dettagli
+ implementativi che a più ad alto livello nella rappresentazione delle entità.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La generazione delle entità in RoR è stata eseguita principalmente tramite
+ il comando 
+\begin_inset Quotes eld
+\end_inset
+
+scaffold
+\begin_inset Quotes erd
+\end_inset
+
+, che attraverso una sintassi intuitiva definisce le migrazioni per il modello,
+ le classi rappresentanti le entità, i controlli e le azioni.
+\end_layout
+
+\begin_layout Standard
+Per personalizzare il dominio del modello è sufficiente modificare il contenuto
+ delle migrazioni e modificare le classi rappresentanti le entità attraverso
+ vincoli e relazioni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Post < ActiveRecord::Base 	belongs_to :author
+\end_layout
+
+\begin_layout Plain Layout
+
+	validates :title, presence: {message: 'Titolo mancante'} 	validates :title,
+ length: {minimum: 5, 	                           too_short: "Il titolo
+ deve essere almeno di 5 caratteri",
+\end_layout
+
+\begin_layout Plain Layout
+
+							maximum: 100,
+\end_layout
+
+\begin_layout Plain Layout
+
+							too_long: "Il titolo deve essere al più di 							100 caratteri"},
+\end_layout
+
+\begin_layout Plain Layout
+
+							uniqueness: { case_sensitive: false, 	                        message:
+ 'Esiste già un post con questo titolo' }
+\end_layout
+
+\begin_layout Plain Layout
+
+	#..
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Frammento della classe Post di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sfruttando ampiamente la sintassi di Ruby, le entità sono rappresentate
+ attraverso una notazione ricca e versatile, ma estremamente leggibile e
+ mantenibile.
+ Rispetto a Spring e VS, le classi 
+\begin_inset Quotes eld
+\end_inset
+
+Author
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ sono le più compatte, misurando le linee di codice dei modelli dei tre
+ progetti, ma anche le più espressive.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al contrario, configurare il modello con Spring è un operazione che può
+ risultare complicata.
+ Innanzitutto, rispetto a RoR che propone un'unica libreria per definire
+ il modello e su questa definisce i propri strumenti e convenzioni, JPA
+ è un progetto fortemente modulare.
+ L'utente deve quindi, ancor prima di implementare le classi, scegliere
+ il provider che intende utilizzare e verificare il comportamento, ad esempio
+ per EclipseLink è opportuno comprendere com'è compiuto il caricamento dei
+ dati dai sistemi di persistenza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Component
+\end_layout
+
+\begin_layout Plain Layout
+
+@Entity
+\end_layout
+
+\begin_layout Plain Layout
+
+public class Post {
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*..*/
+\end_layout
+
+\begin_layout Plain Layout
+
+    @Id
+\end_layout
+
+\begin_layout Plain Layout
+
+	@GeneratedValue(strategy = GenerationType.TABLE)
+\end_layout
+
+\begin_layout Plain Layout
+
+	Integer id;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH},
+\end_layout
+
+\begin_layout Plain Layout
+
+			fetch=FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+			@JoinTable(name = AUTHOR_POST_JOIN_TABLE,             			joinColumns
+ = @JoinColumn(name = POST_JOIN_COLUMN),          		   inverseJoinColumns
+ = @JoinColumn(name = AUTHOR_JOIN_COLUMN),             uniqueConstraints
+ = @UniqueConstraint(columnNames = {                     AUTHOR_JOIN_COLUMN,
+ POST_JOIN_COLUMN}))
+\end_layout
+
+\begin_layout Plain Layout
+
+	Author author;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento dell'entità Post in JPA.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dopo aver configurato il provider, definendo come per SBlog gli opportuni
+ bean, è necessario comprendere il funzionamento di JPA e delle annotazioni
+ per poter rappresentare correttamente i POJO sul database.
+\end_layout
+
+\begin_layout Standard
+Per dare un'idea della complessità di JPA, nel tempo impiegato per definire
+ il funzionamento dell'architettura di CSBlog, due/tre giorni uomo, è stato
+ sviluppato il modello con Spring, risolti i diversi errori di configurazione
+ e di caricamento lazy.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per definire il modello per MVC5 è stata utilizzata la generazione del modello
+ in funzione dello schema di un database SQL esistente.
+ Le modifiche effettuate sulle classi parziali rappresentanti le entità
+ hanno riguardato esclusivamente la definizione di metodi ausiliari e l'utilizzo
+ di attributi per definire la validazione delle proprietà.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public partial class Post{
+\end_layout
+
+\begin_layout Plain Layout
+
+	public System.Guid id { get; set; }
+\end_layout
+
+\begin_layout Plain Layout
+
+	public System.Guid authorId { get; set; }
+\end_layout
+
+\begin_layout Plain Layout
+
+	[Required(ErrorMessage = "Titolo mancante.")]
+\end_layout
+
+\begin_layout Plain Layout
+
+	[StringLength(100, MinimumLength = 5, ErrorMessage = "Il titolo deve essere
+ compreso fra 5 e 100 caratteri.")]
+\end_layout
+
+\begin_layout Plain Layout
+
+	[Remote("CheckForDuplication", "Post", AdditionalFields = "id")]      
+   [Display(Name = "Titolo", Description = "Inserisci in questo campo il
+ titolo che vuoi dare al tuo articolo.")]
+\end_layout
+
+\begin_layout Plain Layout
+
+	public string title { get; set; }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Frammento dell'entità Post con l'Entity Framework.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le classi 
+\begin_inset Quotes eld
+\end_inset
+
+Post
+\begin_inset Quotes erd
+\end_inset
+
+ ed 
+\begin_inset Quotes eld
+\end_inset
+
+Author
+\begin_inset Quotes erd
+\end_inset
+
+ paragonabili alle entità di RoR, ma meno a meno espressive e leggibili,
+ a causa della sintassi del C#, decisamente più verbosa di Ruby.
+\end_layout
+
+\begin_layout Subsubsection*
+Astrazione
+\end_layout
+
+\begin_layout Standard
+Tutti i framework utilizzano la tecnica ORM per rappresentare le entry presenti
+ nei database ed includere un livello di astrazione per semplificare la
+ gestione del modello.
+\end_layout
+
+\begin_layout Standard
+Le funzionalità per la persistenza -creazione, modifica e salvataggio- delle
+ entità sono praticamente equivalenti; sono però presenti sensibili differenze
+ nelle librerie per l'implementazione di query.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+post_titles = Post.select([:title]) 	.where('lower(title) LIKE ?', "%#{params[:tit
+le]}%")
+\end_layout
+
+\begin_layout Plain Layout
+
+	.order('created_at DESC')
+\end_layout
+
+\begin_layout Plain Layout
+
+	.limit(10);
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Selezione dei titoli simili in RoR.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sia in RoR che in MVC5, rispettivamente con l'interfaccia delle query per
+ gli Active Record e LINQ, è possibile definire delle interrogazioni utilizzando
+ metodi e i costrutti del linguaggio, mantenendo le operazioni consistenti
+ con il livello logico.
+ LINQ, essendo implementato in C#, può verificare a compile-time i tipi
+ ed in generale è utilizzabile anche in contesti non correlati alla persistenza
+ ed è più completo nelle funzionalità rispetto alla controparte per RoR.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+var postTitles = db.Posts
+\end_layout
+
+\begin_layout Plain Layout
+
+				.Where(p => p.title.ToLower().Contains(title.ToLower()))
+\end_layout
+
+\begin_layout Plain Layout
+
+				.OrderByDescending(p => p.title)
+\end_layout
+
+\begin_layout Plain Layout
+
+				.Select(p => p.title)
+\end_layout
+
+\begin_layout Plain Layout
+
+				.ToList();
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Selezione dei titoli simili in LINQ.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Spring è possibile definire le proprie query con le interfacce 
+\begin_inset Quotes eld
+\end_inset
+
+Repository
+\begin_inset Quotes erd
+\end_inset
+
+ e la libreria JPA Criteria per la generazione dinamica delle interrogazioni
+ JPQL; nonostante sia un metodo utile per implementare le interrogazioni
+ più semplici, aumentando di complessità risulta poco scalabile, difficilmente
+ mantenibile e leggibile.
+ Inoltre non sono presenti molte funzionalità del SQL.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public List<Post> findPostByTitleContainingIgnoreCase(String title);
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Selezione dei post in JPA.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E' anche possibile definire le proprie query direttamente in JPQL, introducendo
+ però una sintassi e delle meccaniche più simili a SQL che al paradigma
+ ad oggetti.
+\end_layout
+
+\begin_layout Subsubsection*
+Validazione
+\end_layout
+
+\begin_layout Standard
+L'interpretazione della validazione delle entità è un altro aspetto per
+ il quale sono presenti tre differenti interpretazioni.
+\end_layout
+
+\begin_layout Standard
+In RoR lo schema del modello è gestito quasi interamente a livello logico,
+ nel database è solo utilizzato il vincolo 
+\begin_inset Quotes eld
+\end_inset
+
+not null
+\begin_inset Quotes erd
+\end_inset
+
+ per le chiavi primarie.
+ Astraendo in maniera così decisa la rappresentazione delle entità è possibile
+ compiere scegliere la miglior strategia di validazione ad alto livello,
+ eseguendo le operazioni una sola volta, senza dover replicare a livello
+ fisico tutte le verifiche; il framework si fa carico dell'intera gestione
+ e permette di definire condizioni che verifichino lo stato dell'intero
+ dominio, come l'unicità del titolo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spring invece mantiene un approccio il più modulare possibile, fornendo
+ all'utente le annotazioni di JPA per la validazione a basso livello e annotazio
+ni del package 
+\begin_inset Quotes eld
+\end_inset
+
+javax.validation.contraints
+\begin_inset Quotes erd
+\end_inset
+
+ per eseguire controlli simili anche a livello logico, con le quali, non
+ mantenendo il controllo dell'intero dominio, non è possibile effettuare
+ dei controlli in funzione delle entità già presenti.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'EF di MVC5 mantiene una via intermedia fra le due implementazioni descritte.
+ Per validare un'entità è possibile utilizzare gli attributi disponibili,
+ che eseguiranno l'operazione di validazione sia a livello logico sia sul
+ database.
+ Ovviamente il caso di CSBlog è particolare rispetto alle altre due implementazi
+oni, in quanto i vincoli sul database, la rappresentazioni delle chiavi
+ esterne e primarie e le operazioni di propagazione sono stati definiti
+ prima del modello dell'applicazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fra i metodi discussi ognuno ha pregi e difetti:
+\end_layout
+
+\begin_layout Itemize
+RoR definisce un database con uno schema estremamente fragile, assumendo
+ di esserne l'unico utilizzatore, ma nasconde all'utente i dettagli implementati
+vi e definisce un'unica interfaccia per la validazione;
+\end_layout
+
+\begin_layout Itemize
+JPA non effettua alcuna assunzione e si adatta alle necessità dell'utente
+ ma obbliga all'introduzione di ulteriori annotazioni, aumentando la complessità
+ delle classi che rappresentano le entità;
+\end_layout
+
+\begin_layout Itemize
+EF semplifica la definizione delle entità, non effettua assunzioni sul database
+ ma duplica le operazioni di verifica, introducendo potenziali overhead.
+\end_layout
+
+\begin_layout Subsection
+I controlli
+\end_layout
+
+\begin_layout Subsubsection*
+Configurazione
+\end_layout
+
+\begin_layout Standard
+Anche per la definizione dell'instradamento delle richieste le differenze
+ d'implementazione dei diversi framework sono sensibili.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+RoR, rispetto all'interpretazione del modello, fornisce diverse soluzioni
+ per risolvere l'instradamento delle richieste HTTP.
+ Innanzitutto è esistente una convenzione 
+\begin_inset Quotes eld
+\end_inset
+
+/Entità/azione?parametri
+\begin_inset Quotes erd
+\end_inset
+
+ per la risoluzione automatica, inoltre è anche possibile utilizzare il
+ file 
+\begin_inset Quotes eld
+\end_inset
+
+routes.rb
+\begin_inset Quotes erd
+\end_inset
+
+ per impostare manualmente l'associazione di un'azione con un particolare
+ URL ed anche definire la gerarchia delle entità per implementare un'architettur
+a REST.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Rails.application.routes.draw do
+\end_layout
+
+\begin_layout Plain Layout
+
+	root :to => 'pages#index', :as => 'root' 	get '/author' => 'pages#author'
+\end_layout
+
+\begin_layout Plain Layout
+
+	get '/abstract' => 'pages#abstract'
+\end_layout
+
+\begin_layout Plain Layout
+
+	get '/log_in' => 'sessions#new', :as => 'log_in'
+\end_layout
+
+\begin_layout Plain Layout
+
+	get '/log_out' => 'sessions#destroy', :as => 'log_out'
+\end_layout
+
+\begin_layout Plain Layout
+
+	#..
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Instradamento delle pagine statiche di RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel frammento è definito l'instradamento delle richieste alle pagine statiche
+ e definito un simbolo per semplificare la definizione di collegamenti e
+ azioni che sfruttano la ridirezione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche MVC5 prevede l'utilizzo di convenzioni per la risoluzione dell'instradamen
+to e la possibilità di definire il proprio pattern.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+routes.MapRoute(
+\end_layout
+
+\begin_layout Plain Layout
+
+	name: "Default",
+\end_layout
+
+\begin_layout Plain Layout
+
+	url: "{controller}/{action}/{id}",
+\end_layout
+
+\begin_layout Plain Layout
+
+	defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optiona
+l }             );
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Pattern per la risoluzione dell'instradamento in CSBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Al contrario l'instradamento in Spring non è risolto in funzione di convenzioni
+ esistenti né è gestito in maniera separata dai controlli, ma è implementato
+ tramite apposite annotazioni.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sia RoR che MVC5 propongono soluzioni valide: le funzionalità in Ruby forniscono
+ più libertà all'utilizzatore e maggior potere espressivo, mentre in MVC5
+ è possibile configurare il pattern globale dell'applicazione invece che
+ utilizzare un metodo imposto.
+\end_layout
+
+\begin_layout Subsubsection*
+Implementazione
+\end_layout
+
+\begin_layout Standard
+In RoR esistono numerose convenzione che semplificano permettono di implementare
+ controlli minimali.
+ Nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Show RBlog"
+
+\end_inset
+
+ è evidente come sia conveniente per l'utente aderire alle pratiche esistenti
+ -addirittura l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+@page_title
+\begin_inset Quotes erd
+\end_inset
+
+ è definito solo per comodità-.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def show
+\end_layout
+
+\begin_layout Plain Layout
+
+	@page_title = @post.title
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Show RBlog"
+
+\end_inset
+
+Visualizzazione di un singolo post in RBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche in MVC5 la possibilità di utilizzare un pattern per l'instradamento
+ semplifica la definizione delle azioni, implementando esclusivamente la
+ logica dell'operazione senza dover configurare eccessivamente aspetti legati
+ al protocollo HTTP.
+\end_layout
+
+\begin_layout Standard
+Rispetto all'implementazione di RoR, nell'azione del listato
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Show CSBlog"
+
+\end_inset
+
+ è però necessario gestire esplicitamente il parametro 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ e far corrispondere a ciascun errore uno stato HTTP per la risposta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public ActionResult Details(Guid? id) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (id == null){
+\end_layout
+
+\begin_layout Plain Layout
+
+		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	Post post = db.Posts.Find(id);
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (post == null){
+\end_layout
+
+\begin_layout Plain Layout
+
+		return HttpNotFound();
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return View(post);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Show CSBlog"
+
+\end_inset
+
+Visualizzazione di un singolo post in CSBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spring anche per i controlli non specifica alcuna convenzione ed è quindi
+ necessario dichiarare ogni parametro tramite le annotazioni, articolate
+ e poco leggibili, che appesantiscono notevolmente la definizione del metodo.
+ Inoltre la necessità di utilizzare parametri di output come Model, complica
+ ulteriormente l'implementazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+\end_layout
+
+\begin_layout Plain Layout
+
+public String show(@PathVariable Integer id, Model model) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	Post post = postService.getPost(id); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	model.addAttribute("page_title", post.getTitle());
+\end_layout
+
+\begin_layout Plain Layout
+
+	model.addAttribute("content_template", "/posts/show");
+\end_layout
+
+\begin_layout Plain Layout
+
+	model.addAttribute("posts", new Post[] { post });
+\end_layout
+
+\begin_layout Plain Layout
+
+	return super.defaultMapping(model);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Show SBlog"
+
+\end_inset
+
+Visualizzazione di un singolo post in SBlog.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'unico vantaggio di Spring su MVC5 è di permettere l'implementazione di
+ un meccanismo esterno al controllo per associare a ciascuna eccezione un
+ corrispondente stato HTTP.
+\end_layout
+
+\begin_layout Subsubsection*
+Helper e Service
+\end_layout
+
+\begin_layout Standard
+Nell'interpretazione del pattern MVC, RoR e Spring prevedono un componente
+ aggiuntivo rispetto a quelli previsti.
+\begin_inset Newline newline
+\end_inset
+
+RoR fa ampio uso degli Helper, implementati in Ruby come moduli, per organizzare
+ metodi di utilità e definire un'applicazione più lineare e fattorizzata.
+ Essendo privi di stato, i moduli sono utilizzabili da qualsiasi componente
+ senza dover applicare pattern come la DI.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Spring, oltre ai ruoli 
+\begin_inset Quotes eld
+\end_inset
+
+@Repository
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+@Entity
+\begin_inset Quotes erd
+\end_inset
+
+ per il modello e a 
+\begin_inset Quotes eld
+\end_inset
+
+@Controller
+\begin_inset Quotes erd
+\end_inset
+
+, è presente la componente 
+\begin_inset Quotes eld
+\end_inset
+
+@Service
+\begin_inset Quotes erd
+\end_inset
+
+.
+ I servizi sono utilizzati, tramite la DI e l'annotazione 
+\begin_inset Quotes eld
+\end_inset
+
+@Autowired
+\begin_inset Quotes erd
+\end_inset
+
+, per fattorizzare la logica dell'accesso al modello da parte dei controlli
+ e semplificarne le azioni.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In MVC5 non è previsto alcuna componente per fattorizzare metodi d'utilità
+ o per introdurre un'astrazione ulteriore del modello; è quindi compito
+ dell'utente definire un proprio pattern ed implementarlo.
+\end_layout
+
+\begin_layout Subsection
+Le viste
+\end_layout
+
+\begin_layout Standard
+Per implementare le viste dei blog sono stati utilizzati due tipologie di
+ template engine: ERB e Razor definiscono il comportamento dinamico delle
+ viste introducendo all'interno delle pagine HTML brevi script, definiti
+ tramite elementi sintattici non analizzabili da un comune browser, Thymeleaf
+ invece estende le proprietà dei comuni elementi HTML tramite ulteriori
+ attributi i cui valori possono essere espressioni dinamiche.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<p class="post_title">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<a th:href="|/posts/${post.id}|" th:text="${post.title}">
+\end_layout
+
+\begin_layout Plain Layout
+
+	</a>
+\end_layout
+
+\begin_layout Plain Layout
+
+</p>
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Titolo di un post con Thymeleaf.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dal punto di vista teorico del pattern MVC, le viste non dovrebbero contenere
+ logica ed essere esclusivamente una rappresentazione delle entità presenti
+ nel modello.
+\end_layout
+
+\begin_layout Standard
+Thymeleaf definisce una grande varietà di attributi, il cui uso è orientato
+ principalmente alla lettura delle espressioni, semplificando lo sviluppo
+ di viste che siano il più lineari possibili, ma sposta la complessità nelle
+ azioni dei controller che devono fornire più parametri.
+\end_layout
+
+\begin_layout Standard
+Al contrario le viste definite con ERB e Razor possono favorire la violazione
+ del pattern introducendo all'interno dei documenti HTML dichiarazioni di
+ variabili e facendo ampio uso di costrutti sintattici come cicli 
+\begin_inset Quotes eld
+\end_inset
+
+for
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+if-else
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Potendo posticipare all'analisi delle viste una piccola porzione della logica
+ dell'applicazione, le azioni di RoR e MVC5 spesso forniscono esclusivamente
+ l'oggetto che è rappresentato nella vista, come il singolo post di cui
+ mostrare gli attributi.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<p class='post_title'>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<%= link_to @post.title, @post %>
+\end_layout
+
+\begin_layout Plain Layout
+
+</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Titolo di un post con ERB.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Personalmente trovo che la sintassi da Thymeleaf sia poco intuitiva e troppo
+ articolata, preferisco quindi un approccio che permetta di scrivere nel
+ linguaggio in cui è scritta l'applicazione perché più familiare e leggibile.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<p class="post_title">
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Html.ActionLink(Model.title, "Details", new { id = Model.id })
+\end_layout
+
+\begin_layout Plain Layout
+
+</p>
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Titolo di un post con Razor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre Thymeleaf, introducendo le espressioni all'interno degli attributi,
+ e quindi come stringhe, non fornisce alcuna validazione a compile-time.
+ Tutta la gestione degli errori è effettuata a run-time tramite eccezioni.
+ Se per evitare di anticipare troppa logica nelle azioni si sceglie di implement
+are un'espressione articolata in Thymeleaf, è possibile trovarsi nella scomoda
+ posizione di decifrare lo stack-trace delle eccezioni per bilanciare una
+ parentesi.
+\end_layout
+
+\begin_layout Standard
+Al contrario utilizzando un template engine come ERB o Razor, è possibile
+ effettuare il debug della vista, utilizzare l'autocomplemento o l'intellisense
+ e navigare fra i riferimenti per approfondire il funzionamento di un metodo
+ ausiliario della libreria.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dovendo indicare il miglior template engine, credo che la sintassi di Ruby
+ sia particolarmente adatta per operazioni di scripting come la definizione
+ di viste dinamiche, inoltre gli helper disponibili hanno un'interfaccia
+ più leggibile e sono meglio documentati delle funzionalità di Razor.
+\end_layout
+
+\begin_layout Section
+ATDD
+\end_layout
+
+\begin_layout Subsection
+BDD
+\end_layout
+
+\begin_layout Subsubsection*
+DSL
+\end_layout
+
+\begin_layout Subsubsection*
+Integrazione con il framework
+\end_layout
+
+\begin_layout Subsubsection*
+Semplicità d'uso
+\end_layout
+
+\begin_layout Subsection
+Web Automation
+\end_layout
+
+\begin_layout Subsubsection*
+Funzionalità
+\end_layout
+
+\begin_layout Subsubsection*
+Gestione del CSS
+\end_layout
+
+\begin_layout Subsubsection*
+Asincronia
+\end_layout
+
+\begin_layout Subsubsection*
+Manuntenibilità
+\end_layout
+
+\begin_layout Standard
+https://github.com/Huddle/PhantomCSS
+\end_layout
+
+\begin_layout Standard
+http://huddle.github.io/Resemble.js/
+\end_layout
+
+\end_body
+\end_document
