@@ -3,6 +3,9 @@
 \begin_document
 \begin_header
 \textclass extbook
+\begin_preamble
+
+\end_preamble
 \use_default_options true
 \master ../Relazione.lyx
 \maintain_unincluded_children false
@@ -664,7 +667,6 @@ public class Post {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento dell'entità Post in JPA.
 \end_layout
 
@@ -747,7 +749,6 @@ public partial class Post{
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Frammento dell'entità Post con l'Entity Framework.
 \end_layout
 
@@ -884,7 +885,6 @@ var postTitles = db.Posts
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Selezione dei titoli simili in LINQ.
 \end_layout
 
@@ -929,7 +929,6 @@ public List<Post> findPostByTitleContainingIgnoreCase(String title);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Selezione dei post in JPA.
 \end_layout
 
@@ -1120,7 +1119,6 @@ Rails.application.routes.draw do
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Instradamento delle pagine statiche di RBlog.
 \end_layout
 
@@ -1180,7 +1178,6 @@ l }             );
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Pattern per la risoluzione dell'instradamento in CSBlog.
 \end_layout
 
@@ -1258,7 +1255,6 @@ end
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Show RBlog"
@@ -1368,7 +1364,6 @@ public ActionResult Details(Guid? id) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Show CSBlog"
@@ -1446,7 +1441,6 @@ public String show(@PathVariable Integer id, Model model) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Show SBlog"
@@ -1592,7 +1586,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Titolo di un post con Thymeleaf.
 \end_layout
 
@@ -1674,7 +1667,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Titolo di un post con ERB.
 \end_layout
 
@@ -1719,7 +1711,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 Titolo di un post con Razor.
 \end_layout
 
@@ -1759,6 +1750,10 @@ Dovendo indicare il miglior template engine, credo che la sintassi di Ruby
  sia particolarmente adatta per operazioni di scripting come la definizione
  di viste dinamiche, inoltre gli helper utilizabili in ERB hanno un'interfaccia
  più leggibile e sono meglio documentati delle funzionalità di Razor.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1769,44 +1764,2075 @@ ATDD
 BDD
 \end_layout
 
-\begin_layout Subsubsection*
-DSL
+\begin_layout Standard
+Nel corso della tesi sono stati utilizzati tre framework per il BDD: le
+ versioni per Ruby e Java di Cucumber e SpecFlow per .NET.
 \end_layout
 
-\begin_layout Subsubsection*
-Integrazione con il framework
+\begin_layout Standard
+Attualmente, Cucumber è il framework per il BDD più diffuso ed utilizzato,
+ anche grazie a Gherkin, il DSL per la definizione dei test.
+ Il linguaggio per sviluppare i test di accettazione è ricco di funzionalità,
+ ad esempio è possibile definire dei contesti comuni per le funzionalità,
+ etichette per poter definire delle categorie di scenari o richiedere l'esecuzio
+ne di particolari callback, la possibilità parametrizzare i test tramite
+ tabelle e molto altro.
 \end_layout
 
-\begin_layout Subsubsection*
-Semplicità d'uso
+\begin_layout Standard
+L'unico elemento sintattico che stona con la definizione di DSL Business
+ Readable è l'uso delle annotazioni, che introducono una notazione tecnica,
+ la cui leggibilità dipende dallo sviluppatore.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cucumber, nella versione originale per Ruby, e Cucumber-JVM sono praticamente
+ equivalenti nell'implementazione del framework, anche se sfruttano elementi
+ sintattici propri dei rispettivi linguaggi.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SpecFlow utilizza Gherkin come Cucumber, ma dà un'interpretazione più rigida
+ del processo di associazione passo - implementazione, richiedendo la consistenz
+a del tipo utilizzato ed introducendo il meccanismo degli 
+\begin_inset Quotes eld
+\end_inset
+
+Scope
+\begin_inset Quotes erd
+\end_inset
+
+ per poter definire più versioni di un stesso passo.
+\end_layout
+
+\begin_layout Standard
+Rispetto a Cucumber è però carente nella definizione degli hook, essendo
+ privo di un meccanismo per impostare un ordinamento nelle callback applicate
+ allo stesso evento ed etichettate nella stessa maniera.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I framework risultano sostanzialmente equivalenti ed il fattore discriminante
+ della scelta coincide quasi esclusivamente con il linguaggio in cui sono
+ implementati.
+ Se ci fosse la possibilità di scegliere liberamente fra le tre versioni,
+ Cucumber è apparso più lineare nella gestione degli hook e quindi preferibile
+ per il BDD dei blog, i cui test di accettazione non espongono diversi ruoli
+ per gli utenti e mantengono una prospettiva comune dell'uso del sito.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dovendo invece scegliere in funzione del supporto dato dai plugin nei diversi
+ ambienti di sviluppo, la versione per RubyMine e quella per VS si equivalgono
+ e sono entrambe valide, al contrario la versione per Eclipse implementa
+ solo alcune funzionalità elementari, ma è comunque funzionante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gherking
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Passi Tipati
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ordinamento Hook
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Plugin
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cucumber
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Completo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cucumber JVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Completo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SpecFlow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Completo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Confronto breve fra i framework per il BDD.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Web Automation
 \end_layout
 
+\begin_layout Standard
+Prima di analizzare le librerie degli strumenti utilizzati per automatizzare
+ la navigazione web, è opportuno fare una precisazione sulla natura dei
+ progetti.
+\end_layout
+
+\begin_layout Standard
+Capybara e Coypu sono progetti open-source, disponibili su GitHub e mantenuti
+ grazie agli sforzi degli autori e dei singoli sviluppatori che individuano
+ bug ed effettuano correzioni.
+ Entrambe i progetti sono attivi, la comunità di sviluppatori di Coypu è
+ però più piccola e meno partecipe rispetto a quella di Capybara, ed esistenti
+ da diversi anni, Capybara nasce nel 2009 e Coypu nel 2010.
+ Coypu però non è una libreria implementata da zero, ma sfrutta le funzionalità
+ di Selenium per definire un progetto a più alto livello.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Selenium è un progetto non open-source ma gratuito, sviluppato da un team
+ che in passato ha anche lavorato in sinergia con Google per sviluppare
+ alcune estensioni della libreria WebDriver, utilizzate poi internamente
+ dall'azienda di Moutain View per i test di applicazioni web.
+ Rispetto a Coypu e Capybara, Selenium è disponibile in più linguaggi e
+ implementa anche le funzionalità per la navigazione in applicazioni per
+ Android e iOS.
+\end_layout
+
+\begin_layout Standard
+Inoltre il team di Selenium ha sviluppato altri progetti, come Selenium
+ IDE, un plugin per Firefox per la definizione di test registrando le azioni
+ nel browser, Selenium Grid, per l'esecuzione parallela dei test in più
+ browser e sistemi operativi e Selenium Remote Control, un'architettura
+ client-server per l'esecuzione in remoto dei test.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open-Source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gratuito
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wrapper
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mobile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Linguaggi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Capybara
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ruby
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coypu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C# Java
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C# Java Ruby
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Python PHP Perl JS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Confronto breve fra le librerie.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Funzionalità
+\end_layout
+
+\begin_layout Standard
+Le valutazioni sull'usabilità, leggibilità e manutenibilità della libreria
+ dipendono dal linguaggio utilizzato.
+ Ad esempio Capybara ha una sintassi molto più leggera e comprensibile rispetto
+ a Selenium anche grazie a Ruby e Coypu in C# sfrutta la migliore integrazione
+ del linguaggio con funzioni e closures.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Strutturando in maniera diversa il proprio codice, Capybara è estremamente
+ modulare, Selenium ha un'organizzazione classica suddivisa per package
+ e funzionalità e Coypu tende ad raccogliere i metodi all'interno di un
+ insieme ridotto di classi, tutte le librerie implementano con successo
+ le funzionalità di base della navigazione web.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le differenze significative riguardano le segnature dei metodi.
+ Coypu e Capybara prediligono definire delle funzionalità leggibile ed estendibi
+li tramite parametri opzionali, come dizionari o la classe 
+\begin_inset Quotes eld
+\end_inset
+
+Options
+\begin_inset Quotes erd
+\end_inset
+
+ di Coypu.
+ Selenium al contrario introduce una gerarchia di classi articolata e prevede
+ diverse enumerazioni e classi factory per navifare nel browser.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Coypu e Capybara cercano di astrarre la navigazione dell'applicazione web
+ mantenendo la stessa prospettiva dell'utente, introducendo diversi selettori
+ sul contenuto testuale degli elementi e fornendo gli strumenti per definire
+ espressioni regolari o stringhe parziali.
+ Al contrario Selenium opta per un'implementazione più a basso livello,
+ non è presente il selettore sul contenuto testuale, e l'utilizzo del pattern
+ Page Object
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PageObject"
+
+\end_inset
+
+, nel seguito PO, teorizzato da Martin Fowler, fornendo alcuni metodi per
+ favorirne l'implementazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Conclusione/pageObject.png
+	display false
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Implementazione del pattern Page Object.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un PO è un'astrazione di una pagina webin generale può rappresentare qualsiasi
+ interfaccia grafica, effettuata tramite il paradigma ad oggetti.
+ All'interno della classe sono descritte, tramite dei metodi, le funzionalità
+ offerte dalla pagina, utilizzate dai test per definire effettuare la navigazion
+e.
+ Il pattern permette di fattorizzare la definizione delle operazioni, rendendo
+ il codice più mantenibile e rimuovendo dall'implementazione dei test ogni
+ dettaglio a basso livello della pagina.
+\end_layout
+
+\begin_layout Standard
+Selenium, e di conseguenza Coypu, sono meglio integrati con i browser web,
+ fornendo le funzionalità per utilizzare componenti come la cronologia e
+ i preferiti.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'utilizzo del pattern PO è adatto allo sviluppo di progetti in ATDD, ma
+ richiede di introdurre ulteriore complessità ai test.
+ Al contrario, scegliendo di utilizzare le funzionalità ad alto livello
+ di Capybara e Coypu l'implementazione è più rapida ed allo stesso tempo
+ fragile.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Form
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selettori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Azioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Capybara
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si, alto livello
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si, integrazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+con il browser
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coypu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si, alto livello
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si, tramite
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si, integrazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ con il browser
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Funzionalità per la definizione dei test.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
 Gestione del CSS
 \end_layout
 
+\begin_layout Standard
+Per la verifica delle proprietà stilistiche degli elementi del DOM è possibile
+ effettuare l'accesso al valore 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ oppure verificare che le regole definite nei fogli di stile siano applicate.
+\end_layout
+
+\begin_layout Standard
+Tutte le librerie implementano dei meccanismi per accedere ai singoli attributi
+ di un elemento HTML, Capybara e Coypu definiscono l'operatore 
+\begin_inset Quotes eld
+\end_inset
+
+[ ]
+\begin_inset Quotes erd
+\end_inset
+
+ per ottenere i singoli valori con la stessa interfaccia di un'array associativo
+, Selenium invece fornisce il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getAttribute
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Capybara l'accesso all'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ è l'unico metodo nativo per ottenere informazioni riguardo lo stile di
+ un tag HTML, oppure è possibile implementare uno script JQuery.
+ Selenium invece implementa un metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getCssValue
+\begin_inset Quotes erd
+\end_inset
+
+ per ottenere le proprietà stilistiche, sia che siano dichiarate nell'attributo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+ sia che siano attribuite tramite fogli di stile.
+ Purtroppo però gli attributi utilizzabili sono solo quelli presenti nel
+ CSS 2.
+\end_layout
+
+\begin_layout Standard
+Coypu non implementa le funzionalità per ottenere le proprietà stilistiche
+ di un elemento, se non utilizzando l'attributo 
+\begin_inset Quotes eld
+\end_inset
+
+style
+\begin_inset Quotes erd
+\end_inset
+
+, ma è comunque possibile utilizzare direttamente la libreria di Selenium
+ ed utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+getCssValue
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attributi inline
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fogli di stile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Capybara
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valore serializzato
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singolo valore, solo CSS2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singolo valore, solo CSS2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coypu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singolo valore,
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singolo valore,
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tramite Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tramite Selenium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Funzionalità per l'accesso alle proprietà stilistiche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonostante le limitazioni legate alla versione del CSS, Selenium è l'unica
+ libreria ad implementare una funzionalità specifica per ottenere i valori
+ delle proprietà estetiche di un elemento HTML.
+\end_layout
+
 \begin_layout Subsubsection*
 Asincronia
 \end_layout
 
+\begin_layout Standard
+Per la gestione dei comportamenti asincroni sono state utilizzate due tecniche
+ differenti: tramite attese implicite, implementate in tutte le librerie,
+ si assume che ogni elemento sia potenzialmente il risultato di un'operazione
+ asincrona ed è fissato un tempo massimo di attesa ed una frequenza di polling,
+ mentre con le attese esplicite è definite una condizione da verificare
+ e si attende entro un certo tempo massimo che lo stato della pagina coincida
+ con l'asserzione.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Capybara e Coypu implementano il meccanismo delle attese implicite.
+ Capybara però necessità di utilizzare il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+synchronize
+\begin_inset Quotes erd
+\end_inset
+
+ per la gestione di comportamenti asincroni complessi (come il widget per
+ l'auto-completamento, che richiede l'applicazione di regole di CSS per
+ definire l'interfaccia grafica).
+\end_layout
+
+\begin_layout Standard
+Selenium invece implementa entrambe i meccanismi, in particolare per SBlog
+ sono state utilizzati le attese esplicite ed i metodi presenti nella libreria
+ per la verifica dello stato della pagina.
+\end_layout
+
+\begin_layout Standard
+Sia Selenium che Capybara però, quando ricercano un elemento all'interno
+ del DOM, considerano anche gli elementi non visibili.
+ Spesso i widget grafici utilizzano elementi nascosti nel DOM e l'impossibilità
+ di configurare Selenium, evitando elementi visibili da un utente, complica
+ l'utilizzo di widget asincroni.
+ Capybara invece permette di specificare per ciascuna invocazione un parametro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+visible
+\begin_inset Quotes erd
+\end_inset
+
+ booleano.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Coypu invece adotta l'approccio opposto, ricercando nella pagina solo elementi
+ visibili, mantenendo la stessa prospettiva di un utente durante la navigazione
+ web ma permettendo comunque di configurare il comportamento.
+ Verificando solo elementi visibili ed utilizzando le attese implicite,
+ Coypu rappresenta la scelta migliore, soprattutto in applicazioni web moderne.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attese esplicite
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attese implicite
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Semplicità
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+nell'uso dei widget
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Capybara
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- (con le attese esplicite)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++ (con le attese implicite)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coypu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tramite Selenium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Si
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione delle funzionalità per la verifica di comportamenti asincroni
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
-Manuntenibilità
+Manutenibilità
 \end_layout
 
 \begin_layout Standard
-https://github.com/Huddle/PhantomCSS
+Utilizzando selettori legati alla struttura, sia che siano sul CSS o espressi
+ tramite XPath, facilita la definizione di test fragili.
+ Per evitare costanti operazioni di modifica dei test è opportuno utilizzare
+ selettori più ad alto livello, come sul testo, soprattutto se, come in
+ MVC5, è possibile fattorizzare le espressioni testuali.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-http://huddle.github.io/Resemble.js/
+Anche utilizzare una libreria di asserzioni ben definita può semplificare
+ la manutenibilità, implementando test più leggibili ed espressivi.
+\end_layout
+
+\begin_layout Standard
+La miglior libreria per definire asserzioni è il progetto 
+\begin_inset Quotes eld
+\end_inset
+
+rspec-expectations
+\begin_inset Quotes erd
+\end_inset
+
+ di RSpec, che attraverso Ruby, la segnatura del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+expect
+\begin_inset Quotes erd
+\end_inset
+
+, la presenza di numerosi metodi per la definizione di condizioni, come
+ 
+\begin_inset Quotes eld
+\end_inset
+
+raise_error
+\begin_inset Quotes erd
+\end_inset
+
+ per la verifica di comportamenti eccezionali, permette di definire metodi
+ compatti e leggibili.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+NUnit è leggermente inferiore a RSpec ma comunque una valida alternativa
+ per implementare le asserzioni nei passi dei test di accettazione.
+ Una delle caratteristiche più apprezzate è la possibilità di utilizzare
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+That
+\begin_inset Quotes erd
+\end_inset
+
+ della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Assert
+\begin_inset Quotes erd
+\end_inset
+
+ e i metodi factory della classe 
+\begin_inset Quotes eld
+\end_inset
+
+Shows
+\begin_inset Quotes erd
+\end_inset
+
+ per descrivere asserzioni facilmente leggibili.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+JUnit, che utilizzato in isolamento è uno strumento completo, intuitivo
+ e potente, con Cucumber non esprime a pieno le sue potenzialità: non è
+ infatti possibile utilizzare nessuna funzionalità esistente per la verifica
+ delle eccezioni, costringendo l'utente a provvedere manualmente, sviluppando
+ test eccessivamente complessi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Espressività
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leggibilità
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modularità della libreria
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RSpec
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NUnit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JUnit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+--
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Valutazione delle librerie per l'implementazione delle asserzioni nei test.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusione
+\end_layout
+
+\begin_layout Standard
+Potendo scegliere lo stack di applicazioni per definire ed implementare
+ i test di accettazione in maniera ideale consiglierei Cucumber, nella versione
+ per Ruby, Coypu e RSpec.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Concretamente invece, Coypu infatti non è utilizzabile in Ruby, gli strumenti
+ utilizzati per sviluppare RBlog rappresentano la miglior soluzione: si
+ integrano perfettamente fra loro e permettono di implementare test in maniera
+ estremamente leggibile e in un numero ridotto di righe di codice.
+\end_layout
+
+\begin_layout Standard
+Lo stack utilizzato per .NET ha in SpecFlow e nell'implementazione degli
+ hook il suo elemento debole, trascurando quest'aspetto, i test scritti
+ in Coypu e NUnit sono fra quelli più leggibili ed allo stesso tempo meno
+ fragili.
+\end_layout
+
+\begin_layout Standard
+Gli strumenti scelti per Java sono completi ma non eccellono a causa dei
+ problemi di Selenium nella gestione degli eventi asincroni e di JUnit per
+ la specifica delle asserzioni.
 \end_layout
 
 \end_body

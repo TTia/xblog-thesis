@@ -124,7 +124,7 @@
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Capitoli/Capitolo 04 - MVC5.lyx"
+filename "Capitoli/Capitolo 01 - Introduzione.lyx"
 
 \end_inset
 
@@ -134,7 +134,27 @@ filename "Capitoli/Capitolo 04 - MVC5.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Pagine singole/Conclusione.lyx"
+filename "Capitoli/Capitolo 02 - RoR.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Capitoli/Capitolo 03 - Spring.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Capitoli/Capitolo 04 - MVC5.lyx"
 
 \end_inset
 

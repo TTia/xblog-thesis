@@ -1253,5 +1253,22 @@ target "http://gatling.io/"
 
 \end_layout
 
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "PageObject"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://martinfowler.com/bliki/PageObject.html"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

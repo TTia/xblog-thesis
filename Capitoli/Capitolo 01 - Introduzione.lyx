@@ -131,34 +131,10 @@ L'obbiettivo di questa tesi è di riprendere la prospettiva utilizzata per
  Singapore, analizzando tre framework, scelti in funzione di diffusione,
  novità e particolarità ma concentrando l'attenzione sull'implementazione
  di test di accettazione automatici piuttosto che alla modificabilità.
- I framework scelti sono Ruby on Rails, Spring MVC e AngularJS.
+ I framework scelti sono Ruby on Rails, Spring MVC e ASP.NET MVC5.
  Nel corso della tesi verrà trattata l'interpretazione data da ciascun framework
  del pattern architetturale MVC e documentato lo sviluppo delle applicazioni
  web in funzione dell'implementazione dei test di accettazione automatici.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Riscritto.
- 
-\begin_inset Quotes eld
-\end_inset
-
-Nel corso del tesi verranno descritte le peculiarità architetturali delle
- piattaforme e documentato lo sviluppo parallelo dei test di accettazione
- e delle applicazione web oggetto delle verifiche.
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -180,22 +156,6 @@ a.
 
 \begin_layout Section
 L'architettura Model View Controller
-\end_layout
-
-\begin_layout Standard
-Da rivedere
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Standard
@@ -300,15 +260,165 @@ A differenze della verifica dei test effettuata manualmente dagli utenti,
 \end_layout
 
 \begin_layout Section
-Il progetto
-\end_layout
-
-\begin_layout Subsection
-Le User Stories
+Il caso di studio
 \end_layout
 
 \begin_layout Standard
-http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
+Lo scopo della tesi è verificare, a distanza di alcuni anni dall'articolo
+ 
+\begin_inset Quotes sld
+\end_inset
+
+A comparative Study of Maintainability of Web Application on J2EE, .NET and
+ Ruby on Rails
+\begin_inset Quotes srd
+\end_inset
+
+ le potenzialità attuali dei framework MVC Spring, Ruby on Rails e ASP.NET
+ MVC, sviluppando un blog sulle tre piattaforme.
+\end_layout
+
+\begin_layout Standard
+Grazie allo sviluppo delle applicazioni web sui diversi framework, sarà
+ possibile comprendere l'interpretazione del pattern architetturale MVC
+ e analizzare per ciascuna componente pregi e difetti.
+\end_layout
+
+\begin_layout Standard
+Oltre all'implementazione dei blog, nel seguito indicati con i nomi RBlog,
+ SBlog e CSBlog -rispettivamente per le versioni in Spring, Ruby on Rails
+ e ASP.NET MVC5- sono stati definite dei test di accettazione.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Durante la fase di design dei test di accettazione è stato scelto di far
+ coincidere a ciascuna funzionalità lo sviluppo di una particolare tecnologia:
+\end_layout
+
+\begin_layout Enumerate
+la funzionalità chiamata 
+\begin_inset Quotes eld
+\end_inset
+
+Hello *Blog!
+\begin_inset Quotes erd
+\end_inset
+
+, include gli scenari relativi al primo utilizzo del blog e alla navigazione
+ grazie a delle pagine statiche.
+ Per verificare tali scenari è necessario che l'applicazione sia eseguibile
+ e opportunamente configurata;
+\end_layout
+
+\begin_layout Enumerate
+la funzionalità 
+\begin_inset Quotes eld
+\end_inset
+
+Introducendo il CSS
+\begin_inset Quotes erd
+\end_inset
+
+ coincide con la definizione dei fogli di stile per il blog;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+Gestione dei post
+\begin_inset Quotes erd
+\end_inset
+
+ prevede che tramite l'interfaccia dell'applicazione web sia possibile gestire
+ i post presenti sul blog, effettuando le operazioni di creazione, cancellazione
+ e modifica di un articolo.
+ Per soddisfare gli scenari dichiarati è necessario che il modello dell'applicaz
+ione sia configurato ed integrato con le altre componenti;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+Navigazione dei post
+\begin_inset Quotes erd
+\end_inset
+
+ richiede che sia possibile leggere i post ed effettuare l'espansione dell'antep
+rima sfruttando i collegamenti dinamici introdotti;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+Easter Egging
+\begin_inset Quotes erd
+\end_inset
+
+ introduce un comportamento faceto all'interno dell'applicazione sfruttando
+ JavaScript per modificare il DOM della pagina;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+Autocompletamento della ricerca
+\begin_inset Quotes erd
+\end_inset
+
+ definisce la possibilità di ricercare dei post all'interno del sito, inoltre
+ è utilizzato un widget asincrono per effettuare l'auto-completamento della
+ ricerca.
+\end_layout
+
+\begin_layout Standard
+Le funzionalità appena descritte e i relativi scenari saranno utilizzati
+ per la definizione dei test di accettazione automatici, dando un'implementazion
+e per ogni progetto.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per individuare il miglior stack di strumenti da utilizzare per i test sono
+ stati individuati alcuni parametri da valutare nella scelta:
+\end_layout
+
+\begin_layout Itemize
+preferenza per strumenti implementati nello stesso linguaggio del framework,
+ per minimizzare problemi di integrazione e favorire lo sviluppo tramite
+ ATDD;
+\end_layout
+
+\begin_layout Itemize
+utilizzo di strumenti gratuiti, preferibilmente open-source;
+\end_layout
+
+\begin_layout Itemize
+utilizzo di strumenti supportati da una comunità di utenti e correntemente
+ sotto sviluppo;
+\end_layout
+
+\begin_layout Standard
+L'implementazione dei test di accettazione sarà utilizzata per ottenere
+ informazioni sulle potenzialità degli strumenti utili per automatizzare
+ la verifica di applicazioni web moderne.
+ Inoltre, mantenendo per tutti i progetti le stesse funzionalità e scenari,
+ sarà più semplice eseguire una comparazione fra gli strumenti utilizzati.
+\end_layout
+
+\begin_layout Section
+Sommario
 \end_layout
 
 \end_body
