@@ -2138,7 +2138,7 @@ key "ThymeLeaf"
  La libreria, organizzata in due moduli contenenti le funzionalità standard
  e quelle specifiche per Spring, permette la definizione di pagine dinamiche
  utilizzando esclusivamente elementi sintattici esistenti nell'HTML.
- Al contrario ERB e Razor, il template engine di MVC5 descritto nel prossimo
+ Al contrario ERB e Razor, il template engine di MVC 5 descritto nel prossimo
  capitolo, prevedono l'utilizzo di delimitatori per includere frammenti
  di codice non interpretabili da un browser ma da processare tramite un
  server web.

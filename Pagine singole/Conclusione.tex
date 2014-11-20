@@ -1,0 +1,779 @@
+%% LyX 2.1.3dev created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside,italian]{extbook}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+\makeatother
+
+\usepackage{babel}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Listato}
+
+\begin{document}
+
+\chapter{Conclusione}
+
+
+\section{I framework}
+
+In questa prima sessione sono analizzate gli ambienti di sviluppo
+e le principali funzionalità dei framework utilizzati, ed effettuato
+un confronto.
+
+
+\subsection{Produttività}
+
+Una delle caratteristiche fondamentali per valutare un framework e
+l'ambiente di sviluppo scelto è la produttività, intesa come semplicità
+di gestire il framework e le tecnologie necessarie per il progetto
+e l'immediatezza della configurazione.
+
+
+\subsubsection*{IDE}
+
+Per sviluppare le applicazioni web descritte nella tesi sono stati
+scelti gli ambienti di sviluppo più utilizzati e meglio integrati
+con ciascuna tecnologia. Nonostante tutti permettano di implementare
+applicazioni web tramite i framework MVC documentati nei precedenti
+capitoli, i progetti sono molto differenti fra loro per quanto riguarda
+il tipo di business, i prezzi e il processo di sviluppo.\\
+
+
+Seguendo lo stesso ordine dei capitoli, il primo IDE utilizzato è
+RubyMine, un prodotto di JetBrains. Il software è sviluppato da un'azienda
+privata ed attualmente, secondo i prezzi del loro sito, il prezzo
+parte da circa 100€ per una singola licenza ed arriva 200€ per una
+licenza commerciale, valida per aziende ed associazioni.
+
+Lo sviluppo di RubyMine è costante, nel corso della tesi sono stati
+installati diversi aggiornamenti gestiti internamente all'IDE, senza
+necessità di scaricare patch e dover riconfigurare il proprio ambiente
+di sviluppo.
+
+La versione utilizzata per implementare RBlog è una versione accademica
+gratuita che include tutte le funzionalità presenti nella versione
+a pagamento.\\
+
+
+Spring Tool Suite, la versione di Eclipse specializzata per supportare
+lo sviluppo con Spring è un progetto privato della ``Pivotal Software'',
+l'azienda che cura lo sviluppo dei diversi prodotti per Spring. Come
+già descritto all'interno del relativo capitolo, solo il plugin è
+sviluppato dagli autori di Spring, mentre il resto dell'applicazione
+è una versione di Eclipse per JavaEE, uno dei diversi progetti open-source
+sviluppati interamente da una comunità di sviluppatori attiva e numerosa.
+
+A differenza dell'ambiente di sviluppo, l'insieme di funzionalità
+che definiscono STS non è un progetto open-source, ma è comunque distribuito
+a titolo gratuito.
+
+Per rilasciare aggiornamenti Eclipse e STS forniscono direttamente
+la nuova versione del prodotto, senza aggiornarne le funzionalità
+internamente. Questo processo può essere scomodo nel caso in cui sia
+necessario installare plugin specifici per lo sviluppo non inclusi
+di default nel software.\\
+
+
+Visual Studio è un prodotto a pagamento sviluppato da Microsoft. Per
+lo sviluppo di CSBlog è stata utilizzata la versione Ultimate 2014,
+che rappresenta il prodotto più completo fra le varie versioni disponibili.
+
+Come descritto nel relativo capitolo, VS è un prodotto estremamente
+professione e versatile. Gli aggiornamenti sono gestiti internamente
+al software, mantenendo le impostazioni personali dell'utente.
+
+La versione utilizzata per lo sviluppo è una licenza accademica ottenuta
+tramite la convenzione DreamSpark fra Microsoft ed Unige. Acquistare
+una copia di VS è decisamente oneroso, ma sono anche previste versioni
+essenziali come Visual Studio Express 2013, che è disponibile gratuitamente.\\
+
+
+Nonostante VS sia al momento eseguibile solo utilizzando un sistema
+operativo Windows, sia più esigente in termini di requisiti di sistema
+e sia a pagamento, ritengo che sia il prodotto più completo e professionale
+fra quelli utilizzati.
+
+
+\subsubsection*{Plugin}
+
+Implementare un'applicazione web tramite un framework MVC comporta
+l'utilizzo di un vasto stack di strumenti e tecnologie.\\
+
+
+RubyMine è un'ambiente di sviluppo specifico per implementare applicazioni
+RoR ed include il supporto a tutti i linguaggi comunemente utilizzati
+in ambito web ed anche a nuove tecnologie%
+\footnote{Fra i linguaggi supportati spicca CoffeeScript che permette di scrivere
+codice asincrono utilizzando una sintassi meno verbosa e generare
+codice JavaScript come risultato della compilazione.%
+}.
+
+Oltre a fornire gli strumenti per supportare l'implementazione delle
+applicazioni, RubyMine integra la possibilità di eseguire test di
+diversa granularità senza dover installare e configurare plugin. Per
+lo sviluppo di RBlog e l'implementazione della tecnica dell'ATDD è
+stata utilizzata la versione classica dell'IDE senza installare alcuna
+componente aggiuntiva, anche se l'ambiente di sviluppo fornisce gli
+strumenti per installare funzionalità aggiuntive.\\
+
+
+STS si basa sulla versione per Java EE di Eclipse, che anche nella
+versione classica include molte funzionalità specifiche per lo sviluppo
+web. Per implementare e testare SBlog è stato necessario installare
+il plugin per l'integrazione di Thymeleaf e di Cucumber, tramite l'apposito
+Marketplace.
+
+Inoltre Spring è un framework estremamente modulare, all'interno del
+quale lo sviluppatore ha la libertà di scegliere fra diversi strumenti
+per uno stesso scopo. Probabilmente a causa della natura open-source
+dell'IDE, i plugin presentano spesso errori nell'integrazione con
+l'ambiente di sviluppo e sono carenti di funzionalità non essenziali
+ma utili, come l'estensione di Cucumber-JVM, decisamente inferiore
+alla versione per SpecFlow in VS.\\
+
+
+A differenza di RubyMine e STS, VS è un IDE non specializzato per
+lo sviluppo di applicazioni Web, ma genericamente utilizzato per tutte
+gli strumenti di .NET. Nonostante lo sviluppo tramite MVC5 non sia
+l'unica prerogativa dell'IDE, VS è definito in maniera modulare e
+procede all'istallazione di componenti aggiuntive se e quando l'utente
+crea progetti che necessitano di estensioni rispetto alla versione
+di base del software, come l'integrazione con Sass.
+
+Per supportare lo sviluppo di CSBlog e dei test è stato necessario
+installare tramite NuGet, i plugin per Coypu, PhantomJS e SpecFlow.\\
+
+
+Come descritto nel capitolo su MVC5, utilizzando VS sono presenti
+delle difficoltà nell'esecuzione dei test di accettazione a causa
+dell'impossibilità di eseguire più di un processo. Al contrario, RubyMine
+è meno rigido e permette di monitorare il debug di un numero arbitrario
+di processi, che è una caratteristica utile per effettuare test che
+richiedono l'esecuzione del server web e dell'applicazione: ad esempio
+è una pratica comune effettuare stress test per ottenere indicazioni
+sulle performance, utilizzando strumenti come Gatling\cite{Gatling}.
+
+Inoltre, configurando opportunamente il proprio progetto, in RubyMine
+è anche possibile eseguire in parallelo l'esecuzione dei test di accettazione\cite{RubyMine Parallel Test Execution},
+permettendo anche di ottenere una valutazione indicativa delle performance
+di una singola funzionalità.
+
+
+\subsubsection*{Configurazione di un progetto}
+
+Uno dei fattori che incide sensibilmente nello sviluppo di una nuova
+applicazione MVC è la semplicità di configurare un nuovo progetto
+tramite l'ambiente di sviluppo.\\
+
+
+In RubyMine la prima generazione di una nuova applicazione è effettuata
+attraverso un wizard. Al termine della procedura l'utente può già
+eseguire la propria applicazione, che è definita da un'insieme di
+viste -già strutturate utilizzando un layout- che contengono informazioni
+e guide su come iniziare lo sviluppo.
+
+Per definire le componenti del proprio progetto è possibile utilizzare
+tramite l'IDE le funzionalità a riga di comando di RoR -anche se è
+necessario specificare le opzioni in maniera simile all'esecuzione
+tramite console- che generano la struttura delle componenti e forniscono
+all'utente una prima versione da personalizzare.
+
+Per definire le dipendenze del proprio progetto e le librerie utilizzate
+è molto conveniente utilizzare il Gemfile, perché definisce un DSL
+essenziale e facilmente leggibile. Per la configurazione di proprietà
+specifiche dell'applicazione, come i parametri per connessione al
+database, sono utilizzabili script in YAML o in Ruby, generati durante
+la creazione del progetto.\\
+
+
+La struttura di un progetto in Spring varia in funzione del build
+manager utilizzato, scegliendo ad esempio fra Gradle o Maven. Per
+comodità in SBlog è stato utilizzato Maven, perché già integrato nella
+versione di Eclipse utilizzata da STS.
+
+Come per RubyMine o VS è prevista la possibilità di creare un nuovo
+progetto utilizzando Spring e selezionando quali funzionalità siano
+richieste nell'applicazione; il wizard termina con la generazione
+di un progetto contenente esclusivamente la struttura dei package,
+che rispecchia l'organizzazione di Maven in file sorgenti, test e
+risorse, ed il file ``pom.xml'' per la configurazione delle dipendenze.\\
+
+
+Scegliendo di generare un progetto con JPA e Thymeleaf, all'esecuzione
+dell'applicazione sono sollevate diverse eccezione che segnalano l'assenza
+dei bean di configurazione del modello e la mancanza del provider
+per JPA.
+
+Oltre alla generazione automatica dei progetti, sono presenti anche
+diversi progetti starter da cui prendere spunto, ma che non possono
+essere utilizzati come base del progetto in quanto sono specifici
+per una singola tecnologia, ad esempio sono presenti gli starter per
+JSP, Thymeleaf e JPA.
+
+Per configurazione le singole proprietà di un'applicazione web è possibile
+combinare l'uso Spring Boot ed i beans. Nonostante includere fra le
+dipendenze di Maven i diversi progetti starter riduca il numero di
+aspetti da configurare, è comunque necessario definire alcuni bean,
+procedura che non è sempre intuitiva e rapida.\\
+
+
+VS è l'ambiente di sviluppo più completo e user-friendly fra quelli
+utilizzati nella tesi. La generazione dei progetti e delle singole
+componenti è possibile tramite interfacce grafiche che guidano l'utente
+e documentano ogni passaggio attraverso esempi e spiegazioni.
+
+Inoltre la creazione di un nuovo progetto genera un'applicazione completa
+e funzionante, anche se priva del modello.\\
+
+
+Sviluppando CSBlog come ultimo progetto, è risultato evidente come
+VS sia fortemente orientato alla produttività grazie all'ottima organizzazione
+e del continuo supporto fornito all'utente, rappresentando in assoluto
+il miglior IDE utilizzato nella tesi.
+
+
+\subsection{Il modello}
+
+
+\subsubsection*{Configurazione}
+
+La configurazione delle entità per il modello è uno degli aspetti
+più sensibili dell'intero sviluppo dell'applicazione MVC, in quanto
+ogni framework ha una propria interpretazione del modello, che differisce
+sia nei dettagli implementativi che a più ad alto livello nella rappresentazione
+delle entità.\\
+
+
+La generazione delle entità in RoR è stata eseguita principalmente
+tramite il comando ``scaffold'', che attraverso una sintassi intuitiva
+definisce le migrazioni per il modello, le classi rappresentanti le
+entità, i controlli e le azioni.
+
+Per personalizzare il dominio del modello è sufficiente modificare
+il contenuto delle migrazioni e modificare le classi rappresentanti
+le entità attraverso vincoli e relazioni.
+
+\begin{lstlisting}[caption={Frammento della classe Post di RBlog.}]
+class Post < ActiveRecord::Base
+	belongs_to :author
+	validates :title, presence: {message: 'Titolo mancante'}
+	validates :title, length: {minimum: 5,
+					too_short: "Il titolo deve essere almeno di 5 caratteri",
+							maximum: 100,
+							too_long: "Il titolo deve essere al più di 							100 caratteri"},
+							uniqueness: {
+								case_sensitive: false,
+								message: 'Esiste già un post con questo titolo' }
+	#..
+\end{lstlisting}
+
+
+Sfruttando ampiamente la sintassi di Ruby, le entità sono rappresentate
+attraverso una notazione versatile, estremamente leggibile e mantenibile.
+Rispetto a Spring e VS, le classi ``Author'' e ``Post'' sono le
+più compatte, misurando le linee di codice dei modelli dei tre progetti,
+ma anche le più espressive.\\
+
+
+Al contrario, configurare il modello con Spring è un operazione che
+può risultare complicata. Innanzitutto, rispetto a RoR che propone
+un'unica libreria per definire il modello e su questa definisce i
+propri strumenti e convenzioni, JPA è un progetto fortemente modulare.
+L'utente deve quindi, ancor prima di implementare le classi, scegliere
+il provider che intende utilizzare e verificarne le particolarità,
+ad esempio per EclipseLink è opportuno comprendere com'è compiuto
+il caricamento dei dati dai sistemi di persistenza.
+
+\begin{lstlisting}[caption={Frammento dell'entità Post in JPA.}]
+@Component
+@Entity
+public class Post {
+	/*..*/
+    @Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	Integer id;
+
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH},
+			fetch=FetchType.LAZY)
+			@JoinTable(name = AUTHOR_POST_JOIN_TABLE,             			joinColumns = @JoinColumn(name = POST_JOIN_COLUMN),          		   inverseJoinColumns = @JoinColumn(name = AUTHOR_JOIN_COLUMN),             uniqueConstraints = @UniqueConstraint(columnNames = {                     AUTHOR_JOIN_COLUMN, POST_JOIN_COLUMN}))
+	Author author;
+\end{lstlisting}
+
+
+Dopo aver configurato il provider, definendo come per SBlog gli opportuni
+bean, è necessario comprendere il funzionamento di JPA e delle annotazioni
+per poter rappresentare correttamente i POJO sul database.
+
+Per dare un'idea della complessità di JPA, nel tempo impiegato per
+definire il funzionamento dell'architettura di CSBlog, due/tre giorni
+uomo, è stato sviluppato il modello con Spring, risolti i diversi
+errori di configurazione e di caricamento lazy.\\
+
+
+Per definire il modello per MVC5 è stata utilizzata la generazione
+del modello in funzione dello schema di un database SQL esistente.
+Le modifiche effettuate sulle classi parziali rappresentanti le entità
+hanno riguardato esclusivamente la definizione di metodi ausiliari
+e l'utilizzo di attributi per definire la validazione delle proprietà.
+
+\begin{lstlisting}[caption={Frammento dell'entità Post con l'Entity Framework.}]
+public partial class Post{
+	public System.Guid id { get; set; }
+	public System.Guid authorId { get; set; }
+	[Required(ErrorMessage = "Titolo mancante.")]
+	[StringLength(100, MinimumLength = 5, ErrorMessage = "Il titolo deve essere compreso fra 5 e 100 caratteri.")]
+	[Remote("CheckForDuplication", "Post", AdditionalFields = "id")]         [Display(Name = "Titolo", Description = "Inserisci in questo campo il titolo che vuoi dare al tuo articolo.")]
+	public string title { get; set; }
+\end{lstlisting}
+
+
+Le classi ``Post'' ed ``Author'' sono paragonabili alle entità
+di RoR, ma meno espressive e leggibili, a causa della sintassi del
+C\#, decisamente più verbosa di Ruby.
+
+
+\subsubsection*{Astrazione}
+
+Tutti i framework utilizzano la tecnica ORM per rappresentare le entry
+presenti nei database ed includere un livello di astrazione per semplificare
+la gestione del modello.
+
+Le funzionalità per la persistenza -creazione, modifica e salvataggio-
+delle entità sono praticamente equivalenti; sono però presenti sensibili
+differenze nelle librerie per l'implementazione di query.\\
+\begin{lstlisting}[caption={Selezione dei titoli simili in RoR.}]
+post_titles = Post.select([:title]) 	.where('lower(title) LIKE ?', "%#{params[:title]}%")
+	.order('created_at DESC')
+	.limit(10);
+\end{lstlisting}
+
+
+Sia in RoR che in MVC5, rispettivamente con l'interfaccia per le query
+degli Active Record e LINQ, è possibile definire delle interrogazioni
+utilizzando metodi e i costrutti del linguaggio, mantenendo le operazioni
+consistenti con il livello logico. LINQ, essendo implementato in C\#,
+può verificare a compile-time i tipi ed in generale è utilizzabile
+anche in contesti non correlati alla persistenza ed è più completo
+nelle funzionalità rispetto alla controparte per RoR.\\
+\begin{lstlisting}[caption={Selezione dei titoli simili in LINQ.}]
+var postTitles = db.Posts
+				.Where(p => p.title.ToLower().Contains(title.ToLower()))
+				.OrderByDescending(p => p.title)
+				.Select(p => p.title)
+				.ToList();
+\end{lstlisting}
+
+
+In Spring è possibile definire le proprie query con le interfacce
+``Repository'' e la libreria JPA Criteria per la generazione dinamica
+delle interrogazioni JPQL; nonostante sia un metodo utile per implementare
+le interrogazioni più semplici, aumentando di complessità risulta
+poco scalabile, difficilmente mantenibile e leggibile. Inoltre non
+sono presenti molte funzionalità di SQL.
+
+\begin{lstlisting}[caption={Selezione dei post in JPA.}]
+public List<Post> findPostByTitleContainingIgnoreCase(String title);
+\end{lstlisting}
+
+
+E' anche possibile definire le proprie query direttamente in JPQL,
+introducendo però una sintassi e delle meccaniche più simili a SQL
+che al paradigma ad oggetti.
+
+
+\subsubsection*{Validazione}
+
+L'interpretazione della validazione delle entità è un altro aspetto
+per il quale sono presenti tre differenti interpretazioni.
+
+In RoR lo schema del modello è gestito quasi interamente a livello
+logico, nel database è solo utilizzato il vincolo ``not null'' per
+le chiavi primarie. Astraendo in maniera così decisa la rappresentazione
+delle entità è possibile compiere scegliere la miglior strategia di
+validazione ad alto livello, eseguendo le operazioni una sola volta,
+senza dover replicare a livello fisico tutte le verifiche; il framework
+si fa carico dell'intera gestione e permette di definire condizioni
+che verifichino lo stato dell'intero dominio, come l'unicità del titolo.\\
+
+
+Spring invece mantiene un approccio il più modulare possibile, fornendo
+all'utente le annotazioni di JPA per la validazione a basso livello
+e annotazioni del package ``javax.validation.contraints'' per eseguire
+controlli simili anche a livello logico, con le quali, non mantenendo
+il controllo dell'intero dominio, non è possibile però effettuare
+dei controlli in funzione delle entità già esistenti.\\
+
+
+L'EF di MVC5 mantiene una via intermedia fra le due implementazioni
+descritte. Per validare un'entità è possibile utilizzare gli attributi
+disponibili, che eseguiranno l'operazione di validazione sia a livello
+logico sia sul database. Il caso di CSBlog è particolare rispetto
+alle altre due implementazioni, in quanto i vincoli sul database,
+la rappresentazioni delle chiavi esterne e primarie e le operazioni
+di propagazione sono stati definiti prima del modello dell'applicazione.\\
+
+
+Fra i metodi discussi ognuno ha pregi e difetti:
+\begin{itemize}
+\item RoR definisce un database con uno schema estremamente fragile, assumendo
+di esserne l'unico utilizzatore, ma nasconde all'utente i dettagli
+implementativi e definisce un'unica interfaccia per la validazione;
+\item JPA non effettua alcuna assunzione e si adatta alle necessità dell'utente
+ma obbliga all'introduzione di ulteriori annotazioni, aumentando la
+complessità delle classi che rappresentano le entità;
+\item EF semplifica la definizione delle entità, non effettua assunzioni
+sul database ma duplica le operazioni di verifica, introducendo potenziali
+overhead.
+\end{itemize}
+
+\subsection{I controlli}
+
+
+\subsubsection*{Configurazione}
+
+Anche per la definizione dell'instradamento delle richieste le differenze
+d'implementazione dei diversi framework sono sensibili.\\
+
+
+RoR, rispetto all'interpretazione del modello, fornisce diverse soluzioni
+per risolvere l'instradamento delle richieste HTTP. Innanzitutto è
+esistente una convenzione ``/Entità/azione?parametri'' per la risoluzione
+automatica, inoltre è anche possibile utilizzare il file ``routes.rb''
+per impostare manualmente l'associazione di un'azione con un particolare
+URL ed anche definire la gerarchia delle entità per implementare un'architettura
+REST.\\
+\begin{lstlisting}[caption={Instradamento delle pagine statiche di RBlog.}]
+Rails.application.routes.draw do
+	root :to => 'pages#index', :as => 'root' 	get '/author' => 'pages#author'
+	get '/abstract' => 'pages#abstract'
+	get '/log_in' => 'sessions#new', :as => 'log_in'
+	get '/log_out' => 'sessions#destroy', :as => 'log_out'
+	#..
+\end{lstlisting}
+
+
+Nel frammento è definito l'instradamento delle richieste alle pagine
+statiche e definito un simbolo per semplificare la definizione di
+collegamenti e azioni che sfruttano la ridirezione.\\
+
+
+Anche MVC5 prevede l'utilizzo di convenzioni per la risoluzione dell'instradamento
+e la possibilità di definire il proprio pattern.
+
+\begin{lstlisting}[caption={Pattern per la risoluzione dell'instradamento in CSBlog.}]
+routes.MapRoute(
+	name: "Default",
+	url: "{controller}/{action}/{id}",
+	defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optional }             );
+\end{lstlisting}
+Al contrario l'instradamento in Spring non è risolto in funzione di
+convenzioni esistenti né è gestito in maniera separata dai controlli,
+ma è implementato tramite apposite annotazioni.\\
+
+
+Sia RoR che MVC5 propongono soluzioni valide: le funzionalità in Ruby
+forniscono più libertà all'utilizzatore e maggior potere espressivo,
+mentre in MVC5 è possibile configurare il pattern globale dell'applicazione
+invece che utilizzare un metodo imposto.
+
+
+\subsubsection*{Implementazione}
+
+In RoR esistono numerose convenzione che permettono di implementare
+controlli minimali. Nel listato \ref{lis:Show RBlog} è evidente come
+sia conveniente per l'utente aderire alle pratiche esistenti -addirittura
+l'attributo ``@page\_title'' è definito solo per comodità-.
+
+\begin{lstlisting}[caption={Visualizzazione di un singolo post in RBlog.},label={lis:Show RBlog}]
+def show
+	@page_title = @post.title
+end
+\end{lstlisting}
+
+
+Anche in MVC5 la possibilità di utilizzare un pattern per l'instradamento
+semplifica la definizione delle azioni, implementando esclusivamente
+la logica dell'operazione senza dover configurare eccessivamente aspetti
+legati al protocollo HTTP.\\
+
+
+Rispetto all'implementazione di RoR, nell'azione di MVC5 del listato\ref{lis:Show CSBlog}
+è necessario gestire esplicitamente il parametro ``id'' e far corrispondere
+a ciascun errore uno stato HTTP per la risposta.
+
+\begin{lstlisting}[caption={Visualizzazione di un singolo post in CSBlog.},label={lis:Show CSBlog}]
+public ActionResult Details(Guid? id) {
+	if (id == null){
+		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+	}
+	Post post = db.Posts.Find(id);
+	if (post == null){
+		return HttpNotFound();
+	}
+	return View(post);
+}
+\end{lstlisting}
+
+
+Spring anche per i controlli non specifica alcuna convenzione ed è
+quindi necessario dichiarare ogni parametro tramite annotazioni, articolate
+e poco leggibili, che appesantiscono notevolmente la definizione del
+metodo. Inoltre la necessità di utilizzare parametri di output come
+Model, complica ulteriormente l'implementazione.
+
+\begin{lstlisting}[caption={Visualizzazione di un singolo post in SBlog.},label={lis:Show SBlog}]
+@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+public String show(@PathVariable Integer id, Model model) {
+	Post post = postService.getPost(id); 
+	model.addAttribute("page_title", post.getTitle());
+	model.addAttribute("content_template", "/posts/show");
+	model.addAttribute("posts", new Post[] { post });
+	return super.defaultMapping(model);
+}
+\end{lstlisting}
+
+
+L'unico vantaggio di Spring su MVC5 è di permettere l'implementazione
+di un meccanismo esterno al controllo per associare a ciascuna eccezione
+un corrispondente stato HTTP.
+
+
+\subsubsection*{Helper e Service}
+
+Nell'interpretazione del pattern MVC, RoR e Spring prevedono un componente
+aggiuntivo rispetto a quelli previsti.\\
+RoR fa ampio uso degli Helper, implementati in Ruby come moduli, per
+organizzare metodi di utilità e definire un'applicazione più lineare
+e fattorizzata. Essendo privi di stato, i moduli sono utilizzabili
+da qualsiasi componente senza dover applicare pattern come la DI.\\
+
+
+In Spring, oltre ai ruoli ``@Repository'' e ``@Entity'' per il
+modello e a ``@Controller'', è presente la componente ``@Service''.
+I servizi sono utilizzati per fattorizzare la logica dell'accesso
+al modello da parte dei controlli e semplificarne le azioni, e istanziati
+tramite la DI e l'annotazione ``@Autowired''.\\
+
+
+In MVC5 non è previsto alcuna componente per fattorizzare metodi d'utilità
+o per introdurre un'astrazione ulteriore del modello; è quindi compito
+dell'utente definire un proprio pattern ed implementarlo.
+
+
+\subsection{Le viste}
+
+Per implementare le viste dei blog sono stati utilizzati due tipologie
+di template engine: ERB e Razor definiscono il comportamento dinamico
+delle viste introducendo all'interno delle pagine HTML brevi script,
+definiti tramite elementi sintattici non analizzabili da un comune
+browser, Thymeleaf invece estende le proprietà dei comuni elementi
+HTML tramite ulteriori attributi i cui valori possono essere espressioni
+dinamiche.\\
+
+
+\begin{lstlisting}[caption={Titolo di un post con Thymeleaf.}]
+<p class="post_title">
+	<a th:href="|/posts/${post.id}|" th:text="${post.title}">
+	</a>
+</p>
+\end{lstlisting}
+
+
+Dal punto di vista teorico del pattern MVC, le viste non dovrebbero
+contenere logica ed essere esclusivamente una rappresentazione delle
+entità presenti nel modello.
+
+Thymeleaf definisce una grande varietà di attributi, il cui uso è
+orientato principalmente alla lettura ed interpretazione delle espressioni,
+semplificando lo sviluppo di viste che siano il più lineari possibili,
+ma sposta la complessità nelle azioni dei controller che devono fornire
+più parametri.
+
+Al contrario le viste definite con ERB e Razor possono favorire la
+violazione del pattern introducendo all'interno dei documenti HTML
+dichiarazioni di variabili e facendo ampio uso di costrutti sintattici
+come cicli ``for'' o ``if-else''.
+
+Potendo posticipare alla generazione delle viste una piccola porzione
+della logica dell'applicazione, le azioni di RoR e MVC5 spesso forniscono
+esclusivamente l'oggetto che è rappresentato nella vista, come il
+singolo post di cui mostrare gli attributi.\\
+\begin{lstlisting}[caption={Titolo di un post con ERB.}]
+<p class='post_title'>
+	<%= link_to @post.title, @post %>
+</p>
+\end{lstlisting}
+
+
+Personalmente trovo che la sintassi da Thymeleaf sia poco intuitiva
+e troppo articolata, preferisco quindi un approccio che permetta di
+scrivere nel linguaggio in cui è scritta l'applicazione perché più
+familiare e leggibile.
+
+\begin{lstlisting}[caption={Titolo di un post con Razor.}]
+<p class="post_title">
+	@Html.ActionLink(Model.title, "Details", new { id = Model.id })
+</p>
+\end{lstlisting}
+
+
+Inoltre Thymeleaf, introducendo le espressioni all'interno degli attributi,
+e quindi come stringhe, non fornisce alcuna validazione a compile-time.
+Tutta la gestione degli errori è effettuata a run-time tramite eccezioni.
+Se per evitare di anticipare troppa logica nelle azioni si sceglie
+di implementare un'espressione articolata in Thymeleaf, è possibile
+trovarsi nella scomoda posizione di ddecifrare lo stack-trace delle
+eccezioni per bilanciare una parentesi.
+
+Al contrario utilizzando un template engine come ERB o Razor, è possibile
+effettuare il debug della vista, utilizzare l'autocomplemento o l'intellisense
+e navigare fra i riferimenti per approfondire il funzionamento di
+un metodo ausiliario della libreria.\\
+
+
+Dovendo indicare il miglior template engine, credo che la sintassi
+di Ruby sia particolarmente adatta per operazioni di scripting come
+la definizione di viste dinamiche, inoltre gli helper utilizabili
+in ERB hanno un'interfaccia più leggibile e sono meglio documentati
+delle funzionalità di Razor.\pagebreak{}
+
+
+\section{ATDD}
+
+
+\subsection{BDD}
+
+Nel corso della tesi sono stati utilizzati tre framework per il BDD:
+le versioni per Ruby e Java di Cucumber e SpecFlow per .NET.
+
+Attualmente, Cucumber è il framework per il BDD più utilizzato, anche
+grazie a Gherkin, il DSL per la definizione dei test. Il linguaggio
+per sviluppare i test di accettazione è ricco di funzionalità, ad
+esempio è possibile definire dei contesti comuni per le funzionalità,
+etichette per poter definire delle categorie di scenari o richiedere
+l'esecuzione di particolari callback, la possibilità parametrizzare
+i test tramite tabelle e molto altro.
+
+L'unico elemento sintattico che stona con la definizione di DSL Business
+Readable è l'uso delle annotazioni, che introducono una notazione
+tecnica, la cui leggibilità dipende dallo sviluppatore.\\
+
+
+Cucumber, nella versione originale per Ruby, e Cucumber-JVM sono praticamente
+equivalenti nell'implementazione delle funzionalità del framework,
+anche se sfruttano elementi sintattici propri dei rispettivi linguaggi.\\
+
+
+SpecFlow utilizza Gherkin come Cucumber, ma dà un'interpretazione
+del framework più rigida del processo di associazione passo - implementazione,
+richiedendo la consistenza del tipo utilizzato ed introducendo il
+meccanismo degli ``Scope'' per poter definire più versioni di un
+stesso passo.
+
+Rispetto a Cucumber è però carente nella definizione degli hook, essendo
+privo di un meccanismo per impostare un'ordinamento nelle callback
+applicate allo stesso evento ed etichettate nella stessa maniera.\\
+
+
+I framework risultano sostanzialmente equivalenti ed il fattore discriminante
+della scelta coincide quasi esclusivamente con il linguaggio in cui
+sono implementati. Nel caso ci fosse la possibilità di scegliere liberamente
+fra le tre versioni, Cucumber è apparso più lineare nella gestione
+degli hook e quindi preferibile per il BDD dei blog, i cui test di
+accettazione non espongono diversi ruoli per gli utenti e mantengono
+una prospettiva comune dell'uso del sito.\\
+
+
+Dovendo invece scegliere in funzione del supporto dato dai plugin
+di Cucumber nei diversi ambienti di sviluppo, la versione per RubyMine
+e quella per SpecFlow si equivalgono e sono entrambe valide, al contrario
+la versione per Eclipse è piuttosto elementare, anche se comunque
+funzionante.
+
+\begin{table}
+\protect\caption{}
+\end{table}
+
+
+
+\subsection{Web Automation}
+
+Prima di analizzare le librerie degli strumenti utilizzati per automatizzare
+la navigazione web, è opportuno fare una precisazione sulla natura
+dei progetti.
+
+Capybara e Coypu sono progetti open-source, disponibili su GitHub
+e sviluppati grazie agli sforzi degli autori e dei singoli utenti
+che individuano bug ed effettuano correzioni. Entrambe i progetti
+sono attivi, la comunità di sviluppatori di Coypu è però più piccola
+e meno partecipe rispetto a quella di Capybara, ed esistenti da diversi
+anni, Capybara nasce nel 2009 e Coypu nel 2010. Coypu però non è una
+libreria implementata da zero, ma sfrutta le funzionalità di Selenium
+per definire un progetto a più alto livello.\\
+
+
+Selenium è un progetto non open-source ma gratuito, sviluppato da
+un team che in passato ha anche lavorato in sinergia con Google per
+sviluppare alcune funzionalità, utilizzate poi internamente dall'azienda
+di Moutain View per i test di applicazioni web. Rispetto a Coypu e
+Capybara, Selenium è disponibile in più linguaggi e implementa anche
+le funzionalità per la navigazione in applicazioni per Android e iOS.
+
+Inoltre il team di Selenium ha sviluppato altri progetti, come Selenium
+IDE, un plugin per Firefox per la definizione di test registrando
+le azioni nel browser, Selenium Grid, per l'esecuzione parallela dei
+test in più browser e sistemi operativi e Selenium Remote Control,
+un'architettura client-server per l'esecuzione in remoto dei test.
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+ & Open-Source & Gratuito & Wrapper & Mobile & Linguaggi\tabularnewline
+\hline 
+\hline 
+Capybara & ✓ & ✓ & ✗ & ✗ & Ruby\tabularnewline
+\hline 
+Coypu & ✓ & ✓ & ✓ & ✗ & C\# Java\tabularnewline
+\hline 
+Selenium & ✗ & ✓ & ✗ & ✓ & C\# Java Ruby\tabularnewline
+ &  &  &  &  & Python PHP Perl JS\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{Confronto breve fra le librerie.}
+\end{table}
+
+
+
+\subsubsection*{Funzionalità}
+
+Considerando le funzionalità di base della libreria, come 
+
+in funzione del linguaggio, Java sfavorito
+
+coypu e 
+
+selenium po
+
+
+\subsubsection*{Gestione del CSS}
+
+
+\subsubsection*{Asincronia}
+
+
+\subsubsection*{Manuntenibilità}
+
+https://github.com/Huddle/PhantomCSS
+
+http://huddle.github.io/Resemble.js/
+\end{document}

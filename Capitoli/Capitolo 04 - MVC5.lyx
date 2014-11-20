@@ -86,10 +86,30 @@ ASP.NET MVC 5
 
 \begin_layout Standard
 In questo capitolo è trattato lo sviluppo di CSBlog, lo sviluppo tramite
- il framework ASP.NET MVC 5 del nostro caso di studio.
+ il framework ASP.NET MVC 5~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MVC5"
+
+\end_inset
+
+ del nostro caso di studio.
  L'implementazione dei test di accettazione già mostrata nei precedenti
- capitoli utilizzando Specflow, una libreria per il BDD ispirata a Cucumber,
- e Coypu per automatizzare la navigazione del browser web.
+ capitoli utilizzando Specflow~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SpecFlow"
+
+\end_inset
+
+, una libreria per il BDD ispirata a Cucumber, e Coypu~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Coypu"
+
+\end_inset
+
+ per automatizzare la navigazione del browser web.
 \begin_inset Newline newline
 \end_inset
 
@@ -124,8 +144,15 @@ Per lo sviluppo di CSBlog, dei test di accettazione e la gestione del modello
 
 \begin_layout Standard
 Tutti i plugin necessari, come ad esempio quello per Specflow, sono stati
- installati tramite NuGet, il gestore di pacchetti per il mondo .NET, direttament
-e tramite l'ambiente di sviluppo.
+ installati tramite NuGet~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NuGet"
+
+\end_inset
+
+, il gestore di pacchetti per il mondo .NET, direttamente tramite l'ambiente
+ di sviluppo.
  VS è un ambiente di sviluppo con enormi potenzialità, articolato e complesso,
  con numerose funzionalità per il supporto alla configurazione e generazione
  del progetto, come sarà mostrato nelle prossime sezioni.
@@ -170,7 +197,14 @@ Per implementare l'interfaccia del modello di MVC5 è stato scelto l'Entity
 \end_layout
 
 \begin_layout Standard
-L'EF supporta sia l'approccio 
+L'EF~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EF"
+
+\end_inset
+
+ supporta sia l'approccio 
 \begin_inset Quotes eld
 \end_inset
 
@@ -240,6 +274,13 @@ Le classi che descrivono le entità dell'EF sono gestite attraverso un'estension
 
 DbContext
 \begin_inset Quotes erd
+\end_inset
+
+~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBContext"
+
 \end_inset
 
 , che fornisce le funzionalità per eseguire interrogazioni, tener traccia
@@ -396,8 +437,15 @@ Proiezione dei titoli dei post con LINQ.
 \end_layout
 
 \begin_layout Standard
-LINQ permette di definire le proprie query attraverso un insieme di metodi
- che rispecchiano le funzionalità di SQL e permettono di utilizzare il paradigma
+LINQ~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LINQ"
+
+\end_inset
+
+ permette di definire le proprie query attraverso un insieme di metodi che
+ rispecchiano le funzionalità di SQL e permettono di utilizzare il paradigma
  ad oggetti, ad esempio la proiezione per ottenere i titoli dei post esistenti
  è definita effettuato un accesso all'attributo 
 \begin_inset Quotes eld
@@ -528,9 +576,37 @@ qTitles
 \begin_inset Quotes erd
 \end_inset
 
- ha tipo IQueryable, interfaccia generica sul tipo dell'interrogazione che
- estende IEnumerable e dichiara le funzionalità per compiere la valutazione
- della query.
+ ha tipo 
+\begin_inset Quotes eld
+\end_inset
+
+IQueryable
+\begin_inset Quotes erd
+\end_inset
+
+~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "IQ"
+
+\end_inset
+
+, interfaccia generica sul tipo dell'interrogazione che estende 
+\begin_inset Quotes eld
+\end_inset
+
+IEnumerable
+\begin_inset Quotes erd
+\end_inset
+
+~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "IE"
+
+\end_inset
+
+ e dichiara le funzionalità per compiere la valutazione della query.
 \begin_inset Newline newline
 \end_inset
 
@@ -850,6 +926,13 @@ Controller
 \begin_inset Quotes erd
 \end_inset
 
+~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MVC5 Controller"
+
+\end_inset
+
 .
  Nel frammento della classe 
 \begin_inset Quotes eld
@@ -997,8 +1080,14 @@ Le viste
 \end_layout
 
 \begin_layout Standard
-Per l'implementazione delle viste di CSBlog è stato utilizzato Razor, un
- linguaggio ASP.NET per l'implementazione di pagine dinamiche che introduce
+Per l'implementazione delle viste di CSBlog è stato utilizzato Razor~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Razor"
+
+\end_inset
+
+, un linguaggio ASP.NET per l'implementazione di pagine dinamiche che introduce
  un DSL basato su C# ed integrato in VS, ad esempio è previsto l'IntelliSense
  e la possibilità di creare nuove pagine sfruttando i wizard presenti nell'ambie
 nte di sviluppo.
@@ -1444,7 +1533,14 @@ Inoltre VS integra all'interno dell'ambiente di sviluppo tutte le diverse
  categorie di strumenti e linguaggi necessari per lo sviluppo di un'applicazione
  web.
  Oltre ai classici HTML, CSS e Javascript, è supportato di default lo sviluppo
- con tecnologie innovative come Sass e Boostrap
+ con tecnologie innovative come Sass e Boostrap~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BootStrap"
+
+\end_inset
+
+
 \begin_inset Foot
 status open
 
@@ -1496,8 +1592,14 @@ reference "sub:Coypu"
 
 \end_inset
 
- quello di Coypu, la libreria per l'automazione della navigazione web scelta
- per .NET.
+ quello di Coypu~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Coypu"
+
+\end_inset
+
+, la libreria per l'automazione della navigazione web scelta per .NET.
  Successivamente sono introdotti i primi test e le funzionalità utilizzate
  per l'implementazione.
 \end_layout
@@ -1587,8 +1689,14 @@ Supporto a Specflow in VS
 \begin_layout Standard
 Per utilizzare SpecFlow in VS è sufficiente installare tramite il gestore
  dei pacchetti il relativo plugin.
- Per eseguire le funzionalità e gli scenari tramite il runner di NUnit è
- necessario anche un pacchetto aggiuntivo, installabile tramite la console
+ Per eseguire le funzionalità e gli scenari tramite il runner di NUnit~
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NUnit"
+
+\end_inset
+
+ è necessario anche un pacchetto aggiuntivo, installabile tramite la console
  di NuGet utilizzando il comando seguente.
 \end_layout
 
@@ -2374,7 +2482,6 @@ geName);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Coypu Click"
@@ -2589,7 +2696,6 @@ public void AlloraPossoTornareAllaPaginaIniziale(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:NUnit-AreEqual"
@@ -4112,7 +4218,6 @@ public string title { get; set; }
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
 \begin_inset CommandInset label
 LatexCommand label
 name "lis:Proprietà-title-dell'entità"

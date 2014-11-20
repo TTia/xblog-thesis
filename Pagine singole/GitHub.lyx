@@ -10,8 +10,6 @@
 \usepackage{ucs}
 \usepackage[latin9]{inputenc}
 \usepackage{listings}
-\usepackage{multicol}
-\usepackage{fancyhdr}
 
 \date{}
 
@@ -48,10 +46,10 @@
 \inputencoding auto
 \fontencoding global
 \font_roman default
-\font_sans lmss
+\font_sans default
 \font_typewriter default
 \font_math auto
-\font_default_family sfdefault
+\font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
@@ -65,8 +63,9 @@
 \paperfontsize default
 \spacing single
 \use_hyperref true
-\pdf_title "Test di accettazione in framework MVC a confronto"
-\pdf_author "Mattia Barrasso"
+\pdf_title "Dessert: una libreria per la simulazione a eventi discreti in .NET"
+\pdf_author "Alessio Parma <alessio.parma@gmail.com>"
+\pdf_keywords "des, .net, library, simpy, dessert, armando"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
@@ -96,7 +95,7 @@
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
@@ -106,10 +105,10 @@
 \paragraph_separation indent
 \paragraph_indentation default
 \quotes_language english
-\papercolumns 1
+\papercolumns 2
 \papersides 2
 \paperpagestyle headings
-\listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\footnotesize},showstringspaces=false"
+\listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\scriptsize}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -119,174 +118,44 @@
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Pagine singole/Frontespizio.lyx"
+\begin_layout Chapter*
+xBlog
+\end_layout
+
+\begin_layout Itemize
+Il codice sorgente di RBlog, il caso di studio sviluppato in Ruby e RoR,
+ è consultabile su 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/TTia/rblog"
 
 \end_inset
 
-
+;
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing other 0.90
-\align center
-
-\size larger
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
+\begin_layout Itemize
+Il codice sorgente di SBlog, il caso di studio sviluppato in Spring e Java,
+ è consultabile su 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/TTia/sblog"
 
 \end_inset
 
-
+;
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing other 0.90
-\align center
-
-\size larger
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-frontmatter
-\end_layout
+\begin_layout Itemize
+Il codice sorgente di CSBlog, il caso di studio sviluppato in ASP.NET MVC5
+ e C#, è consultabile su 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/TTia/csblog"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset toc
-LatexCommand tableofcontents
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing other 0.90
-\align center
-
-\size larger
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-mainmatter
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Capitoli/Capitolo 01 - Introduzione.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Capitoli/Capitolo 02 - RoR.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Capitoli/Capitolo 03 - Spring.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Capitoli/Capitolo 04 - MVC5.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Capitoli/Conclusione.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\start_of_appendix
-\begin_inset CommandInset include
-LatexCommand include
-filename "Pagine singole/GitHub.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Pagine singole/Acronimi.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Pagine singole/Riferimenti.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Pagine singole/Cit.lyx"
-
-\end_inset
-
-
+;
 \end_layout
 
 \end_body

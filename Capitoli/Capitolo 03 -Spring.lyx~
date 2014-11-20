@@ -72,9 +72,12 @@
 
 \begin_layout Chapter
 Spring
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "chap:Spring"
+name "ch:spring"
 
 \end_inset
 
@@ -95,8 +98,7 @@ In questo capitolo è trattato lo sviluppo di SBlog con Spring, un framework
 \begin_layout Standard
 La struttura di questo capitolo su Spring è simile al precedente: le prime
  sezioni descrivono l'architettura del framework, introducendo gli strumenti
- più significati nella definizione del nostro caso di studio nell'ecosistema
- di Java, dalla sezione 
+ più significati nella definizione di SBlog, dalla sezione 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Hello-SBlog!"
@@ -114,34 +116,21 @@ Spring Tool Suite
 
 \begin_layout Standard
 Spring Tool Suite, STS, è una versione personalizzata di Eclipse per supportare
- lo sviluppo tramite il framework Spring.
+ lo sviluppo tramite il framework.
  I plugin presenti nell'ambiente di sviluppo forniscono supporto per i diversi
  linguaggi nello sviluppo web, come HTML, CSS o Javascript, l'integrazione
  con le componenti del framework, come la creazione di progetti guidata
  o la rappresentazione grafica delle componenti dell'applicazione, e le
- funzionalità già presenti nella versione di Eclipse per Java EE~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Java EE Eclipse"
-
-\end_inset
-
-, Enterprise Edition.
+ funzionalità già presenti nella versione di Eclipse per Java EE, Enterprise
+ Edition.
 \end_layout
 
 \begin_layout Standard
 Per lo sviluppo di SBlog è stata utilizzata la versione 3.6.2 di Spring Tool
- Suite~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "STS"
-
-\end_inset
-
-, basata su Eclipse Luna 4.4.
- Oltre ad utilizzare la versione completa disponibile sul sito di Spring,
- è possibile anche installare le funzionalità di STS in una versione già
- esistente di Eclipse tramite l'apposito plugin.
+ Suite, basata su Eclipse Luna 4.4.
+ Oltre ad utilizzare il software disponibile sul sito di Spring, è possibile
+ anche installare le funzionalità di STS in una versione già esistente di
+ Eclipse tramite l'apposito plugin.
 \end_layout
 
 \begin_layout Section
@@ -168,14 +157,7 @@ Il modello
 \end_layout
 
 \begin_layout Standard
-Per l'implementazione del modello in Spring è stato utilizzato JPA~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JPA"
-
-\end_inset
-
- 
+Per l'implementazione del modello in Spring è stato utilizzato JPA 
 \begin_inset Foot
 status open
 
@@ -196,7 +178,7 @@ Rispetto a RoR, in Spring si gode di estrema libertà nella scelta delle
 Il vantaggio nell'utilizzo di una libreria che implementi la specifica,
  JPA infatti non fornisce alcuna implementazione, consiste nel poter modellare
  il dominio attraverso classi Java.
- Un POJO, termine introdotto da Martin Fowler~
+ Un POJO, termine introdotto da Martin Fowler
 \begin_inset CommandInset citation
 LatexCommand cite
 key "POJO"
@@ -213,17 +195,10 @@ key "POJO"
 \end_layout
 
 \begin_layout Standard
-EclipseLink~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "EclipseLink"
-
-\end_inset
-
- è una delle implementazioni esistenti per JPA, fornisce tutte le funzionalità
- previste dallo standard alla versione 2.1, e rispetto ad altre librerie
- come Hibernate, attualmente è leggermente più performante ed ha una miglior
- gestione del caricamento delle entità.
+EclipseLink è una delle implementazioni esistenti per JPA, fornisce tutte
+ le funzionalità previste dallo standard alla versione 2.1, e rispetto ad
+ altre librerie come Hibernate, attualmente è leggermente più performante
+ ed ha una miglior gestione del caricamento delle entità.
 \end_layout
 
 \begin_layout Standard
@@ -239,16 +214,14 @@ DDL con JPA
 
 \begin_layout Standard
 Lo schema del modello di SBlog è stato definito esclusivamente tramite le
- annotazioni previste dalla specifica, JPA fa ampio uso del meccanismo della
- reflection
+ annotazioni previste dalla specifica, JPA fa infatti ampio uso del meccanismo
+ della reflection
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Il meccanismo della reflection in Java permette di accedere durante l'esecuzione
-, ma non di modificare, a codice non necessariamente noto al momento della
- compilazione e di compiere un ispezione al fine individuare elementi di
- interesse.
+Il meccanismo della reflection in Java permette di ispezionare il codice
+ compilato al fine individuare elementi di interesse.
 \end_layout
 
 \end_inset
@@ -369,12 +342,6 @@ String title;
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:JPA Column"
-
-\end_inset
-
 Dichiarazione di alcuni attributi per l'entità Post.
 \end_layout
 
@@ -398,20 +365,12 @@ Rappresentata la tabella, per aggiungere delle colonne è sufficiente introdurre
 \begin_inset Quotes erd
 \end_inset
 
- o altre annotazioni più specifiche, come nell'esempio in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:JPA Column"
-
-\end_inset
-
-.
+ o altre annotazioni più specifiche.
 \end_layout
 
 \begin_layout Standard
-Tramite i parametri delle annotazioni è possibile dichiarare dei vincoli
- sui valori, ad esempio il titolo di un post deve essere sempre presente
- ed essere unico.
+Tramite i parametri è possibile dichiarare dei vincoli sui valori, ad esempio
+ il titolo di un post deve essere sempre presente ed essere unico.
  Il tipo della colonna è inferito dal tipo Java, il tipo 
 \begin_inset Quotes eld
 \end_inset
@@ -578,13 +537,6 @@ LocalDate
 \begin_inset Quotes erd
 \end_inset
 
-~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "LocalDate"
-
-\end_inset
-
  introdotta con Java 8 che fornisce diversi metodi per una migliore gestione
  delle fasce orarie.
 \begin_inset Newline newline
@@ -594,88 +546,9 @@ key "LocalDate"
 \end_layout
 
 \begin_layout Standard
-Le relazioni nell'approccio POJO sono rappresentate indirettamente attraverso
- attributi corrispondenti alle proprietà di navigazione nelle classi interessate
- dalla relazione.
- Ad esempio in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:JPA Rels"
-
-\end_inset
-
- l'attributo 
-\begin_inset Quotes eld
-\end_inset
-
-posts
-\begin_inset Quotes erd
-\end_inset
-
- della classe 
-\begin_inset Quotes eld
-\end_inset
-
-Author
-\begin_inset Quotes erd
-\end_inset
-
- associa a ciascun autore i suoi post e, allo stesso tempo, l'attributo
- 
-\begin_inset Quotes eld
-\end_inset
-
-author
-\begin_inset Quotes erd
-\end_inset
-
- della classe 
-\begin_inset Quotes eld
-\end_inset
-
-Post
-\begin_inset Quotes erd
-\end_inset
-
- associa a ciascun post il suo unico autore, rappresentando così una relazione
- 1-N navigabile in entrambe i sensi.
-\end_layout
-
-\begin_layout Standard
-Scegliendo di rappresentare la relazione con un oggetto 
-\begin_inset Quotes eld
-\end_inset
-
-Set
-\begin_inset Quotes erd
-\end_inset
-
- è possibile gestire la cardinalità dell'associazione direttamente al livello
- d'astrazione dei POJO.
-\end_layout
-
-\begin_layout Standard
-In JPA è possibile dichiarare relazioni unidirezionali, in cui l'associazione
- è mantenuta da un solo oggetto e non è possibile effettuare la navigazione
- in direzione contraria, oppure bidirezionali.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Oltre agli attributi primitivi che rappresentano le colonne delle tuple,
- sono presenti attributi composti per rappresentare le relazioni: ogni articolo
- ha un solo autore ed ogni autore può scrivere più articoli.
- In listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:JPA Rels"
-
-\end_inset
-
- si presenta un esempio di definizione di relazione uno a molti.
+Oltre gli attributi primitivi che rappresentano le colonne delle tuple,
+ sono presenti attributi composti: ogni articolo ha un solo autore ed ogni
+ autore può scrivere più articoli, definendo una relazione uno a molti.
 \end_layout
 
 \begin_layout Standard
@@ -695,7 +568,7 @@ public class Author {
 
 \begin_layout Plain Layout
 
-	@OneToMany(mappedBy = "author", ..., fetch = FetchType.LAZY)
+	@OneToMany(..., fetch = FetchType.LAZY)
 \end_layout
 
 \begin_layout Plain Layout
@@ -734,12 +607,6 @@ public class Post {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:JPA Rels"
-
-\end_inset
-
 Le relazioni presenti fra le entità del modello.
 \end_layout
 
@@ -754,7 +621,23 @@ Le relazioni presenti fra le entità del modello.
 \end_layout
 
 \begin_layout Standard
-Il parametro 
+Con le annotazioni 
+\begin_inset Quotes eld
+\end_inset
+
+OneToMany
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes erd
+\end_inset
+
+ManyToOne
+\begin_inset Quotes erd
+\end_inset
+
+ e il parametro 
 \begin_inset Quotes eld
 \end_inset
 
@@ -762,8 +645,7 @@ fetch
 \begin_inset Quotes erd
 \end_inset
 
- nelle annotazioni che rappresentano le relazioni, è possibile caricare
- in maniera 
+, è possibile caricare in maniera 
 \begin_inset Quotes eld
 \end_inset
 
@@ -772,8 +654,8 @@ lazy
 \end_inset
 
  le entità correlate, come i post scritti da un autore, posticipando l'operazion
-e al momento dell'eventuale accesso, occupando così meno memoria.
- Sfruttando il caricamento degli oggetti in maniera 
+e al momento dell'eventuale accesso.
+ Al contrario, sfruttando il caricamento degli oggetti in maniera 
 \begin_inset Quotes eld
 \end_inset
 
@@ -782,9 +664,67 @@ eager
 \end_inset
 
 , EclipseLink carica dal modello ogni attributo direttamente o indirettamente
- interessato dalla query, evitando successive interazioni con i database,
- per migliorare le performance.
+ interessato dalla query, evitando successive interazioni con i database.
 \begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La definizione delle relazioni varia in funzione delle entità e di come
+ è previsto che siano effettuati gli accessi ai POJO nell'applicazione.
+ In JPA è possibile dichiarare relazioni unidirezionali, in cui l'associazione
+ è mantenuta da un solo oggetto e non è possibile effettuare la navigazione
+ in direzione contraria, oppure bidirezionali.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH},
+\end_layout
+
+\begin_layout Plain Layout
+
+	fetch=FetchType.LAZY)
+\end_layout
+
+\begin_layout Plain Layout
+
+@JoinTable(name = AUTHOR_POST_JOIN_TABLE,
+\end_layout
+
+\begin_layout Plain Layout
+
+	joinColumns = @JoinColumn(name = POST_JOIN_COLUMN),          	inverseJoinColumn
+s = @JoinColumn(name = AUTHOR_JOIN_COLUMN),             uniqueConstraints
+ = @UniqueConstraint(columnNames = {                     	AUTHOR_JOIN_COLUMN,
+ POST_JOIN_COLUMN}))
+\end_layout
+
+\begin_layout Plain Layout
+
+Author author;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attributo author per la classe Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -838,6 +778,15 @@ L'attributo
 \begin_inset Quotes eld
 \end_inset
 
+fetch
+\begin_inset Quotes erd
+\end_inset
+
+ specifica il comportamento di EclipseLink per il caricamento dei dati,
+ 
+\begin_inset Quotes eld
+\end_inset
+
 cascade
 \begin_inset Quotes erd
 \end_inset
@@ -845,28 +794,8 @@ cascade
  definisce i vincoli di integrità referenziale di propagazione.
  A differenza di altre proprietà del DDL di JPA, la propagazione delle operazion
 i non ha ripercussioni sullo schema dei database ed è gestita direttamente
- sui POJO.
- In tal modo si possono usare anche usare database che non supportano i
- vincoli di integrità, come MySQL~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "MySQL"
-
-\end_inset
-
-senza InnoDB~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "InnoDB"
-
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-La mancanza di controlli sul DBMS obbliga a descrivere accuratamente la
- logica delle proprie operazioni CRUD, per mantenere la consistenza fra
+ sui POJO; la mancanza di controlli sul DBMS obbliga a descrivere accuratamente
+ la logica delle proprie operazioni CRUD, per mantenere la consistenza fra
  i record dei database e gli oggetti ed evitare errori.
 \end_layout
 
@@ -877,71 +806,10 @@ Oltre alle relazioni utilizzate per SBlog sono ovviamente disponibili le
 \end_inset
 
 
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH},
-\end_layout
-
-\begin_layout Plain Layout
-
-	fetch=FetchType.LAZY)
-\end_layout
-
-\begin_layout Plain Layout
-
-@JoinTable(name = AUTHOR_POST_JOIN_TABLE,
-\end_layout
-
-\begin_layout Plain Layout
-
-	joinColumns = @JoinColumn(name = POST_JOIN_COLUMN),          	inverseJoinColumn
-s = @JoinColumn(name = AUTHOR_JOIN_COLUMN),             uniqueConstraints
- = @UniqueConstraint(columnNames = {                     	AUTHOR_JOIN_COLUMN,
- POST_JOIN_COLUMN}))
-\end_layout
-
-\begin_layout Plain Layout
-
-Author author;
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:JPA Author attribute"
-
-\end_inset
-
-Attributo author per la classe Post.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
-In listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:JPA Author attribute"
-
-\end_inset
-
-, l'annotazione 
+L'annotazione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -957,10 +825,9 @@ author
 \begin_inset Quotes erd
 \end_inset
 
- specifica la tabella ausiliaria in cui mantenere la relazione, che conterrà
- coppie formate da identificatori dell'autore e dell'articolo.
- Nelle tabelle ausiliaria ciascuna coppia comparirà un'unica volta, grazie
- all'annotazione 
+ specifica la struttura della tabella ausiliaria in cui mantenere la relazione,
+ che conterrà coppie formate da identificatori dell'autore e dell'articolo.
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -968,7 +835,17 @@ author
 \begin_inset Quotes erd
 \end_inset
 
- che introduce un vincolo di unicità.
+ introduce un vincolo di unicità.
+ Inoltre scegliendo di rappresentare la relazione con un oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+Set
+\begin_inset Quotes erd
+\end_inset
+
+ è possibile gestire la cardinalità dell'associazione direttamente al livello
+ d'astrazione dei POJO.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1090,7 +967,7 @@ additionalProperties
 Fra le proprietà configurabili di EclipseLink è possibile scegliere se generare
  direttamente il database o un script contenente il DDL, inoltre ad ogni
  avvio può essere verificato lo schema ed eventualmente apportate delle
- modiche se sono stati fatti dei cambiamenti alle classi delle entità.
+ modiche se non stati fatti dei cambiamenti alle classi delle entità.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1099,14 +976,7 @@ Query
 
 \begin_layout Standard
 Per semplificare la definizione di operazioni CRUD e effettuare delle interrogaz
-ioni sul dominio, Spring include una gerarchia di interfacce Java generiche~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JPA Repo"
-
-\end_inset
-
-.
+ioni sul dominio, Spring include una gerarchia di interfacce Java generiche.
 \end_layout
 
 \begin_layout Standard
@@ -1268,22 +1138,8 @@ Repository
 \end_inset
 
 L'implementazione delle funzionalità dichiarate nelle interfaccia è fornita
- dalla libreria JPA Criteria~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JPA Criteria"
-
-\end_inset
-
-, che inferisce dinamicamente dalla segnatura del metodo Java una query
- JPQL~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JPQL"
-
-\end_inset
-
-, Java Persistence query language.
+ dalla libreria JPA Criteria, che inferisce dinamicamente dalla segnatura
+ del metodo Java una query JPQL, Java Persistence query language.
 \end_layout
 
 \begin_layout Standard
@@ -1342,25 +1198,6 @@ Come si può intuire dal secondo metodo, l'implementazione di interrogazioni
 \end_inset
 
  specificando direttamente il testo dell'interrogazione in JPQL.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-L'interfaccia 
-\begin_inset Quotes eld
-\end_inset
-
-JPARepository
-\begin_inset Quotes erd
-\end_inset
-
- non rappresenta la scelta migliore per effettuare operazioni di selezione,
- ma è comunque di grande utilità per lo sviluppatore perché definisce anche
- tutti i metodi necessari per compiere operazioni di manipolazione del modello
- (create, delete, update).
 \end_layout
 
 \begin_layout Subsection
@@ -2127,18 +1964,12 @@ Le viste
 \end_layout
 
 \begin_layout Standard
-Per l'implementazione delle viste di SBlog è stato utilizzato Thymeleaf~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ThymeLeaf"
-
-\end_inset
-
-, una libreria Java per la generazione dinamica di documenti web.
+Per l'implementazione delle viste di SBlog è stato utilizzato Thymeleaf,
+ una libreria Java per la generazione dinamica di documenti web.
  La libreria, organizzata in due moduli contenenti le funzionalità standard
  e quelle specifiche per Spring, permette la definizione di pagine dinamiche
  utilizzando esclusivamente elementi sintattici esistenti nell'HTML.
- Al contrario ERB e Razor, il template engine di MVC5 descritto nel prossimo
+ Al contrario ERB e Razor, il template engine di MVC 5 descritto nel prossimo
  capitolo, prevedono l'utilizzo di delimitatori per includere frammenti
  di codice non interpretabili da un browser ma da processare tramite un
  server web.
@@ -2146,14 +1977,8 @@ key "ThymeLeaf"
 
 \begin_layout Standard
 Dopo essermi documentato sui template engine comunemente utilizzati con
- Spring e Java, ho scelto di non implementare le viste tramite JSP~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JSP"
-
-\end_inset
-
-, JavaServer Page.
+ Spring e Java, ho scelto di non implementare le viste tramite JSP, JavaServer
+ Page.
  Il motivo principale della scelta sono i diversi problemi tecnici nella
  configurazione della libreria utilizzando Spring MVC 4 e Spring Boot, che
  verrà discusso in seguito.
@@ -2169,7 +1994,7 @@ Tutti gli attributi utilizzati dalla libreria sono presenti nel namespace
 \begin_inset Quotes eld
 \end_inset
 
-http:// www.thymeleaf.org
+http://www.thymeleaf.org
 \begin_inset Quotes erd
 \end_inset
 
@@ -2185,8 +2010,7 @@ In eclipse è presente un plugin per assistere lo sviluppatore nella definizione
 
 \end_inset
 
-.
- Una vista definita con Thymeleaf ha estensione e struttura identica ad
+; una vista definita con Thymeleaf ha estensione e struttura identica ad
  un documento HTML statico: senza il supporto di un server web i tag introdotti
  dalla libreria non vengono analizzati dai browser permettendo l'implementazione
  di prototipi offline, per sviluppare l'interfaccia dell'applicazione non
@@ -2336,9 +2160,9 @@ body
 \end_inset
 
 Indicativamente, ogni attributo presente in HTML5 ha una controparte in
- Thymeleaf per la definizione di comportamenti dinamici.
- Le funzionalità utilizzate ed alcuni frammenti delle viste che le contengono
- sono introdotte brevemente nelle prossime sezioni.
+ Thymeleaf per la definizione di comportamenti dinamici, brevemente nelle
+ prossime sezioni sono introdotte le funzionalità utilizzate ed alcuni frammenti
+ delle viste che le contengono.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2408,14 +2232,8 @@ each
 \begin_inset Quotes erd
 \end_inset
 
- presente nel primo nodo della vista parziale 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:TL Iterazione sui post"
-
-\end_inset
-
- permette di iterare su una collezione 
+ presente nel primo nodo della vista parziale permette di iterare su una
+ collezione 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2440,20 +2258,12 @@ Model
 \begin_inset Quotes erd
 \end_inset
 
- presente nell'azione del controller che ha gestito la richiesta; Per ogni
- chiave presente nell'istanza di 
+ presente nell'azione del controller che ha gestito la richiesta; l'espressione
+ 
 \begin_inset Quotes eld
 \end_inset
 
-Model
-\begin_inset Quotes erd
-\end_inset
-
-, l'espressione 
-\begin_inset Quotes eld
-\end_inset
-
-${key}
+${id}
 \begin_inset Quotes erd
 \end_inset
 
@@ -2461,7 +2271,7 @@ ${key}
 \begin_inset Quotes eld
 \end_inset
 
-key
+id
 \begin_inset Quotes erd
 \end_inset
 
@@ -2488,13 +2298,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:TL text"
-
-\end_inset
-
-Accesso agli attributi ed ai metodi di un oggetto nella vista.
+Iterazione sugli attributi di un post.
 \end_layout
 
 \end_inset
@@ -2518,15 +2322,8 @@ text
 \begin_inset Quotes erd
 \end_inset
 
- sostituisce il corpo del nodo HTML con il valore dell'espressione, come
- in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:TL text"
-
-\end_inset
-
-.
+ sostituisce il testo presente all'interno del nodo HTML con il valore dell'espr
+essione.
 \end_layout
 
 \begin_layout Standard
@@ -2550,12 +2347,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:TL if unless"
-
-\end_inset
-
 Utilizzo di un'espressione if.
 \end_layout
 
@@ -2578,14 +2369,7 @@ each
 \begin_inset Quotes erd
 \end_inset
 
- sono presenti altre istruzioni in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:TL if unless"
-
-\end_inset
-
-, come 
+ sono presenti altre istruzioni, come 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2619,7 +2403,7 @@ Gestione dei form
 \end_layout
 
 \begin_layout Standard
-La gestione dei form è uno dei contesti per cui Thymeleaf è stato specializzato
+La gestione dei form è uno dei contesti per cui Thymeleaf è stata specializzato
  per integrarsi al meglio con le funzionalità di Spring.
  Per implementare la verifica dei dati inseriti nei form, in Spring è possibile
  utilizzare le annotazioni presenti nel package 
@@ -2630,16 +2414,8 @@ javax.validation.constraints
 \begin_inset Quotes erd
 \end_inset
 
-~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JPA Constraints"
-
-\end_inset
-
- di JPA per validare esclusivamente i valori dei singoli attributi.
- Validazioni che coinvolgono più attributi, non sono però supportate, come
- verificare che il titolo di un post non sia già presente nel dominio.
+ di JPA per validare i valori dei singoli attributi, non è possibile ad
+ esempio verificare che il titolo di un post non sia già presente nel dominio.
 \end_layout
 
 \begin_layout Standard
@@ -2647,8 +2423,7 @@ A differenza di RoR, dove la validazione dei form coincide con la validazione
  effettuata dai database, gli strumenti di Spring replicano i meccanismi
  esistenti a basso livello e permettono di anticipare tali verifiche.
  Questa scelta comporta la duplicazione dei vincoli sul dominio, esprimendoli
- sia a livello logico che di persistenza, a favore di una maggiore efficienza
- di esecuzione.
+ sia a livello logico che di persistenza.
 \end_layout
 
 \begin_layout Standard
@@ -2699,8 +2474,8 @@ Uso delle annotazioni di JPA per la validazione.
 Oltre alle annotazioni della libreria è possibile implementarne di personalizzat
 e, ad esempio che verifichino l'unicità del titolo, definendo una nuova
  annotazione e una classe contenente la logica.
- Purtroppo nella definizione del tale vincolo, sono stati rilevati errori
- nell'uso dei repository istanziati tramite DI e ho dovuto implementarne
+ Purtroppo nella definizione del vincolo di unicità, sono stati rilevati
+ errori nell'uso dei repository istanziati tramite DI e ho dovuto implementarne
  la logica manualmente nel controllo dei post.
 \begin_inset Newline newline
 \end_inset
@@ -2786,21 +2561,8 @@ Sono presenti altre classi per il supporto di operazioni comuni nelle viste,
 \end_layout
 
 \begin_layout Standard
-Rispetto a ERB e Razor, discussi in sezione 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:RoR Viste"
-
-\end_inset
-
- e 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:MVC5 Viste"
-
-\end_inset
-
-, le viste sviluppate con Thymeleaf appaiono più semplici e leggibili.
+Rispetto a ERB e Razor, le viste sviluppate con Thymeleaf appaiono più semplici
+ e leggibili.
  Utilizzando gli attributi per generare il contenuto dinamico si riduce
  sensibilmente la propensione ad introdurre logica all'interno delle viste,
  rispettando i ruoli delle componenti del pattern MVC.
@@ -2817,8 +2579,8 @@ Il testing
 \begin_layout Standard
 Spring implementa le funzionalità per definire unit ed integration test.
  Per SBlog non sono stati implementati test oltre a quelli di accettazione,
- la struttura e la logica sono molto simili a quanto sviluppato su RoR,
- ma ritengo sia utile fornire qualche riferimento.
+ la struttura e la logica è molto simile a quanto sviluppato su RoR, ma
+ ritengo sia utile fornire qualche riferimento.
 \begin_inset Newline newline
 \end_inset
 
@@ -2837,7 +2599,7 @@ spring-test
 \begin_inset Quotes erd
 \end_inset
 
-~
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Spring Test-Framework"
@@ -2848,7 +2610,7 @@ key "Spring Test-Framework"
 \begin_inset Newline newline
 \end_inset
 
-Tutti i test in Spring sono eseguibili tramite JUnit~
+Tutti i test in Spring sono eseguibili tramite JUnit
 \begin_inset CommandInset citation
 LatexCommand cite
 key "JUnit"
@@ -2863,7 +2625,7 @@ key "JUnit"
 \begin_inset Quotes erd
 \end_inset
 
-~
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "JUnit RunWith"
@@ -2882,7 +2644,7 @@ Peculiarità
 
 \begin_layout Standard
 Spring è estremamente modulare e consente all'utente piena libertà nella
- scelta degli strumenti; il che comporta tuttavia la necessità di configurare
+ scelta degli strumenti, che comporta tuttavia la necessità di configurare
  i relativi bean.
  Per semplificare lo sviluppo dell'applicazione è stato utilizzato Spring
  Boot, un progetto degli stessi sviluppatori del framework.
@@ -3002,12 +2764,6 @@ b</artifactId>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:POM Starter"
-
-\end_inset
-
 Alcuni 
 \begin_inset Quotes eld
 \end_inset
@@ -3038,14 +2794,8 @@ starter
 \begin_inset Quotes erd
 \end_inset
 
- alle dipendenze del proprio progetto, (nell'esempio in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:POM Starter"
-
-\end_inset
-
- è mostrato un frammento del POM
+ alle dipendenze del proprio progetto, nell'esempio è mostrato un frammento
+ del POM
 \begin_inset Foot
 status open
 
@@ -3059,7 +2809,7 @@ ne delle informazioni del progetto.
 
 \end_inset
 
- di SBlog ma è possibile utilizzare anche Gradle), la maggior parte delle
+ di SBlog ma è possibile utilizzare anche Gradle, le maggior parte delle
  componenti e dei bean necessari sono configurati con le impostazioni più
  comuni.
  Ovviamente alcune proprietà specifiche, come le credenziali per la connessione
@@ -3072,7 +2822,7 @@ ne delle informazioni del progetto.
 
 \begin_layout Standard
 Le componenti non configurabili tramite Spring Boot, sia perché troppo specifich
-e, sia perché riguardanti strumenti non presenti negli 
+e sia perché riguardanti strumenti non presenti negli 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3115,11 +2865,10 @@ Hello SBlog!
 Per effettuare un confronto il più attendibile possibile, la libreria di
  test di accettazione definita per RBlog e scritta in Gherkin è stata riutilizza
 ta anche per la versione del blog in Spring.
- I due blog sono equivalenti nelle funzionalità e molto simili nelle tecnologie
- utilizzate.
- In questa e nelle prossime sezioni è descritto il processo di definizione
- dei test, omettendo o semplificando la descrizione dei tool se utilizzati
- per RBlog.
+ I due blog sono equivalenti nelle funzionalità e molto simili nelle nelle
+ tecnologie utilizzate, in questa e nelle prossime sezioni è descritto il
+ processo di definizione dei test, omettendo però la descrizione dei tool
+ già utilizzati in precedenza.
 \end_layout
 
 \begin_layout Subsection
@@ -3127,14 +2876,7 @@ Cucumber-JVM
 \end_layout
 
 \begin_layout Standard
-Cucumber-JVM~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Cukes JVM"
-
-\end_inset
-
-, il porting in Java del framework per Cucumber, presenta differenze minime
+Cucumber-JVM, il porting in Java del framework, presenta differenze minime
  rispetto alla versione per Ruby, principalmente dovute alle diversità del
  linguaggio.
 \end_layout
@@ -3144,9 +2886,9 @@ Le funzionalità
 \end_layout
 
 \begin_layout Standard
-Nell'effettuare il porting dei test di accettazione in Gherkin non è stato
- rilevato alcun problema sintattico né relativo alle funzionalità supportate
- dalla versione Java di Cucumber.
+Nell'effettuare il porting della libreria non è stato rilevato alcun problema
+ sintattico né relativo alle funzionalità supportate dalla versione Java
+ di Cucumber.
 \end_layout
 
 \begin_layout Standard
@@ -3199,15 +2941,7 @@ La prima feature di SBlog
 
 \begin_layout Standard
 Avendo già descritto la struttura di una funzionalità in Gherkin, è possibile
- concentrare l'attenzione sulla configurazione del framework, presenti in
- listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Maven BDD"
-
-\end_inset
-
-.
+ concentrare l'attenzione sulla configurazione del framework.
 \end_layout
 
 \begin_layout Standard
@@ -3247,17 +2981,8 @@ status open
 
 \begin_layout Plain Layout
 
-	<groupId>info.cukes</groupId>
-\end_layout
-
-\begin_layout Plain Layout
-
-	<artifactId>cucumber-picocontainer</artifactId>
-\end_layout
-
-\begin_layout Plain Layout
-
-	<version>1.1.8</version>
+	<groupId>info.cukes</groupId> 	<artifactId>cucumber-picocontainer</artifactId>
+ 	<version>1.1.8</version>
 \end_layout
 
 \begin_layout Plain Layout
@@ -3271,12 +2996,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Maven BDD"
-
-\end_inset
-
 Aggiunta delle dipendenze per il BDD in Maven.
 \end_layout
 
@@ -3301,15 +3020,9 @@ cucumber-junit
 \begin_inset Quotes erd
 \end_inset
 
- è necessario includere anche PicoContainer~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Pico"
-
-\end_inset
-
-, una libreria per il supporto alla DI utilizzata per individuare le classi
- contenenti gli hook e le definizione dei passi.
+ è necessario includere anche PicoContainer, una libreria per il supporto
+ alla DI utilizzata per individuare le classi contenenti gli hook e le definizio
+ne dei passi.
 \end_layout
 
 \begin_layout Standard
@@ -3337,12 +3050,6 @@ public class RunCukesTest {}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Runner-per-Cucumber-JVM"
-
-\end_inset
-
 Runner per Cucumber-JVM
 \end_layout
 
@@ -3357,7 +3064,7 @@ Runner per Cucumber-JVM
 \end_layout
 
 \begin_layout Standard
-Aggiunte le dipendenze e le funzionalità, è sufficiente configurare un classe
+Aggiunte le dipendenze e le funzionalità è sufficiente configurare un classe
  con le annotazioni di JUnit per eseguire i test.
  L'annotazione 
 \begin_inset Quotes eld
@@ -3367,22 +3074,15 @@ Aggiunte le dipendenze e le funzionalità, è sufficiente configurare un classe
 \begin_inset Quotes erd
 \end_inset
 
- indica i tag degli scenari da eseguire, come illustrato in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Runner-per-Cucumber-JVM"
-
-\end_inset
-
-.
+ permette di filtrare gli scenari da eseguire in funzione dei tag.
 \end_layout
 
 \begin_layout Paragraph
-Supporto a Cucumber in STS
+Supporto a Cucumber in RubyMine
 \end_layout
 
 \begin_layout Standard
-In Eclipse è disponibile un plugin per Cucumber~
+In Eclipse è disponibile un plugin per Cucumber
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Eclipse Cucumber JVM Plugin"
@@ -3405,14 +3105,8 @@ Selenium
 \end_layout
 
 \begin_layout Standard
-Selenium~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Selenium"
-
-\end_inset
-
- è una libreria per l'automazione la navigazione internet.
+Selenium è una libreria per l'automazione della navigazione tramite browser
+ web.
  Rispetto alle versioni precedenti della libreria, gli sviluppatori affermano
  di aver definito un'interfaccia più intuitiva e compatta.
 \end_layout
@@ -3420,10 +3114,9 @@ key "Selenium"
 \begin_layout Standard
 Selenium WebDriver, la parte centrale della libreria che implementa le operazion
 i per l'accesso alle pagine web, utilizza il supporto nativo di ogni browser
- per l'automazione.
- La prima differenza rispetto a Capybara è nella possibilità utilizzare
- tutte le funzionalità di browser web, come la navigazione grazie alla cronologi
-a e l'uso dei preferiti, piuttosto che limitarsi alla sola navigazione.
+ per l'automazione che permette, a differenza di Capybara, di poter di utilizzar
+e anche funzionalità ausiliarie, come la cronologia e l'uso dei preferiti,
+ piuttosto che limitarsi alla sola navigazione.
 \end_layout
 
 \begin_layout Standard
@@ -3457,12 +3150,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Selenium POM"
-
-\end_inset
-
 Aggiunta della dipendenza di Selenium a SBlog.
 \end_layout
 
@@ -3478,15 +3165,7 @@ Aggiunta della dipendenza di Selenium a SBlog.
 
 \begin_layout Standard
 Per poter definire i test utilizzando le funzionalità di Selenium è sufficiente
- aggiungere la dipendenza del porting in Java al POM del progetto, come
- in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Selenium POM"
-
-\end_inset
-
-.
+ aggiungere la dipendenza al POM del progetto.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3494,42 +3173,21 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-Data la forte integrazione di Selenium con i browser web è stato scelto
- di adottare anche per i test su SBlog PhantomJS.
- Scegliendo di implementare i test di accettazione automatici con Cucumber,
- nelle varie versioni, ed utilizzando lo stesso software per la navigazione
- dei blog è più facile individuare per ogni problema tecnico la causan ed
- effettuare un'analisi più accurata.
-\end_layout
-
-\begin_layout Subsubsection*
-Ghost Driver
+Visti i buoni risultati ottenuti nell'implementazione dei test in Ruby e
+ data la forte integrazione di Selenium con i browser web è stato scelto
+ di adottare nuovamente PhantomJS.
 \end_layout
 
 \begin_layout Standard
-Ghost Driver~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Ghost Driver"
-
-\end_inset
-
- è un'implementazione JavaScript del protocollo WebDriver Web di PhantomJS
- che permette di eseguire i comandi contattando tramite richieste HTTP l'interfa
-ccia REST del browser, che restituisce i risultati delle interazioni serializzat
-i con JSon.
+Il driver di PhantomJS scelto per Selenium è Ghost Driver, un'implementazione
+ JavaScript del protocollo Remote WebDriver Wire, che specifica come le
+ azioni debbano essere tradotte in richieste HTTP verso l'interfaccia REST
+ del browser e quale sia lo schema dei dati serializzati rappresentanti
+ il risultato.
 \end_layout
 
 \begin_layout Standard
-Per configurare Ghost Driver è sufficiente aggiungere la dipendenza al POM,
- come in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Ghost POM"
-
-\end_inset
-
-.
+Per configurare Ghost Driver è sufficiente aggiungere la dipendenza al POM.
 \end_layout
 
 \begin_layout Standard
@@ -3560,25 +3218,6 @@ status open
 \begin_layout Plain Layout
 
 </dependency>
-\end_layout
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Ghost POM"
-
-\end_inset
-
-Aggiunta della dipendenza di Selenium a SBlog.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -3613,12 +3252,12 @@ timeout
 \begin_inset Quotes erd
 \end_inset
 
- per specificare il tempo massimo di esecuzione del passo.
+ per impostare il tempo massimo di esecuzione del passo.
 \end_layout
 
 \begin_layout Standard
 Come per la versione in Ruby, non c'è corrispondenza fra il tipo dell'implementa
-zione, in Java è rappresentato dall'annotazione, ed i tipi di passi applicabili.
+zione, che in Java è rappresentato dall'annotazione, ed i passi applicabili.
 \end_layout
 
 \begin_layout Standard
@@ -3676,8 +3315,18 @@ apro SBlog
 
 \begin_layout Standard
 Per implementare passi parametrici è sufficiente aggiungere dei parametri
- al metodo.
- Come in Ruby i valori estratti dall'espressione del passo hanno tipo stringa,
+ al metodo
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Le inconsistenze fra il numero di parametri del passo e del metodo sono
+ segnalate tramite eccezione.
+\end_layout
+
+\end_inset
+
+; come in Ruby i valori estratti dall'espressione del passo hanno tipo stringa,
  ma è possibile annotare i parametri con 
 \begin_inset Quotes eld
 \end_inset
@@ -3689,18 +3338,13 @@ Per implementare passi parametrici è sufficiente aggiungere dei parametri
  per effettuare eventuali conversioni.
 \end_layout
 
-\begin_layout Standard
-Eventuali inconsistenze fra il numero di parametri del passo e del metodo
- sono segnalate tramite eccezione.
-\end_layout
-
 \begin_layout Paragraph
 La struttura di Selenium
 \end_layout
 
 \begin_layout Standard
 Rispetto alla struttura di Capybara, Selenium organizza le funzionalità
- in maniera articolata~
+ in maniera articolata
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Selenium Hierarchy"
@@ -3728,22 +3372,6 @@ WebElement
  Le linee guida della libreria prevedono che ogni metodo effettui un controllo
  sulla validità del chiamante, verificando che sia presente nel DOM al momento
  dell'esecuzione dell'operazione;
-\end_layout
-
-\begin_layout Itemize
-l'interfaccia 
-\begin_inset Quotes eld
-\end_inset
-
-WebDriver
-\begin_inset Quotes erd
-\end_inset
-
- è la radice della gerarchia delle operazioni che descrivono le operazioni
- eseguibili durante i test.
- Le funzionalità dichiarate nell'interfaccia riguardano il controllo del
- browser stesso, la selezione degli elementi presenti nel DOM e il supporto
- al debug durante i test;
 \end_layout
 
 \begin_layout Itemize
@@ -3827,7 +3455,23 @@ WebDriverException
 \begin_inset Quotes erd
 \end_inset
 
- rappresenta la gerarchia degli errori presenti nella libreria.
+ rappresenta la gerarchia degli errori presenti nella libreria e 
+\begin_inset Quotes eld
+\end_inset
+
+NoSuchElementException
+\begin_inset Quotes erd
+\end_inset
+
+ segnala l'impossibilità di associare un elemento al selettore 
+\begin_inset Quotes eld
+\end_inset
+
+By
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzato per una ricerca.
 \end_layout
 
 \begin_layout Paragraph
@@ -3853,12 +3497,6 @@ driver.navigate().to(getSblogURL());
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Selenium navigate"
-
-\end_inset
-
 Navigazione esplicita.
 \end_layout
 
@@ -3872,7 +3510,7 @@ Navigazione esplicita.
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -3881,14 +3519,7 @@ navigate
 \begin_inset Quotes erd
 \end_inset
 
-, esemplificato in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Selenium navigate"
-
-\end_inset
-
-, restituisce un'istanza di tipo 
+ restituisce un'istanza di tipo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3907,8 +3538,8 @@ to
 \begin_inset Quotes erd
 \end_inset
 
- effettua richiesta in GET per l'URL specificato e blocca l'esecuzione fino
- al caricamento della nuova pagina.
+ effettua richiesta in GET all'URL fornito e blocca l'esecuzione fino al
+ caricamento della nuova pagina.
 \end_layout
 
 \begin_layout Standard
@@ -3950,16 +3581,9 @@ Navigazione nel sito, sfruttando il testo visualizzato di un link.
 
 \end_layout
 
-\begin_layout Itemize
-Oltre alla navigazione esplicita, è possibile compiere effettuare un azione,
- come il click di un collegamento in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:evento naviga verso selenium"
-
-\end_inset
-
-, su un oggetto 
+\begin_layout Standard
+Oltre alla navigazione esplicita, è possibile compiere un azione, come il
+ click di un collegamento, su un oggetto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3979,9 +3603,13 @@ a
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Il metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -4001,15 +3629,6 @@ By
 .
  Per ogni ricerca all'interno del DOM è previsto un tempo massimo di attesa
  entro il quale l'elemento deve apparire ed una frequenza di polling.
- L'eccezione 
-\begin_inset Quotes eld
-\end_inset
-
-NoSuchElementException
-\begin_inset Quotes erd
-\end_inset
-
- è sollevata nel caso l'elemento non sia presente.
 \end_layout
 
 \begin_layout Paragraph
@@ -4028,21 +3647,6 @@ Assert
 \end_inset
 
  ed offrono le funzionalità per la verifica dello stato di uno o più oggetti.
- Alcuni esempi sono riportati in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Verifica-del-attributo"
-
-\end_inset
-
- e 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Verifica-del-titolo"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -4065,12 +3669,6 @@ assertEquals(logo.getAttribute("href"), getSblogURL());
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Verifica-del-attributo"
-
-\end_inset
-
 Verifica del attributo 
 \begin_inset Quotes eld
 \end_inset
@@ -4107,12 +3705,6 @@ assertEquals(driver.getTitle(), pageTitle);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Verifica-del-titolo"
-
-\end_inset
-
 Verifica del titolo della pagina.
 \end_layout
 
@@ -4194,7 +3786,7 @@ Seconda funzionalità per SBlog
 \begin_layout Standard
 Nonostante sia sempre più diffusa la pratica di utilizzare linguaggi come
  Sass, che arricchiscono CSS 3 come già discusso nel precedente capitolo,
- non è ancora fornito il supporto in Eclipse.
+ in Eclipse non sono ancora supportati .
  Per evitare la riscrittura manuale ho compilato i fogli di stile tramite
  il comando 
 \begin_inset Quotes eld
@@ -4269,7 +3861,8 @@ Scenario: l'intestazione espone dei semplici effetti cromatici
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Variazione del colore di background dei collegamenti nell'intestazione.
+Variazione del colore del colore di background dei collegamenti nell'intestazion
+e.
 \end_layout
 
 \end_inset
@@ -4295,7 +3888,8 @@ reference "lis:02x00 Introducendo il CSS"
 \end_inset
 
  richiede di verificare alcuni elementi del layout di SBlog.
- L'interfaccia 
+ Per ottenere gli attributi stilistici di un elemento del DOM l'interfaccia
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4311,8 +3905,7 @@ getCssValue
 \begin_inset Quotes erd
 \end_inset
 
- per ottenere stringhe rappresentanti gli attributi stilistici di un elemento
- del DOM.
+.
 \end_layout
 
 \begin_layout Standard
@@ -4348,15 +3941,6 @@ public void l_intestazione_ha_un_colore_di_sfondo(){
 \begin_layout Plain Layout
 
 }
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Verifica del colore dello sfondo dei collegamenti.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -4381,7 +3965,7 @@ Color
 \end_inset
 
  che interpreta stringhe nel formato appena mostrato, non è presente nessuna
- funzionalità per semplificare l'utilizzo dei valori restituiti, lo sviluppatore
+ funzionalità per semplificare l'utilizzo dei risultati, lo sviluppatore
  deve quindi, tramite espressioni regolari e conversioni di tipo, analizzare
  manualmente le stringhe per effettuare operazioni più complesse.
 \end_layout
@@ -4404,8 +3988,8 @@ margin
 \begin_inset Quotes erd
 \end_inset
 
- introdotto nel CSS 3, che attraverso una tupla di quattro valori definisce
- tutti i margini di un elemento HTML, non è sono supportato.
+, che attraverso una tupla di quattro valori definisce tutti i margini di
+ un elemento HTML, non è supportato.
 \end_layout
 
 \begin_layout Standard
@@ -4446,15 +4030,6 @@ public void intestazione_e_pié_di_pagina_hanno_lo_stesso_colore_di_sfondo(){
 \begin_layout Plain Layout
 
 }
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Asserzione sul colore di sfondo dell'intestazione e del piè di pagina.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -4576,12 +4151,6 @@ public void il_cursore_si_sposta_sui_collegamenti() {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Creazione-di-una"
-
-\end_inset
-
 Creazione di una macro azione.
 \end_layout
 
@@ -4615,24 +4184,19 @@ eseguibili tramite tastiera, come la pressione di uno o più tasti combinati,
 \end_layout
 
 \begin_layout Itemize
-eseguibili tramite il mouse, come il semplice click o azioni più complesse
- come il drag & drop;
+eseguibili tramite il mouse, come il semplice click o più complesse come
+ lo spostamento di elementi tramite drag & drop;
 \end_layout
 
 \begin_layout Standard
-Nell'esempio in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Creazione-di-una"
-
-\end_inset
-
- è definita una macro azione
+Nell'esempio precedente è definita una macro azione ed anche se descritta
+ dal solo spostamento del cursore sopra l'elemento indicato, è utile per
+ mostrarne il comportamento
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Il costruttore dell'azione con un solo parametro di tipo 
+Il costruttore con un solo parametro di tipo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4640,14 +4204,12 @@ WebDriver
 \begin_inset Quotes erd
 \end_inset
 
- utilizza le azioni implementate da Selenium di default, che permette di
- simulare eventi tramite tastiera e mouse.
+ utilizza le azioni implementate da Selenium di default.
 \end_layout
 
 \end_inset
 
- ed anche se descritta dal solo spostamento del cursore sopra l'elemento
- indicato, è utile per mostrarne il comportamento.
+.
 \end_layout
 
 \begin_layout Standard
@@ -4793,13 +4355,6 @@ findElements
 \begin_inset Quotes erd
 \end_inset
 
-, come in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Verifica-della-presenza"
-
-\end_inset
-
 .
 \end_layout
 
@@ -4840,11 +4395,6 @@ public void ogni_collegamento_ha_una_descrizione_testuale(){ 	List<WebElement>
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Verifica-della-presenza"
-
-\end_inset
 
 Verifica della presenza di una dichiarazione alternativa per le immagini.
 \end_layout
@@ -4869,14 +4419,7 @@ By
 \end_inset
 
  è presente anche la possibilità di utilizzare espressioni XPath, come mostrato
- nel successivo frammento 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Selettore-definito-tramite"
-
-\end_inset
-
-.
+ nel successivo frammento.
 \end_layout
 
 \begin_layout Standard
@@ -4900,12 +4443,6 @@ h(xpathExpression));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Selettore-definito-tramite"
-
-\end_inset
-
 Selettore definito tramite espressione XPath.
 \end_layout
 
@@ -4975,7 +4512,7 @@ Funzionalità: Gestione dei post
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:03x00 Modello-1"
+name "lis:03x00 Modello"
 
 \end_inset
 
@@ -5036,13 +4573,6 @@ releaseWebDriver
 \begin_inset Quotes erd
 \end_inset
 
-, descritti in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Apertura-e-chiusura"
-
-\end_inset
-
 , eseguiti rispettivamente prima e dopo ogni scenario, responsabili della
  creazione di una nuova finestra, per la quale è anche specificata una dimension
 e, e della successiva chiusura.
@@ -5098,12 +4628,6 @@ public void releaseWebDriver() {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Apertura-e-chiusura"
-
-\end_inset
-
 Apertura e chiusura di una nuova 
 \begin_inset Quotes eld
 \end_inset
@@ -5216,12 +4740,6 @@ public void clearIpsums() {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Rimozione-dei-post"
-
-\end_inset
-
 Rimozione dei post 
 \begin_inset Quotes eld
 \end_inset
@@ -5252,13 +4770,6 @@ clearIpsums
 \begin_inset Quotes erd
 \end_inset
 
- in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Rimozione-dei-post"
-
-\end_inset
-
  invece, effettua la rimozione dei post con titolo contenente la stringa
  
 \begin_inset Quotes eld
@@ -5278,16 +4789,10 @@ Gestione dei form
 \begin_layout Standard
 Selenium fornisce un'interfaccia lineare ed intuitiva per l'utilizzo dei
  form.
- Nel successivo metodo in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Compilazione-del-titolo"
-
-\end_inset
-
-, che descrive una generica operazione di inserimento del testo, si può
- osservare come non sia necessario compiere operazioni particolari per individua
-re nel DOM e utilizzare i campi di input di un 
+ Nel successivo metodo, che descrive una generica operazione di inserimento
+ del testo, si può osservare come non sia necessario compiere operazioni
+ particolari per individuare nel DOM e utilizzare i campi di input di un
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5329,11 +4834,6 @@ protected void insertPostTitle(String title) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Compilazione-del-titolo"
-
-\end_inset
 
 Compilazione del titolo per un post.
 \end_layout
@@ -5525,7 +5025,7 @@ In assenza della corrispondenza
 \begin_inset Quotes erd
 \end_inset
 
-~
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "JUnit Rule"
@@ -5580,12 +5080,6 @@ try {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Un-possibile-work-around."
-
-\end_inset
-
 Un possibile 
 \begin_inset Quotes eld
 \end_inset
@@ -5609,13 +5103,6 @@ work-around
 
 \begin_layout Standard
 Per definire asserzioni che verifichino la presenza di errori, nell'esempio
- in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Un-possibile-work-around."
-
-\end_inset
-
  è verificato che nella home-page di SBlog non sia presente un post con
  titolo uguale al parametro, è possibile utilizzare una combinazione del
  metodo statico 
@@ -5673,7 +5160,7 @@ Funzionalità: Autenticazione su RBlog
 
 \begin_layout Plain Layout
 
-	Vorrei che alcune operazioni sensibili fossero permesse previa autenticazione
+	Vorrei che alcune operazioni sensibili siano permesse previa autenticazione
 \end_layout
 
 \begin_layout Plain Layout
@@ -5702,7 +5189,7 @@ Descrizione della funzionalità di autenticazione.
 \begin_layout Standard
 Per introdurre la gestione dell'autenticazione in SBlog è stato introdotto
  un controllo ed una vista per effettuare il login.
- Come per RBlog, le azioni prevedono la verifica dell'autorizzazione; ad
+ Come per RBlog, le azioni prevedono la verifica dell'autorizzazione, ad
  esempio non è possibile effettuare il logout se l'utente non è autenticato.
 \end_layout
 
@@ -5772,11 +5259,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Destroy Session"
-
-\end_inset
 
 Azione per la gestione del logout.
 \end_layout
@@ -5792,14 +5274,7 @@ Azione per la gestione del logout.
 \end_layout
 
 \begin_layout Standard
-In listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Destroy Session"
-
-\end_inset
-
-, il metodo 
+Il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5838,16 +5313,9 @@ Filter
 
 \begin_layout Standard
 Per poter sfruttare le funzionalità di Spring per la gestione della sessione,
- è necessario aggiungere un parametro 
-\begin_inset Quotes eld
-\end_inset
-
-HttpSession
-\begin_inset Quotes erd
-\end_inset
-
- alla segnatura del metodo, che sarà opportunamente istanziato dal framework
- con i valori correnti della navigazione.
+ è necessario aggiungere un parametro HttpSession alla segnatura del metodo,
+ che sarà opportunamente istanziato dal framework con i valori correnti
+ della navigazione.
 \end_layout
 
 \begin_layout Standard
@@ -5891,17 +5359,8 @@ public void mi_autentico_come(String email) {
 
 \begin_layout Plain Layout
 
-	emailInputElement.sendKeys(email);
-\end_layout
-
-\begin_layout Plain Layout
-
-	passwordInputElement.sendKeys("password");
-\end_layout
-
-\begin_layout Plain Layout
-
-	emailInputElement.submit();
+	emailInputElement.sendKeys(email); 	passwordInputElement.sendKeys("password");
+ 	emailInputElement.submit();
 \end_layout
 
 \begin_layout Plain Layout
@@ -5910,12 +5369,6 @@ public void mi_autentico_come(String email) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Login-tramite-Selenium."
-
-\end_inset
-
 Login tramite Selenium.
 \end_layout
 
@@ -5930,15 +5383,8 @@ Login tramite Selenium.
 \end_layout
 
 \begin_layout Standard
-Per effettuare il login in SBlog, come in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Login-tramite-Selenium."
-
-\end_inset
-
-, è sufficiente inserire email e password nell'apposito form, operazioni
- effettuate tramite il metodo 
+Per effettuare il login in SBlog è sufficiente inserire email e password
+ nell'apposito form, operazioni effettuate tramite il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5998,15 +5444,8 @@ submit
 \begin_inset Quotes erd
 \end_inset
 
- su uno qualunque degli elementi inclusi in esso, come mostrato in listato
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Login-tramite-Selenium."
-
-\end_inset
-
-.
+ su uno qualunque degli elementi inclusi in esso, come mostrato nel passo
+ precedente.
 \begin_inset Newline newline
 \end_inset
 
@@ -6015,14 +5454,7 @@ reference "lis:Login-tramite-Selenium."
 
 \begin_layout Standard
 All'interno della libreria sono presenti due classi per la gestione dei
- cookie~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Selenium Cookie"
-
-\end_inset
-
-: 
+ cookie: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6039,8 +5471,8 @@ Cookie.Builder
 \end_inset
 
 .
- Le funzionalità presenti permettono la creazione, cancellazione, ricerca
- e modifica dei cookie esistenti.
+ Le funzionalità presenti permettono la creazione, la cancellazione, la
+ ricerca e modifica dei cookie esistenti.
  Come per RBlog però, le sessioni in Spring non espongono i valori in chiaro
  e non sono state effettuate operazioni di codifica e decodifica, evidentemente
  in contrasto con lo stile dei black box test.
@@ -6070,7 +5502,7 @@ JavaScript
 L'obbiettivo della prima funzionalità è verificare il comportamento di Selenium
  con un comportamento asincrono ma estremamente rapido.
  Come per RBlog, è aggiunto, tramite una chiamata ad una funzione JavaScript
- associata, un piccolo logo al piè di pagina.
+ associata, una piccola logo al piè di pagina.
 \end_layout
 
 \begin_layout Standard
@@ -6105,7 +5537,7 @@ Funzionalità: Easter Egging
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:05bx00 EasterEgg-1"
+name "lis:05bx00 EasterEgg"
 
 \end_inset
 
@@ -6123,18 +5555,10 @@ Introduzione di un breve script Javascript.
 \end_layout
 
 \begin_layout Standard
-Per ricercare all'interno del DOM un elemento che viene aggiunto dinamicamente
- è possibile implementare un meccanismo implicito di attesa, in maniera
- simile a Capybara, impostando un tempo massimo di attesa per ogni ricerca.
- In tal caso, però, non è però possibile impostare una frequenza di polling.
- Alternativamente utilizzare delle attese esplicite come in listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:WebDriverWait"
-
-\end_inset
-
-.
+Per ricercare un elemento all'interno del DOM è possibile implementare un
+ meccanismo implicito di attesa, in maniera simile a Capybara, impostando
+ un tempo massimo di attesa per ogni ricerca, non è però possibile impostare
+ una frequenza di polling, oppure utilizzare delle attese esplicite.
 \end_layout
 
 \begin_layout Standard
@@ -6148,15 +5572,8 @@ WebDriverWait
 \begin_inset Quotes erd
 \end_inset
 
-~
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Selenium Wait"
-
-\end_inset
-
- è necessario impostare un tempo di attesa massimo.
- Tramite il metodo 
+ è necessario impostare un tempo di attesa massimo, mentre tramite il metodo
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6164,7 +5581,7 @@ until
 \begin_inset Quotes erd
 \end_inset
 
- si interrompe l'esecuzione dello scenario quando è verificata la condizione
+ si interrompe l'esecuzione dello scenario ed è verificata la condizione
  espressa dal parametro.
 \end_layout
 
@@ -6200,12 +5617,6 @@ ed(By.id("woodstock")));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:WebDriverWait"
-
-\end_inset
-
 Verifica della presenza del logo nel piè di pagina.
 \end_layout
 
@@ -6220,14 +5631,8 @@ Verifica della presenza del logo nel piè di pagina.
 \end_layout
 
 \begin_layout Standard
-Nel listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:WebDriverWait"
-
-\end_inset
-
- è descritta una condizione, corrispondente al metodo statico 
+Nel listato precedente è descritta una condizione, corrispondente al metodo
+ statico 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6278,7 +5683,7 @@ Scenari sull'auto-completamento con JQuery UI
 \end_layout
 
 \begin_layout Standard
-Rispetto alla funzione Javascript della precedente funzionalità, l'utilizzo
+Rispetto alla funzione Javascript della precedente funzionalità l'utilizzo
  del widget di JQuery UI per l'auto-completamento del menù introduce un
  overhead significativo nel caricamento della pagina, suddiviso fra tempo
  di completamento della richiesta HTTP tramite AJAX, l'esecuzione della
@@ -6349,15 +5754,8 @@ Scenario riguardante l'auto-completamento della ricerca.
 \end_layout
 
 \begin_layout Standard
-Nel successivo listato 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Verifica-dei-titoli"
-
-\end_inset
-
- è utilizzato un metodo per l'attesa esplicita per individuare i suggerimenti
- visualizzati per il menu.
+Nel successivo listato è utilizzato un metodo per l'attesa esplicita per
+ individuare i suggerimenti visualizzati per il menu.
 \end_layout
 
 \begin_layout Standard
@@ -6417,12 +5815,6 @@ enceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:Verifica-dei-titoli"
-
-\end_inset
-
 Verifica dei titoli suggeriti.
 \end_layout
 
@@ -6473,8 +5865,7 @@ presenceOfAllElementsLocatedBy
 \begin_inset Quotes erd
 \end_inset
 
- non risulterebbe attendibile per verificare la presenza di nuove entry,
- perché la condizione risulterebbe già vera alla comparsa del primo elemento.
+ non risulterebbe attendibile per verificare la presenza di nuove entry.
 \end_layout
 
 \end_body

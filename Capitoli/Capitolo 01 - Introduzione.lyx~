@@ -811,7 +811,7 @@ Autenticazione su *Blog
 \begin_inset Quotes erd
 \end_inset
 
- definisce le funzionalità di login e logout e i meccanismi per la verifica
+ definisce i meccanismi per la gestione dell'autenticazione e per la verifica
  delle autorizzazioni.
 \end_layout
 

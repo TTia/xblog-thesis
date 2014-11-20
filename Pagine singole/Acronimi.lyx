@@ -168,6 +168,10 @@ DOM: Document Object Model
 \end_layout
 
 \begin_layout Standard
+EF: Entity Framework
+\end_layout
+
+\begin_layout Standard
 ERB: Embedded RuBy
 \end_layout
 
@@ -204,6 +208,10 @@ JSP: JavaServer Page
 \end_layout
 
 \begin_layout Standard
+LINQ: Language-Integrated Query
+\end_layout
+
+\begin_layout Standard
 MVC: Model-View-Controller
 \end_layout
 
@@ -224,11 +232,19 @@ SSH: Secure SHell
 \end_layout
 
 \begin_layout Standard
+STS: Spring Tool Suite
+\end_layout
+
+\begin_layout Standard
 TDD: Test-Driven Development
 \end_layout
 
 \begin_layout Standard
 URL: Uniform Resource Locator
+\end_layout
+
+\begin_layout Standard
+VS: Visual Studio
 \end_layout
 
 \begin_layout Standard
