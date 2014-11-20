@@ -80,16 +80,6 @@ name "chap:MVC-5"
 MVC 5
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "ch:spring"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 ASP.NET MVC 5
 \end_layout

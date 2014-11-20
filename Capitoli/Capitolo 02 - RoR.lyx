@@ -1846,6 +1846,12 @@ ente all'identificatore univoco di uno degli autori di RBlog.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:RoR Viste"
+
+\end_inset
+
 Le viste
 \end_layout
 

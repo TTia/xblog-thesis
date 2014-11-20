@@ -942,6 +942,12 @@ Rispetto a Spring e RoR, non è prevista all'interno dell'architettura una
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:MVC5 Viste"
+
+\end_inset
+
 Le viste
 \end_layout
 
