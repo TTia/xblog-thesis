@@ -1287,5 +1287,328 @@ target "http://gatling.io/"
 
 \end_layout
 
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Java EE Eclipse"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "STS"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://spring.io/tools"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JPA"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "LocalDate"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "EclipseLink"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://eclipse.org/eclipselink/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "MySQL"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.mysql.it/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "InnoDB"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://en.wikipedia.org/wiki/InnoDB"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JPA Repo"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JPQL"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://en.wikipedia.org/wiki/Java_Persistence_Query_Language"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JPA Criteria"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://docs.oracle.com/javaee/6/tutorial/doc/gjitv.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ThymeLeaf"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.thymeleaf.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JSP"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.oracle.com/technetwork/java/javaee/jsp/index.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "JPA Constraints"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://docs.oracle.com/javaee/7/api/javax/validation/constraints/package-summary.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Cukes JVM"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/cucumber/cucumber-jvm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Pico"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://picocontainer.codehaus.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Selenium"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.seleniumhq.org/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ghost Driver"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/detro/ghostdriver"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Selenium Cookie"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.seleniumhq.org/docs/03_webdriver.jsp#cookies"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Selenium Wait"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#webdriver-advanced-usage"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

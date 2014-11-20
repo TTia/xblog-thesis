@@ -196,7 +196,19 @@ JPA: Java Persistence API
 \end_layout
 
 \begin_layout Standard
+JPQL: Java Persistence Query Language
+\end_layout
+
+\begin_layout Standard
+JSP: JavaServer Page
+\end_layout
+
+\begin_layout Standard
 MVC: Model-View-Controller
+\end_layout
+
+\begin_layout Standard
+POJO: Plain Old Java Object
 \end_layout
 
 \begin_layout Standard
