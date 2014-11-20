@@ -86,9 +86,9 @@ Ruby On Rails ~ RoR
 \begin_layout Standard
 In questo capitolo è trattato lo sviluppo di RBlog attraverso Ruby on Rails,
  RoR, un framework per lo sviluppo di applicazioni web scritto in Ruby la
- cui architettura è definita secondo il pattern MVC; la cui implementazione
- è stata compiuta sfruttando il metodo Acceptance Test-Driven Development,
- nel seguito ATDD.
+ cui architettura è definita secondo il pattern MVC; l'implementazione del
+ nostro caso di studio è stata compiuta sfruttando il metodo Acceptance
+ Test-Driven Development, nel seguito ATDD.
 \end_layout
 
 \begin_layout Standard

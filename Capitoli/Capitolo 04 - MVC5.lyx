@@ -85,11 +85,11 @@ ASP.NET MVC 5
 \end_layout
 
 \begin_layout Standard
-In questo capitolo è trattato lo sviluppo di CSBlog, un'applicazione web
- sviluppata tramite il framework ASP.NET MVC 5 e , l'implementazione della
- libreria di test di accettazione già mostrata nei precedenti capitoli utilizzan
-do Specflow, una libreria per il BDD ispirata a Cucumber, e Coypu per automatizz
-are la navigazione del browser web.
+In questo capitolo è trattato lo sviluppo di CSBlog, lo sviluppo tramite
+ il framework ASP.NET MVC 5 del nostro caso di studio.
+ L'implementazione dei test di accettazione già mostrata nei precedenti
+ capitoli utilizzando Specflow, una libreria per il BDD ispirata a Cucumber,
+ e Coypu per automatizzare la navigazione del browser web.
 \begin_inset Newline newline
 \end_inset
 
@@ -106,9 +106,9 @@ reference "sec:Hello-CSBlog!"
 
 \end_inset
 
- sono documentate le diverse funzionalità presenti nella libreria dei test
- di accettazione e descritto il processo di testing, includendo esempi e
- frammenti di codice.
+ in poi sono documentate le diverse funzionalità presenti nella libreria
+ dei test di accettazione e viene descritto il processo di testing, includendo
+ esempi e frammenti di codice.
 \end_layout
 
 \begin_layout Subsection
@@ -117,19 +117,18 @@ Visual Studio 2013
 
 \begin_layout Standard
 Per lo sviluppo di CSBlog, dei test di accettazione e la gestione del modello
- è stato utilizzato Visual Studio 2013 Ultimate, VS, che integra le diverse
- funzionalità per lo sviluppo web, la configurazione della propria applicazione
- e l'implementazione delle diverse componenti del pattern.
+ è stato utilizzato Visual Studio 2013 Ultimate, nel seguito VS, che integra
+ le diverse funzionalità per lo sviluppo web, la configurazione della propria
+ applicazione e l'implementazione delle diverse componenti del pattern.
 \end_layout
 
 \begin_layout Standard
-Tutti i plugin necessari, come per Specflow, sono stati installati tramite
- NuGet, il gestore di pacchetti per il mondo .NET, direttamente tramite l'ambient
-e di sviluppo.
- VS è un ambiente di sviluppo con enormi potenzialità, articolato e complesso
- ma, nel corso delle prossime sezioni, con numerose funzionalità per il
- supporto alla configurazione e generazione del progetto, come sarà mostrato
- nelle prossime sezioni.
+Tutti i plugin necessari, come ad esempio quello per Specflow, sono stati
+ installati tramite NuGet, il gestore di pacchetti per il mondo .NET, direttament
+e tramite l'ambiente di sviluppo.
+ VS è un ambiente di sviluppo con enormi potenzialità, articolato e complesso,
+ con numerose funzionalità per il supporto alla configurazione e generazione
+ del progetto, come sarà mostrato nelle prossime sezioni.
 \end_layout
 
 \begin_layout Section
@@ -147,8 +146,9 @@ In questa sezione è descritto il processo di definizione dell'architettura
  di CSBlog, caratterizzato da un uso costante degli strumenti di VS per
  la definizione delle varie componenti.
  Al termine della sezione risulterà evidente come, nonostante il framework
- MVC5 e l'intero progetto ASP.NET sia estremamente articolato, lo sviluppo
- non risente delle grandi potenzialità messe a disposizione.
+ MVC5 e l'intero progetto ASP.NET sia estremamente articolato, la presentazione
+ delle grandi potenzialità messe a disposizione è sufficientemente accessibile
+ così che lo sviluppo non ne risente.
 \end_layout
 
 \begin_layout Subsection
@@ -156,14 +156,13 @@ Il modello
 \end_layout
 
 \begin_layout Standard
-Per definire il modello con RoR e Spring è stato scelto di definire prima
- le entità, rispettivamente tramite gli ActiveRecord e JPA, ed utilizzare
- le classi per effettuare la generazione dei database su PostgreSql.
- RoR genera di default tre database e le tabelle delle migrazioni, ed anche
- JPA implementa ad alto livello molte funzionalità dei database relazioni,
- come i vincoli di integrità.
- E' quindi molto conveniente per lo sviluppatore progettare la persistenza
- partendo dalle classi che rappresentano il dominio.
+Per implementare l'interfaccia del modello di MVC5 è stato scelto l'Entity
+ Framework, attualmente alla versione 6, che implementa l'astrazione del
+ modello attraverso la tecnica ORM in maniera simile a quanto già visto
+ per RoR e Spring.
+ Il framework si integra con ADO.NET, responsabile dell'interazione con i
+ sistemi di persistenza esistenti e del mantenimento della consistenza fra
+ le entry dei database e gli oggetti.
 \begin_inset Newline newline
 \end_inset
 
@@ -171,18 +170,32 @@ Per definire il modello con RoR e Spring è stato scelto di definire prima
 \end_layout
 
 \begin_layout Standard
-Per MVC5 è stato scelto invece di definire il modello in maniera 
+L'EF supporta sia l'approccio 
 \begin_inset Quotes eld
 \end_inset
 
-classica
+code-first
 \begin_inset Quotes erd
 \end_inset
 
- utilizzando il DDL di SQL -come database è stato scelto SQL Server Express,
- la versione gratuita del database sviluppato da Microsoft-, la generazione
- guidata e gli strumenti grafici per la gestione disponibili per creare
- le tabelle 
+, in cui si definiscono le classi che rappresentano le entità e da esse
+ si genera il database corrispondente, in maniera analoga a quanto già visto
+ per RoR e JPA, sia l'approccio 
+\begin_inset Quotes eld
+\end_inset
+
+db-first
+\begin_inset Quotes erd
+\end_inset
+
+, in cui si generano le classi a partire dal DB.
+\end_layout
+
+\begin_layout Standard
+Per CSBlog è stato scelto quest'ultimo approccio, utilizzando il DDL di
+ SQL -come database è stato scelto SQL Server Express, la versione gratuita
+ del database sviluppato da Microsoft-, la generazione guidata e gli strumenti
+ grafici per la gestione disponibili per creare le tabelle 
 \begin_inset Quotes eld
 \end_inset
 
@@ -201,38 +214,9 @@ Autore
  e la relazione presente fra le due entità in breve tempo.
 \end_layout
 
-\begin_layout Subsubsection*
-Entity Framework
-\end_layout
-
 \begin_layout Standard
-Per implementare l'interfaccia del modello di MVC5 è stato scelto l'Entity
- Framework, attualmente alla versione 6, che implementa l'astrazione del
- modello attraverso la tecnica ORM in maniera simile a quanto già visto
- per RoR e Spring.
- Il framework si integra con ADO.NET, responsabile dell'interazione con i
- sistemi di persistenza esistenti e del mantenimento della consistenza fra
- le entry e gli oggetti.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Le classi che descrivono le entità dell'EF estendono 
-\begin_inset Quotes eld
-\end_inset
-
-DbContext
-\begin_inset Quotes erd
-\end_inset
-
-, che fornisce le funzionalità per eseguire interrogazioni, tener traccia
- dei cambiamenti allo stato delle istanze ed invocare le operazioni di creazione
-, aggiornamento e cancellazione.
- Visual Studio include un wizard per la configurazione del modello, che
- provvede a definire la connessione al database, a generare le classi parziali
+Visual Studio include un wizard per la configurazione del modello, che provvede
+ a definire la connessione al database, a generare le classi parziali
 \begin_inset Foot
 status open
 
@@ -246,6 +230,22 @@ Una classe parziale in C# rappresenta una parte di una classe intera.
 
  rappresentanti le entità e a configurare le risorse necessarie per il funzionam
 ento dell'EF.
+\end_layout
+
+\begin_layout Standard
+Le classi che descrivono le entità dell'EF sono gestite attraverso un'estensione
+ della classe 
+\begin_inset Quotes eld
+\end_inset
+
+DbContext
+\begin_inset Quotes erd
+\end_inset
+
+, che fornisce le funzionalità per eseguire interrogazioni, tener traccia
+ dei cambiamenti allo stato delle istanze ed invocare le operazioni di creazione
+, aggiornamento e cancellazione.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -294,6 +294,12 @@ public partial class CSBlogEntities : DbContext{
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Il-contesto-di"
+
+\end_inset
+
 Il contesto di CSBlog generato da VS.
 \end_layout
 
@@ -308,7 +314,14 @@ Il contesto di CSBlog generato da VS.
 \end_layout
 
 \begin_layout Standard
-Le proprietà 
+In listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Il-contesto-di"
+
+\end_inset
+
+, le proprietà 
 \begin_inset Quotes eld
 \end_inset
 
@@ -324,9 +337,17 @@ Posts
 \begin_inset Quotes erd
 \end_inset
 
- rappresentano le entità presenti nel database e sono utilizzate dall'EF
+ rappresentano le entità presenti nel database per i rispettivi tipi, rappresent
+ando quindi a livello OO le corrispondenti tabelle e sono utilizzate dall'EF
  per effettuare le query.
- Per implementare le interrogazioni necessarie per CSBlog è stato utilizzato
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per implementare le interrogazioni necessarie per CSBlog è stato utilizzato
  LINQ, Language-Integrated Query.
 \end_layout
 
@@ -342,7 +363,12 @@ CSBlogEntities db = new CSBlogEntities();
 
 \begin_layout Plain Layout
 
-var postTitles = db.Posts.Select(p => p.title).ToList();
+IQueryable<Post> qTitles = db.Posts.Select(p => p.title)
+\end_layout
+
+\begin_layout Plain Layout
+
+var postTitles = qTitles.ToList();
 \end_layout
 
 \begin_layout Plain Layout
@@ -350,6 +376,12 @@ var postTitles = db.Posts.Select(p => p.title).ToList();
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Proiezione-dei-titoli"
+
+\end_inset
+
 Proiezione dei titoli dei post con LINQ.
 \end_layout
 
@@ -398,6 +430,28 @@ Post
 \end_layout
 
 \begin_layout Standard
+Una query LINQ non viene eseguita al momento della sua definizione, ma solo
+ quando è necessario accedere ai suoi elementi, ad esempio per iterarvi
+ sopra, accedere al primo elemento (metodo 
+\begin_inset Quotes eld
+\end_inset
+
+First
+\begin_inset Quotes erd
+\end_inset
+
+) o verificare che ne esista almeno uno (metodo 
+\begin_inset Quotes eld
+\end_inset
+
+Any
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
 In maniera simile all'interfaccia per la definizione delle query con gli
  Active Record di RoR, lo sviluppatore può sfruttare l'astrazione introdotta
  dall'uso dell'EF e definire le proprie query in maniera veloce ed intuitiva.
@@ -411,7 +465,7 @@ IEnumerable
 \begin_inset Quotes erd
 \end_inset
 
-.
+ in memoria.
 \begin_inset Newline newline
 \end_inset
 
@@ -419,9 +473,23 @@ IEnumerable
 \end_layout
 
 \begin_layout Standard
-La semplice query di proiezione dell'esempio è suddivisibile in tre elementi:
- l'ottenimento del contesto tramite le classi dell'EF, rappresentato dall'oggett
-o 
+La semplice query 
+\begin_inset Quotes eld
+\end_inset
+
+qTitles
+\begin_inset Quotes erd
+\end_inset
+
+, in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Proiezione-dei-titoli"
+
+\end_inset
+
+, di proiezione dell'esempio è suddivisibile in tre elementi: l'ottenimento
+ del contesto tramite le classi dell'EF, rappresentato dall'oggetto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -429,8 +497,9 @@ db
 \begin_inset Quotes erd
 \end_inset
 
-, per specificare quale sia l'entità utilizzata nell'interrogazione, la
- specifica delle operazioni, come il metodo 
+ e corrispondente alla sorgente di dati o del DB, la selezione della proprietà
+ Posts, per specificare quale sia l'entità utilizzata nell'interrogazione,
+ la specifica delle operazioni, come il metodo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -438,55 +507,16 @@ Select
 \begin_inset Quotes erd
 \end_inset
 
-, e l'esecuzione che coincide con l'invocazione del metodo 
-\begin_inset Quotes eld
-\end_inset
-
-ToList
-\begin_inset Quotes erd
-\end_inset
-
-
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-In generale ogni invocazione che comporta un accesso esplicito agli oggetti
- coincide con l'esecuzione della query, come il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-ToList
-\begin_inset Quotes erd
-\end_inset
-
-, le funzionalità di LINQ 
-\begin_inset Quotes eld
-\end_inset
-
-First
-\begin_inset Quotes erd
-\end_inset
-
- o 
-\begin_inset Quotes eld
-\end_inset
-
-Any
-\begin_inset Quotes erd
-\end_inset
-
- o l'iterazione tramite il costrutto 
-\begin_inset Quotes eld
-\end_inset
-
-for
-\begin_inset Quotes erd
-\end_inset
-
 .
 \end_layout
 
+\begin_layout Standard
+L'esecuzione della query coincide con l'invocazione del metodo 
+\begin_inset Quotes eld
+\end_inset
+
+ToList
+\begin_inset Quotes erd
 \end_inset
 
 .
@@ -494,7 +524,7 @@ for
 \begin_inset Quotes eld
 \end_inset
 
-postTitles
+qTitles
 \begin_inset Quotes erd
 \end_inset
 
@@ -790,6 +820,12 @@ namespace Blog.Controllers {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Details"
+
+\end_inset
+
 Visualizzazione di un singolo post.
 \end_layout
 
@@ -823,6 +859,13 @@ PostController
 \begin_inset Quotes erd
 \end_inset
 
+ in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Details"
+
+\end_inset
+
  è mostrata l'implementazione di una singola azione che, in funzione del
  parametro 
 \begin_inset Quotes eld
@@ -845,8 +888,47 @@ Details
 \end_layout
 
 \begin_layout Standard
+Infatti il tipo 
+\begin_inset Quotes eld
+\end_inset
+
+ActionResult
+\begin_inset Quotes erd
+\end_inset
+
+ utilizzato come risultato dell'azione ha il compito di rappresentare il
+ risultato e permettere al framework di fornire una risposta; nel frammento
+ il metodo 
+\begin_inset Quotes eld
+\end_inset
+
+View
+\begin_inset Quotes erd
+\end_inset
+
+ della classe padre 
+\begin_inset Quotes eld
+\end_inset
+
+Controller
+\begin_inset Quotes erd
+\end_inset
+
+ istanzia un'oggetto 
+\begin_inset Quotes eld
+\end_inset
+
+ViewResult
+\begin_inset Quotes erd
+\end_inset
+
+ che specifica la vista da renderizzare.
+\end_layout
+
+\begin_layout Standard
 Ad ogni azione, se non specificato diversamente, corrisponde una vista con
- ugual nome; in particolare, dopo aver individuato il corretto 
+ ugual nome.
+ Nel nostro esempio, dopo aver individuato il corretto 
 \begin_inset Quotes eld
 \end_inset
 
@@ -890,44 +972,6 @@ HttpPost
 \end_inset
 
  presenti in MVC5.
-\end_layout
-
-\begin_layout Standard
-Il tipo 
-\begin_inset Quotes eld
-\end_inset
-
-ActionResult
-\begin_inset Quotes erd
-\end_inset
-
- utilizzato come risultato dell'azione ha il compito di rappresentare il
- risultato e permettere al framework fornire una risposta, nel frammento
- il metodo 
-\begin_inset Quotes eld
-\end_inset
-
-View
-\begin_inset Quotes erd
-\end_inset
-
- della classe padre 
-\begin_inset Quotes eld
-\end_inset
-
-Controller
-\begin_inset Quotes erd
-\end_inset
-
- istanzia un'oggetto 
-\begin_inset Quotes eld
-\end_inset
-
-ViewResult
-\begin_inset Quotes erd
-\end_inset
-
- che specifica la vista da renderizzare.
 \begin_inset Newline newline
 \end_inset
 
@@ -935,10 +979,11 @@ ViewResult
 \end_layout
 
 \begin_layout Standard
-Rispetto a Spring e RoR, non è prevista all'interno dell'architettura una
- componente con il ruolo di disaccoppiare i controlli dalla logica per l'accesso
- al modello, sta quindi all'utente introdurre il pattern che meglio si presta
- allo scopo ed implementarlo.
+Rispetto a Spring e RoR, rispettivamente con i Service e gli Helper, non
+ è prevista all'interno dell'architettura una componente con il ruolo di
+ disaccoppiare i controlli dalla logica per l'accesso al modello, sta quindi
+ all'utente introdurre il pattern che meglio si presta allo scopo ed implementar
+lo.
 \end_layout
 
 \begin_layout Subsection
@@ -1057,8 +1102,8 @@ La distinzione fra la sintassi
 , che consente di accedere ai valori e di utilizzarne le espressioni per
  generare le viste dinamiche, permette di dichiarare viste in cui sono distinte
  in maniera chiara le porzioni di codice che includono l'implementazione
- della logica dalle istruzioni dalle istruzioni che esclusivamente utilizzano
- le funzionalità in lettura.
+ della logica delle istruzioni che esclusivamente utilizzano le variabili
+ in lettura.
 \end_layout
 
 \begin_layout Standard
@@ -1096,6 +1141,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Il-ciclo-for"
+
+\end_inset
+
 Il ciclo 
 \begin_inset Quotes eld
 \end_inset
@@ -1118,8 +1169,15 @@ for
 \end_layout
 
 \begin_layout Standard
-La sintassi di Razor include anche i più comuni costrutti sintattici, nell'esemp
-io è mostrato l'utilizzo di un ciclo 
+In listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Il-ciclo-for"
+
+\end_inset
+
+, la sintassi di Razor include anche i più comuni costrutti sintattici,
+ è mostrato l'utilizzo di un ciclo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1143,7 +1201,7 @@ ul
 \end_layout
 
 \begin_layout Standard
-L'organizzazione e le convenzioni utilizzate da MVC5 semplifica la definizione
+L'organizzazione e le convenzioni utilizzate da MVC5 semplificano la definizione
  dell'intera applicazione, ed anche per la definizione delle viste è previsto
  un meccanismo per fattorizzare al meglio il proprio codice.
 \end_layout
@@ -1213,6 +1271,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:ViewStart"
+
+\end_inset
+
 Il contenuto della vista _ViewStart.
 \end_layout
 
@@ -1227,9 +1291,17 @@ Il contenuto della vista _ViewStart.
 \end_layout
 
 \begin_layout Standard
-La scelta del layout può essere effettuata dinamicamente, permettendo di
- aver maggior controllo sull'aspetto delle proprie pagine semplicemente
- cambiando il percorso della risorsa o aggiungendo della logica all'assegnazione.
+La scelta del layout può essere effettuata dinamicamente come in listato
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:ViewStart"
+
+\end_inset
+
+, permettendo di aver maggior controllo sull'aspetto delle proprie pagine
+ semplicemente cambiando il percorso della risorsa o aggiungendo della logica
+ all'assegnazione.
  Ad esempio è possibile definire più versioni del proprio sito, ottimizzandone
  l'uso in funzione del tipo di device che sta effettuando la navigazione.
 \end_layout
@@ -1359,8 +1431,8 @@ Oltre ad includere un esempio di applicazione funzionante per ogni nuovo
  Durante lo sviluppo non è mai stato necessario modificare manualmente i
  file XML per la configurazione dell'applicazione e l'introduzione di nuovi
  controlli, viste o entità non ha richiesto uno studio approfondito del
- framework per una singola funzionalità, come ad esempio per la definizione
- del modello con JPA.
+ framework per una singola funzionalità, come ad esempio è successo per
+ la definizione del modello con JPA.
 \begin_inset Newline newline
 \end_inset
 
@@ -1372,7 +1444,7 @@ Inoltre VS integra all'interno dell'ambiente di sviluppo tutte le diverse
  categorie di strumenti e linguaggi necessari per lo sviluppo di un'applicazione
  web.
  Oltre ai classici HTML, CSS e Javascript, è supportato di default lo sviluppo
- a tecnologie innovative come Sass e Boostrap
+ con tecnologie innovative come Sass e Boostrap
 \begin_inset Foot
 status open
 
@@ -1407,16 +1479,36 @@ Hello CSBlog!
 \end_layout
 
 \begin_layout Standard
-Nella sezione sono introdotti gli strumenti per effettuare la definizione
+In questa sezione sono introdotti gli strumenti per effettuare la definizione
  dei test di accettazione automatici per CSBlog.
- Nella prima parte è descritto il processo di configurazione di Coypu, la
- libreria per l'automazione scelta per .NET, e di SpecFlow, il framework
- per il BDD.
+ Nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:SpecFlow"
+
+\end_inset
+
+ è descritto il processo di configurazione di SpecFlow, il framework per
+ il BDD, e nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Coypu"
+
+\end_inset
+
+ quello di Coypu, la libreria per l'automazione della navigazione web scelta
+ per .NET.
  Successivamente sono introdotti i primi test e le funzionalità utilizzate
  per l'implementazione.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:SpecFlow"
+
+\end_inset
+
 SpecFlow
 \end_layout
 
@@ -1427,7 +1519,7 @@ SpecFlow è un framework per .NET che sfrutta alcune componenti di Cucumber
  C#, al momento disponibile solo nelle versioni Java, Ruby e JavaScript.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection*
 Le funzionalità
 \end_layout
 
@@ -1480,15 +1572,15 @@ La prima feature di SBlog
 \end_layout
 
 \begin_layout Standard
-Grazie all'utilizzo di SpecFlow è possibile riutilizzare la stessa libreria
- utilizzata per lo sviluppo di RBlog e SBlog.
- Nell'importazione e nello sviluppo dei post non sono state rilevate problemi
+Grazie all'utilizzo di SpecFlow è possibile riutilizzare gli stessi acceptance
+ test utilizzati per lo sviluppo di RBlog e SBlog.
+ Nell'importazione e nello sviluppo dei test non sono state rilevate problemi
  legati al linguaggio ed ai costrutti sintattici utilizzati, sono però presenti
  delle differenze nell'implementazione, come verrà descritto nelle successive
  sezioni.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection*
 Supporto a Specflow in VS
 \end_layout
 
@@ -1565,21 +1657,28 @@ Per l'esecuzione delle funzionalità è possibile selezionare direttamente
 \end_inset
 
  per saltare alcuni scenari, oppure sfruttare l'integrazione con NUnit per
- scegliere quale sotto-insieme di scenari eseguire, è possibile utilizzare
- i diversi ordinamenti di NUnit per eseguire gli scenari in funzione di
- durata di esecuzione, risultato del test, tag utilizzati o namespace.
+ scegliere quale sotto-insieme di scenari eseguire.
+ E' possibile utilizzare i diversi ordinamenti di NUnit per eseguire gli
+ scenari in funzione di durata di esecuzione, risultato del test, tag utilizzati
+ o namespace.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Coypu"
+
+\end_inset
+
 Coypu
 \end_layout
 
 \begin_layout Standard
-I parametri utilizzati per scegliere la libreria per l'automazione della
- navigazione via browser favoriscono strumenti preferibilmente scritti nel
- linguaggio utilizzato per implementare l'applicazione web, il cui sviluppo
- sia attivo, che possibilmente siano open-source e che abbiano una comunità
- attiva per poter avere un riscontro in caso di difficoltà.
+I criteri utilizzati per scegliere la libreria per l'automazione della navigazio
+ne via browser in questa tesi, favoriscono strumenti scritti nel linguaggio
+ utilizzato per implementare l'applicazione web, il cui sviluppo sia attivo,
+ open-source e che abbiano una comunità attiva per poter avere un riscontro
+ in caso di difficoltà.
 \end_layout
 
 \begin_layout Standard
@@ -1603,7 +1702,7 @@ Viste le diverse difficoltà nella scelta di una libreria è stata effettuata
 
 \begin_layout Standard
 Il progetto è stato rilasciato la prima volta 2011, 2 anni prima della versione
- beta di Selenium 2.0, ed è attualmente sviluppato, anche se il supporto
+ beta di Selenium 2.0, il cui sviluppo è ancora attivo, anche se il supporto
  è principalmente effettuato dal un singolo autore.
  Nonostante si tratti di una libreria open-source utilizzata da una ridotta
  comunità, presenta un'interessante prospettiva dell'automazione della navigazio
@@ -1615,7 +1714,7 @@ I principali obbiettivi di Coypu riguardano la semplificazione e razionalizzazio
 ne delle funzionalità della libreria di Selenium e la definizione di una
  libreria che, come Capybara, permetta di descrivere i propri test nella
  maniera più vicina possibile a come un utente descriverebbe le proprie
- azioni sul browser.
+ azioni in termini di interazioni con il browser.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1666,7 +1765,12 @@ public void Before(){
 
 \begin_layout Plain Layout
 
-		Timeout = TimeSpan.FromSeconds(5)
+		Timeout = TimeSpan.FromSeconds(5),
+\end_layout
+
+\begin_layout Plain Layout
+
+		RetryInterval = TimeSpan.FromSeconds(0.1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1710,8 +1814,14 @@ Creazione della sessione.
 \end_layout
 
 \begin_layout Standard
-Anche in SpecFlow è possibile definire delle callback, nell'esempio è definito
- un hook 
+Anche in SpecFlow è possibile definire delle callback, nell'esempio 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Creazione-della-sessione."
+
+\end_inset
+
+ è definito un hook 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1769,6 +1879,12 @@ public void AfterScenario(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Chiusura-del-browser."
+
+\end_inset
+
 Chiusura del browser.
 \end_layout
 
@@ -1791,7 +1907,14 @@ dispose
 \begin_inset Quotes erd
 \end_inset
 
- al termine di ogni scenario.
+ al termine di ogni scenario, come si vede in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Chiusura-del-browser."
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1799,8 +1922,8 @@ PhantomJS
 \end_layout
 
 \begin_layout Standard
-Per utilizzare PhantomJS per come browser per i propri test, è necessario
- mantenere l'eseguibile all'interno del 
+Per utilizzare PhantomJS come browser per i propri test, è necessario mantenere
+ l'eseguibile all'interno del 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1881,7 +2004,7 @@ public void DatoAproCSBlog(){
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:Implementazione \"apro SBlog\""
+name "lis:Implementazione \"apro CSBlog\""
 
 \end_inset
 
@@ -1909,8 +2032,14 @@ apro SBlog
 \begin_layout Standard
 In maniera paragonabile a Cucumber e Cucumber-JVM, l'implementazione di
  un passo coincide con la definizione di un metodo pubblico annotato con
- un attributo, come Given nell'esempio, per indicare tramite l'espressione
- regolare quale sia il passo implementato.
+ un attributo, come Given in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Implementazione \"apro CSBlog\""
+
+\end_inset
+
+, per indicare tramite l'espressione regolare quale sia il passo implementato.
  I passi devono essere inseriti all'interno di classi annotate con l'attributo
  
 \begin_inset Quotes eld
@@ -1925,8 +2054,19 @@ Binding
 
 \begin_layout Standard
 Rispetto ai framework per il BDD utilizzati finora, Specflow è più rigido
- per quanto riguarda l'implementazione dei passi, è infatti obbligatorio
- che il tipo dichiarato in Gherkin coincida con l'attributo utilizzato.
+ per quanto riguarda l'implementazione dei passi.
+ Infatti obbligatorio che il tipo dichiarato in Gherkin coincida con l'attributo
+ utilizzato.
+ Quindi se la stessa espressione viene utilizzata in due tipi di passi,
+ si deve annotare il metodo che li implementa con entrambe gli attributi,
+ come in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Doppio attributo SpecFlow"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1979,6 +2119,12 @@ public class Constraints : BaseStep     {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Doppio attributo SpecFlow"
+
+\end_inset
+
 Implementazione valida per una pre-condizione ed un evento.
 \end_layout
 
@@ -2005,8 +2151,14 @@ Scope
 .
  E' possibile impostare la visibilità dei passi in funzione del diverso
  posizionamento dell'attributo, annotando l'intera classe o il singolo metodo.
- Il codice del prossimo listato vincola la visibilità esprimendo le diverse
- condizioni disponibili.
+ Il codice in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Definizione-dell'attributo-Scope"
+
+\end_inset
+
+ vincola la visibilità esprimendo le diverse condizioni disponibili.
 \end_layout
 
 \begin_layout Standard
@@ -2020,7 +2172,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Definizione dello scope per 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Definizione-dell'attributo-Scope"
+
+\end_inset
+
+Definizione dell'attributo Scope.
 \end_layout
 
 \end_inset
@@ -2033,7 +2191,7 @@ Definizione dello scope per
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection*
 Navigare all'interno del sito
 \end_layout
 
@@ -2065,6 +2223,21 @@ public void DatoAproCSBlog(){
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Apertura-di-CSBlog."
+
+\end_inset
+
+Apertura di CSBlog.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2086,8 +2259,14 @@ BrowserSession
 , che include le funzionalità per la gestione del browser come il ridimensioname
 nto della finestra, il refresh della pagina e la navigazione attraverso
  la cronologia, è possibile navigare esplicitamente ad un URL passato come
- parametro, nell'esempio è mostrato come sia anche possibile utilizzare
- un percorso relativo.
+ parametro, nell'esempio in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Apertura-di-CSBlog."
+
+\end_inset
+
+ è mostrato come sia anche possibile utilizzare un percorso relativo.
 \end_layout
 
 \begin_layout Standard
@@ -2120,6 +2299,12 @@ public bool HasNoDialog(string withText, Options options = null);
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:BrowserWindow"
+
+\end_inset
+
 Alcune delle funzionalità presenti nella classe 
 \begin_inset Quotes eld
 \end_inset
@@ -2150,8 +2335,15 @@ BrowserWindow
 \begin_inset Quotes erd
 \end_inset
 
+, come ad esempio quello in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:BrowserWindow"
+
+\end_inset
+
 , si intuisce la propensione di Coypu per la definizione di metodi che rappresen
-tino le normali iterazioni di un'utente con il browser durante la navigazione
+tino le normali interazioni di un'utente con il browser durante la navigazione
  web e siano il più intuitivi possibili.
 \end_layout
 
@@ -2179,6 +2371,22 @@ geName);
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Coypu Click"
+
+\end_inset
+
+Navigazione tramite un collegamento in Coypu.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2207,7 +2415,14 @@ BrowserWindow
 \end_inset
 
  che rappresenta la sessione di navigazione ed è quindi già istanziata al
- momento dell'esecuzione dei test.
+ momento dell'esecuzione dei test, come illustrato in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Coypu Click"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2247,9 +2462,9 @@ ElementScope
 \begin_inset Quotes erd
 \end_inset
 
- che rappresenta un tag presente nel DOM; in maniera simile a Capybara,
- sono presenti numerose proprietà per ottenere informazioni sull'elemento
- ed i metodi per eseguire le azioni.
+ che rappresenta un tag presente nel DOM In maniera simile a Capybara, sono
+ presenti numerose proprietà per ottenere informazioni sull'elemento ed
+ i metodi per eseguire le azioni.
 \begin_inset Newline newline
 \end_inset
 
@@ -2270,7 +2485,7 @@ reference "lis:Creazione-della-sessione."
 
 , che rappresenta la creazione e configurazione di una nuova sessione per
  la verifica di uno scenario, è possibile impostare sia il valore di attesa
- massimo che la frequenza di pooling desiderata.
+ massimo che la frequenza di polling desiderata.
 \begin_inset Newline newline
 \end_inset
 
@@ -2278,8 +2493,8 @@ reference "lis:Creazione-della-sessione."
 \end_layout
 
 \begin_layout Standard
-Una carenza riscontrata nelle prime fasi di sviluppo è l'assenza di una
- documentazione nei sorgenti che chiarisca il funzionamento della libreria.
+Una carenza riscontrata nelle prime fasi di sviluppo è l'assenza di documentazio
+ne soddisfacente.
  Nonostante in Coypu sia facile intuire il funzionamento della libreria
  leggendo la segnatura dei metodi, la definizione di qualche esempio ne
  semplificherebbe l'utilizzo.
@@ -2298,7 +2513,14 @@ NUnit è una libreria per la definizione di unit-test in C# nata dal porting
 \begin_layout Standard
 Nonostante i due progetti non siano più sviluppati dallo stesso team, utilizzand
 o le asserzioni di NUnit è facile riconoscere l'origine comune.
- Ad esempio nel successivo passo, sono utilizzati i metodi 
+ Ad esempio nel successivo passo in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:NUnit-AreEqual"
+
+\end_inset
+
+, sono utilizzati i metodi 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2364,6 +2586,22 @@ public void AlloraPossoTornareAllaPaginaIniziale(){
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:NUnit-AreEqual"
+
+\end_inset
+
+NUnit AreEqual
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2392,6 +2630,12 @@ Assert.That(myString, Is.EqualTo("Hello"));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:EqualTo"
+
+\end_inset
+
 Un possibile uso dell'asserzione 
 \begin_inset Quotes eld
 \end_inset
@@ -2422,8 +2666,15 @@ That
 \begin_inset Quotes erd
 \end_inset
 
- nell'esempio è utilizzato per verificare un valore booleano, in generale
- però è utilizzato per la sua caratteristica di accettare parametri 
+ nell'esempio in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:EqualTo"
+
+\end_inset
+
+, è utilizzato per verificare un valore booleano, in generale però è utilizzato
+ per la sua caratteristica di accettare parametri 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2432,9 +2683,9 @@ IConstraint
 \end_inset
 
 .
- L'interfaccia definisce un insieme di metodi per rappresentare una condizione
- e, oltre alle classi esistenti nella libreria come mostrato nell'esempio,
- permette la definizione di classi personalizzate.
+ Questa interfaccia definisce un insieme di metodi per rappresentare una
+ condizione e, oltre alle classi di vincoli fornite dalla libreria come
+ mostrato nell'esempio, permette la definizione di vincoli personalizzati.
  In Coypu è presente una classe 
 \begin_inset Quotes eld
 \end_inset
@@ -2443,7 +2694,15 @@ Shows
 \begin_inset Quotes erd
 \end_inset
 
- che implementa diverse condizioni e aumenta la leggibilità delle asserzioni.
+ che implementa diverse condizioni e aumenta la leggibilità delle asserzioni,
+ come si può vedere in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Shows"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2461,6 +2720,12 @@ Assert.That(footer, Shows.Css("img"));
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Shows"
+
+\end_inset
+
 Uso del tipo 
 \begin_inset Quotes eld
 \end_inset

@@ -95,7 +95,8 @@ In questo capitolo è trattato lo sviluppo di SBlog con Spring, un framework
 \begin_layout Standard
 La struttura di questo capitolo su Spring è simile al precedente: le prime
  sezioni descrivono l'architettura del framework, introducendo gli strumenti
- più significati nella definizione di SBlog, dalla sezione 
+ più significati nella definizione del nostro caso di studio nell'ecosistema
+ di Java, dalla sezione 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Hello-SBlog!"
