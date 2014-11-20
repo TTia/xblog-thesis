@@ -40,10 +40,6 @@
 \setbox\hlboxpercent=\hbox{\verb.\%.}
 \setbox\hlboxhat=\hbox{\verb.^.}
 \def\urltilda{\kern -.15em\lower .7ex\hbox{\~{}}\kern .04em}
-
-
-\fancyhf{}
-\rfoot{18/11/2014 - pag. \thepage}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -52,10 +48,10 @@
 \inputencoding auto
 \fontencoding global
 \font_roman default
-\font_sans default
+\font_sans lmss
 \font_typewriter default
 \font_math auto
-\font_default_family default
+\font_default_family sfdefault
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
@@ -69,6 +65,8 @@
 \paperfontsize default
 \spacing single
 \use_hyperref true
+\pdf_title "Test di accettazione in framework MVC a confronto"
+\pdf_author "Mattia Barrasso"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
@@ -110,8 +108,9 @@
 \quotes_language english
 \papercolumns 1
 \papersides 2
-\paperpagestyle fancy
+\paperpagestyle headings
 \listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\footnotesize},showstringspaces=false"
+\bullet 0 0 9 -1
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -155,6 +154,16 @@ filename "Capitoli/Capitolo 03 - Spring.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "Capitoli/Capitolo 04 - MVC5.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Capitoli/Conclusione.lyx"
 
 \end_inset
 

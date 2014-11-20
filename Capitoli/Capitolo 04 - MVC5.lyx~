@@ -2695,7 +2695,14 @@ Shows
 \end_inset
 
  che implementa diverse condizioni e aumenta la leggibilità delle asserzioni,
- come si può vedere in listato .
+ come si può vedere in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Shows"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2818,8 +2825,8 @@ Nonostante gli sforzi dell'autore e degli sviluppatori, che frequentemente
  propongono le loro pull-request su GitHub, Coypu non può mantenere il livello
  di sviluppo di Selenium.
  Per fornire comunque pieno supporto ai propri utenti è possibile sfruttare
- la libreria nativa, utilizzata dalle stesse funzionalità di Coypu, come
- mostrato nel passo del listato 
+ la libreria nativa di Selenium stesso, utilizzata dalle stesse funzionalità
+ di Coypu, come mostrato nel passo del listato 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lis:Uso-delle-funzionalità"
@@ -2916,8 +2923,10 @@ rgba
 
 \begin_layout Standard
 La versione per C# di Selenium è estremamente simile a quella per Java,
- sintassi permettendo; per questo motivo non è stata completata l'implementazion
-e degli scenari per la funzionalità corrente.
+ per quanto possibile compatibilmente con le diverse sintassi.
+ Per questo motivo illustrare l'implementazione degli scenari per la funzionalit
+à corrente, non aggiungerebbe ulteriori informazioni.
+ Il materiale corrispondente è pertanto omesso.
 \end_layout
 
 \begin_layout Standard
@@ -2932,8 +2941,9 @@ Definizione del modello
 \end_layout
 
 \begin_layout Standard
-Nella sezione sono descritte le componenti di MVC5 che permettono la gestione
- delle entità attraverso CSBlog e lo sviluppo dei relativi test di accettazione.
+In questa sezione sono descritte le componenti di MVC5 che permettono la
+ gestione delle entità attraverso CSBlog e lo sviluppo dei relativi test
+ di accettazione.
 \end_layout
 
 \begin_layout Standard
@@ -2968,7 +2978,7 @@ Funzionalità: Gestione dei post
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:03x00 Modello"
+name "lis:Coypu iterazione"
 
 \end_inset
 
@@ -3153,8 +3163,8 @@ Al contrario in Specflow, non è possibile specificare alcun ordinamento
 
 \begin_layout Standard
 Per implementare gli hook in SpecFlow è necessario utilizzare gli attributi
- per associare le callback agli eventi e implementare i metodi all'interno
- di classi annotate con l'attributo 
+ per associare le callback agli eventi (ad esempio Before/After Test) e
+ implementare i metodi all'interno di classi annotate con l'attributo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3189,7 +3199,7 @@ I controlli
 
 \begin_layout Standard
 Ad ogni componente è associato un controllo ed una collezione di azioni
- eseguibili, nei seguenti frammenti di codice sono mostrate le implementazione
+ eseguibili; nei seguenti frammenti di codice sono mostrate le implementazione
  delle azioni per la creazione dei post.
 \end_layout
 
@@ -3235,6 +3245,12 @@ public class PostController : Controller { 	private CSBlogEntities db =
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:MVC5 Create"
+
+\end_inset
+
 Frammento di codice contente l'azione 
 \begin_inset Quotes eld
 \end_inset
@@ -3266,12 +3282,26 @@ Create
 \end_inset
 
  per disaccoppiare la gestione della vista per la creazione di un nuovo
- post e la gestione della persistenza dell'oggetto definito attraverso l'interfa
-ccia dell'applicazione nel modello.
+ post in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:MVC5 Create"
+
+\end_inset
+
+ e la gestione della persistenza dell'oggetto definito attraverso l'interfaccia
+ dell'applicazione nel modello, in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:MVC5 Azione Persistenza Create"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Il ritorno di tipo 
+La chiamata di 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3279,8 +3309,8 @@ View
 \begin_inset Quotes erd
 \end_inset
 
-, istanziato senza specificare parametri, risolve la richiesta visualizzando
- la vista 
+, senza specificare parametri risolve la richiesta visualizzando la vista
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3288,7 +3318,8 @@ View
 \begin_inset Quotes erd
 \end_inset
 
-, il cui nome coincide con l'identificatore dell'azione.
+, il cui percorso è inferito a partire dall'identificatore dell'azione ed
+ il nome dell'entità.
 \end_layout
 
 \begin_layout Standard
@@ -3424,8 +3455,15 @@ Create
 \begin_inset Quotes erd
 \end_inset
 
+ in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:MVC5 Azione Persistenza Create"
+
+\end_inset
+
  è piuttosto articolato.
- Di seguito sono descritte le principali funzionalità:
+ Di seguito sono descritte i principali aspetti:
 \end_layout
 
 \begin_layout Itemize
@@ -3455,10 +3493,10 @@ ValidateAntiForgeryToken
  definizione di nuovi contenuti, da attacchi di over-posting e dalla forgiatura
  di richieste cross-site.
  Il processo per implementare la sicurezza dei form è abbastanza semplice
- e consiste con la generazione di un valore unico all'interno del form durante
+ e consiste nella generazione di un valore unico all'interno del form durante
  la visita della pagina e la copia del valore all'interno di un cookie HTTP
- creato ad-hoc, al momento dell'invio dei dati inseriti è verificato da
- MVC5 l'uguaglianza dei due valori eventualmente permettendo l'operazione;
+ creato ad-hoc; al momento dell'invio dei dati inseriti, MVC5 verifica l'uguagli
+anza dei due valori ed eventualmente permettendo l'operazione;
 \end_layout
 
 \begin_layout Itemize
@@ -3524,7 +3562,8 @@ db.SaveChanges
 \begin_inset Quotes erd
 \end_inset
 
- aggiungono l'oggetto al modello ed effettuano la persistenza delle modifiche.
+ rispettivamente aggiungono l'oggetto al modello ed effettuano la persistenza
+ delle modifiche.
 \end_layout
 
 \begin_layout Itemize
@@ -3586,15 +3625,15 @@ Model
 \begin_inset Quotes eld
 \end_inset
 
-dynamic
+ViewBag
 \begin_inset Quotes erd
 \end_inset
 
- 
+ di tipo 
 \begin_inset Quotes eld
 \end_inset
 
-ViewBag
+dynamic
 \begin_inset Quotes erd
 \end_inset
 
@@ -3635,6 +3674,12 @@ ViewBag.message = "Hello ViewBag";
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:ViewBag"
+
+\end_inset
+
 Esempio di utilizzo della proprietà 
 \begin_inset Quotes eld
 \end_inset
@@ -3657,7 +3702,14 @@ ViewBag
 \end_layout
 
 \begin_layout Standard
-Nel listato è inizializzato con una stringa l'attributo dinamico 
+Nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:ViewBag"
+
+\end_inset
+
+ è inizializzato con una stringa l'attributo dinamico 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3674,7 +3726,14 @@ Le viste
 
 \begin_layout Standard
 Dopo aver mostrato i controlli per la creazione di nuovi post, è ora descritta
- la vista per la creazione di nuovi post.
+ la vista per la creazione di nuovi post in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Razor Form Create Post"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3802,6 +3861,21 @@ status open
 
 	<!-- ..
  -->
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Razor Form Create Post"
+
+\end_inset
+
+Vista parziale relativa al form per la creazione dei post.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3819,7 +3893,7 @@ In MVC, tramite le funzionalità di Razor è possibile tipare le proprie viste
 \begin_inset Quotes erd
 \end_inset
 
-, quale l'entità rappresentata dalla pagina corrente.
+, qual è l'entità rappresentata dalla pagina corrente.
  Nella classe 
 \begin_inset Quotes eld
 \end_inset
@@ -3975,8 +4049,14 @@ Gestione degli errori nei form
 \begin_layout Standard
 Utilizzando gli attributi dell'EF è possibile definire dei vincoli sugli
  attributi delle entità.
- Nel successivo listato è mostrato un frammento di codice relativo alla
- proprietà 
+ Nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Proprietà-title-dell'entità"
+
+\end_inset
+
+ è mostrato un frammento di codice relativo alla proprietà 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4027,6 +4107,34 @@ status open
 public string title { get; set; }
 \end_layout
 
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Proprietà-title-dell'entità"
+
+\end_inset
+
+Proprietà 
+\begin_inset Quotes eld
+\end_inset
+
+title
+\begin_inset Quotes erd
+\end_inset
+
+ dell'entità Post.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -4050,9 +4158,9 @@ StringLength
 \end_inset
 
  effettuano la verifica del valore della stringa e invalidano l'oggetto
- nel caso il titolo sia mancante, troppo corto o troppo lungo; è anche possibile
- associare a ciascun attributo un messaggio d'errore personalizzato che
- rappresenta il testo mostrato all'interno della vista.
+ nel caso il titolo sia mancante, troppo corto o troppo lungo.
+ E' anche possibile associare a ciascun attributo un messaggio d'errore
+ personalizzato che rappresenta il testo mostrato all'interno della vista.
 \end_layout
 
 \begin_layout Standard
@@ -4125,9 +4233,16 @@ id
 \end_layout
 
 \begin_layout Standard
-Nel listato successivo, utilizzando LINQ per accedere al modello e JSon
- per definire il risultato dell'azione, è verificato in funzione dei parametri
- la presenza di eventuali post con titolo simili.
+Nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:unicità del titolo dei post"
+
+\end_inset
+
+, utilizzando LINQ per accedere al modello e JSon per definire il risultato
+ dell'azione, è verificato in funzione dei parametri la presenza di eventuali
+ post con titolo simili.
 \end_layout
 
 \begin_layout Standard
@@ -4177,6 +4292,12 @@ IgnoreCase)).FirstOrDefault();
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:unicità del titolo dei post"
+
+\end_inset
+
 Azione per la verifica dell'unicità del titolo dei post.
 \end_layout
 
@@ -4272,6 +4393,12 @@ public void DatoMiAutenticoCome(string email){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Login-su-CSBlog"
+
+\end_inset
+
 Login su CSBlog tramite Coypu.
 \end_layout
 
@@ -4288,7 +4415,15 @@ Login su CSBlog tramite Coypu.
 \begin_layout Standard
 Rispetto a Selenium, il DSL di Coypu è più semplice e facilmente utilizzabile;
  inoltre è evidente la propensione della libreria a favorire la definizione
- di selettori in funzione del testo mostrato dai vari elementi.
+ di selettori in funzione del testo mostrato dai vari elementi, come ad
+ esempio nel listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Login-su-CSBlog"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -4322,6 +4457,12 @@ protected ElementScope findPostByTitle(String title) {
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:selettore tramite i metodi di Coypu"
+
+\end_inset
+
 Definizione di un selettore tramite i metodi di Coypu.
 \end_layout
 
@@ -4336,8 +4477,15 @@ Definizione di un selettore tramite i metodi di Coypu.
 \end_layout
 
 \begin_layout Standard
-Il metodo del listato precedente definisce una funzionalità ausiliaria per
- ricercare all'interno del DOM un post, contenuto all'interno di un 
+Il metodo del listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:selettore tramite i metodi di Coypu"
+
+\end_inset
+
+ definisce una funzionalità ausiliaria per ricercare all'interno del DOM
+ un post, contenuto all'interno di un 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4593,8 +4741,8 @@ FindAllCss
 \end_layout
 
 \begin_layout Standard
-A differenza di Capybara, Coypu non restituisce errore nel caso in cui la
- venga utilizzato un metodo per individuare un singolo elemento ed al contrario
+A differenza di Capybara, Coypu non restituisce errore nel caso in cui venga
+ utilizzato un metodo per individuare un singolo elemento ed al contrario
  siano presenti più potenziali risultati, ma restituisce il primo elemento
  incontrato.
 \begin_inset Newline newline
@@ -4612,7 +4760,8 @@ FindAllCss
 \begin_inset Quotes erd
 \end_inset
 
-; rispetto ai metodi che restituiscono un singolo risultato, i metodi che
+.
+ Rispetto ai metodi che restituiscono un singolo risultato, i metodi che
  ricercano tutti i potenziali riscontri all'interno della pagina non applicano
  strategie di attesa per eventuali elementi asincroni, bensì restituiscono
  la collezione di elementi presenti al momento dell'invocazione; per modificare
@@ -4661,6 +4810,12 @@ public void AlloraLInizio(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:FindXPath"
+
+\end_inset
+
 Esempio del metodo 
 \begin_inset Quotes eld
 \end_inset
@@ -4685,7 +4840,14 @@ FindXPath
 \begin_layout Standard
 Nonostante la libreria propenda per l'utilizzo di funzionalità ad alto livello,
  per favorire la leggibilità dei test, è anche possibile definire i seletori
- tramite espressioni XPath.
+ tramite espressioni XPath, come in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:FindXPath"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4717,6 +4879,21 @@ Exact});
 \begin_layout Plain Layout
 
 }
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Options"
+
+\end_inset
+
+Utilizzo della classe Options di Coypu.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4735,7 +4912,15 @@ Options,
 \begin_inset Quotes erd
 \end_inset
 
- che ricorda l'uso del dizionario come parametro opzionale in Ruby.
+ che ricorda l'uso del dizionario come parametro opzionale in Ruby, come
+ in listato 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Options"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -4762,22 +4947,22 @@ Durante lo sviluppo di CSBlog con VS sono state individuate alcune difficoltà
  il debug dei test.
  All'interno dell'ambiente di sviluppo è possibile eseguire la propria applicazi
 one sia in modalità debug classica, in cui VS monitora l'esecuzione ed eventualm
-ente gestisce e segnala gli errori, oppure è possibile procedere all'esecuzione
- semplice.
+ente gestisce e segnala gli errori, sia in una modalità debug semplificata
+ in cui è possibile continuare a sviluppare nell'ambiente di sviluppo.
 \end_layout
 
 \begin_layout Standard
-Dai tentativi fatti su VS, per qualsiasi sia il tipo di esecuzione dell'applicaz
-ione sembra che non sia possibile eseguire i propri test di accettazione
- in modalità debug, perché è consentito che venga eseguito al più un solo
- processo per ogni istanza di VS.
+Dai tentativi fatti su VS, qualsiasi sia il tipo di esecuzione dell'applicazione
+ sembra che non sia possibile eseguire i propri test di accettazione in
+ modalità debug, perché è consentito che venga eseguito al più un solo processo
+ per ogni istanza di VS.
 \end_layout
 
 \begin_layout Standard
 Creando un secondo progetto contenente esclusivamente i test ed aprendo
- due istanze di VS, una per lo sviluppo ed una per il testing, si dovrebbe
- evitare i conflitti durante l'esecuzione, introducendo però possibili rallentam
-enti nel sistema.
+ due istanze di VS, una per lo sviluppo ed una per il testing, si dovrebbero
+ evitare conflitti durante l'esecuzione, introducendo però possibili rallentamen
+ti nel sistema.
 \end_layout
 
 \begin_layout Standard
@@ -4892,10 +5077,10 @@ Asincronia
 \end_layout
 
 \begin_layout Standard
-Coypu gestisce gli elementi della pagina con lo stesso principio di Capybara,
+Coypu gestisce gli elementi della pagina con lo stesso principio di Capybara:
  ogni elemento può potenzialmente essere asincrono, preferendo la definizione
- di una strategia di ricerca globale tramite attese e polling rispetto alla
- definizione di asserzioni sullo stato degli elementi, perché difficili
+ di una strategia di ricerca globale tramite attese e polling, rispetto
+ alla definizione di asserzioni sullo stato degli elementi, perché difficili
  da esprimere, implementare e mantenere.
 \end_layout
 
@@ -4969,7 +5154,7 @@ Funzionalità: Easter Egging
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "lis:05bx00 EasterEgg"
+name "lis:MVC5 05bx00 EasterEgg"
 
 \end_inset
 
@@ -4987,7 +5172,28 @@ Introduzione di un breve script Javascript.
 \end_layout
 
 \begin_layout Standard
-Nei successi listati è mostrata l'implementazione dello scenario 
+Nei successi listati 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Pre-condizione."
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Evento."
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Asserzione."
+
+\end_inset
+
+ è mostrata l'implementazione dello scenario 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5041,6 +5247,12 @@ public void DatoNonEPresenteIlLogoNellIntestazione(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Pre-condizione."
+
+\end_inset
+
 Pre-condizione.
 \end_layout
 
@@ -5084,6 +5296,12 @@ public void QuandoCliccoSullAreaDelPieDiPagina(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Evento."
+
+\end_inset
+
 Evento.
 \end_layout
 
@@ -5133,6 +5351,12 @@ public void AlloraEPresenteIlLogo(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Asserzione."
+
+\end_inset
+
 Asserzione.
 \end_layout
 
@@ -5268,8 +5492,22 @@ Scenario riguardante l'auto-completamento della ricerca.
 \end_layout
 
 \begin_layout Standard
-Nei successivi listati sono incluse le implementazioni dei passi che verificano
- la presenza del menù a tendina per il campo 
+Nei successivi listati 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:AlloraVienePropostoIlPost"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:AlloraNonEPropostoAlcunPost"
+
+\end_inset
+
+ sono incluse le implementazioni dei passi che verificano la presenza del
+ menù a tendina per il campo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5315,6 +5553,12 @@ public void AlloraVienePropostoIlPost(string title){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:AlloraVienePropostoIlPost"
+
+\end_inset
+
 Verifica della presenza di un post nei suggerimenti.
 \end_layout
 
@@ -5329,9 +5573,9 @@ Verifica della presenza di un post nei suggerimenti.
 \end_layout
 
 \begin_layout Standard
-Coypu anche per uno scenario più complesso, in quanto questa operazione
- asincrona ha maggior latenza rispetto alla risoluzione della chiamata Javascrip
-t dello scenario 
+Coypu non necessità di introdurre istruzioni ad-hoc anche per uno scenario
+ più complesso, quale questa operazione asincrona, che ha maggior latenza
+ rispetto alla risoluzione della chiamata Javascript dello scenario 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5339,7 +5583,7 @@ EasterEgg
 \begin_inset Quotes erd
 \end_inset
 
-, non necessità di introdurre istruzioni ad-hoc.
+.
  Inoltre Coypu è coerente nell'implementazione delle proprie funzionalità
  e restituisce solo elementi effettivamente visibili nella pagina
 \begin_inset Foot
@@ -5406,6 +5650,12 @@ public void AlloraNonEPropostoAlcunPost(){
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:AlloraNonEPropostoAlcunPost"
+
+\end_inset
+
 Verifica dell'assenza di suggerimenti.
 \end_layout
 
