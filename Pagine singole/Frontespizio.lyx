@@ -108,12 +108,9 @@ thispagestyle{empty}
 \noindent
 \align center
 
-\series bold
 \size huge
 \noun on
-U
-\series default
-niversità Degli Studi
+Università Degli Studi
 \end_layout
 
 \begin_layout Standard
