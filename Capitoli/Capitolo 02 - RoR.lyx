@@ -1341,6 +1341,22 @@ e sono disponibili CVS, Git, Subversion, Mercurial e Perforce.
  sviluppo.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -2854,7 +2870,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Selezione_001.jpg
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Selezione_Single_Post.jpg
 	scale 40
 
 \end_inset
@@ -3146,7 +3162,16 @@ Lo sviluppatore inoltre può anche sfruttare i numerosi tool a linea di comando
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -5136,7 +5161,19 @@ be
  è possibile utilizzare gli operatori definiti in Ruby.
  Nella precondizione è verificato che lo stato HTTP sia equivalente a 200,
  che corrisponde alla corretta terminazione della richiesta.
-\begin_inset Newpage pagebreak
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -6079,7 +6116,19 @@ mente il tipo di espressione utilizzata: nei frammenti di codice i metodi
 \end_inset
 
 .
-\begin_inset Newpage pagebreak
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -6713,7 +6762,19 @@ end
 \end_inset
 
 
-\begin_inset Newpage pagebreak
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -7341,7 +7402,19 @@ L'uso di etichette su scenari e funzionalità dovrebbe essere utile solo
  base al tempo di esecuzione richiesto -ad esempio @rapido, @standard e
  @lento- o stabilendo i giusti intervalli di l'esecuzione su un server per
  la CI -ad esempio @sempre, @ogni_ora, @ogni_notte-.
-\begin_inset Newpage pagebreak
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -8520,6 +8593,22 @@ Then(/^viene proposto il post "([^"]*)"$/) do |hint|
 \begin_layout Standard
 Avendo gestito l'asincronia ed utilizzato i giusti eventi, le asserzioni
  non presentano richiede accorgimenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

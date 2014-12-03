@@ -158,6 +158,22 @@ key "NuGet"
  del progetto, come sarà mostrato nelle prossime sezioni.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -1558,7 +1574,16 @@ Bootstrap è un'interessante framework, sviluppato originariamente da Twitter,
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -2854,7 +2879,16 @@ Shows
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -3036,7 +3070,16 @@ La versione per C# di Selenium è estremamente simile a quella per Java,
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -5071,7 +5114,16 @@ ti nel sistema.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -5171,7 +5223,16 @@ ElementScope
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -5789,6 +5850,22 @@ Il widget per l'auto-completamento, probabilmente per minimizzare il numero
 Quando sarà effettuata una nuova ricerca all'interno della pagina, il widget
  provvederà a correggere la cardinalità della lista e sostituire il testo
  degli elementi con i nuovi valori.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

@@ -113,7 +113,7 @@ L'articolo è stato pubblicato pochi anni dopo il rilascio della prima versione.
 
 \end_inset
 
-, si presentasse fin da subito come una piattaforme più moderna ed adeguata
+, si presentasse fin da subito come una piattaforma moderna ed adeguata
  alla metodologia Agile, offrendo supporto ai relativi processi di sviluppo.
  Grazie ad una struttura più lineare, alla semplicità di definizione dei
  test e combinando il potere espressivo di Ruby, gli autori hanno individuato
@@ -888,6 +888,22 @@ Infine, l'ultimo capitolo riassume quanto osservato attraverso l'esperienza
 ione data per ciascuna componente del pattern MVC dai framework, sia delle
  potenzialità dei diversi strumenti utilizzati per l'implementazione dei
  progetti e dei test di accettazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

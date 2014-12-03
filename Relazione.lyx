@@ -107,7 +107,7 @@
 \paragraph_indentation default
 \quotes_language english
 \papercolumns 1
-\papersides 2
+\papersides 1
 \paperpagestyle headings
 \listings_params "breaklines=true,frame=tb,captionpos=t,frameround=f,showlines=true,numbers=left,stepnumber=1,numbersep=10pt,numberstyle={\small\color{gray}\ttfamily\scriptsize},tabsize=2,language=Ruby,alsolanguage=HTML,basicstyle={\ttfamily\footnotesize},showstringspaces=false"
 \tracking_changes false
