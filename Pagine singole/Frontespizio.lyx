@@ -134,6 +134,30 @@ status open
 \noindent
 \align center
 
+\lang english
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Frontespizio/unige.jpg
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\lang english
+\begin_inset Graphics
+	filename /home/mattia/Desktop/Tesi/xblog-thesis/Immagini/Logos/Dibris Short.jpg
+	lyxscale 25
+	scale 60
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -169,7 +193,6 @@ Corso di Laurea Magistrale in Informatica
 \noindent
 \align center
 
-\series bold
 \size giant
 \noun on
 Test di accettazione in framework MVC a confronto
